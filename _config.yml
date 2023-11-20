@@ -297,6 +297,8 @@ scholar:
   group_by: year
   group_order: descending
 
+  bibtex_skip_fields: [ bibtex_show, html, pdf, supp, blog, code, poster, slides, website, abbr, abstract, month_numeric ]
+
 # Display different badges withs stats for your publications
 enable_publication_badges:
   altmetric: true # Altmetric badge (https://www.altmetric.com/products/altmetric-badges/)

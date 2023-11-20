@@ -24,14 +24,17 @@
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
+      "name": "Coach-AI GmbH (Korro.ai), Hilpertstraße 35, 64295 Darmstadt",
+      "position": "Computer vision intern",
+      "url": "https://www.linkedin.com/company/coach-ai/",
+      "startDate": "2023-01-02",
+      "endDate": "2023-06-30",
+      "summary": "I worked as a research engineer at a computer vision company in Darmstadt, Germany. In this role, I worked on projects related to mobile action recognition. I developed new algorithms for recognizing a variety of actions, including hand gestures, facial expressions, and body movements.",
       "highlights": [
-        "Relativity"
+        "Deep learning",
+        "Computer vision",
+        "Pose Estimation",
+        "Mobile"
       ]
     }
   ],
@@ -57,22 +60,22 @@
   ],
   "awards": [
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "Polito Quality Awards - 2022",
+      "date": "2022-09-21",
+      "awarder": "Best Ph.D. student",
+      "summary": "Politecnico di Torino established some quality awards for the best Ph.D. students at the end of each year."
     },
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "EPIC-Kitchens Dataset Challenges",
+      "date": "2022-06-19",
+      "awarder": "Unsupervised Domain Adaptation for Action Recognition Track 2021 IEEE/CVF Computer Vision and Pattern Recognition (CVPR)",
+      "summary": "3rd place at the EPIC-KITCHENS-100 Unsupervised Domain Adaptation Challenge for Action Recognition."
     },
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "EPIC-Kitchens Dataset Challenges",
+      "date": "2021-06-20",
+      "awarder": "Unsupervised Domain Adaptation for Action Recognition Track 2021 IEEE/CVF Computer Vision and Pattern Recognition (CVPR)",
+      "summary": "3rd place at the EPIC-KITCHENS-100 Unsupervised Domain Adaptation Challenge for Action Recognition."
     }
 
   ],
@@ -81,7 +84,7 @@
   "skills": [],
   "languages": [
     {
-      "language": "German",
+      "language": "Italian",
       "fluency": "Native speaker"
     },
     {

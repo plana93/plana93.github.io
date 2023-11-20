@@ -5,7 +5,7 @@
     "image": "",
     "email": "mirco.pl.93@gmail.com",
     "phone": "(+39) 347 3538924",
-    "url": "https://alshedivat.github.io/al-folio/",
+    "url": "https://plana93.github.io",
     "summary": " Description ...",
     "location": {
       "address": "Via Ferrere, 5",
@@ -42,7 +42,7 @@
       "url": "https://www.polito.it/",
       "area": "Artificial Intelligence and Machine Learning",
       "studyType": "PhD",
-      "title": "Multi-Modal Learning for Cross-Domain Analysis of Egocentric Action and Object Recognition",
+      "title thesis": "Multi-Modal Learning for Cross-Domain Analysis of Egocentric Action and Object Recognition",
       "startDate": "2019-11-01",
       "endDate": "2023-10-30",
       "score": "110/110 cum laude",
@@ -61,7 +61,20 @@
       "date": "1921-11-01",
       "awarder": "Royal Swedish Academy of Sciences",
       "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+    },
+    {
+      "title": "Nobel Prize in Physics",
+      "date": "1921-11-01",
+      "awarder": "Royal Swedish Academy of Sciences",
+      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+    },
+    {
+      "title": "Nobel Prize in Physics",
+      "date": "1921-11-01",
+      "awarder": "Royal Swedish Academy of Sciences",
+      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
     }
+
   ],
   "certificates": [],
   "publications": [],

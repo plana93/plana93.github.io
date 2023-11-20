@@ -2,22 +2,22 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Mirco Planamente
     - name: Date of Birth
-      value: 14th March 1879
+      value: 6th October 1993
     - name: Languages
-      value: English, German
+      value: Italian, English
 
 - title: Education
   type: time_table
   contents:
     - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+      institution: Polytechnic of Turin, Italy
+      year: 2023
       description:
-        - Description 1.
+        - Supervisors: Barbara Caputo, Andrea Bottino
         - Description 2.
-        - title: Description 3.
+        - title: Multi-Modal Learning for Cross-Domain Analysis of Egocentric Action and Object Recognition
           contents:
             - Sub-description 1.
             - Sub-description 2.

@@ -1,24 +1,24 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Mirco Planamente",
+    "label": "PhD",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
+    "email": "mirco.pl.93@gmail.com",
+    "phone": "(+39) 347 3538924",
     "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "summary": " Description ...",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "Via Ferrere, 5",
+      "postalCode": "TO 10139",
+      "city": "Turin",
+      "countryCode": "ITA",
+      "region": "Italy"
     },
     "profiles": [
       {
         "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "username": "MircoPlanamente",
+        "url": "https://twitter.com/MircoPlanamente"
       }
     ]
   },
@@ -38,15 +38,20 @@
   "volunteer": [],
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
+      "institution": "Polytechnic of Turin, Italy",
+      "url": "https://www.polito.it/",
+      "area": "Artificial Intelligence and Machine Learning",
       "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
-      "score": "",
+      "title": "Multi-Modal Learning for Cross-Domain Analysis of Egocentric Action and Object Recognition",
+      "startDate": "2019-11-01",
+      "endDate": "2023-10-30",
+      "score": "110/110 cum laude",
       "courses": [
-        "Theory of Relativity"
+        "Adversarial training of neural networks",
+        "Big data processing and programming",
+        "Data mining concepts and algorithms",
+        "Entrepreneurship and start-up creation",
+        "Human-Ai Interaction"
       ]
     }
   ],

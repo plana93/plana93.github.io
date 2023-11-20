@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://plana93.github.io/al-folio/sitemap.xml
+Sitemap: https://plana93.github.io/sitemap.xml

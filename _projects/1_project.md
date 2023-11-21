@@ -1,8 +1,7 @@
 ---
 layout: page
 title: Egocentric Vision
-description: 
-Explore the world of Egocentric Vision with a collection of research papers, datasets, challenges, and practical applications.
+description: Explore the world of Egocentric Vision with a collection of research papers, datasets, challenges, and practical applications.
 img: assets/img/ego_logo.png
 importance: 1
 category: work

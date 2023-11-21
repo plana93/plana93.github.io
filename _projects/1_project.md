@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Egocentric Vision
+title: <a href="https://egocentricvision.github.io/EgocentricVision/" target="_blank">Egocentric Vision </a>
 description: Explore the world of Egocentric Vision with a collection of research papers, datasets, challenges, and practical applications.
 img: assets/img/ego_logo.png
 importance: 1

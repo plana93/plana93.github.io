@@ -13,14 +13,14 @@ related_publications: planamente2021self, plizzari2021polito, planamente2019leve
 
 Contact: mirco.pl.93@gmail.com
 
- <div class="intro">
+ <div class="row">
         <p>Discover a carefully curated selection of research papers, datasets, challenges, and real-world applications in the fascinating realm of Egocentric Vision. Stay up-to-date with the latest advancements and become a part of this dynamic repository by contributing your insights!</p>
         <p>This is a work-in-progress repository, and we welcome your contributions to keep it up-to-date. Visit the <a href="https://egocentricvision.github.io/EgocentricVision/" target="_blank">EgocentricVision page </a> to get involved.</p>
         <p class="contact">Contact: mirco.pl.93@gmail.com</p>
     </div>
 
 <section>
-    <div class="owl-carousel">
+    <div class="row">
         <div><img src="/assets/img/egocentric_vision_image/egovideo_to_robot.png" alt="Immagine 2023" class="carousel-image"></div>
         <div><img src="/assets/img/egocentric_vision_image/ProjectAria.png" alt="Immagine 2023" class="carousel-image"></div>
         <div><img src="/assets/img/egocentric_vision_image/TouchAndGo.png" alt="Immagine nips22" class="carousel-image"></div>

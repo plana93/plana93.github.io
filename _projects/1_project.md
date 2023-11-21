@@ -21,15 +21,15 @@ Contact: mirco.pl.93@gmail.com
 
 <section>
     <div class="owl-carousel">
-        <div><img src="assets/img/egocentric_vision_image/egovideo_to_robot.png" alt="Immagine 2023" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/ProjectAria.png" alt="Immagine 2023" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/TouchAndGo.png" alt="Immagine nips22" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/ActionSense.png" alt="Immagine nips22" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/ego4d.png" alt="Immagine cvpr22" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/UnweaveNet.png" alt="Immagine cvpr22" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/EgoPrivacy.png" alt="Immagine iccv21" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/Egotopo.png" alt="Immagine cvpr20" class="carousel-image"></div>
-        <div><img src="assets/img/egocentric_vision_image/EK.png" alt="Immagine eccv18" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/egovideo_to_robot.png" alt="Immagine 2023" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/ProjectAria.png" alt="Immagine 2023" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/TouchAndGo.png" alt="Immagine nips22" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/ActionSense.png" alt="Immagine nips22" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/ego4d.png" alt="Immagine cvpr22" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/UnweaveNet.png" alt="Immagine cvpr22" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/EgoPrivacy.png" alt="Immagine iccv21" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/Egotopo.png" alt="Immagine cvpr20" class="carousel-image"></div>
+        <div><img src="/assets/img/egocentric_vision_image/EK.png" alt="Immagine eccv18" class="carousel-image"></div>
         <!--EGOTOPO -->
         <!--Ego4d -->
         <!--EK challenge -->

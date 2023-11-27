@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Good Habits Application
+title: Good-Habits Application
 description: Android Application
 img: assets/img/good_habits/good_habits.png
 importance: 2

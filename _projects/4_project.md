@@ -7,11 +7,8 @@ importance: 3
 category: fun
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
-
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+Embracing the intersection of my artistic passion and academic journey. 
+During my Ph.D., I had the pleasure of designing the impactful Vandal Lab logo and crafting two dynamic roll-up banners for our research group.
 
 
 <div class="row">
@@ -26,20 +23,22 @@ To give your project a background in the portfolio page, just add the img tag to
     </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
+    The Vandal Lab logo and research group roll-up banners.
 </div>
+
+
+In the next part, I fused my love for drawing with another interest of mine—basketball. 
+I put my creative touch into designing uniforms for my basketball squad, Sporting Coguaro.
+
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.html path="assets/img/Art/divisa.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    This image can also have a caption. It's like magic.
+    Bringing art to the court! 
+    Check out the slick uniforms I designed for the Sporting Coguaro basketball team—a perfect blend of my drawing passion and love for the game.
 </div>
-
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, *bled* for your project, and then... you reveal its glory in the next row of images.
 
 
 <div class="row justify-content-sm-center">

@@ -1,0 +1,133 @@
+/*******************************************************************************
+ * Custom styles for improved UX
+ ******************************************************************************/
+
+// Button styles
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-decoration: none;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary {
+  background: var(--global-theme-color);
+  color: white;
+  
+  &:hover {
+    background: var(--global-hover-color);
+    color: white;
+  }
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  
+  &:hover {
+    background: #545b62;
+    color: white;
+  }
+}
+
+.btn-outline {
+  border: 2px solid var(--global-theme-color);
+  color: var(--global-theme-color);
+  background: transparent;
+  
+  &:hover {
+    background: var(--global-theme-color);
+    color: white;
+  }
+}
+
+// Improved link hover effects
+a {
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: var(--global-hover-color);
+  }
+}
+
+// Better spacing for sections
+.post-description {
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+// Improved readability
+p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+h2, h3, h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+// Card hover effects
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+}
+
+// Better contrast for links
+.navbar a {
+  font-weight: 500;
+  
+  &:hover {
+    color: var(--global-hover-color);
+  }
+}
+
+// Improved social icons
+.social {
+  a {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-3px);
+      color: var(--global-hover-color);
+    }
+  }
+}
+
+// Better focus states for accessibility
+a:focus,
+button:focus,
+input:focus {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 2px;
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}

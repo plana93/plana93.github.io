@@ -1,0 +1,517 @@
+<!-- 
+  HERO CONCEPTS - Advanced Typographic Treatments
+  Tre varianti sperimentali per il title principale
+  Uncomment la versione che preferisci in about.md
+-->
+
+<!-- ============================================================================
+     CONCEPT 1: "The Neural Stack" (Gerarchia Decostruita)
+     Ritmo tipografico che simula il processo di elaborazione AI
+     ============================================================================ -->
+<div class="hero-concept-1 generous-spacing">
+  <!-- TRANSFORMING - Sans-Serif Ultrabold, 80pt, All Caps -->
+  <h1 style="
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 4rem 0;
+    line-height: 0.9;
+  ">
+    TRANSFORMING
+  </h1>
+  
+  <!-- Spazio vuoto ampio (già creato dal margin sopra) -->
+  
+  <!-- vision - Serif Italic, 40pt, lowercase -->
+  <p style="
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-style: italic;
+    text-transform: lowercase;
+    margin: 0 0 2rem 0;
+    opacity: 0.85;
+  ">
+    vision
+  </p>
+  
+  <!-- into INTELLIGENCE - Monospace, 60pt, Bold, spaziatura ampia -->
+  <div style="
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    margin: 0 0 4rem 0;
+    letter-spacing: 0.2em;
+  ">
+    into <span style="text-transform: uppercase; color: var(--phd-neon-accent);">INTELLIGENCE</span>
+  </div>
+  
+  <!-- Linea orizzontale che taglia la pagina -->
+  <div style="
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      var(--global-divider-color) 0%, 
+      var(--phd-neon-accent) 50%, 
+      var(--global-divider-color) 100%);
+    margin: 3rem 0;
+  "></div>
+  
+  <!-- Layout con testo ruotato e scala -->
+  <div style="position: relative; padding-left: 3rem; min-height: 200px;">
+    <!-- "Bridging" ruotato 90° sul margine sinistro -->
+    <div style="
+      position: absolute;
+      left: -1.5rem;
+      top: 0;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--global-text-color);
+      opacity: 0.6;
+    ">
+      Bridging
+    </div>
+    
+    <!-- Testo a scaletta -->
+    <div style="font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2.5vw, 1.5rem); line-height: 2;">
+      <div style="margin-left: 0;">AI research</div>
+      <div style="margin-left: 2rem;">&</div>
+      <div style="margin-left: 4rem;">real-world</div>
+      <div style="margin-left: 6rem;">applications</div>
+    </div>
+    
+    <!-- Box grigio etichetta sistema -->
+    <div style="
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
+      background: var(--global-card-bg-color);
+      border: 1px solid var(--global-divider-color);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--global-text-color);
+      opacity: 0.7;
+    ">
+      through [action recognition]
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     CONCEPT 2: "The Data Flow" (Tipografia Cinetica)
+     Cambio font per distinguere teoria (Serif) vs computazione (Mono/Bold)
+     ============================================================================ -->
+<div class="hero-concept-2 generous-spacing" style="position: relative;">
+  <!-- T R A N S F O R M I N G - Lettere spaziate -->
+  <div style="
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: 1em;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  ">
+    T R A N S F O R M I N G
+  </div>
+  
+  <!-- VISION - Grande e bold -->
+  <h1 style="
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 900;
+    line-height: 0.9;
+    margin: 0;
+    letter-spacing: -0.04em;
+  ">
+    VISION
+  </h1>
+  
+  <!-- Puntini e "into" -->
+  <div style="
+    font-family: Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-style: italic;
+    margin: 2rem 0;
+    opacity: 0.5;
+  ">
+    ................................... into
+  </div>
+  
+  <!-- INTELLIGENCE -->
+  <div style="
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--phd-neon-accent);
+    margin-bottom: 3rem;
+  ">
+    INTELLIGENCE
+  </div>
+  
+  <!-- Frecce e connessioni -->
+  <div style="
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.875rem, 2vw, 1.1rem);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  ">
+    <span style="padding: 0.5rem 1rem; border: 1px solid var(--global-divider-color);">Bridging AI research</span>
+    <span style="color: var(--phd-neon-blue);">→</span>
+    <span style="padding: 0.5rem 1rem; border: 1px solid var(--global-divider-color);">real-world applications</span>
+  </div>
+  
+  <!-- ACTION RECOGNITION con overlay -->
+  <div style="position: relative; margin-top: 3rem;">
+    <!-- "egocentric" sovrapposto -->
+    <div style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Brush Script MT', cursive;
+      font-size: clamp(2rem, 5vw, 4rem);
+      opacity: 0.3;
+      color: var(--phd-neon-pink);
+      font-style: italic;
+      pointer-events: none;
+      z-index: 1;
+    ">
+      egocentric
+    </div>
+    
+    <!-- ACTION RECOGNITION -->
+    <div style="
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      position: relative;
+      z-index: 2;
+      background: var(--global-bg-color);
+      padding: 1rem 0;
+      text-align: center;
+    ">
+      ACTION<br>
+      RECOGNITION
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     CONCEPT 3: "The Academic Glitch" (Focus sul PhD)
+     Parole come mattoni architettonici con coordinate da IDE
+     ============================================================================ -->
+<div class="hero-concept-3 generous-spacing" style="position: relative;">
+  <!-- Numeri di riga stile IDE -->
+  <div style="
+    position: absolute;
+    left: -3rem;
+    top: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--global-text-color);
+    opacity: 0.3;
+    line-height: 8;
+  ">
+    01<br>02<br>03<br>04<br>05
+  </div>
+  
+  <!-- Transforming - piccolissimo, quasi invisibile -->
+  <div style="
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    opacity: 0.3;
+    margin-bottom: 2rem;
+    letter-spacing: 0.3em;
+  ">
+    Transforming
+  </div>
+  
+  <!-- VISION - enorme, tutta la larghezza -->
+  <h1 style="
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(5rem, 15vw, 12rem);
+    font-weight: 900;
+    line-height: 0.85;
+    margin: 0;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    width: 100%;
+  ">
+    VISION
+  </h1>
+  
+  <!-- into Intelligence - corsivo elegante -->
+  <div style="
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-style: italic;
+    margin: 2rem 0 3rem 0;
+    opacity: 0.85;
+  ">
+    into Intelligence
+  </div>
+  
+  <!-- INTELLI- / GENCE - parola spezzata -->
+  <div style="margin: 3rem 0;">
+    <div style="
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--phd-neon-accent);
+    ">
+      INTELLI-<br>
+      <span style="margin-left: 4rem; display: inline-block;">GENCE</span>
+    </div>
+  </div>
+  
+  <!-- Testo verticale che passa dietro -->
+  <div style="position: absolute; right: -2rem; top: 50%; transform: translateY(-50%); z-index: -1;">
+    <div style="
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      opacity: 0.2;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+    ">
+      through egocentric action recognition
+    </div>
+  </div>
+  
+  <!-- Andare a capo "sbagliato" per enfasi -->
+  <div style="
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    line-height: 1.8;
+    margin-top: 3rem;
+    max-width: 400px;
+  ">
+    <div>Bridging AI</div>
+    <div style="margin-left: 2rem;">Research</div>
+    <div style="margin-left: 1rem; font-weight: 300; opacity: 0.6;">&</div>
+    <div style="margin-left: 3rem;">Real-World</div>
+    <div style="margin-left: 4rem;">Applications</div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     CONCEPT 4: "The Hybrid Stack" (Mix dei 3 concept)
+     Prende il meglio di ogni approccio
+     ============================================================================ -->
+<div class="hero-concept-4 generous-spacing layer-system">
+  <div class="layer-content">
+    <!-- Line numbers da IDE -->
+    <div style="
+      position: absolute;
+      left: -2.5rem;
+      top: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--phd-neon-accent);
+      opacity: 0.4;
+      line-height: 6;
+    ">
+      001<br>002<br>003<br>004
+    </div>
+    
+    <!-- Transforming spaced out -->
+    <div style="
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.875rem, 2vw, 1.1rem);
+      letter-spacing: 0.8em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 1rem;
+    ">
+      T R A N S F O R M I N G
+    </div>
+    
+    <!-- VISION gigante -->
+    <h1 style="
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(4.5rem, 13vw, 10rem);
+      font-weight: 900;
+      line-height: 0.9;
+      margin: 0;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, 
+        var(--global-text-color) 0%, 
+        var(--phd-neon-accent) 50%,
+        var(--global-text-color) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+    ">
+      VISION
+    </h1>
+    
+    <!-- Dots e into -->
+    <div style="
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      margin: 1.5rem 0;
+      opacity: 0.4;
+    ">
+      ................................. <span style="font-style: italic; font-family: Georgia, serif;">into</span>
+    </div>
+    
+    <!-- INTELLIGENCE spezzato -->
+    <div style="
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 1.1;
+      margin: 2rem 0 3rem 0;
+    ">
+      <span style="color: var(--phd-neon-accent);">INTELLI</span>-<br>
+      <span style="margin-left: 3rem; display: inline-block; color: var(--phd-neon-blue);">GENCE</span>
+    </div>
+    
+    <!-- Linea divisoria -->
+    <div style="
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--phd-neon-accent) 20%,
+        var(--phd-neon-blue) 50%,
+        var(--phd-neon-pink) 80%,
+        transparent 100%);
+      margin: 3rem 0;
+    "></div>
+    
+    <!-- Bridging section con layout a scala -->
+    <div style="position: relative;">
+      <!-- Bridging verticale -->
+      <div style="
+        position: absolute;
+        left: -2rem;
+        top: 0;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        opacity: 0.5;
+      ">
+        BRIDGING
+      </div>
+      
+      <!-- Testo a scala -->
+      <div style="
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        line-height: 2.2;
+        padding-left: 1rem;
+      ">
+        <div style="margin-left: 0; font-weight: 600;">AI Research</div>
+        <div style="margin-left: 2rem; font-weight: 300; opacity: 0.6;">&</div>
+        <div style="margin-left: 4rem; font-weight: 600;">Real-World</div>
+        <div style="margin-left: 6rem; font-weight: 600;">Applications</div>
+      </div>
+      
+      <!-- Tag sistema -->
+      <div style="
+        display: inline-block;
+        margin-top: 2rem;
+        margin-left: 8rem;
+        padding: 0.4rem 0.8rem;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid var(--phd-neon-accent);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--phd-neon-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      ">
+        [ egocentric_action_recognition ]
+      </div>
+    </div>
+  </div>
+  
+  <!-- Background layer con testo enorme trasparente -->
+  <div class="layer-bg" style="
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    font-family: 'Inter', sans-serif;
+    font-size: 15rem;
+    font-weight: 900;
+    opacity: 0.02;
+    z-index: -1;
+    pointer-events: none;
+    white-space: nowrap;
+  ">
+    PhD
+  </div>
+</div>
+
+<style>
+/* Additional styles per i concept */
+.hero-concept-1,
+.hero-concept-2,
+.hero-concept-3,
+.hero-concept-4 {
+  position: relative;
+  padding: 4rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-concept-1,
+  .hero-concept-2,
+  .hero-concept-3,
+  .hero-concept-4 {
+    padding: 2rem 0;
+  }
+  
+  /* Nascondi elementi decorativi su mobile */
+  .hero-concept-1 > div[style*="position: absolute"],
+  .hero-concept-3 > div[style*="position: absolute"],
+  .hero-concept-4 > div[style*="position: absolute"] {
+    display: none !important;
+  }
+  
+  /* Reset margins su scala */
+  div[style*="margin-left"] {
+    margin-left: 0 !important;
+  }
+}
+
+/* Animation on load */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-concept-1,
+.hero-concept-2,
+.hero-concept-3,
+.hero-concept-4 {
+  animation: hero-fade-in 1s ease-out;
+}
+</style>

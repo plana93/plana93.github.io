@@ -592,6 +592,43 @@ code, pre, .technical-text, .mono {
   .generous-spacing {
     padding: 3rem 0;
   }
+  
+  // Hero concepts responsive
+  .hero-concept-4 {
+    padding: 2rem 0 !important;
+    
+    // Nascondi line numbers su mobile
+    > div[style*="position: absolute"] {
+      display: none !important;
+    }
+    
+    // Reset scaletta margins
+    div[style*="margin-left: 2rem"],
+    div[style*="margin-left: 4rem"],
+    div[style*="margin-left: 6rem"],
+    div[style*="margin-left: 8rem"] {
+      margin-left: 0 !important;
+    }
+    
+    // Stack verticalmente invece che scaletta
+    div[style*="line-height: 2.2"] > div {
+      margin-left: 0 !important;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  // Testo verticale diventa orizzontale su mobile
+  div[style*="writing-mode: vertical"] {
+    writing-mode: horizontal-tb !important;
+    position: static !important;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+  
+  // INTELLIGENCE spezzato con meno indent
+  span[style*="margin-left: 3rem"] {
+    margin-left: 1rem !important;
+  }
 }
 
 // ============================================================================
@@ -617,3 +654,19 @@ code, pre, .technical-text, .mono {
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
+
+// Hero fade in animation
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-concept-4 {
+  animation: hero-fade-in 1s ease-out;
+}

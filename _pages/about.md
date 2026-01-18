@@ -18,29 +18,170 @@ selected_papers: true
 social: true
 ---
 
-<!-- Hero Section - Gigantic Typography -->
-<div class="generous-spacing data-viz-bg layer-system">
+<!-- Hero Section - "The Hybrid Stack" Concept -->
+<!-- Tipografia cinetica: mix di Neural Stack + Data Flow + Academic Glitch -->
+<div class="hero-concept-4 generous-spacing layer-system">
   <div class="layer-content">
-    <p class="subtitle-tech mono">PhD_Researcher.init()</p>
-    <h1 class="hero-title clipped" data-text="Transforming Vision into Intelligence">
-      Transforming Vision<br>into Intelligence
-    </h1>
-    <p style="font-size: clamp(1rem, 2vw, 1.3rem); color: var(--global-text-color); opacity: 0.7; font-weight: 300; margin: 2rem 0; max-width: 600px; font-family: 'Inter', sans-serif;">
-      Bridging the gap between theoretical AI research and real-world applications through egocentric action recognition and multi-modal learning.
-    </p>
+    <!-- Line numbers da IDE -->
+    <div style="
+      position: absolute;
+      left: -2.5rem;
+      top: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--phd-neon-accent);
+      opacity: 0.4;
+      line-height: 6;
+    ">
+      001<br>002<br>003<br>004
+    </div>
     
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 3rem 0;">
-      <a href="/publications/" class="btn-primary" style="background: var(--phd-neon-accent); color: #000; padding: 16px 32px; border-radius: 4px; font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.3s ease; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em;">
+    <!-- Transforming spaced out -->
+    <div style="
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.875rem, 2vw, 1.1rem);
+      letter-spacing: 0.8em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 1rem;
+    ">
+      T R A N S F O R M I N G
+    </div>
+    
+    <!-- VISION gigante con gradient -->
+    <h1 style="
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(4.5rem, 13vw, 10rem);
+      font-weight: 900;
+      line-height: 0.9;
+      margin: 0;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, 
+        var(--global-text-color) 0%, 
+        var(--phd-neon-accent) 50%,
+        var(--global-text-color) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: gradient-shift 8s ease infinite;
+    ">
+      VISION
+    </h1>
+    
+    <!-- Dots e into (Data Flow style) -->
+    <div style="
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      margin: 1.5rem 0;
+      opacity: 0.4;
+    ">
+      ................................. <span style="font-style: italic; font-family: Georgia, serif;">into</span>
+    </div>
+    
+    <!-- INTELLIGENCE spezzato (Academic Glitch style) -->
+    <div style="
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 1.1;
+      margin: 2rem 0 3rem 0;
+    ">
+      <span style="color: var(--phd-neon-accent);">INTELLI</span>-<br>
+      <span style="margin-left: 3rem; display: inline-block; color: var(--phd-neon-blue);">GENCE</span>
+    </div>
+    
+    <!-- Linea divisoria multi-color -->
+    <div style="
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--phd-neon-accent) 20%,
+        var(--phd-neon-blue) 50%,
+        var(--phd-neon-pink) 80%,
+        transparent 100%);
+      margin: 3rem 0;
+    "></div>
+    
+    <!-- Bridging section con layout a scala (Neural Stack style) -->
+    <div style="position: relative; padding-left: 1rem;">
+      <!-- Bridging verticale sul margine -->
+      <div style="
+        position: absolute;
+        left: -2rem;
+        top: 0;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        opacity: 0.5;
+      ">
+        BRIDGING
+      </div>
+      
+      <!-- Testo a scaletta (ogni riga più a destra) -->
+      <div style="
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        line-height: 2.2;
+      ">
+        <div style="margin-left: 0; font-weight: 600;">AI Research</div>
+        <div style="margin-left: 2rem; font-weight: 300; opacity: 0.6;">&</div>
+        <div style="margin-left: 4rem; font-weight: 600;">Real-World</div>
+        <div style="margin-left: 6rem; font-weight: 600;">Applications</div>
+      </div>
+      
+      <!-- Etichetta sistema grigia (Neural Stack style) -->
+      <div style="
+        display: inline-block;
+        margin-top: 2rem;
+        margin-left: 8rem;
+        padding: 0.4rem 0.8rem;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid var(--phd-neon-accent);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        color: var(--phd-neon-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      ">
+        [ egocentric_action_recognition ]
+      </div>
+    </div>
+    
+    <!-- CTA Buttons -->
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 4rem 0 0 0;">
+      <a href="/publications/" style="background: var(--phd-neon-accent); color: #000; padding: 16px 32px; border-radius: 4px; font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.3s ease; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em;">
         [View_Research]
       </a>
-      <a href="mailto:mirco.pl.93@gmail.com" class="coord-link" style="border: 2px solid var(--global-text-color); color: var(--global-text-color); background: transparent; padding: 14px 30px; border-radius: 4px; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.3s ease; opacity: 1;">
-        Contact
+      <a href="mailto:mirco.pl.93@gmail.com" style="border: 2px solid var(--global-text-color); color: var(--global-text-color); background: transparent; padding: 14px 30px; border-radius: 4px; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.3s ease; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem;">
+        [Contact]
       </a>
     </div>
   </div>
   
+  <!-- Background layer con "PhD" enorme trasparente -->
+  <div style="
+    position: absolute;
+    top: 20%;
+    right: -5%;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(8rem, 20vw, 15rem);
+    font-weight: 900;
+    opacity: 0.02;
+    z-index: -1;
+    pointer-events: none;
+    white-space: nowrap;
+  ">
+    PhD
+  </div>
+  
   <!-- Geometric accent -->
-  <div class="geometric-accent circle" style="top: 10%; right: 5%;"></div>
+  <div class="geometric-accent circle" style="top: 10%; left: 5%; opacity: 0.03;"></div>
 </div>
 
 <div class="neural-network-pattern" style="padding: 1px; margin: 4rem 0;"></div>

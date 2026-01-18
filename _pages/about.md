@@ -241,12 +241,12 @@ social: true
           </a>
         </div>
         <div class="animate-in stagger-4">
-          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--phd-neon-blue); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">[EVENT_02] 2024</p>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--phd-neon-blue); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">[EVENT_02] 2025</p>
           <h3 style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1.5rem; font-weight: 800; line-height: 1.2; font-family: 'Inter', sans-serif; letter-spacing: -0.02em;">
-            Codemotion Conference <span style="font-size: 2rem;">💻</span>
+            Codemotion Conference <span style="font-size: 2rem;">🎯</span>
           </h3>
           <p style="font-size: 1.1rem; line-height: 1.7; color: var(--global-text-color); opacity: 0.8; margin-bottom: 2rem;">
-            Showcased advanced AI and computer vision research at one of Europe's largest tech conferences.
+            <strong>"From pixels to features: one backbone to rule them all!"</strong> A journey from revolutionary features to foundation models, exploring how backbones transform pixels into reusable feature spaces.
           </p>
           <a href="/codemotion-gallery/" class="coord-link" style="font-size: 0.9rem;">View_Gallery</a>
         </div>

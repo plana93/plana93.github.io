@@ -2,76 +2,138 @@
 layout: default
 ---
 
-<!-- about.html -->
-      <div class="post">
-        <header class="post-header">
-          <h1 class="post-title">
-            {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
-          </h1>
-          <p class="desc">{{ page.subtitle }}</p>
-        </header>
+<!-- about.html - PhD Design System -->
+<div class="post phd-portfolio">
+  <header class="post-header" style="position: relative; margin-bottom: 3rem;">
+    <!-- Main Title with PhD Aesthetic -->
+    <div style="display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+      <h1 class="post-title" style="font-family: 'Inter', sans-serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.03em; margin: 0;">
+        {% if site.title == "blank" -%}
+          <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}
+        {%- else -%}
+          {{ site.title }}
+        {%- endif %}
+      </h1>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--phd-neon-accent); opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em;">[online]</span>
+    </div>
+    
+    <p class="desc" style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--global-text-color); opacity: 0.7; margin: 0; text-transform: uppercase; letter-spacing: 0.15em;">
+      {{ page.subtitle }}
+    </p>
+    
+    <!-- Decorative line -->
+    <div style="width: 100px; height: 3px; background: linear-gradient(90deg, var(--phd-neon-accent) 0%, transparent 100%); margin-top: 1.5rem;"></div>
+  </header>
 
-        <article>
-          {% if page.profile -%}
-          <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
-            {%- if page.profile.image %}
-              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+  <article>
+    {% if page.profile -%}
+    <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}" style="position: relative;">
+      {%- if page.profile.image %}
+        {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
 
-              {% if page.profile.image_circular %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
-              {% else %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
-              {% endif %}
+        {% if page.profile.image_circular %}
+          {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
+        {% else %}
+          {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
+        {% endif %}
 
-              {% include figure.html
-              path=profile_image_path
-              class=profile_image_class
-              alt=page.profile.image
-              cache_bust=true -%}
-            {% endif -%}
-            {%- if page.profile.more_info %}
-            <div class="more-info">
-              {{ page.profile.more_info }}
-            </div>
-            {%- endif %}
-          </div>
-          {%- endif %}
+        <div style="position: relative; border: 2px solid var(--global-divider-color); padding: 0.5rem; background: var(--global-bg-color);">
+          {% include figure.html
+          path=profile_image_path
+          class=profile_image_class
+          alt=page.profile.image
+          cache_bust=true -%}
+          
+          <!-- Neon corner accent -->
+          <div style="position: absolute; top: 0; right: 0; width: 20px; height: 20px; border-top: 3px solid var(--phd-neon-accent); border-right: 3px solid var(--phd-neon-accent);"></div>
+          <div style="position: absolute; bottom: 0; left: 0; width: 20px; height: 20px; border-bottom: 3px solid var(--phd-neon-blue); border-left: 3px solid var(--phd-neon-blue);"></div>
+        </div>
+      {% endif -%}
+      
+      {%- if page.profile.more_info %}
+      <div class="more-info" style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; margin-top: 1rem; padding: 1rem; background: var(--global-card-bg-color); border-left: 3px solid var(--phd-neon-accent);">
+        {{ page.profile.more_info }}
+      </div>
+      {%- endif %}
+    </div>
+    {%- endif %}
 
-          <div class="clearfix">
-            {{ content }}
-          </div>
+    <div class="clearfix scanlines">
+      {{ content }}
+    </div>
 
-          <!-- News -->
-          {% if page.news and site.announcements.enabled -%}
-            <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">news</a></h2>
-            {%- include news.html limit=true %}
-          {%- endif %}
+    <!-- News -->
+    {% if page.news and site.announcements.enabled -%}
+      <div class="breathe">
+        <h2 style="font-family: 'Inter', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em;">
+          <a href="{{ '/news/' | relative_url }}" style="color: inherit; text-decoration: none;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--phd-neon-accent); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">$ cat news.log</span>
+            News
+          </a>
+        </h2>
+        {%- include news.html limit=true %}
+      </div>
+    {%- endif %}
 
-          <!-- Latest posts -->
-          {% if page.latest_posts -%}
-            <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">latest posts</a></h2>
-            {%- include latest_posts.html %}
-          {%- endif %}
+    <!-- Latest posts -->
+    {% if page.latest_posts -%}
+      <div class="breathe">
+        <h2 style="font-family: 'Inter', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em;">
+          <a href="{{ '/blog/' | relative_url }}" style="color: inherit; text-decoration: none;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--phd-neon-accent); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">$ ls ./blog --latest</span>
+            Latest Posts
+          </a>
+        </h2>
+        {%- include latest_posts.html %}
+      </div>
+    {%- endif %}
 
-          <!-- Selected papers -->
-          {% if page.selected_papers -%}
-            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">selected publications</a></h2>
-            {%- include selected_papers.html %}
-          {%- endif %}
+    <!-- Selected papers -->
+    {% if page.selected_papers -%}
+      <div class="breathe">
+        <h2 style="font-family: 'Inter', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 2rem;">
+          <a href="{{ '/publications/' | relative_url }}" style="color: inherit; text-decoration: none;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--phd-neon-accent); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">$ grep --selected publications.bib</span>
+            Selected Publications
+          </a>
+        </h2>
+        {%- include selected_papers.html %}
+      </div>
+    {%- endif %}
 
-          <!-- Social -->
-          {%- if page.social %}
-            <div class="social">
-              <div class="contact-icons">
-                {% include social.html %}
-              </div>
+    <!-- Social -->
+    {%- if page.social %}
+      <div class="social air-top" style="padding: 3rem 0; border-top: 1px solid var(--global-divider-color);">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--phd-neon-accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 2rem;">
+          $ connect --social
+        </p>
+        
+        <div class="contact-icons" style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;">
+          {% include social.html %}
+        </div>
 
-              <div class="contact-note">
-                {{ site.contact_note }}
-              </div>
-
-            </div>
-          {%- endif %}
-        </article>
-
+        <div class="contact-note" style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; opacity: 0.6; text-align: center;">
+          {{ site.contact_note }}
+        </div>
+      </div>
+    {%- endif %}
+  </article>
 </div>
+
+<!-- Add subtle animations on load -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add stagger animation to elements
+    const animateElements = document.querySelectorAll('.research-card, .scientific-callout');
+    animateElements.forEach((el, index) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      setTimeout(() => {
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 100 * index);
+    });
+  });
+</script>
+

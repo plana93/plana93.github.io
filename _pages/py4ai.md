@@ -1,17 +1,17 @@
 ---
 layout: page
-title: Py4AI Workshop
+title: Py4AI Conference
 permalink: /py4ai-gallery/
-description: Python for AI Workshop - Egocentric Vision & Deep Learning
+description: Python for AI Conference - Egocentric Vision & Deep Learning
 nav: false
 ---
 
 <div style="max-width: 1200px; margin: 0 auto;">
 
-<h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">Py4AI Workshop 🐍</h1>
+<h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">Py4AI Conference 🐍</h1>
 
 <p style="font-size: 1.2rem; color: #546E7A; margin-bottom: 3rem;">
-Python for AI workshop where I shared insights on egocentric vision and deep learning applications.
+Python for AI conference where I shared insights on egocentric vision and deep learning applications.
 </p>
 
 <!-- Video Section -->
@@ -30,7 +30,7 @@ Python for AI workshop where I shared insights on egocentric vision and deep lea
 
 <!-- Poster/Image Section -->
 <div style="margin: 3rem 0;">
-  <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem;">Workshop Poster</h2>
+  <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem;">Conference Poster</h2>
   <div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
     <img src="/assets/img/py4ai/egocentric_vision_py4ai_poster.jpeg" alt="Egocentric Vision - Py4AI Poster" style="width: 100%; height: auto; display: block;">
   </div>
@@ -38,9 +38,9 @@ Python for AI workshop where I shared insights on egocentric vision and deep lea
 
 <!-- About Section -->
 <div style="background: var(--global-card-bg-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--global-theme-color); margin: 3rem 0;">
-  <h2 style="margin-top: 0;">About the Workshop</h2>
+  <h2 style="margin-top: 0;">About the Conference</h2>
   <p style="line-height: 1.7; color: #546E7A; margin-bottom: 1rem;">
-    At the Py4AI (Python for AI) workshop, I had the opportunity to present on <strong>Egocentric Vision</strong>, 
+    At the Py4AI (Python for AI) conference, I had the opportunity to present on <strong>Egocentric Vision</strong>, 
     exploring how first-person perspective cameras are revolutionizing AI applications in robotics, 
     human-computer interaction, and augmented reality.
   </p>

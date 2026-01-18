@@ -1,0 +1,619 @@
+/*******************************************************************************
+ * PhD-Level Design System
+ * Design-oriented portfolio for AI Researcher
+ * Tech-Humanist aesthetic with dynamic typography
+ ******************************************************************************/
+
+// ============================================================================
+// TYPOGRAPHY AS SHAPE - Font Pairing Tech-Humanist
+// ============================================================================
+
+// Import Google Fonts for modern tech-humanist pairing
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+// Font variables
+$font-mono: 'JetBrains Mono', 'Courier New', monospace;
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+// Override base typography for PhD aesthetic
+body {
+  font-family: $font-sans;
+  font-weight: 400;
+  letter-spacing: -0.02em; // Tight tracking for modern look
+}
+
+// Monospace for technical elements
+code, pre, .technical-text, .mono {
+  font-family: $font-mono;
+  letter-spacing: 0;
+}
+
+// ============================================================================
+// GIGANTIC TITLES - Typography as Visual Element
+// ============================================================================
+
+.hero-title {
+  font-family: $font-sans;
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  margin: 0;
+  position: relative;
+  
+  // Gradient text effect
+  background: linear-gradient(135deg, 
+    var(--global-text-color) 0%, 
+    var(--global-theme-color) 50%,
+    var(--global-text-color) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: gradient-shift 8s ease infinite;
+  
+  // Edge clipping effect
+  &.clipped {
+    overflow: hidden;
+    max-width: 95vw;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.subtitle-tech {
+  font-family: $font-mono;
+  font-size: clamp(0.875rem, 2vw, 1.1rem);
+  font-weight: 400;
+  color: var(--global-theme-color);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  
+  &::before {
+    content: '> ';
+    opacity: 0.6;
+  }
+}
+
+// Section titles with vertical orientation option
+.section-title {
+  font-family: $font-sans;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  position: relative;
+  
+  &.vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    position: absolute;
+    left: -4rem;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+// ============================================================================
+// TEXT MASKING - Images inside text
+// ============================================================================
+
+.text-mask {
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 900;
+  line-height: 1;
+  background-image: var(--mask-image, 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><rect fill="%23000" width="100%" height="100%"/></svg>'));
+  background-size: cover;
+  background-position: center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+// ============================================================================
+// DYNAMIC GRID - Asymmetric layouts
+// ============================================================================
+
+.asymmetric-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.broken-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  
+  > * {
+    grid-column: span 12;
+  }
+  
+  .span-6 { grid-column: span 6; }
+  .span-4 { grid-column: span 4; }
+  .span-8 { grid-column: span 8; }
+  .span-3 { grid-column: span 3; }
+  .span-9 { grid-column: span 9; }
+  
+  // Offset for asymmetry
+  .offset-1 { grid-column-start: 2; }
+  .offset-2 { grid-column-start: 3; }
+  .offset-3 { grid-column-start: 4; }
+  
+  @media (max-width: 992px) {
+    > * { grid-column: span 12 !important; }
+    .offset-1, .offset-2, .offset-3 { grid-column-start: 1 !important; }
+  }
+}
+
+// Rotated elements for dynamic feel
+.rotated {
+  transform: rotate(-2deg);
+  
+  &.inverse {
+    transform: rotate(2deg);
+  }
+}
+
+// ============================================================================
+// LAYERING & OVERLAYS - Depth through transparency
+// ============================================================================
+
+.layer-system {
+  position: relative;
+  
+  .layer-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(100px);
+  }
+  
+  .layer-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .layer-overlay {
+    position: absolute;
+    z-index: 2;
+    opacity: 0.8;
+  }
+}
+
+.text-overlay {
+  position: relative;
+  
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.05;
+    font-size: 10em;
+    font-weight: 900;
+    white-space: nowrap;
+    z-index: -1;
+    color: var(--global-text-color);
+  }
+}
+
+// ============================================================================
+// GLITCH EFFECTS - Controlled digital distortion
+// ============================================================================
+
+.glitch {
+  position: relative;
+  
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  
+  &::before {
+    animation: glitch-1 2.5s infinite;
+    color: #00ff00; // Neon green accent
+    z-index: -1;
+  }
+  
+  &::after {
+    animation: glitch-2 2.5s infinite;
+    color: #00d4ff; // Cyan accent
+    z-index: -2;
+  }
+  
+  &:hover::before,
+  &:hover::after {
+    opacity: 0.8;
+  }
+}
+
+@keyframes glitch-1 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    opacity: 0.8;
+  }
+  21% {
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-2 {
+  0%, 100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  40% {
+    transform: translate(2px, -2px);
+    opacity: 0.8;
+  }
+  41% {
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+// Scanline effect
+.scanlines {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 0, 0, 0.02) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 1;
+    pointer-events: none;
+    animation: scanline 8s linear infinite;
+  }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+// ============================================================================
+// DATA VISUALIZATION AESTHETICS
+// ============================================================================
+
+.data-viz-bg {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, var(--global-theme-color) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+    opacity: 0.1;
+    z-index: -1;
+    filter: blur(80px);
+  }
+}
+
+.neural-network-pattern {
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0, 0, 0, 0.01) 50px, rgba(0, 0, 0, 0.01) 51px),
+    repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0, 0, 0, 0.01) 50px, rgba(0, 0, 0, 0.01) 51px);
+}
+
+// Abstract geometric shapes
+.geometric-accent {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid var(--global-theme-color);
+  opacity: 0.05;
+  pointer-events: none;
+  
+  &.circle {
+    border-radius: 50%;
+  }
+  
+  &.triangle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 173px solid var(--global-theme-color);
+    border: none;
+    background: transparent;
+    opacity: 0.05;
+  }
+}
+
+// ============================================================================
+// STRATEGIC WHITE SPACE - Authority through emptiness
+// ============================================================================
+
+.generous-spacing {
+  padding: clamp(3rem, 10vw, 8rem) 0;
+}
+
+.breathe {
+  margin: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.air-top {
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.air-bottom {
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+// ============================================================================
+// COLOR SYSTEM - Limited Palette for PhD Aesthetic
+// ============================================================================
+
+:root {
+  --phd-neon-accent: #00ff88;
+  --phd-neon-blue: #00d4ff;
+  --phd-neon-pink: #ff006e;
+  --phd-dark-bg: #0a0a0a;
+  --phd-light-bg: #fafafa;
+  --phd-gray-900: #1a1a1a;
+  --phd-gray-100: #f5f5f5;
+}
+
+// Neon accent system
+.accent-neon {
+  color: var(--phd-neon-accent);
+  
+  &.blue { color: var(--phd-neon-blue); }
+  &.pink { color: var(--phd-neon-pink); }
+}
+
+.border-neon {
+  border-color: var(--phd-neon-accent);
+  
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  }
+}
+
+// ============================================================================
+// CALLOUT SYSTEMS - Scientific Highlights
+// ============================================================================
+
+.scientific-callout {
+  position: relative;
+  padding: 3rem;
+  margin: 4rem 0;
+  background: var(--global-bg-color);
+  border-left: 4px solid var(--phd-neon-accent);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, 
+      var(--phd-neon-accent) 0%, 
+      transparent 100%);
+  }
+  
+  .callout-title {
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--phd-neon-accent);
+    margin-bottom: 1rem;
+  }
+  
+  .callout-content {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  
+  .callout-meta {
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    color: var(--global-text-color);
+    opacity: 0.6;
+    margin-top: 1rem;
+  }
+}
+
+// Formula/equation poster style
+.formula-poster {
+  font-family: $font-mono;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  margin: 4rem 0;
+  
+  .formula {
+    color: var(--phd-neon-accent);
+  }
+}
+
+// ============================================================================
+// INTERACTIVE STATES - Sophisticated micro-interactions
+// ============================================================================
+
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: translateY(-8px);
+  }
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+  }
+}
+
+// ============================================================================
+// PAPER/PUBLICATION CARDS - Research showcase
+// ============================================================================
+
+.research-card {
+  position: relative;
+  padding: 2rem;
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--phd-neon-accent);
+    transition: height 0.3s ease;
+  }
+  
+  &:hover::before {
+    height: 100%;
+  }
+  
+  .paper-venue {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--phd-neon-accent);
+    margin-bottom: 0.5rem;
+  }
+  
+  .paper-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  
+  .paper-meta {
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    opacity: 0.6;
+  }
+}
+
+// ============================================================================
+// COORDINATES SYSTEM - Minimalist links
+// ============================================================================
+
+.coord-link {
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: var(--global-text-color);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '[';
+    margin-right: 0.25rem;
+  }
+  
+  &::after {
+    content: ']';
+    margin-left: 0.25rem;
+  }
+  
+  &:hover {
+    opacity: 1;
+    color: var(--phd-neon-accent);
+    text-decoration: none;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE REFINEMENTS
+// ============================================================================
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+  
+  .section-title.vertical {
+    writing-mode: horizontal-tb;
+    position: static;
+    margin-bottom: 2rem;
+  }
+  
+  .scientific-callout {
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .generous-spacing {
+    padding: 3rem 0;
+  }
+}
+
+// ============================================================================
+// ANIMATION UTILITIES
+// ============================================================================
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }

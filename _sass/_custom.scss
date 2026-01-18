@@ -132,7 +132,9 @@ input:focus {
   }
   
   // Make grid sections stack on mobile
-  div[style*="grid-template-columns: 1fr 1fr"] {
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns: 1.2fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1.2fr"] {
     grid-template-columns: 1fr !important;
   }
   
@@ -152,4 +154,46 @@ input:focus {
   h3 {
     font-size: 1.2rem !important;
   }
+  
+  // Mobile-specific PhD design adjustments
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+  
+  .broken-grid > * {
+    grid-column: span 12 !important;
+  }
+  
+  .scientific-callout {
+    padding: 1.5rem !important;
+  }
+}
+
+// Smooth scrolling for better UX
+html {
+  scroll-behavior: smooth;
+}
+
+// Better selection colors
+::selection {
+  background: var(--phd-neon-accent, var(--global-theme-color));
+  color: #000;
+}
+
+::-moz-selection {
+  background: var(--phd-neon-accent, var(--global-theme-color));
+  color: #000;
+}
+
+// Loading animation for images
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
 }

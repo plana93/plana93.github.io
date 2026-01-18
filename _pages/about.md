@@ -262,25 +262,25 @@ social: true
     Impact by Numbers
   </h2>
   
-  <div class="impact-metrics-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin: 3rem 0;">
+  <div class="impact-metrics-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin: 3rem 0;">
     <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; color: var(--phd-neon-accent); font-family: 'Inter', sans-serif; line-height: 1;">26+</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--global-text-color); opacity: 0.6; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Publications</div>
+      <div style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 900; color: var(--phd-neon-accent); font-family: 'Inter', sans-serif; line-height: 1;">26+</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;">Publications</div>
       <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-accent); opacity: 0.3;"></div>
     </div>
     <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; color: var(--phd-neon-blue); font-family: 'JetBrains Mono', monospace; line-height: 1;">CVPR</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--global-text-color); opacity: 0.6; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Top Venue</div>
+      <div style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 900; color: var(--phd-neon-blue); font-family: 'JetBrains Mono', monospace; line-height: 1;">CVPR</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;">Top Conference</div>
       <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-blue); opacity: 0.3;"></div>
     </div>
     <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; color: var(--phd-neon-pink); font-family: 'Inter', sans-serif; line-height: 1;">2024</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--global-text-color); opacity: 0.6; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">IJCV Paper</div>
+      <div style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 900; color: var(--phd-neon-pink); font-family: 'Inter', sans-serif; line-height: 1;">2024</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;">IJCV Paper</div>
       <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-pink); opacity: 0.3;"></div>
     </div>
     <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; color: var(--global-theme-color); font-family: 'JetBrains Mono', monospace; line-height: 1;">PhD</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--global-text-color); opacity: 0.6; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">PoliTO 2023</div>
+      <div style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 900; color: var(--global-theme-color); font-family: 'JetBrains Mono', monospace; line-height: 1;">PhD</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;">PoliTO 2023</div>
       <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--global-theme-color); opacity: 0.3;"></div>
     </div>
   </div>

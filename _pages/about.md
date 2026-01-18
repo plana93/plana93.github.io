@@ -50,6 +50,12 @@ social: true
     <h3 style="margin: 0.5rem 0; font-size: 1.1rem;">Multi-Modal Learning</h3>
     <p style="font-size: 0.9rem; color: #546E7A; line-height: 1.6;">Audio-visual integration</p>
   </div>
+  
+  <div style="padding: 1.5rem; background: var(--global-card-bg-color); border-radius: 8px; border-left: 4px solid var(--global-theme-color);">
+    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏭</div>
+    <h3 style="margin: 0.5rem 0; font-size: 1.1rem;">Industrial Vision</h3>
+    <p style="font-size: 0.9rem; color: #546E7A; line-height: 1.6;">Semantic segmentation, object detection & anomaly detection</p>
+  </div>
 </div>
 
 ---

@@ -167,6 +167,19 @@ input:focus {
   .scientific-callout {
     padding: 1.5rem !important;
   }
+  
+  // Fix hero overflow issues
+  .hero-concept-4 {
+    overflow-x: hidden !important;
+  }
+}
+
+// Tablet adjustments
+@media (min-width: 769px) and (max-width: 1024px) {
+  div[style*="grid-template-columns: 1.2fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1.2fr"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
 }
 
 // Smooth scrolling for better UX
@@ -196,4 +209,14 @@ img[loading="lazy"] {
 
 img[loading="lazy"].loaded {
   opacity: 1;
+}
+
+// Prevent horizontal scroll from absolute positioned elements
+body {
+  overflow-x: hidden;
+}
+
+.post {
+  max-width: 100%;
+  overflow-x: hidden;
 }

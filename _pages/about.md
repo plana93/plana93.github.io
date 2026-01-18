@@ -20,21 +20,8 @@ social: true
 
 <!-- Hero Section - "The Hybrid Stack" Concept -->
 <!-- Tipografia cinetica: mix di Neural Stack + Data Flow + Academic Glitch -->
-<div class="hero-concept-4 generous-spacing layer-system">
-  <div class="layer-content">
-    <!-- Line numbers da IDE -->
-    <div style="
-      position: absolute;
-      left: -2.5rem;
-      top: 0;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--phd-neon-accent);
-      opacity: 0.4;
-      line-height: 6;
-    ">
-      001<br>002<br>003<br>004
-    </div>
+<div class="hero-concept-4 generous-spacing layer-system" style="position: relative; overflow: visible;">
+  <div class="layer-content" style="position: relative; max-width: 100%;">
     
     <!-- Transforming spaced out -->
     <div style="
@@ -51,7 +38,7 @@ social: true
     <!-- VISION gigante con gradient -->
     <h1 style="
       font-family: 'Inter', sans-serif;
-      font-size: clamp(4.5rem, 13vw, 10rem);
+      font-size: clamp(4rem, 12vw, 9rem);
       font-weight: 900;
       line-height: 0.9;
       margin: 0;
@@ -89,7 +76,7 @@ social: true
       margin: 2rem 0 3rem 0;
     ">
       <span style="color: var(--phd-neon-accent);">INTELLI</span>-<br>
-      <span style="margin-left: 3rem; display: inline-block; color: var(--phd-neon-blue);">GENCE</span>
+      <span style="margin-left: clamp(1rem, 5vw, 3rem); display: inline-block; color: var(--phd-neon-blue);">GENCE</span>
     </div>
     
     <!-- Linea divisoria multi-color -->
@@ -106,22 +93,7 @@ social: true
     "></div>
     
     <!-- Bridging section con layout a scala (Neural Stack style) -->
-    <div style="position: relative; padding-left: 1rem;">
-      <!-- Bridging verticale sul margine -->
-      <div style="
-        position: absolute;
-        left: -2rem;
-        top: 0;
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.75rem;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        opacity: 0.5;
-      ">
-        BRIDGING
-      </div>
+    <div style="position: relative; max-width: 100%;">
       
       <!-- Testo a scaletta (ogni riga più a destra) -->
       <div style="
@@ -130,21 +102,21 @@ social: true
         line-height: 2.2;
       ">
         <div style="margin-left: 0; font-weight: 600;">AI Research</div>
-        <div style="margin-left: 2rem; font-weight: 300; opacity: 0.6;">&</div>
-        <div style="margin-left: 4rem; font-weight: 600;">Real-World</div>
-        <div style="margin-left: 6rem; font-weight: 600;">Applications</div>
+        <div style="margin-left: clamp(1rem, 4vw, 2rem); font-weight: 300; opacity: 0.6;">&</div>
+        <div style="margin-left: clamp(2rem, 8vw, 4rem); font-weight: 600;">Real-World</div>
+        <div style="margin-left: clamp(3rem, 12vw, 6rem); font-weight: 600;">Applications</div>
       </div>
       
       <!-- Etichetta sistema grigia (Neural Stack style) -->
       <div style="
         display: inline-block;
         margin-top: 2rem;
-        margin-left: 8rem;
-        padding: 0.4rem 0.8rem;
+        margin-left: 0;
+        padding: 0.5rem 1rem;
         background: rgba(0, 255, 136, 0.1);
         border: 1px solid var(--phd-neon-accent);
         font-family: 'JetBrains Mono', monospace;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         color: var(--phd-neon-accent);
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -163,25 +135,6 @@ social: true
       </a>
     </div>
   </div>
-  
-  <!-- Background layer con "PhD" enorme trasparente -->
-  <div style="
-    position: absolute;
-    top: 20%;
-    right: -5%;
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(8rem, 20vw, 15rem);
-    font-weight: 900;
-    opacity: 0.02;
-    z-index: -1;
-    pointer-events: none;
-    white-space: nowrap;
-  ">
-    PhD
-  </div>
-  
-  <!-- Geometric accent -->
-  <div class="geometric-accent circle" style="top: 10%; left: 5%; opacity: 0.03;"></div>
 </div>
 
 <div class="neural-network-pattern" style="padding: 1px; margin: 4rem 0;"></div>

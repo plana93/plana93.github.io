@@ -2,7 +2,7 @@
 layout: page
 title: Codemotion 2025
 permalink: /codemotion-gallery/
-description: My presentation at Codemotion Conference 2025
+description: From pixels to features - one backbone to rule them all
 nav: false
 ---
 
@@ -10,55 +10,45 @@ nav: false
 
 <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">Codemotion Conference 2025 🎤</h1>
 
-<p style="font-size: 1.2rem; color: #546E7A; margin-bottom: 3rem;">
-One of Europe's largest tech conferences where I presented my research on AI and Computer Vision.
+<p style="font-size: 1.2rem; color: #546E7A; margin-bottom: 1rem; line-height: 1.6;">
+<strong>From pixels to features: one backbone to rule them all!</strong>
+</p>
+
+<p style="font-size: 1.1rem; color: #546E7A; margin-bottom: 3rem; line-height: 1.7;">
+A journey from early revolutionary features to today's foundation model representations. Exploring what a backbone is, how it turns pixels into a reusable feature space, and how to harness it to prototype quickly—balancing essential theory with hands-on practice.
 </p>
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
     <img src="/assets/img/codemotion/codemotion_2025_me_during_the_speech.JPG" alt="Speaking at Codemotion" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 1.5rem; color: white;">
-      <p style="margin: 0; font-weight: 600;">During the presentation</p>
-    </div>
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
     <img src="/assets/img/codemotion/me_during_code_motion_emotional.jpg" alt="Engaging with audience" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 1.5rem; color: white;">
-      <p style="margin: 0; font-weight: 600;">Engaging with the audience</p>
-    </div>
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
     <img src="/assets/img/codemotion/me_driing_codemotiion_withslides.jpg" alt="Presenting slides" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 1.5rem; color: white;">
-      <p style="margin: 0; font-weight: 600;">Presenting research</p>
-    </div>
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
     <img src="/assets/img/codemotion/me_during_codemotion_far.jpg" alt="Full stage view" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 1.5rem; color: white;">
-      <p style="margin: 0; font-weight: 600;">Stage view</p>
-    </div>
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
     <img src="/assets/img/codemotion/me_during_codemotion.JPG" alt="Q&A Session" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); padding: 1.5rem; color: white;">
-      <p style="margin: 0; font-weight: 600;">Q&A with attendees</p>
-    </div>
   </div>
 
 </div>
 
 <div style="background: var(--global-card-bg-color); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--global-theme-color); margin: 3rem 0;">
   <h2 style="margin-top: 0;">About the Talk</h2>
+  <p style="line-height: 1.7; color: #546E7A; margin-bottom: 1rem;">
+    A journey from early revolutionary features to today's foundation model representations. We explored what a backbone is, how it turns pixels into a reusable feature space, and how to harness it to prototype quickly.
+  </p>
   <p style="line-height: 1.7; color: #546E7A;">
-    At Codemotion 2025, I had the opportunity to share my research on cutting-edge AI and computer vision techniques. 
-    The presentation focused on egocentric action recognition and domain adaptation, highlighting practical applications 
-    and real-world implementations of these technologies.
+    The presentation balanced essential theory (how they're built, why they work) with hands-on practice (how to use them). With minimal code patterns, we moved from feature extraction to small pilot tasks, showing how the same representations can power multiple use cases—keeping training to a minimum and accelerating the path from test to working idea.
   </p>
 </div>
 
@@ -67,3 +57,4 @@ One of Europe's largest tech conferences where I presented my research on AI and
 </div>
 
 </div>
+

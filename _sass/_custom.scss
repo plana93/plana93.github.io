@@ -130,4 +130,26 @@ input:focus {
     width: 100%;
     margin-bottom: 0.5rem;
   }
+  
+  // Make grid sections stack on mobile
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  div[style*="grid-template-columns: repeat"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  // Adjust text sizes on mobile
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.2rem !important;
+  }
 }

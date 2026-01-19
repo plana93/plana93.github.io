@@ -187,6 +187,12 @@ input:focus {
     grid-template-columns: 1fr 1fr !important;
   }
   
+  // Featured Events - keep images bigger on tablet
+  div[style*="grid-template-columns: 1fr 1.4fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"] {
+    grid-template-columns: 1fr 1.3fr !important;
+  }
+  
   // Impact metrics - 2 columns on tablet
   .impact-metrics-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -230,4 +236,16 @@ body {
 .post {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+// Expand main content to use more lateral space
+.phd-portfolio {
+  max-width: 1400px !important; // Wider container for bigger images
+  padding-left: clamp(1rem, 3vw, 3rem) !important;
+  padding-right: clamp(1rem, 3vw, 3rem) !important;
+}
+
+// Make Featured Events section even wider
+.breathe {
+  max-width: 100%;
 }

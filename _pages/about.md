@@ -208,7 +208,7 @@ social: true
   <div class="broken-grid">
     <!-- Py4AI Event -->
     <div class="span-12" style="margin-bottom: 4rem;">
-      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
+      <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 2.5rem; align-items: center;">
         <div class="animate-in stagger-1">
           <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--phd-neon-accent); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">[EVENT_01] 2024</p>
           <h3 style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1.5rem; font-weight: 800; line-height: 1.2; font-family: 'Inter', sans-serif; letter-spacing: -0.02em;">
@@ -223,7 +223,7 @@ social: true
           </div>
         </div>
         <div class="animate-in stagger-2 hover-lift">
-          <a href="/py4ai-gallery/" style="display: block; position: relative; overflow: hidden; border-radius: 4px;">
+          <a href="/py4ai-gallery/" style="display: block; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
             <img src="/assets/img/py4ai/egocentric_vision_py4ai_poster.jpeg" alt="Py4AI Conference" style="width: 100%; display: block; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,255,136,0.1), transparent); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
           </a>
@@ -233,9 +233,9 @@ social: true
 
     <!-- Codemotion -->
     <div class="span-12">
-      <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center;">
         <div class="animate-in stagger-3 hover-lift">
-          <a href="/codemotion-gallery/" style="display: block; position: relative; overflow: hidden; border-radius: 4px;">
+          <a href="/codemotion-gallery/" style="display: block; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
             <img src="/assets/img/codemotion/me_during_codemotion.JPG" alt="Codemotion Conference" style="width: 100%; display: block; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,212,255,0.1), transparent); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
           </a>

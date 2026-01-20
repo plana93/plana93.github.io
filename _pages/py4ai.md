@@ -18,8 +18,8 @@ Python for AI conference where I shared insights on egocentric vision and deep l
 <div style="margin: 3rem 0;">
   <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem;">Talk Highlights</h2>
   <div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
-    <video controls style="width: 100%; display: block;" poster="/assets/img/py4ai/egocentric_vision_py4ai_poster.jpeg">
-      <source src="/assets/img/py4ai/short_video_my_talk.mp4" type="video/mp4">
+    <video controls style="width: 100%; display: block;" poster="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg">
+      <source src="/assets/img/py4ai_05_2024/short_video_my_talk.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -32,7 +32,7 @@ Python for AI conference where I shared insights on egocentric vision and deep l
 <div style="margin: 3rem 0;">
   <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem;">Conference Poster</h2>
   <div style="position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
-    <img src="/assets/img/py4ai/egocentric_vision_py4ai_poster.jpeg" alt="Egocentric Vision - Py4AI Poster" style="width: 100%; height: auto; display: block;">
+    <img src="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg" alt="Egocentric Vision - Py4AI Poster" style="width: 100%; height: auto; display: block;">
   </div>
 </div>
 

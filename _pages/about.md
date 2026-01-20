@@ -224,7 +224,7 @@ social: true
         </div>
         <div class="animate-in stagger-2 hover-lift">
           <a href="/py4ai-gallery/" style="display: block; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
-            <img src="/assets/img/py4ai/egocentric_vision_py4ai_poster.jpeg" alt="Py4AI Conference" style="width: 100%; display: block; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <img src="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg" alt="Py4AI Conference" style="width: 100%; display: block; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,255,136,0.1), transparent); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
           </a>
         </div>
@@ -236,7 +236,7 @@ social: true
       <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center;">
         <div class="animate-in stagger-3 hover-lift">
           <a href="/codemotion-gallery/" style="display: block; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
-            <img src="/assets/img/codemotion/me_during_codemotion.JPG" alt="Codemotion Conference" style="width: 100%; display: block; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            <img src="/assets/img/codemotion_01_2025/me_during_codemotion.JPG" alt="Codemotion Conference" style="width: 100%; display: block; transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
             <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,212,255,0.1), transparent); opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'"></div>
           </a>
         </div>
@@ -249,6 +249,30 @@ social: true
             <strong>"From pixels to features: one backbone to rule them all!"</strong> A journey from revolutionary features to foundation models, exploring how backbones transform pixels into reusable feature spaces.
           </p>
           <a href="/codemotion-gallery/" class="coord-link" style="font-size: 0.9rem;">View_Gallery</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EK100 Challenge -->
+    <div class="span-12" style="margin-top: 4rem;">
+      <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 2.5rem; align-items: center;">
+        <div class="animate-in stagger-5">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--phd-neon-pink); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">[ACHIEVEMENT] 2021-2022</p>
+          <h3 style="font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1.5rem; font-weight: 800; line-height: 1.2; font-family: 'Inter', sans-serif; letter-spacing: -0.02em;">
+            EPIC-KITCHENS Challenge <span style="font-size: 2rem;">🏆</span>
+          </h3>
+          <p style="font-size: 1.1rem; line-height: 1.7; color: var(--global-text-color); opacity: 0.8; margin-bottom: 2rem;">
+            <strong>Two-time consecutive winner</strong> of the Unsupervised Domain Adaptation Challenge. Achieved 3rd place in 2021 and top 3 in 2022 at CVPR, competing against leading research teams worldwide.
+          </p>
+          <a href="/ek100-challenge/" class="coord-link" style="font-size: 0.9rem;">View_Details</a>
+        </div>
+        <div class="animate-in stagger-6 hover-lift">
+          <a href="/ek100-challenge/" style="display: block; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); background: linear-gradient(135deg, rgba(255,0,110,0.1), rgba(0,212,255,0.1)); padding: 3rem; text-align: center;">
+            <div style="font-size: 5rem; margin-bottom: 1rem;">🏆</div>
+            <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Top 3 Winner</div>
+            <div style="font-size: 1rem; opacity: 0.7;">2021 & 2022</div>
+            <div style="font-size: 0.875rem; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; opacity: 0.6;">EPIC-KITCHENS-100</div>
+          </a>
         </div>
       </div>
     </div>

@@ -21,23 +21,23 @@ A journey from early revolutionary features to today's foundation model represen
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
-    <img src="/assets/img/codemotion/codemotion_2025_me_during_the_speech.JPG" alt="Speaking at Codemotion" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="/assets/img/codemotion_01_2025/codemotion_2025_me_during_the_speech.JPG" alt="Speaking at Codemotion" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
-    <img src="/assets/img/codemotion/me_during_code_motion_emotional.jpg" alt="Engaging with audience" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="/assets/img/codemotion_01_2025/me_during_code_motion_emotional.jpg" alt="Engaging with audience" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
-    <img src="/assets/img/codemotion/me_driing_codemotiion_withslides.jpg" alt="Presenting slides" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="/assets/img/codemotion_01_2025/me_driing_codemotiion_withslides.jpg" alt="Presenting slides" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
-    <img src="/assets/img/codemotion/me_during_codemotion_far.jpg" alt="Full stage view" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="/assets/img/codemotion_01_2025/me_during_codemotion_far.jpg" alt="Full stage view" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </div>
 
   <div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
-    <img src="/assets/img/codemotion/me_during_codemotion.JPG" alt="Q&A Session" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="/assets/img/codemotion_01_2025/me_during_codemotion.JPG" alt="Q&A Session" style="width: 100%; height: auto; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </div>
 
 </div>

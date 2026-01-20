@@ -288,8 +288,8 @@ social: true
   
   <div class="impact-metrics-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 3rem 0;">
     <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--phd-neon-accent); font-family: 'Inter', sans-serif; line-height: 1;">300+</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Citations</div>
+      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--phd-neon-accent); font-family: 'Inter', sans-serif; line-height: 1;">26+</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Publications</div>
       <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-accent); opacity: 0.3;"></div>
     </div>
     <div style="text-align: center; position: relative;">
@@ -298,13 +298,15 @@ social: true
       <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-blue); opacity: 0.3;"></div>
     </div>
     <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--phd-neon-pink); font-family: 'Inter', sans-serif; line-height: 1;">26+</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Publications</div>
-      <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-pink); opacity: 0.3;"></div>
+      <a href="https://epic-kitchens.github.io/2022.html#results" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+        <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--phd-neon-pink); font-family: 'JetBrains Mono', monospace; line-height: 1; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">EK100</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;">Challenge Winner</div>
+        <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-pink); opacity: 0.3;"></div>
+      </a>
     </div>
     <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--global-theme-color); font-family: 'JetBrains Mono', monospace; line-height: 1;">PhD</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;">cum laude PoliTO</div>
+      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--global-theme-color); font-family: 'Inter', sans-serif; line-height: 1;">🏅</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;">Best PhD Student</div>
       <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--global-theme-color); opacity: 0.3;"></div>
     </div>
   </div>

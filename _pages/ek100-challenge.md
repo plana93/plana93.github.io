@@ -46,12 +46,12 @@ Two-Time Consecutive Winner (2021 & 2022)
 <!-- 2021 Challenge -->
 <div style="margin: 4rem 0;">
   <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
-    <h2 style="margin: 0; font-size: 2rem; font-weight: 700;">2021 - EPIC Workshop</h2>
+    <h2 style="margin: 0; font-size: 2rem; font-weight: 700;">2021 - CVPR Workshop</h2>
     <span style="background: #00ff88; color: black; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600;">3RD PLACE</span>
   </div>
   
   <p style="font-size: 1.1rem; line-height: 1.7; color: var(--global-text-color); margin-bottom: 2rem;">
-    Together with <strong>Chiara Plizzari</strong>, we achieved <strong>3rd place</strong> in the third edition of the challenge, presented at the <strong>Eighth International Workshop on Egocentric Perception, Interaction and Computing</strong>.
+    Together with <strong>Chiara Plizzari</strong>, we achieved <strong>3rd place</strong> in the third edition of the challenge, presented at the <strong>CVPR 2021 Workshop on Egocentric Perception, Interaction and Computing</strong>.
   </p>
 
   <div style="background: rgba(0, 255, 136, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 3px solid #00ff88; margin: 2rem 0;">

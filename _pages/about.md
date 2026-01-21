@@ -92,37 +92,250 @@ social: true
       margin: 3rem 0;
     "></div>
     
-    <!-- Bridging section con layout a scala (Neural Stack style) -->
-    <div style="position: relative; max-width: 100%;">
+    <!-- Expertise Keywords - Experimental Grid -->
+    <div style="position: relative; max-width: 100%; margin: 3rem 0 4rem 0;">
       
-      <!-- Testo a scaletta (ogni riga più a destra) -->
-      <div style="
-        font-family: 'Inter', sans-serif;
-        font-size: clamp(1rem, 2.5vw, 1.4rem);
-        line-height: 2.2;
-      ">
-        <div style="margin-left: 0; font-weight: 600;">AI Research</div>
-        <div style="margin-left: clamp(1rem, 4vw, 2rem); font-weight: 300; opacity: 0.6;">&</div>
-        <div style="margin-left: clamp(2rem, 8vw, 4rem); font-weight: 600;">Real-World</div>
-        <div style="margin-left: clamp(3rem, 12vw, 6rem); font-weight: 600;">Applications</div>
+      <!-- Animated CSS Keyframes -->
+      <style>
+        @keyframes expertise-fade-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+        @keyframes slide-right {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(5px); }
+        }
+        @keyframes glitch-flicker {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.8; }
+        }
+        .expertise-card {
+          animation: expertise-fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+        }
+        .expertise-card:nth-child(1) { animation-delay: 0.1s; }
+        .expertise-card:nth-child(2) { animation-delay: 0.2s; }
+        .expertise-card:nth-child(3) { animation-delay: 0.3s; }
+        .expertise-card:nth-child(4) { animation-delay: 0.4s; }
+        .expertise-card:nth-child(5) { animation-delay: 0.5s; }
+        .expertise-card:nth-child(6) { animation-delay: 0.6s; }
+        .pulse-element { animation: pulse-glow 3s ease-in-out infinite; }
+        .slide-element { animation: slide-right 2s ease-in-out infinite; }
+      </style>
+      
+      <!-- Section Header con effetto glitch -->
+      <div style="margin-bottom: 2.5rem; position: relative;">
+        <div style="
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.85rem;
+          color: var(--phd-neon-accent);
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+          position: relative;
+        ">
+          <span style="animation: glitch-flicker 4s ease-in-out infinite;">/// TECHNICAL STACK</span>
+          <span style="position: absolute; left: 0; color: var(--phd-neon-blue); opacity: 0.3; animation: slide-right 2s ease-in-out infinite;">/// TECHNICAL STACK</span>
+        </div>
+        <div style="
+          font-family: 'Inter', sans-serif;
+          font-size: 0.95rem;
+          color: rgba(255,255,255,0.6);
+          line-height: 1.6;
+          max-width: 600px;
+        ">Core competencies spanning deep learning architectures, computer vision pipelines, and production-grade ML frameworks.</div>
+        
+        <!-- Decorative Corner Elements -->
+        <div style="position: absolute; top: -10px; right: 0; width: 2px; height: 30px; background: linear-gradient(180deg, var(--phd-neon-accent), transparent);" class="pulse-element"></div>
+        <div style="position: absolute; top: -10px; right: 0; width: 30px; height: 2px; background: linear-gradient(90deg, transparent, var(--phd-neon-accent));" class="pulse-element"></div>
       </div>
       
-      <!-- Etichetta sistema grigia (Neural Stack style) -->
+      <!-- Grid asimmetrica con broken layout -->
       <div style="
-        display: inline-block;
-        margin-top: 2rem;
-        margin-left: 0;
-        padding: 0.5rem 1rem;
-        background: rgba(0, 255, 136, 0.1);
-        border: 1px solid var(--phd-neon-accent);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.75rem;
-        color: var(--phd-neon-accent);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        gap: 1.5rem;
+        position: relative;
       ">
-        [ egocentric_action_recognition ]
+        
+        <!-- Deep Learning - Large Emphasis -->
+        <div class="expertise-card" style="
+          grid-column: span 5;
+          grid-row: span 2;
+          background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,255,136,0.02));
+          backdrop-filter: blur(10px);
+          border: 2px solid var(--phd-neon-accent);
+          padding: 2rem;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 0 20px rgba(0,255,136,0.1);
+          cursor: pointer;
+        " onmouseover="this.style.boxShadow='0 0 60px rgba(0,255,136,0.4), inset 0 0 80px rgba(0,255,136,0.08), 0 20px 40px rgba(0,0,0,0.3)'; this.style.transform='translateY(-8px) scale(1.03) rotate(-0.5deg)'; this.style.borderColor='var(--phd-neon-accent)'; this.style.background='linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,255,136,0.05))';" onmouseout="this.style.boxShadow='0 0 20px rgba(0,255,136,0.1)'; this.style.transform='translateY(0) scale(1) rotate(0deg)'; this.style.borderColor='var(--phd-neon-accent)'; this.style.background='linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,255,136,0.02))';">
+          <!-- Animated corner glow -->
+          <div style="position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(0,255,136,0.2), transparent); pointer-events: none;" class="pulse-element"></div>
+          <!-- Scanline effect -->
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--phd-neon-accent), transparent); pointer-events: none; opacity: 0.5;"></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--phd-neon-accent); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">[CORE::01]</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 900; line-height: 1.2; letter-spacing: -0.02em;">Deep<br/>Learning</div>
+          <div style="position: absolute; bottom: 1rem; right: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(0,255,136,0.4);" class="slide-element">/// NEURAL</div>
+          <!-- Grid pattern overlay -->
+          <div style="position: absolute; bottom: 0; right: 0; width: 80px; height: 80px; background-image: repeating-linear-gradient(0deg, rgba(0,255,136,0.03) 0px, transparent 1px, transparent 4px, rgba(0,255,136,0.03) 5px), repeating-linear-gradient(90deg, rgba(0,255,136,0.03) 0px, transparent 1px, transparent 4px, rgba(0,255,136,0.03) 5px); pointer-events: none;"></div>
+        </div>
+        
+        <!-- Computer Vision - Medium -->
+        <div class="expertise-card" style="
+          grid-column: span 4;
+          grid-row: span 1;
+          background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,212,255,0.02));
+          backdrop-filter: blur(10px);
+          border: 2px solid var(--phd-neon-blue);
+          padding: 1.5rem;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 0 20px rgba(0,212,255,0.1);
+          cursor: pointer;
+        " onmouseover="this.style.boxShadow='0 0 60px rgba(0,212,255,0.4), inset 0 0 80px rgba(0,212,255,0.08), 0 20px 40px rgba(0,0,0,0.3)'; this.style.transform='translateY(-8px) scale(1.05) rotate(-1deg)'; this.style.borderColor='var(--phd-neon-blue)'; this.style.background='linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,212,255,0.05))';" onmouseout="this.style.boxShadow='0 0 20px rgba(0,212,255,0.1)'; this.style.transform='translateY(0) scale(1) rotate(0deg)'; this.style.borderColor='var(--phd-neon-blue)'; this.style.background='linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,212,255,0.02))';">
+          <!-- Corner accent -->
+          <div style="position: absolute; top: -1px; right: -1px; width: 40px; height: 40px; border-top: 2px solid var(--phd-neon-blue); border-right: 2px solid var(--phd-neon-blue); pointer-events: none;" class="pulse-element"></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--phd-neon-blue); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">[VISION::02]</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 1.2;">Computer Vision</div>
+          <!-- Glitch lines -->
+          <div style="position: absolute; bottom: 20px; left: 0; width: 60%; height: 1px; background: var(--phd-neon-blue); opacity: 0.3; pointer-events: none;"></div>
+          <div style="position: absolute; bottom: 25px; left: 10%; width: 40%; height: 1px; background: var(--phd-neon-blue); opacity: 0.2; pointer-events: none;"></div>
+        </div>
+        
+        <!-- Action Recognition - Tall Emphasis -->
+        <div class="expertise-card" style="
+          grid-column: span 3;
+          grid-row: span 2;
+          background: linear-gradient(135deg, rgba(255,0,110,0.08), rgba(255,0,110,0.02));
+          backdrop-filter: blur(10px);
+          border: 2px solid var(--phd-neon-pink);
+          padding: 1.5rem;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 0 20px rgba(255,0,110,0.1);
+          cursor: pointer;
+        " onmouseover="this.style.boxShadow='0 0 60px rgba(255,0,110,0.4), inset 0 0 80px rgba(255,0,110,0.08), 0 20px 40px rgba(0,0,0,0.3)'; this.style.transform='translateY(-8px) rotate(1.5deg) scale(1.05)'; this.style.borderColor='var(--phd-neon-pink)'; this.style.background='linear-gradient(135deg, rgba(255,0,110,0.15), rgba(255,0,110,0.05))';" onmouseout="this.style.boxShadow='0 0 20px rgba(255,0,110,0.1)'; this.style.transform='translateY(0) rotate(0deg) scale(1)'; this.style.borderColor='var(--phd-neon-pink)'; this.style.background='linear-gradient(135deg, rgba(255,0,110,0.08), rgba(255,0,110,0.02))';">
+          <!-- Vertical accent bar -->
+          <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--phd-neon-pink), transparent); pointer-events: none;" class="pulse-element"></div>
+          <!-- Floating particles -->
+          <div style="position: absolute; top: 20%; right: 10px; width: 4px; height: 4px; background: var(--phd-neon-pink); border-radius: 50%; opacity: 0.6; pointer-events: none;" class="pulse-element"></div>
+          <div style="position: absolute; top: 50%; right: 20px; width: 3px; height: 3px; background: var(--phd-neon-pink); border-radius: 50%; opacity: 0.4; pointer-events: none;" class="pulse-element"></div>
+          <div style="position: absolute; top: 70%; right: 15px; width: 5px; height: 5px; background: var(--phd-neon-pink); border-radius: 50%; opacity: 0.5; pointer-events: none;" class="pulse-element"></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--phd-neon-pink); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">[SPECIALTY::03]</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 800; line-height: 1.2;">Action Recognition</div>
+          <div style="position: absolute; bottom: 1rem; left: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(255,0,110,0.4);" class="slide-element">/// EGO</div>
+        </div>
+        
+        <!-- Domain Adaptation - Wide -->
+        <div class="expertise-card" style="
+          grid-column: span 4;
+          grid-row: span 1;
+          background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,255,136,0.02));
+          backdrop-filter: blur(10px);
+          border: 2px solid var(--phd-neon-accent);
+          padding: 1.5rem;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 0 20px rgba(0,255,136,0.1);
+          cursor: pointer;
+        " onmouseover="this.style.boxShadow='0 0 60px rgba(0,255,136,0.4), inset 0 0 80px rgba(0,255,136,0.08), 0 20px 40px rgba(0,0,0,0.3)'; this.style.transform='translateY(-8px) scale(1.03) skewX(-2deg)'; this.style.borderColor='var(--phd-neon-accent)'; this.style.background='linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,255,136,0.05))';" onmouseout="this.style.boxShadow='0 0 20px rgba(0,255,136,0.1)'; this.style.transform='translateY(0) scale(1) skewX(0deg)'; this.style.borderColor='var(--phd-neon-accent)'; this.style.background='linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,255,136,0.02))';">
+          <!-- Diagonal stripe -->
+          <div style="position: absolute; top: 0; right: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent 60%, var(--phd-neon-accent)); pointer-events: none; opacity: 0.6;"></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--phd-neon-accent); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">[ADAPT::04]</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 1.2;">Domain Adaptation</div>
+        </div>
+        
+        <!-- Multi-Modal AI - Medium Wide -->
+        <div class="expertise-card" style="
+          grid-column: span 5;
+          grid-row: span 1;
+          background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,212,255,0.02));
+          backdrop-filter: blur(10px);
+          border: 2px solid var(--phd-neon-blue);
+          padding: 1.5rem;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 0 20px rgba(0,212,255,0.1);
+          cursor: pointer;
+        " onmouseover="this.style.boxShadow='0 0 60px rgba(0,212,255,0.4), inset 0 0 80px rgba(0,212,255,0.08), 0 20px 40px rgba(0,0,0,0.3)'; this.style.transform='translateY(-8px) rotate(-0.8deg) scale(1.02)'; this.style.borderColor='var(--phd-neon-blue)'; this.style.background='linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,212,255,0.05))';" onmouseout="this.style.boxShadow='0 0 20px rgba(0,212,255,0.1)'; this.style.transform='translateY(0) rotate(0deg) scale(1)'; this.style.borderColor='var(--phd-neon-blue)'; this.style.background='linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,212,255,0.02))';">
+          <!-- Bottom left corner bracket -->
+          <div style="position: absolute; bottom: -1px; left: -1px; width: 50px; height: 50px; border-bottom: 2px solid var(--phd-neon-blue); border-left: 2px solid var(--phd-neon-blue); pointer-events: none;" class="pulse-element"></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--phd-neon-blue); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">[FUSION::05]</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 1.2;">Multi-Modal AI</div>
+          <div style="position: absolute; bottom: 1rem; right: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(0,212,255,0.4);" class="slide-element">/// FUSION</div>
+        </div>
+        
+        <!-- PyTorch Expert - Compact Emphasis -->
+        <div class="expertise-card" style="
+          grid-column: span 3;
+          grid-row: span 1;
+          background: linear-gradient(135deg, rgba(255,0,110,0.08), rgba(255,0,110,0.02));
+          backdrop-filter: blur(10px);
+          border: 2px solid var(--phd-neon-pink);
+          padding: 1.5rem;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+          box-shadow: 0 0 20px rgba(255,0,110,0.1);
+          cursor: pointer;
+        " onmouseover="this.style.boxShadow='0 0 60px rgba(255,0,110,0.4), inset 0 0 80px rgba(255,0,110,0.08), 0 20px 40px rgba(0,0,0,0.3)'; this.style.transform='translateY(-10px) scale(1.08) rotate(-1deg)'; this.style.borderColor='var(--phd-neon-pink)'; this.style.background='linear-gradient(135deg, rgba(255,0,110,0.15), rgba(255,0,110,0.05))';" onmouseout="this.style.boxShadow='0 0 20px rgba(255,0,110,0.1)'; this.style.transform='translateY(0) scale(1) rotate(0deg)'; this.style.borderColor='var(--phd-neon-pink)'; this.style.background='linear-gradient(135deg, rgba(255,0,110,0.08), rgba(255,0,110,0.02))';">
+          <div style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,0,110,0.2), transparent); pointer-events: none;" class="pulse-element"></div>
+          <!-- Cross-hair decoration -->
+          <div style="position: absolute; top: 50%; right: 15px; width: 10px; height: 1px; background: var(--phd-neon-pink); pointer-events: none; opacity: 0.5;"></div>
+          <div style="position: absolute; top: calc(50% - 5px); right: 19px; width: 1px; height: 10px; background: var(--phd-neon-pink); pointer-events: none; opacity: 0.5;"></div>
+          <!-- Cross-hair decoration -->
+          <div style="position: absolute; top: 50%; right: 15px; width: 10px; height: 1px; background: var(--phd-neon-pink); pointer-events: none; opacity: 0.5;"></div>
+          <div style="position: absolute; top: calc(50% - 5px); right: 19px; width: 1px; height: 10px; background: var(--phd-neon-pink); pointer-events: none; opacity: 0.5;"></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--phd-neon-pink); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;">[FRAMEWORK::06]</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; line-height: 1.2;">PyTorch<br/>Expert</div>
+        </div>
+        
       </div>
+      
+      <!-- Decorative Tech Line with Animation -->
+      <div style="
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--phd-neon-accent), var(--phd-neon-blue), var(--phd-neon-pink), transparent);
+        margin-top: 3rem;
+        opacity: 0.4;
+        position: relative;
+      ">
+        <!-- Animated sliding light -->
+        <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100px;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          animation: slide-right 3s ease-in-out infinite;
+        "></div>
+      </div>
+
+        opacity: 0.3;
+      "></div>
+      
+    </div>
+
     </div>
     
     <!-- CTA Buttons -->
@@ -320,4 +533,275 @@ social: true
   </p>
 </div>
 
+<!-- Dynamic Page Interactivity Script -->
+<script>
+(function() {
+  'use strict';
+  
+  // ===== 1. MOUSE TRACKING GRADIENT =====
+  let mouseX = 0, mouseY = 0;
+  let currentX = 0, currentY = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  
+  // Create dynamic gradient overlay
+  const gradientOverlay = document.createElement('div');
+  gradientOverlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.15;
+    transition: opacity 0.3s ease;
+  `;
+  document.body.insertBefore(gradientOverlay, document.body.firstChild);
+  
+  function animateGradient() {
+    currentX += (mouseX - currentX) * 0.05;
+    currentY += (mouseY - currentY) * 0.05;
+    
+    gradientOverlay.style.background = `
+      radial-gradient(600px circle at ${currentX}px ${currentY}px, 
+        rgba(0, 255, 136, 0.08), 
+        rgba(0, 212, 255, 0.05) 40%, 
+        transparent 70%)
+    `;
+    
+    requestAnimationFrame(animateGradient);
+  }
+  animateGradient();
+  
+  // ===== 2. INTERSECTION OBSERVER - Fade in on scroll =====
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+  
+  // Observe all major sections
+  setTimeout(() => {
+    const sections = document.querySelectorAll('.research-card, .event-card, .impact-metric');
+    sections.forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(section);
+    });
+  }, 100);
+  
+  // ===== 3. PARALLAX SCROLL EFFECT =====
+  let ticking = false;
+  
+  function parallaxScroll() {
+    const scrolled = window.pageYOffset;
+    
+    // Parallax on hero section
+    const hero = document.querySelector('.hero-concept-4');
+    if (hero) {
+      hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+    
+    // Parallax on research cards
+    const cards = document.querySelectorAll('.research-card');
+    cards.forEach((card, index) => {
+      const speed = 0.05 + (index * 0.02);
+      const cardTop = card.getBoundingClientRect().top;
+      const offset = (window.innerHeight - cardTop) * speed;
+      card.style.transform = `translateY(${offset}px)`;
+    });
+    
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(parallaxScroll);
+      ticking = true;
+    }
+  });
+  
+  // ===== 4. EXPERTISE CARDS - Mouse tracking tilt =====
+  const expertiseCards = document.querySelectorAll('.expertise-card');
+  
+  expertiseCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      card.style.transform = `
+        perspective(1000px) 
+        rotateX(${rotateX}deg) 
+        rotateY(${rotateY}deg) 
+        translateY(-8px) 
+        scale(1.05)
+      `;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+    });
+  });
+  
+  // ===== 5. FLOATING ANIMATION for decorative elements =====
+  function createFloatingAnimation() {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes float-vertical {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      @keyframes float-horizontal {
+        0%, 100% { transform: translateX(0px); }
+        50% { transform: translateX(10px); }
+      }
+      .research-card:nth-child(odd) {
+        animation: float-vertical 4s ease-in-out infinite;
+      }
+      .research-card:nth-child(even) {
+        animation: float-horizontal 5s ease-in-out infinite;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  createFloatingAnimation();
+  
+  // ===== 6. CURSOR TRAIL EFFECT =====
+  const trail = [];
+  const trailLength = 8;
+  
+  for (let i = 0; i < trailLength; i++) {
+    const dot = document.createElement('div');
+    dot.style.cssText = `
+      position: fixed;
+      width: ${8 - i}px;
+      height: ${8 - i}px;
+      background: rgba(0, 255, 136, ${0.5 - i * 0.06});
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.1s ease;
+      box-shadow: 0 0 ${10 - i}px rgba(0, 255, 136, 0.5);
+    `;
+    document.body.appendChild(dot);
+    trail.push({ element: dot, x: 0, y: 0 });
+  }
+  
+  document.addEventListener('mousemove', (e) => {
+    trail.forEach((dot, index) => {
+      setTimeout(() => {
+        dot.x = e.clientX;
+        dot.y = e.clientY;
+        dot.element.style.left = `${dot.x}px`;
+        dot.element.style.top = `${dot.y}px`;
+      }, index * 20);
+    });
+  });
+  
+  // ===== 7. SCROLL PROGRESS BAR =====
+  const progressBar = document.createElement('div');
+  progressBar.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--phd-neon-accent), var(--phd-neon-blue), var(--phd-neon-pink));
+    z-index: 10000;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  `;
+  document.body.appendChild(progressBar);
+  
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = scrolled + '%';
+  });
+  
+  // ===== 8. DYNAMIC BACKGROUND PARTICLES =====
+  function createParticles() {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.3;
+    `;
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2 + 1
+      });
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 255, 136, 0.3)';
+        ctx.fill();
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    animate();
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  }
+  createParticles();
+  
+  console.log('🚀 Dynamic page effects loaded!');
+})();
+</script>
+
 ---
+

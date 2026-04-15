@@ -498,30 +498,106 @@ social: true
     <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--phd-neon-accent); text-transform: uppercase; letter-spacing: 0.15em; display: block; margin-bottom: 0.5rem;">$ metrics --output</span>
     Impact by Numbers
   </h2>
-  
-  <div class="impact-metrics-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 3rem 0;">
-    <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--phd-neon-accent); font-family: 'Inter', sans-serif; line-height: 1;">26+</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Publications</div>
-      <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-accent); opacity: 0.3;"></div>
+
+  <!-- Impact Words - 5 badge orizzontali -->
+  <div style="
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    align-items: center;
+    margin: 2rem 0 4rem 0;
+  ">
+
+    <!-- CVPR -->
+    <div style="
+      display: flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,212,255,0.03));
+      border: 2px solid var(--phd-neon-blue);
+      padding: 1rem 1.75rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 16px rgba(0,212,255,0.1);
+    " onmouseover="this.style.transform='translateY(-6px) scale(1.04)'; this.style.boxShadow='0 0 40px rgba(0,212,255,0.35), inset 0 0 40px rgba(0,212,255,0.07)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 16px rgba(0,212,255,0.1)';">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--phd-neon-blue), transparent); opacity: 0.6; pointer-events:none;"></div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--phd-neon-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.7;">[CONF]</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -0.02em; color: var(--phd-neon-blue);">CVPR</span>
     </div>
-    <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--phd-neon-blue); font-family: 'JetBrains Mono', monospace; line-height: 1;">CVPR</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Top Conference</div>
-      <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-blue); opacity: 0.3;"></div>
+
+    <!-- PhD -->
+    <div style="
+      display: flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,136,0.03));
+      border: 2px solid var(--phd-neon-accent);
+      padding: 1rem 1.75rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 16px rgba(0,255,136,0.1);
+    " onmouseover="this.style.transform='translateY(-6px) scale(1.04)'; this.style.boxShadow='0 0 40px rgba(0,255,136,0.35), inset 0 0 40px rgba(0,255,136,0.07)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 16px rgba(0,255,136,0.1)';">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--phd-neon-accent), transparent); opacity: 0.6; pointer-events:none;"></div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--phd-neon-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.7;">[DEGREE]</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -0.02em; color: var(--phd-neon-accent);">PhD</span>
     </div>
-    <div style="text-align: center; position: relative;">
-      <a href="https://epic-kitchens.github.io/2022.html#results" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
-        <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--phd-neon-pink); font-family: 'JetBrains Mono', monospace; line-height: 1; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">EK100</div>
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;">Challenge Winner</div>
-        <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--phd-neon-pink); opacity: 0.3;"></div>
-      </a>
-    </div>
-    <div style="text-align: center; position: relative;">
-      <div style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--global-theme-color); font-family: 'Inter', sans-serif; line-height: 1;">🏅</div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--global-text-color); opacity: 0.6; margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;">Best PhD Student</div>
-      <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60%; height: 2px; background: var(--global-theme-color); opacity: 0.3;"></div>
-    </div>
+
+    <!-- EPIC KITCHEN WINNER -->
+    <a href="https://epic-kitchens.github.io/2022.html#results" target="_blank" rel="noopener noreferrer" style="
+      display: flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, rgba(255,0,110,0.1), rgba(255,0,110,0.03));
+      border: 2px solid var(--phd-neon-pink);
+      padding: 1rem 1.75rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 16px rgba(255,0,110,0.1);
+    " onmouseover="this.style.transform='translateY(-6px) scale(1.04)'; this.style.boxShadow='0 0 40px rgba(255,0,110,0.35), inset 0 0 40px rgba(255,0,110,0.07)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 16px rgba(255,0,110,0.1)';">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--phd-neon-pink), transparent); opacity: 0.6; pointer-events:none;"></div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--phd-neon-pink); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.7;">[WINNER]</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.02em; color: var(--phd-neon-pink);">🏆 EPIC KITCHENS</span>
+    </a>
+
+    <!-- CODEMOTION -->
+    <a href="/codemotion-gallery/" style="
+      display: flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,255,136,0.04));
+      border: 2px solid var(--phd-neon-blue);
+      padding: 1rem 1.75rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 16px rgba(0,212,255,0.1);
+    " onmouseover="this.style.transform='translateY(-6px) scale(1.04)'; this.style.boxShadow='0 0 40px rgba(0,212,255,0.35), inset 0 0 40px rgba(0,212,255,0.07)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 16px rgba(0,212,255,0.1)';">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--phd-neon-blue), transparent); opacity: 0.6; pointer-events:none;"></div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--phd-neon-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.7;">[SPEAKER]</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.02em; color: var(--phd-neon-blue);">🎤 CODEMOTION</span>
+    </a>
+
+    <!-- PY4AI -->
+    <a href="/py4ai-gallery/" style="
+      display: flex; align-items: center; gap: 0.75rem;
+      background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,136,0.03));
+      border: 2px solid var(--phd-neon-accent);
+      padding: 1rem 1.75rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 16px rgba(0,255,136,0.1);
+    " onmouseover="this.style.transform='translateY(-6px) scale(1.04)'; this.style.boxShadow='0 0 40px rgba(0,255,136,0.35), inset 0 0 40px rgba(0,255,136,0.07)';" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 16px rgba(0,255,136,0.1)';">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--phd-neon-accent), transparent); opacity: 0.6; pointer-events:none;"></div>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--phd-neon-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.7;">[SPEAKER]</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.02em; color: var(--phd-neon-accent);">🐍 PY4AI</span>
+    </a>
+
   </div>
 </div>
 

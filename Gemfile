@@ -18,6 +18,7 @@ group :jekyll_plugins do
     # gem 'jekyll-twitter-plugin'  # Temporarily disabled - requires ostruct (not in Ruby 4.0)
     gem 'jemoji'
     # gem 'mini_racer'  # Temporarily disabled - compilation issues with C++20
+    gem 'ostruct'
     gem 'unicode_utils'
     gem 'webrick'
 end

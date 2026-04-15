@@ -207,6 +207,8 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - HERO_CONCEPTS.md
+  - DESIGN_SYSTEM.md
 keep_files:
   - CNAME
   - .nojekyll

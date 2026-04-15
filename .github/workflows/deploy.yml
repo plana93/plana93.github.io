@@ -24,8 +24,8 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.2.2'
-        bundler-cache: true
+        ruby-version: '3.3.6'
+        bundler-cache: false
     - name: Update _config.yml ⚙️
       uses: fjogeleit/yaml-update-action@v0.13.1
       with:
@@ -35,6 +35,8 @@ jobs:
         value: ${{ github.repository }}
     - name: Install and Build 🔧
       run: |
+        gem install bundler
+        bundle install
         pip3 install --upgrade jupyter
         npm install -g mermaid.cli
         npm install -g purgecss

@@ -330,9 +330,6 @@ social: true
           animation: slide-right 3s ease-in-out infinite;
         "></div>
       </div>
-
-        opacity: 0.3;
-      "></div>
       
     </div>
 

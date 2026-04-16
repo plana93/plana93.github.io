@@ -166,6 +166,13 @@ layout: default
           // base position (normalized 0-1)
           nx: rnd(s + 2),
           ny: rnd(s + 3),
+          // position oscillation
+          posAmpX:  12 + rnd(s + 21) * 28,
+          posAmpY:  12 + rnd(s + 22) * 28,
+          posFreqX: 0.06 + rnd(s + 23) * 0.18,
+          posFreqY: 0.05 + rnd(s + 24) * 0.16,
+          posPhaseX: rnd(s + 25) * Math.PI * 2,
+          posPhaseY: rnd(s + 26) * Math.PI * 2,
           // base size
           baseW: 28 + rnd(s)     * 52,
           baseH: 28 + rnd(s + 1) * 52,
@@ -226,9 +233,11 @@ layout: default
         bw = Math.max(18, bw);
         bh = Math.max(18, bh);
 
-        // Clamp position so box stays inside photo
-        var bx = b.nx * Math.max(1, W - bw);
-        var by = b.ny * Math.max(1, H - bh);
+        // Animated position — slow drift, clamped inside photo
+        var driftX = b.posAmpX * Math.sin(Math.PI * 2 * b.posFreqX * t + b.posPhaseX);
+        var driftY = b.posAmpY * Math.sin(Math.PI * 2 * b.posFreqY * t + b.posPhaseY);
+        var bx = Math.max(0, Math.min(W - bw, b.nx * (W - bw) + driftX));
+        var by = Math.max(0, Math.min(H - bh, b.ny * (H - bh) + driftY));
 
         // Cross-fade between two filters using globalAlpha on two draws
         var fPhase = (Math.sin(Math.PI * 2 * b.filterFreq * t + b.filterPhase) + 1) * 0.5;

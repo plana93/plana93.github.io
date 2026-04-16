@@ -55,6 +55,6 @@ nav: false
   </p>
 </div>
 
-<div style="text-align:center; margin-top: var(--mp-sp-6);">
+<div class="mp-cta-row">
   <a href="/" class="mp-btn mp-btn--primary">← Back to Home</a>
 </div>

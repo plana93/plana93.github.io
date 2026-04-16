@@ -9,8 +9,8 @@ profile:
   image: prof_pic.jpg
   image_circular: false
   more_info: >
-    <p style="font-size: 0.9rem; margin: 0.3rem 0;">📍 Italy</p>
-    <p style="font-size: 0.9rem; margin: 0.3rem 0;">🎓 PhD, Politecnico di Torino</p>
+    <p class="mp-profile-info">📍 Italy</p>
+    <p class="mp-profile-info">🎓 PhD, Politecnico di Torino</p>
 
 news: false
 latest_posts: false

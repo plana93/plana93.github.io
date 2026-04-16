@@ -102,7 +102,7 @@ nav: false
     </div>
   </div>
 
-  <div class="mp-infobox" style="margin-top:var(--mp-sp-4);">
+  <div class="mp-infobox mp-mt-4">
     <h3>Unsupervised Domain Adaptation Challenge</h3>
     <p>
       The challenge tests how models cope with <strong>temporal domain shift</strong> in
@@ -117,9 +117,8 @@ nav: false
   </div>
 </section>
 
-<div style="text-align:center; margin-top:var(--mp-sp-6);">
+<div class="mp-cta-row">
   <a href="https://epic-kitchens.github.io/2022.html#results"
      target="_blank" rel="noopener" class="mp-btn mp-btn--primary">View Official Results ↗</a>
-  &nbsp;
   <a href="/" class="mp-btn mp-btn--ghost">← Back to Home</a>
 </div>

@@ -1311,3 +1311,34 @@ body {
     }
   }
 }
+
+// ============================================================
+// UTILITY HELPERS
+// ============================================================
+
+// Center-aligned CTA row (replaces inline text-align:center wrappers)
+.mp-cta-row {
+  display: flex;
+  gap: var(--mp-sp-2);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--mp-sp-6);
+}
+
+// Single-column gallery (override for poster/full-width media)
+.mp-gallery-grid--single {
+  grid-template-columns: 1fr !important;
+}
+
+// Profile info block (used in front-matter more_info)
+.mp-profile-info {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  line-height: 1.5;
+  color: var(--global-text-color);
+  opacity: 0.82;
+}
+
+// Spacer top variants
+.mp-mt-4 { margin-top: var(--mp-sp-4) !important; }
+.mp-mt-6 { margin-top: var(--mp-sp-6) !important; }

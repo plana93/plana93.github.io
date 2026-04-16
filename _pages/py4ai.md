@@ -32,7 +32,7 @@ nav: false
   <p class="mp-label">$ cat conference_poster.jpg</p>
   <h2 class="mp-heading">Conference Poster</h2>
 
-  <div class="mp-gallery-grid" style="grid-template-columns: 1fr;">
+  <div class="mp-gallery-grid mp-gallery-grid--single">
     <div class="mp-gallery-img">
       <img src="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg"
            alt="Egocentric Vision — Py4AI Poster" loading="lazy">
@@ -53,7 +53,7 @@ nav: false
   </p>
 </div>
 
-<div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:var(--mp-sp-6);">
+<div class="mp-cta-row">
   <a href="https://www.linkedin.com/feed/update/urn:li:activity:7330195774300934145/"
      target="_blank" rel="noopener" class="mp-btn mp-btn--primary">View on LinkedIn ↗</a>
   <a href="/" class="mp-btn mp-btn--ghost">← Back to Home</a>

@@ -31,17 +31,43 @@ layout: default
 
     {%- if page.profile.image %}
       {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-      {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
+      {%- assign profile_image_class = "img-fluid" -%}
       <div class="mp-about-top__photo">
-        <div class="mp-photo-frame">
+
+        <!-- Artistic photo frame with cycling filters — click to switch -->
+        <div class="mp-photo-frame" id="mpPhotoFrame" data-filter="0" title="Click to change filter">
+
           {% include figure.html
              path=profile_image_path
              class=profile_image_class
              alt=page.profile.image
              cache_bust=true -%}
+
+          <!-- duotone / gradient overlay layer -->
+          <div class="mp-photo-frame__overlay" aria-hidden="true"></div>
+
+          <!-- scanlines overlay -->
+          <div class="mp-photo-frame__scanlines" aria-hidden="true"></div>
+
+          <!-- corner accents -->
           <span class="mp-photo-frame__corner mp-photo-frame__corner--tr"></span>
           <span class="mp-photo-frame__corner mp-photo-frame__corner--bl"></span>
+
+          <!-- filter label -->
+          <span class="mp-photo-frame__label" id="mpPhotoLabel">NATURAL</span>
+
+          <!-- filter indicator dots -->
+          <div class="mp-photo-dots" id="mpPhotoDots">
+            <span class="mp-photo-dots__dot active"></span>
+            <span class="mp-photo-dots__dot"></span>
+            <span class="mp-photo-dots__dot"></span>
+            <span class="mp-photo-dots__dot"></span>
+            <span class="mp-photo-dots__dot"></span>
+            <span class="mp-photo-dots__dot"></span>
+          </div>
         </div>
+
+        <p class="mp-photo-hint">[click to apply filter]</p>
       </div>
     {%- endif %}
 
@@ -113,3 +139,34 @@ layout: default
   {%- endif %}
 
 </div>
+
+<script>
+(function () {
+  var filters = [
+    { name: 'NATURAL',   cls: 'f-natural'  },
+    { name: 'NOIR',      cls: 'f-noir'     },
+    { name: 'FEATURES',  cls: 'f-features' },
+    { name: 'DUOTONE',   cls: 'f-duotone'  },
+    { name: 'PIXEL',     cls: 'f-pixel'    },
+    { name: 'GLITCH',    cls: 'f-glitch'   },
+  ];
+  var frame = document.getElementById('mpPhotoFrame');
+  var label = document.getElementById('mpPhotoLabel');
+  var dots  = document.querySelectorAll('#mpPhotoDots .mp-photo-dots__dot');
+  if (!frame) return;
+  var cur = 0;
+  function applyFilter(i) {
+    filters.forEach(function (f) { frame.classList.remove(f.cls); });
+    frame.classList.add(filters[i].cls);
+    if (label) label.textContent = filters[i].name;
+    dots.forEach(function (d, idx) {
+      d.classList.toggle('active', idx === i);
+    });
+  }
+  frame.addEventListener('click', function () {
+    cur = (cur + 1) % filters.length;
+    applyFilter(cur);
+  });
+  applyFilter(0);
+})();
+</script>

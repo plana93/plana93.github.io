@@ -1125,3 +1125,189 @@ body {
 .breathe {
   max-width: 100%;
 }
+
+// ============================================================
+// GALLERY / EVENT PAGE COMPONENTS
+// ============================================================
+
+// Page header (used on gallery/event sub-pages)
+.mp-page-header {
+  padding-bottom: var(--mp-sp-6);
+  border-bottom: 1px solid var(--global-divider-color);
+  margin-bottom: var(--mp-sp-6);
+
+  .mp-page-header__title {
+    font-family: var(--mp-font-sans);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin: var(--mp-sp-1) 0 var(--mp-sp-2) 0;
+    color: var(--global-text-color);
+  }
+
+  .mp-page-header__sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.72;
+    max-width: 70ch;
+    margin: 0;
+    color: var(--global-text-color);
+  }
+}
+
+// Photo / media gallery grid
+.mp-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--mp-sp-3);
+  margin-block: var(--mp-sp-6);
+
+  .mp-gallery-img {
+    border-radius: var(--mp-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.3s var(--mp-ease);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s var(--mp-ease);
+    }
+
+    &:hover {
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+      img { transform: scale(1.05); }
+    }
+  }
+}
+
+// Video wrapper with shadow + radius
+.mp-video-wrap {
+  border-radius: var(--mp-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  margin-block: var(--mp-sp-4);
+
+  video, iframe {
+    width: 100%;
+    display: block;
+  }
+
+  figcaption {
+    font-size: 0.85rem;
+    opacity: 0.55;
+    text-align: center;
+    font-style: italic;
+    padding: var(--mp-sp-2) 0;
+  }
+}
+
+// Small inline pill badge (e.g. "TOP 3 WINNER")
+.mp-pill {
+  display: inline-block;
+  font-family: var(--mp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2em 0.7em;
+  border-radius: var(--mp-radius);
+  vertical-align: middle;
+  line-height: 1.6;
+
+  &.mp-pill--green  { background: var(--mp-accent);   color: #000; }
+  &.mp-pill--pink   { background: #ff006e;             color: #fff; }
+  &.mp-pill--blue   { background: #00d4ff;             color: #000; }
+}
+
+// Year / edition block header
+.mp-year-block {
+  margin-block: var(--mp-sp-8);
+
+  .mp-year-block__header {
+    display: flex;
+    align-items: center;
+    gap: var(--mp-sp-2);
+    margin-bottom: var(--mp-sp-3);
+    flex-wrap: wrap;
+  }
+
+  .mp-year-block__title {
+    font-family: var(--mp-font-sans);
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--global-text-color);
+  }
+
+  .mp-year-block__body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    opacity: 0.82;
+    max-width: 72ch;
+    color: var(--global-text-color);
+  }
+}
+
+// Highlighted info box (colored border variant)
+.mp-infobox {
+  background: var(--mp-accent-dim);
+  border-left: 3px solid var(--mp-accent);
+  border-radius: var(--mp-radius);
+  padding: var(--mp-sp-3) var(--mp-sp-4);
+  margin-block: var(--mp-sp-4);
+
+  &.mp-infobox--blue {
+    background: rgba(0, 212, 255, 0.05);
+    border-left-color: #00d4ff;
+    h3 { color: #00d4ff; }
+  }
+
+  h3 {
+    color: var(--mp-accent);
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+
+  p { margin-bottom: 0.6rem; opacity: 0.82; }
+  p:last-child { margin-bottom: 0; }
+}
+
+// Stats row (125 verbs / 331 nouns / 32 participants)
+.mp-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--mp-sp-3);
+  margin-block: var(--mp-sp-4);
+
+  .mp-stat {
+    text-align: center;
+    padding: var(--mp-sp-3);
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: var(--mp-radius);
+
+    .mp-stat__num {
+      font-family: var(--mp-font-sans);
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--mp-accent);
+      line-height: 1;
+      display: block;
+    }
+
+    .mp-stat__label {
+      font-family: var(--mp-font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+      margin-top: 0.5rem;
+      display: block;
+    }
+  }
+}

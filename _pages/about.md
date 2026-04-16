@@ -46,32 +46,32 @@ social: true
 
   <div class="mp-expertise-grid mp-animate-group">
 
-    <div class="mp-tile col-5 row-2 large mp-animate">
+    <div class="mp-tile large mp-animate">
       <span class="mp-tile__tag">[CORE::01]</span>
-      <h3 class="mp-tile__title">Deep<br>Learning</h3>
+      <h3 class="mp-tile__title">Deep Learning</h3>
     </div>
 
-    <div class="mp-tile col-4 mp-animate">
+    <div class="mp-tile mp-animate">
       <span class="mp-tile__tag">[VISION::02]</span>
       <h3 class="mp-tile__title">Computer Vision</h3>
     </div>
 
-    <div class="mp-tile col-3 row-2 mp-animate">
+    <div class="mp-tile mp-animate">
       <span class="mp-tile__tag">[SPECIALTY::03]</span>
       <h3 class="mp-tile__title">Action Recognition</h3>
     </div>
 
-    <div class="mp-tile col-4 mp-animate">
+    <div class="mp-tile mp-animate">
       <span class="mp-tile__tag">[ADAPT::04]</span>
       <h3 class="mp-tile__title">Domain Adaptation</h3>
     </div>
 
-    <div class="mp-tile col-5 mp-animate">
+    <div class="mp-tile mp-animate">
       <span class="mp-tile__tag">[FUSION::05]</span>
       <h3 class="mp-tile__title">Multi-Modal AI</h3>
     </div>
 
-    <div class="mp-tile col-3 mp-animate">
+    <div class="mp-tile mp-animate">
       <span class="mp-tile__tag">[FRAMEWORK::06]</span>
       <h3 class="mp-tile__title">PyTorch Expert</h3>
     </div>

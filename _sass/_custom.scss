@@ -1307,6 +1307,145 @@ body {
 }
 
 // ============================================================
+// ABOUT PAGE LAYOUT
+// ============================================================
+
+.mp-about-page {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+// Top panel: name/meta left, photo right
+.mp-about-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--mp-sp-6);
+  align-items: start;
+  padding-block: var(--mp-sp-8);
+}
+
+.mp-about-top__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mp-sp-2);
+}
+
+.mp-about-top__name {
+  font-family: var(--mp-font-sans);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--global-text-color);
+}
+
+.mp-about-top__sub {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin: 0;
+  color: var(--global-text-color);
+}
+
+.mp-about-top__info {
+  margin-top: var(--mp-sp-2);
+  font-family: var(--mp-font-mono);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  opacity: 0.75;
+  padding: var(--mp-sp-2) var(--mp-sp-3);
+  background: var(--global-card-bg-color);
+  border-left: 2px solid var(--mp-accent);
+  border-radius: var(--mp-radius);
+}
+
+// Photo column
+.mp-about-top__photo {
+  width: clamp(180px, 22vw, 280px);
+  flex-shrink: 0;
+}
+
+// Photo frame with neon corners
+.mp-photo-frame {
+  position: relative;
+  border: 1px solid var(--global-divider-color);
+  padding: 6px;
+  background: var(--global-bg-color);
+
+  img { display: block; width: 100%; }
+
+  .mp-photo-frame__corner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+
+    &--tr {
+      top: 0; right: 0;
+      border-top: 2px solid var(--mp-accent);
+      border-right: 2px solid var(--mp-accent);
+    }
+    &--bl {
+      bottom: 0; left: 0;
+      border-bottom: 2px solid #00d4ff;
+      border-left: 2px solid #00d4ff;
+    }
+  }
+}
+
+// Full-width article area (no float interference)
+.mp-about-content {
+  // Remove any stale clearfix effects
+  &::before, &::after { display: none; }
+}
+
+// Section heading with link
+.mp-heading-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover { color: var(--mp-accent); text-decoration: none; }
+}
+
+// Social section
+.mp-social {
+  padding-block: var(--mp-sp-6);
+  border-top: 1px solid var(--global-divider-color);
+  text-align: center;
+
+  .mp-social__icons {
+    display: flex;
+    gap: var(--mp-sp-3);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-block: var(--mp-sp-3);
+  }
+
+  .mp-social__note {
+    font-family: var(--mp-font-mono);
+    font-size: 0.78rem;
+    opacity: 0.45;
+    margin: 0;
+  }
+}
+
+// Responsive
+@media (max-width: 680px) {
+  .mp-about-top {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  .mp-about-top__photo {
+    width: clamp(120px, 40vw, 180px);
+    justify-self: center;
+    order: -1; // photo on top on mobile
+  }
+}
+
+// ============================================================
 // UTILITY HELPERS
 // ============================================================
 

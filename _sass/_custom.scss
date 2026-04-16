@@ -1,8 +1,877 @@
 /*******************************************************************************
- * Custom styles for improved UX
+ * MP Portfolio — Design System
+ *
+ * PHILOSOPHY: This file is the single source of truth for all visual styles.
+ * about.md (and other pages) should contain ONLY structure + content.
+ * To change the look: edit here. To change content: edit the .md files.
+ *
+ * SECTIONS:
+ *  0. Design Tokens
+ *  1. Global Base
+ *  2. Layout
+ *  3. Typography Components
+ *  4. Card Component
+ *  5. Expertise Bento Grid
+ *  6. Research Areas Grid
+ *  7. Achievement Badges
+ *  8. Talk / Event Layout
+ *  9. CTA Buttons & Links
+ * 10. Scientific Callout
+ * 11. Terminal Block
+ * 12. Animations
+ * 13. Hero Section
+ * 14. Scroll Progress Bar
+ * 15. Responsive
+ * 16. Legacy Compatibility
  ******************************************************************************/
 
-// Button styles
+// ============================================================
+// 0. DESIGN TOKENS
+// ============================================================
+:root {
+  // Brand — single accent color (change here to retheme the whole site)
+  --mp-accent:      #00ff88;
+  --mp-accent-dim:  rgba(0, 255, 136, 0.09);
+  --mp-accent-mid:  rgba(0, 255, 136, 0.22);
+  --mp-accent-glow: rgba(0, 255, 136, 0.38);
+
+  // Typography
+  --mp-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mp-font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  // Spacing scale (8px base unit)
+  --mp-sp-1:  0.5rem;    //  8px
+  --mp-sp-2:  1rem;      // 16px
+  --mp-sp-3:  1.5rem;    // 24px
+  --mp-sp-4:  2rem;      // 32px
+  --mp-sp-6:  3rem;      // 48px
+  --mp-sp-8:  4rem;      // 64px
+  --mp-sp-12: 6rem;      // 96px
+
+  // Easing
+  --mp-ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --mp-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  // Border radius
+  --mp-radius-sm: 2px;
+  --mp-radius:    4px;
+  --mp-radius-lg: 10px;
+
+  // Backward-compat neon vars (used in older HTML blocks still in-flight)
+  --phd-neon-accent: #00ff88;
+  --phd-neon-blue:   #00d4ff;
+  --phd-neon-pink:   #ff006e;
+}
+
+// ============================================================
+// 1. GLOBAL BASE
+// ============================================================
+html  { scroll-behavior: smooth; }
+body  { overflow-x: hidden; }
+
+::selection      { background: var(--mp-accent); color: #000; }
+::-moz-selection { background: var(--mp-accent); color: #000; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--mp-accent);
+  outline-offset: 3px;
+}
+
+p  { line-height: 1.7; margin-bottom: 1rem; }
+h2, h3, h4 { margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; }
+
+img { transition: opacity 0.3s ease; }
+
+// ============================================================
+// 2. LAYOUT
+// ============================================================
+
+// Wider container for portfolio pages
+.container {
+  max-width: 1280px !important;
+  padding-inline: clamp(1rem, 3vw, 2.5rem) !important;
+}
+
+.phd-portfolio {
+  max-width: 1280px !important;
+  overflow-x: hidden;
+}
+
+// Consistent vertical rhythm for sections
+.mp-section {
+  padding-block: var(--mp-sp-8);
+}
+
+// ============================================================
+// 3. TYPOGRAPHY COMPONENTS
+// ============================================================
+
+// Monospace eyebrow label above section headings
+// Usage: <p class="mp-label">$ command --flag</p>
+.mp-label {
+  font-family: var(--mp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mp-accent);
+  display: block;
+  margin-bottom: var(--mp-sp-1);
+  opacity: 0.9;
+}
+
+// Section heading (h2 equivalent)
+.mp-heading {
+  font-family: var(--mp-font-sans);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 var(--mp-sp-4) 0;
+  color: var(--global-text-color);
+}
+
+// Hero h1 with gradient animation
+.mp-heading-hero {
+  font-family: var(--mp-font-sans);
+  font-size: clamp(4rem, 11vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    var(--global-text-color) 0%,
+    var(--mp-accent) 50%,
+    var(--global-text-color) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: mp-gradient-shift 8s ease infinite;
+}
+
+// Secondary hero word (INTELLI-GENCE style)
+.mp-heading-sub {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  margin: var(--mp-sp-4) 0 var(--mp-sp-6) 0;
+
+  .accent { color: var(--mp-accent); }
+  .indent {
+    margin-left: clamp(1rem, 5vw, 3rem);
+    display: inline-block;
+    opacity: 0.65;
+  }
+}
+
+// Subtle gradient horizontal rule
+.mp-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--mp-accent) 40%, transparent 100%);
+  margin-block: var(--mp-sp-8);
+  opacity: 0.25;
+}
+
+// ============================================================
+// 4. CARD COMPONENT
+// ============================================================
+.mp-card {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-left: 3px solid var(--mp-accent);
+  border-radius: var(--mp-radius);
+  padding: var(--mp-sp-4);
+  transition:
+    transform 0.3s var(--mp-ease),
+    box-shadow 0.3s var(--mp-ease);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 14px 36px rgba(0, 0, 0, 0.14),
+      0 0 0 1px var(--mp-accent-mid);
+  }
+
+  .mp-card__tag {
+    font-family: var(--mp-font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mp-accent);
+    display: block;
+    margin-bottom: var(--mp-sp-2);
+  }
+
+  .mp-card__icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1;
+  }
+
+  .mp-card__title {
+    font-family: var(--mp-font-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--mp-sp-1);
+    color: var(--global-text-color);
+  }
+
+  .mp-card__body {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    opacity: 0.78;
+    color: var(--global-text-color);
+    margin: 0;
+  }
+
+  .mp-card__meta {
+    font-family: var(--mp-font-mono);
+    font-size: 0.68rem;
+    opacity: 0.45;
+    margin-top: var(--mp-sp-2);
+    letter-spacing: 0.05em;
+  }
+}
+
+// ============================================================
+// 5. EXPERTISE BENTO GRID
+// ============================================================
+.mp-expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  margin-top: var(--mp-sp-4);
+}
+
+.mp-tile {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: var(--mp-radius);
+  padding: var(--mp-sp-3);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition:
+    transform 0.4s var(--mp-ease-bounce),
+    box-shadow 0.3s var(--mp-ease),
+    background 0.25s var(--mp-ease);
+
+  // Top accent line
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--mp-accent), transparent);
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18), 0 0 0 1px var(--mp-accent-mid);
+    background: var(--mp-accent-dim);
+    &::before { opacity: 1; }
+  }
+
+  // Grid placement
+  &.col-5 { grid-column: span 5; }
+  &.col-4 { grid-column: span 4; }
+  &.col-3 { grid-column: span 3; }
+  &.row-2 { grid-row: span 2; }
+
+  .mp-tile__tag {
+    font-family: var(--mp-font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mp-accent);
+    display: block;
+    margin-bottom: var(--mp-sp-2);
+  }
+
+  .mp-tile__title {
+    font-family: var(--mp-font-sans);
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--global-text-color);
+    margin: 0;
+  }
+
+  &.large .mp-tile__title { font-size: 1.65rem; }
+}
+
+// ============================================================
+// 6. RESEARCH AREAS GRID
+// ============================================================
+.mp-research-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--mp-sp-3);
+}
+
+// ============================================================
+// 7. ACHIEVEMENT BADGES
+// ============================================================
+.mp-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  align-items: center;
+  margin-block: var(--mp-sp-4);
+}
+
+.mp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--mp-accent);
+  border-radius: var(--mp-radius);
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  background: var(--mp-accent-dim);
+  transition:
+    transform 0.35s var(--mp-ease-bounce),
+    box-shadow 0.3s var(--mp-ease),
+    background 0.2s;
+  position: relative;
+  overflow: hidden;
+
+  // Top scanline
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--mp-accent), transparent);
+    opacity: 0.6;
+  }
+
+  &:hover, &:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px var(--mp-accent-glow);
+    background: rgba(0, 255, 136, 0.14);
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+  }
+
+  &.mp-badge--link { cursor: pointer; }
+
+  .mp-badge__tag {
+    font-family: var(--mp-font-mono);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mp-accent);
+    opacity: 0.75;
+  }
+
+  .mp-badge__label {
+    font-family: var(--mp-font-sans);
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: var(--mp-accent);
+  }
+}
+
+// ============================================================
+// 8. TALK / EVENT LAYOUT
+// ============================================================
+.mp-talk {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--mp-sp-6);
+  align-items: center;
+  margin-bottom: var(--mp-sp-8);
+
+  &.mp-talk--reversed {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  .mp-talk__label {
+    font-family: var(--mp-font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mp-accent);
+    display: block;
+    margin-bottom: var(--mp-sp-2);
+    opacity: 0.8;
+  }
+
+  .mp-talk__title {
+    font-family: var(--mp-font-sans);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 var(--mp-sp-3) 0;
+    color: var(--global-text-color);
+  }
+
+  .mp-talk__body {
+    font-size: 1rem;
+    line-height: 1.72;
+    opacity: 0.78;
+    margin-bottom: var(--mp-sp-3);
+    color: var(--global-text-color);
+  }
+
+  .mp-talk__links {
+    display: flex;
+    gap: var(--mp-sp-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .mp-talk__img {
+    display: block;
+    width: 100%;
+    border-radius: var(--mp-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 36px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s var(--mp-ease);
+
+    img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s var(--mp-ease);
+    }
+
+    &:hover {
+      box-shadow: 0 14px 48px rgba(0, 0, 0, 0.22);
+      img { transform: scale(1.04); }
+    }
+  }
+
+  // EK trophy card
+  .mp-talk__trophy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 220px;
+    border-radius: var(--mp-radius-lg);
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.3s var(--mp-ease), transform 0.3s var(--mp-ease-bounce);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .trophy-icon  { font-size: 3.5rem; line-height: 1; }
+    .trophy-title { font-size: 1.2rem; font-weight: 700; color: var(--global-text-color); }
+    .trophy-meta  { font-family: var(--mp-font-mono); font-size: 0.72rem; opacity: 0.5; }
+  }
+}
+
+// ============================================================
+// 9. CTA BUTTONS & LINKS
+// ============================================================
+.mp-btn {
+  display: inline-block;
+  font-family: var(--mp-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--mp-radius);
+  transition: all 0.3s var(--mp-ease);
+  cursor: pointer;
+
+  &.mp-btn--primary {
+    background: var(--mp-accent);
+    color: #000 !important;
+    border: 2px solid var(--mp-accent);
+    &:hover {
+      background: transparent;
+      color: var(--mp-accent) !important;
+      box-shadow: 0 0 20px var(--mp-accent-glow);
+      text-decoration: none;
+    }
+  }
+
+  &.mp-btn--ghost {
+    background: transparent;
+    color: var(--global-text-color) !important;
+    border: 1px solid var(--global-divider-color);
+    &:hover {
+      border-color: var(--mp-accent);
+      color: var(--mp-accent) !important;
+      text-decoration: none;
+    }
+  }
+}
+
+// Inline monospace link
+.mp-link {
+  font-family: var(--mp-font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mp-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, opacity 0.2s;
+  opacity: 0.8;
+
+  &:hover {
+    border-bottom-color: var(--mp-accent);
+    opacity: 1;
+    text-decoration: none;
+    color: var(--mp-accent);
+  }
+}
+
+// ============================================================
+// 10. SCIENTIFIC CALLOUT
+// ============================================================
+.mp-callout {
+  border: 1px solid var(--global-divider-color);
+  border-left: 3px solid var(--mp-accent);
+  background: var(--global-card-bg-color);
+  padding: var(--mp-sp-4) var(--mp-sp-6);
+  border-radius: var(--mp-radius);
+  margin-block: var(--mp-sp-8);
+
+  .mp-callout__eyebrow {
+    font-family: var(--mp-font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mp-accent);
+    margin-bottom: var(--mp-sp-2);
+  }
+
+  .mp-callout__body {
+    font-family: var(--mp-font-sans);
+    font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--global-text-color);
+    margin: 0 0 var(--mp-sp-2) 0;
+
+    .accent { color: var(--mp-accent); }
+  }
+
+  .mp-callout__meta {
+    font-family: var(--mp-font-mono);
+    font-size: 0.72rem;
+    opacity: 0.45;
+    margin: 0;
+  }
+}
+
+// ============================================================
+// 11. TERMINAL BLOCK
+// ============================================================
+.mp-terminal {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: var(--mp-radius);
+  padding: var(--mp-sp-3) var(--mp-sp-4);
+  font-family: var(--mp-font-mono);
+  font-size: 0.85rem;
+  margin-block: var(--mp-sp-8);
+  color: var(--global-text-color);
+
+  .mp-terminal__prompt { color: var(--mp-accent); }
+  .mp-terminal__path   { opacity: 0.55; }
+  .mp-terminal__output { display: block; opacity: 0.7; margin-top: 0.4rem; }
+}
+
+// ============================================================
+// 12. ANIMATIONS
+// ============================================================
+@keyframes mp-gradient-shift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes mp-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+// IntersectionObserver target: starts hidden, becomes visible via JS
+.mp-animate {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.55s var(--mp-ease),
+    transform 0.55s var(--mp-ease);
+
+  &.mp-animate--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.07}s; }
+  }
+}
+
+// ============================================================
+// 13. HERO SECTION
+// ============================================================
+.mp-hero {
+  position: relative;
+  padding-bottom: var(--mp-sp-8);
+}
+
+.mp-hero__kicker {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.7rem, 1.4vw, 0.9rem);
+  letter-spacing: 0.7em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: var(--mp-sp-2);
+}
+
+.mp-hero__separator {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  opacity: 0.3;
+  margin-block: var(--mp-sp-3);
+  letter-spacing: 0.04em;
+}
+
+.mp-hero__stack-intro {
+  font-size: 0.88rem;
+  opacity: 0.65;
+  max-width: 560px;
+  margin-bottom: var(--mp-sp-4);
+  line-height: 1.6;
+  color: var(--global-text-color);
+}
+
+.mp-hero__cta {
+  display: flex;
+  gap: var(--mp-sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--mp-sp-6);
+}
+
+// ============================================================
+// 14. SCROLL PROGRESS BAR
+// ============================================================
+#mp-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--mp-accent);
+  z-index: 10000;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 6px var(--mp-accent-glow);
+}
+
+// ============================================================
+// 15. RESPONSIVE
+// ============================================================
+@media (max-width: 900px) {
+  .mp-expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+    .mp-tile.col-5,
+    .mp-tile.col-4,
+    .mp-tile.col-3 { grid-column: span 1; }
+    .mp-tile.row-2  { grid-row: span 1; }
+    .mp-tile.large .mp-tile__title { font-size: 1.2rem; }
+  }
+}
+
+@media (max-width: 768px) {
+  .mp-heading-hero { font-size: clamp(3rem, 14vw, 5rem); }
+  .mp-heading-sub  { font-size: clamp(1.5rem, 7vw, 2.5rem); }
+  .mp-section      { padding-block: var(--mp-sp-6); }
+
+  .mp-talk,
+  .mp-talk.mp-talk--reversed {
+    grid-template-columns: 1fr;
+    gap: var(--mp-sp-4);
+  }
+
+  .mp-research-grid { grid-template-columns: 1fr; }
+
+  .mp-callout { padding: var(--mp-sp-3); }
+}
+
+@media (max-width: 600px) {
+  .mp-expertise-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================
+// 16. LEGACY COMPATIBILITY (keep old classes working)
+// ============================================================
+
+// Old broken-grid layout still referenced in some HTML
+.broken-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+.span-6  { grid-column: span 6; }
+.span-12 { grid-column: span 12; }
+
+@media (max-width: 768px) {
+  .span-6, .span-12 { grid-column: span 12; }
+}
+
+.hover-lift {
+  transition: transform 0.3s var(--mp-ease), box-shadow 0.3s var(--mp-ease);
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.coord-link {
+  font-family: var(--mp-font-mono);
+  font-size: 0.8rem;
+  color: var(--mp-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+  &:hover { border-bottom-color: var(--mp-accent); }
+}
+
+// Old research/paper card selectors
+.research-card {
+  background: var(--global-card-bg-color);
+  transition: transform 0.3s var(--mp-ease), box-shadow 0.3s var(--mp-ease);
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Old impact metrics grid
+.impact-metrics-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+// Old scientific callout selectors
+.scientific-callout {
+  border-left: 3px solid var(--mp-accent);
+  background: var(--global-card-bg-color);
+  padding: 2rem 3rem;
+  margin-block: 4rem;
+
+  .callout-title {
+    font-family: var(--mp-font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mp-accent);
+    margin-bottom: 1rem;
+  }
+
+  .callout-content { line-height: 1.4; }
+  .callout-meta { font-family: var(--mp-font-mono); font-size: 0.72rem; opacity: 0.45; }
+}
+
+// Body overflow guard
+.post { max-width: 100%; overflow-x: hidden; }
+
+// Smooth scrolling (redundant but harmless)
+html { scroll-behavior: smooth; }
+
+// ============================================================
+// ORIGINAL BTN CLASSES (kept for other pages)
+// ============================================================
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-decoration: none;
+  }
+  &:active { transform: translateY(0); }
+}
+
+.btn-primary {
+  background: var(--global-theme-color);
+  color: white;
+  &:hover { background: var(--global-hover-color); color: white; }
+}
+
+.btn-outline {
+  border: 2px solid var(--global-theme-color);
+  color: var(--global-theme-color);
+  background: transparent;
+  &:hover { background: var(--global-theme-color); color: white; }
+}
+
+// Social icons
+.social a {
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  &:hover { transform: translateY(-3px); color: var(--global-hover-color); }
+}
+
+// Navbar links
+.navbar a {
+  font-weight: 500;
+  &:hover { color: var(--global-hover-color); }
+}
+
+// Breathe wrapper (kept from old layout)
+.breathe { max-width: 100%; }
+
+// Make grids responsive (old inline-style grids)
+@media (max-width: 768px) {
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns: 1.2fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1.2fr"],
+  div[style*="grid-template-columns: 1.4fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1.4fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  div[style*="grid-template-columns: repeat"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+// ============================================================
+// END OF DESIGN SYSTEM
+// ============================================================
+
+// --- BELOW: original button styles kept for reference ---
 .btn {
   display: inline-block;
   padding: 12px 24px;

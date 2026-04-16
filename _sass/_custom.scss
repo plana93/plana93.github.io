@@ -1386,168 +1386,17 @@ body {
   border: 1px solid var(--global-divider-color);
   padding: 6px;
   background: var(--global-bg-color);
-  cursor: pointer;
-  overflow: hidden;
-  user-select: none;
+  // overflow:visible is set by JS so canvas lines can escape
 
-  img { display: block; width: 100%; transition: filter 0.4s ease, transform 0.4s ease; }
+  img { display: block; width: 100%; }
 
-  // Overlay layer (used by duotone / gradient filters)
-  .mp-photo-frame__overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    mix-blend-mode: color;
-  }
-
-  // Scanlines
-  .mp-photo-frame__scanlines {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.18) 2px,
-      rgba(0,0,0,0.18) 4px
-    );
-    transition: opacity 0.4s;
-  }
-
-  // Corner accents
   .mp-photo-frame__corner {
     position: absolute;
     width: 16px; height: 16px;
+    pointer-events: none;
+    z-index: 6;
     &--tr { top:0; right:0; border-top:2px solid var(--mp-accent); border-right:2px solid var(--mp-accent); }
     &--bl { bottom:0; left:0; border-bottom:2px solid #00d4ff; border-left:2px solid #00d4ff; }
-  }
-
-  // Filter label
-  .mp-photo-frame__label {
-    position: absolute;
-    top: 10px; left: 10px;
-    font-family: var(--mp-font-mono);
-    font-size: 0.55rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--mp-accent);
-    background: rgba(0,0,0,0.55);
-    padding: 2px 6px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    pointer-events: none;
-  }
-
-  // Dot indicators
-  .mp-photo-dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-    pointer-events: none;
-
-    .mp-photo-dots__dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      transition: background 0.3s, transform 0.3s;
-      &.active {
-        background: var(--mp-accent);
-        transform: scale(1.4);
-      }
-    }
-  }
-}
-
-// ── Filter modes ──────────────────────────────────────────────
-
-// 0 — NATURAL: default, no filter
-.mp-photo-frame.f-natural img { filter: none; }
-
-// 1 — NOIR: black & white, high contrast, film grain feel
-.mp-photo-frame.f-noir {
-  img { filter: grayscale(1) contrast(1.3) brightness(0.9); }
-  .mp-photo-frame__scanlines { opacity: 1; }
-}
-
-// 2 — FEATURES: extreme contrast → edge/feature map look
-.mp-photo-frame.f-features {
-  img {
-    filter: grayscale(1) contrast(4) brightness(1.1) invert(0);
-    mix-blend-mode: normal;
-  }
-  .mp-photo-frame__overlay { opacity: 0; }
-}
-
-// 3 — DUOTONE: grayscale + neon green color overlay
-.mp-photo-frame.f-duotone {
-  img { filter: grayscale(1) contrast(1.1) brightness(0.85); }
-  .mp-photo-frame__overlay {
-    opacity: 1;
-    background: linear-gradient(
-      135deg,
-      #00ff88 0%,
-      #00d4ff 100%
-    );
-    mix-blend-mode: color;
-  }
-}
-
-// 4 — PIXEL: low-fi stepped posterize effect via contrast+saturate+hue
-.mp-photo-frame.f-pixel {
-  img {
-    filter: contrast(2.5) saturate(2) blur(1.5px) contrast(3);
-    // The double-contrast sandwich creates a posterized / pixel-chunky look
-  }
-  .mp-photo-frame__overlay {
-    opacity: 0.15;
-    background: repeating-linear-gradient(
-      90deg,
-      rgba(0,255,136,0.4) 0px, rgba(0,255,136,0.4) 3px,
-      transparent 3px, transparent 12px
-    );
-    mix-blend-mode: overlay;
-  }
-}
-
-// 5 — GLITCH: RGB-shift animation
-.mp-photo-frame.f-glitch {
-  img { filter: saturate(1.4) contrast(1.1); animation: mp-glitch 1.8s infinite; }
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: inherit;
-    pointer-events: none;
-  }
-}
-
-@keyframes mp-glitch {
-  0%, 90%, 100% {
-    clip-path: none;
-    transform: translate(0);
-    filter: saturate(1.4) contrast(1.1);
-  }
-  92% {
-    transform: translate(-4px, 2px);
-    filter: saturate(3) hue-rotate(90deg) contrast(1.5);
-    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
-  }
-  94% {
-    transform: translate(4px, -2px);
-    filter: saturate(3) hue-rotate(-90deg) contrast(2);
-    clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
-  }
-  96% {
-    transform: translate(-2px, 0);
-    filter: saturate(1.4) contrast(1.1);
-    clip-path: none;
   }
 }
 

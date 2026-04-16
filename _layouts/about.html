@@ -33,41 +33,16 @@ layout: default
       {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
       {%- assign profile_image_class = "img-fluid" -%}
       <div class="mp-about-top__photo">
-
-        <!-- Artistic photo frame with cycling filters — click to switch -->
-        <div class="mp-photo-frame" id="mpPhotoFrame" data-filter="0" title="Click to change filter">
-
+        <div class="mp-photo-frame" id="mpPhotoFrame">
           {% include figure.html
              path=profile_image_path
              class=profile_image_class
              alt=page.profile.image
              cache_bust=true -%}
-
-          <!-- duotone / gradient overlay layer -->
-          <div class="mp-photo-frame__overlay" aria-hidden="true"></div>
-
-          <!-- scanlines overlay -->
-          <div class="mp-photo-frame__scanlines" aria-hidden="true"></div>
-
-          <!-- corner accents -->
           <span class="mp-photo-frame__corner mp-photo-frame__corner--tr"></span>
           <span class="mp-photo-frame__corner mp-photo-frame__corner--bl"></span>
-
-          <!-- filter label -->
-          <span class="mp-photo-frame__label" id="mpPhotoLabel">NATURAL</span>
-
-          <!-- filter indicator dots -->
-          <div class="mp-photo-dots" id="mpPhotoDots">
-            <span class="mp-photo-dots__dot active"></span>
-            <span class="mp-photo-dots__dot"></span>
-            <span class="mp-photo-dots__dot"></span>
-            <span class="mp-photo-dots__dot"></span>
-            <span class="mp-photo-dots__dot"></span>
-            <span class="mp-photo-dots__dot"></span>
-          </div>
         </div>
-
-        <p class="mp-photo-hint">[click to apply filter]</p>
+        <p class="mp-photo-hint">[ hover ]</p>
       </div>
     {%- endif %}
 
@@ -142,31 +117,169 @@ layout: default
 
 <script>
 (function () {
-  var filters = [
-    { name: 'NATURAL',   cls: 'f-natural'  },
-    { name: 'NOIR',      cls: 'f-noir'     },
-    { name: 'FEATURES',  cls: 'f-features' },
-    { name: 'DUOTONE',   cls: 'f-duotone'  },
-    { name: 'PIXEL',     cls: 'f-pixel'    },
-    { name: 'GLITCH',    cls: 'f-glitch'   },
-  ];
-  var frame = document.getElementById('mpPhotoFrame');
-  var label = document.getElementById('mpPhotoLabel');
-  var dots  = document.querySelectorAll('#mpPhotoDots .mp-photo-dots__dot');
-  if (!frame) return;
-  var cur = 0;
-  function applyFilter(i) {
-    filters.forEach(function (f) { frame.classList.remove(f.cls); });
-    frame.classList.add(filters[i].cls);
-    if (label) label.textContent = filters[i].name;
-    dots.forEach(function (d, idx) {
-      d.classList.toggle('active', idx === i);
+  'use strict';
+
+  function initPhotoFX() {
+    var frame = document.getElementById('mpPhotoFrame');
+    if (!frame) return;
+    var img = frame.querySelector('img');
+    if (!img) return;
+
+    var PAD = 220; // canvas extends this far beyond photo edges
+
+    var FILTERS = [
+      'grayscale(1) contrast(2.8)',
+      'sepia(1) saturate(4) hue-rotate(320deg)',
+      'hue-rotate(130deg) saturate(5) brightness(0.85)',
+      'invert(1) hue-rotate(180deg) contrast(1.2)',
+      'contrast(6) grayscale(1)',
+      'saturate(6) hue-rotate(210deg)',
+      'blur(1.5px) contrast(3) saturate(2)',
+      'brightness(0.35) contrast(5) sepia(1)',
+      'hue-rotate(60deg) saturate(3) contrast(1.8)',
+    ];
+
+    // pseudo-random from seed (deterministic so boxes don't jump on resize)
+    function rnd(seed) {
+      var s = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+      return s - Math.floor(s);
+    }
+
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    frame.appendChild(canvas);
+    frame.style.overflow = 'visible';
+
+    var boxes = [];
+    var W = 0, H = 0;
+    var mouse = null;
+    var hovering = false;
+    var raf = null;
+
+    function buildBoxes(w, h) {
+      boxes = [];
+      for (var i = 0; i < 10; i++) {
+        var seed = i * 17.3;
+        var bw = 26 + rnd(seed)      * 56;
+        var bh = 26 + rnd(seed + 1)  * 56;
+        boxes.push({
+          x:      rnd(seed + 2) * (w - bw),
+          y:      rnd(seed + 3) * (h - bh),
+          w:      bw,
+          h:      bh,
+          filter: FILTERS[i % FILTERS.length],
+          alpha:  0.7 + rnd(seed + 4) * 0.3,
+          // curve control-point offsets (random per box, fixed)
+          cpOx:   (rnd(seed + 5) - 0.5) * 260,
+          cpOy:   (rnd(seed + 6) - 0.5) * 260,
+        });
+      }
+    }
+
+    function setup() {
+      W = img.offsetWidth;
+      H = img.offsetHeight;
+      if (!W || !H) { setTimeout(setup, 80); return; }
+
+      canvas.width  = W + PAD * 2;
+      canvas.height = H + PAD * 2;
+      Object.assign(canvas.style, {
+        position:       'absolute',
+        top:            -PAD + 'px',
+        left:           -PAD + 'px',
+        width:          (W + PAD * 2) + 'px',
+        height:         (H + PAD * 2) + 'px',
+        pointerEvents:  'none',
+        zIndex:         '5',
+      });
+
+      buildBoxes(W, H);
+      if (raf) cancelAnimationFrame(raf);
+      loop();
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw filtered boxes over the image
+      boxes.forEach(function (b) {
+        ctx.save();
+        ctx.filter     = b.filter;
+        ctx.globalAlpha = b.alpha;
+        ctx.drawImage(img,
+          b.x, b.y, b.w, b.h,
+          PAD + b.x, PAD + b.y, b.w, b.h
+        );
+        ctx.restore();
+
+        // Thin neon border
+        ctx.save();
+        ctx.strokeStyle = '#00ff88';
+        ctx.lineWidth   = 0.75;
+        ctx.globalAlpha = 0.65;
+        ctx.strokeRect(PAD + b.x + 0.5, PAD + b.y + 0.5, b.w - 1, b.h - 1);
+        ctx.restore();
+      });
+
+      // Curved lines from each box-center to mouse
+      if (hovering && mouse) {
+        var mx = PAD + mouse.x;
+        var my = PAD + mouse.y;
+
+        boxes.forEach(function (b) {
+          var bcx = PAD + b.x + b.w * 0.5;
+          var bcy = PAD + b.y + b.h * 0.5;
+
+          // control point: midpoint + fixed random offset (per box)
+          var cpx = (bcx + mx) * 0.5 + b.cpOx;
+          var cpy = (bcy + my) * 0.5 + b.cpOy;
+
+          ctx.save();
+          ctx.strokeStyle = '#00ff88';
+          ctx.lineWidth   = 0.6;
+          ctx.globalAlpha = 0.5;
+          ctx.shadowColor = '#00ff88';
+          ctx.shadowBlur  = 5;
+          ctx.beginPath();
+          ctx.moveTo(bcx, bcy);
+          ctx.quadraticCurveTo(cpx, cpy, mx, my);
+          ctx.stroke();
+          ctx.restore();
+        });
+
+        // Small dot at cursor
+        ctx.save();
+        ctx.fillStyle   = '#00ff88';
+        ctx.globalAlpha = 0.9;
+        ctx.shadowColor = '#00ff88';
+        ctx.shadowBlur  = 8;
+        ctx.beginPath();
+        ctx.arc(mx, my, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      raf = requestAnimationFrame(loop);
+    }
+
+    // Track mouse relative to img
+    img.addEventListener('mouseenter', function () { hovering = true; });
+    img.addEventListener('mouseleave', function () { hovering = false; mouse = null; });
+    img.addEventListener('mousemove',  function (e) {
+      var r = img.getBoundingClientRect();
+      mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
     });
+
+    // Re-build on resize
+    window.addEventListener('resize', function () { setup(); }, { passive: true });
+
+    if (img.complete && img.naturalWidth) setup();
+    else img.addEventListener('load', setup);
   }
-  frame.addEventListener('click', function () {
-    cur = (cur + 1) % filters.length;
-    applyFilter(cur);
-  });
-  applyFilter(0);
+
+  if (document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', initPhotoFX);
+  else
+    initPhotoFX();
 })();
 </script>

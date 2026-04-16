@@ -125,7 +125,7 @@ layout: default
     var img = frame.querySelector('img');
     if (!img) return;
 
-    var PAD = 220; // canvas extends this far beyond photo edges
+    var PAD = 240;
 
     var FILTERS = [
       'grayscale(1) contrast(2.8)',
@@ -139,7 +139,6 @@ layout: default
       'hue-rotate(60deg) saturate(3) contrast(1.8)',
     ];
 
-    // pseudo-random from seed (deterministic so boxes don't jump on resize)
     function rnd(seed) {
       var s = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
       return s - Math.floor(s);
@@ -150,28 +149,48 @@ layout: default
     frame.appendChild(canvas);
     frame.style.overflow = 'visible';
 
+    // Each box has a "base" and oscillation params — all driven by time
     var boxes = [];
     var W = 0, H = 0;
     var mouse = null;
     var hovering = false;
     var raf = null;
+    var t0 = performance.now();
 
     function buildBoxes(w, h) {
       boxes = [];
-      for (var i = 0; i < 10; i++) {
-        var seed = i * 17.3;
-        var bw = 26 + rnd(seed)      * 56;
-        var bh = 26 + rnd(seed + 1)  * 56;
+      var N = 10;
+      for (var i = 0; i < N; i++) {
+        var s = i * 17.3;
         boxes.push({
-          x:      rnd(seed + 2) * (w - bw),
-          y:      rnd(seed + 3) * (h - bh),
-          w:      bw,
-          h:      bh,
-          filter: FILTERS[i % FILTERS.length],
-          alpha:  0.7 + rnd(seed + 4) * 0.3,
-          // curve control-point offsets (random per box, fixed)
-          cpOx:   (rnd(seed + 5) - 0.5) * 260,
-          cpOy:   (rnd(seed + 6) - 0.5) * 260,
+          // base position (normalized 0-1)
+          nx: rnd(s + 2),
+          ny: rnd(s + 3),
+          // base size
+          baseW: 28 + rnd(s)     * 52,
+          baseH: 28 + rnd(s + 1) * 52,
+          // size oscillation
+          ampW:  8  + rnd(s + 7) * 22,
+          ampH:  8  + rnd(s + 8) * 22,
+          freqW: 0.18 + rnd(s + 9)  * 0.55,   // Hz
+          freqH: 0.15 + rnd(s + 10) * 0.60,
+          phaseW: rnd(s + 11) * Math.PI * 2,
+          phaseH: rnd(s + 12) * Math.PI * 2,
+          // filter cycling
+          filterBase: i % FILTERS.length,
+          filterNext: (i + 1) % FILTERS.length,
+          filterFreq: 0.04 + rnd(s + 13) * 0.10,  // Hz
+          filterPhase: rnd(s + 14) * Math.PI * 2,
+          alpha: 0.65 + rnd(s + 4) * 0.30,
+          // bezier control-point: base offset + slow drift
+          cpOxBase: (rnd(s + 5) - 0.5) * 260,
+          cpOyBase: (rnd(s + 6) - 0.5) * 260,
+          cpAmpX:   20 + rnd(s + 15) * 80,   // vibration amplitude px
+          cpAmpY:   20 + rnd(s + 16) * 80,
+          cpFreqX:  0.10 + rnd(s + 17) * 0.35,
+          cpFreqY:  0.08 + rnd(s + 18) * 0.38,
+          cpPhaseX: rnd(s + 19) * Math.PI * 2,
+          cpPhaseY: rnd(s + 20) * Math.PI * 2,
         });
       }
     }
@@ -180,79 +199,96 @@ layout: default
       W = img.offsetWidth;
       H = img.offsetHeight;
       if (!W || !H) { setTimeout(setup, 80); return; }
-
       canvas.width  = W + PAD * 2;
       canvas.height = H + PAD * 2;
       Object.assign(canvas.style, {
-        position:       'absolute',
-        top:            -PAD + 'px',
-        left:           -PAD + 'px',
-        width:          (W + PAD * 2) + 'px',
-        height:         (H + PAD * 2) + 'px',
-        pointerEvents:  'none',
-        zIndex:         '5',
+        position:      'absolute',
+        top:           -PAD + 'px',
+        left:          -PAD + 'px',
+        width:         (W + PAD * 2) + 'px',
+        height:        (H + PAD * 2) + 'px',
+        pointerEvents: 'none',
+        zIndex:        '5',
       });
-
       buildBoxes(W, H);
       if (raf) cancelAnimationFrame(raf);
       loop();
     }
 
-    function loop() {
+    function loop(ts) {
+      var t = ((ts || performance.now()) - t0) * 0.001; // seconds
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw filtered boxes over the image
       boxes.forEach(function (b) {
+        // Animated size
+        var bw = b.baseW + b.ampW * Math.sin(Math.PI * 2 * b.freqW * t + b.phaseW);
+        var bh = b.baseH + b.ampH * Math.sin(Math.PI * 2 * b.freqH * t + b.phaseH);
+        bw = Math.max(18, bw);
+        bh = Math.max(18, bh);
+
+        // Clamp position so box stays inside photo
+        var bx = b.nx * Math.max(1, W - bw);
+        var by = b.ny * Math.max(1, H - bh);
+
+        // Cross-fade between two filters using globalAlpha on two draws
+        var fPhase = (Math.sin(Math.PI * 2 * b.filterFreq * t + b.filterPhase) + 1) * 0.5;
+        // draw base filter
         ctx.save();
-        ctx.filter     = b.filter;
-        ctx.globalAlpha = b.alpha;
-        ctx.drawImage(img,
-          b.x, b.y, b.w, b.h,
-          PAD + b.x, PAD + b.y, b.w, b.h
-        );
+        ctx.filter = FILTERS[b.filterBase];
+        ctx.globalAlpha = b.alpha * (1 - fPhase * 0.6);
+        ctx.drawImage(img, bx, by, bw, bh, PAD + bx, PAD + by, bw, bh);
+        ctx.restore();
+        // blend next filter on top
+        ctx.save();
+        ctx.filter = FILTERS[b.filterNext];
+        ctx.globalAlpha = b.alpha * (fPhase * 0.6);
+        ctx.drawImage(img, bx, by, bw, bh, PAD + bx, PAD + by, bw, bh);
         ctx.restore();
 
         // Thin neon border
         ctx.save();
         ctx.strokeStyle = '#00ff88';
-        ctx.lineWidth   = 0.75;
-        ctx.globalAlpha = 0.65;
-        ctx.strokeRect(PAD + b.x + 0.5, PAD + b.y + 0.5, b.w - 1, b.h - 1);
+        ctx.lineWidth   = 0.7;
+        ctx.globalAlpha = 0.55 + 0.3 * fPhase;
+        ctx.strokeRect(PAD + bx + 0.5, PAD + by + 0.5, bw - 1, bh - 1);
         ctx.restore();
+
+        // Store computed pos for lines
+        b._cx = PAD + bx + bw * 0.5;
+        b._cy = PAD + by + bh * 0.5;
+        // Animated bezier control-point offset
+        b._cpx = b.cpOxBase + b.cpAmpX * Math.sin(Math.PI * 2 * b.cpFreqX * t + b.cpPhaseX);
+        b._cpy = b.cpOyBase + b.cpAmpY * Math.sin(Math.PI * 2 * b.cpFreqY * t + b.cpPhaseY);
       });
 
-      // Curved lines from each box-center to mouse
+      // Curved vibrating lines → mouse
       if (hovering && mouse) {
         var mx = PAD + mouse.x;
         var my = PAD + mouse.y;
 
         boxes.forEach(function (b) {
-          var bcx = PAD + b.x + b.w * 0.5;
-          var bcy = PAD + b.y + b.h * 0.5;
-
-          // control point: midpoint + fixed random offset (per box)
-          var cpx = (bcx + mx) * 0.5 + b.cpOx;
-          var cpy = (bcy + my) * 0.5 + b.cpOy;
+          var cpx = (b._cx + mx) * 0.5 + b._cpx;
+          var cpy = (b._cy + my) * 0.5 + b._cpy;
 
           ctx.save();
           ctx.strokeStyle = '#00ff88';
-          ctx.lineWidth   = 0.6;
-          ctx.globalAlpha = 0.5;
+          ctx.lineWidth   = 0.55;
+          ctx.globalAlpha = 0.45;
           ctx.shadowColor = '#00ff88';
-          ctx.shadowBlur  = 5;
+          ctx.shadowBlur  = 6;
           ctx.beginPath();
-          ctx.moveTo(bcx, bcy);
+          ctx.moveTo(b._cx, b._cy);
           ctx.quadraticCurveTo(cpx, cpy, mx, my);
           ctx.stroke();
           ctx.restore();
         });
 
-        // Small dot at cursor
+        // Cursor dot
         ctx.save();
         ctx.fillStyle   = '#00ff88';
         ctx.globalAlpha = 0.9;
         ctx.shadowColor = '#00ff88';
-        ctx.shadowBlur  = 8;
+        ctx.shadowBlur  = 10;
         ctx.beginPath();
         ctx.arc(mx, my, 2.5, 0, Math.PI * 2);
         ctx.fill();
@@ -262,7 +298,6 @@ layout: default
       raf = requestAnimationFrame(loop);
     }
 
-    // Track mouse relative to img
     img.addEventListener('mouseenter', function () { hovering = true; });
     img.addEventListener('mouseleave', function () { hovering = false; mouse = null; });
     img.addEventListener('mousemove',  function (e) {
@@ -270,7 +305,6 @@ layout: default
       mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
     });
 
-    // Re-build on resize
     window.addEventListener('resize', function () { setup(); }, { passive: true });
 
     if (img.complete && img.naturalWidth) setup();

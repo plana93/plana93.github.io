@@ -6,7 +6,7 @@ subtitle: AI Researcher × Computer Vision × PhD
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: io.png
   image_circular: false
   more_info: >
     <p class="mp-profile-info">📍 Italy</p>
@@ -171,14 +171,14 @@ social: true
            target="_blank" rel="noopener" class="mp-link">LinkedIn_Post</a>
       </div>
     </div>
-    <a href="/py4ai-gallery/" class="mp-talk__img mp-animate">
+    <a href="/py4ai-gallery/" class="mp-talk__img">
       <img src="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg"
            alt="Py4AI Conference poster" loading="lazy">
     </a>
   </div>
 
   <div class="mp-talk mp-talk--reversed">
-    <a href="/codemotion-gallery/" class="mp-talk__img mp-animate">
+    <a href="/codemotion-gallery/" class="mp-talk__img">
       <img src="/assets/img/codemotion_01_2025/me_during_codemotion.JPG"
            alt="Codemotion 2025 talk" loading="lazy">
     </a>
@@ -209,7 +209,7 @@ social: true
         <a href="/ek100-challenge/" class="mp-link">View_Details</a>
       </div>
     </div>
-    <a href="/ek100-challenge/" class="mp-talk__trophy mp-animate">
+    <a href="/ek100-challenge/" class="mp-talk__trophy">
       <span class="trophy-icon">&#127942;</span>
       <span class="trophy-title">Top 3 Winner</span>
       <span class="trophy-meta">2021 &amp; 2022</span>

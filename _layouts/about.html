@@ -115,228 +115,184 @@ layout: default
   'use strict';
 
   /* ═══════════════════════════════════════════════════════
-     CANVAS FX — decompose / idle-drift / mouse-scatter
+     CANVAS FX — floating boxes, filter cycling, bezier lines
      ═══════════════════════════════════════════════════════ */
   function initCanvasFX() {
-    var frame  = document.getElementById('mpPhotoFrame');
-    var img    = document.getElementById('mpPhotoImg');
+    var frame = document.getElementById('mpPhotoFrame');
+    var img   = document.getElementById('mpPhotoImg');
     if (!frame || !img) return;
 
-    // Raw image hidden — only canvas renders it
-    img.style.opacity    = '0';
-    img.style.visibility = 'hidden';
-
-    var COLS = 5, ROWS = 6;
-    var PAD  = 0;   // no padding needed — canvas is sized to figure
-    var t0   = performance.now();
+    var PAD = 40;
 
     var FILTERS = [
-      'none',
-      'grayscale(1) contrast(2.2)',
-      'hue-rotate(145deg) saturate(6) brightness(0.8)',
-      'sepia(1) saturate(7) hue-rotate(310deg)',
-      'invert(1) hue-rotate(190deg) contrast(1.15)',
-      'saturate(8) hue-rotate(195deg)',
-      'contrast(4.5) grayscale(1)',
-      'hue-rotate(50deg) saturate(4) contrast(1.6)',
-      'blur(0.5px) saturate(6) hue-rotate(80deg)',
-      'brightness(1.4) contrast(1.8) saturate(0)',
+      'grayscale(1) contrast(2.8)',
+      'sepia(1) saturate(4) hue-rotate(320deg)',
+      'hue-rotate(130deg) saturate(5) brightness(0.85)',
+      'invert(1) hue-rotate(180deg) contrast(1.2)',
+      'contrast(6) grayscale(1)',
+      'saturate(6) hue-rotate(210deg)',
+      'blur(1.5px) contrast(3) saturate(2)',
+      'brightness(0.35) contrast(5) sepia(1)',
+      'hue-rotate(60deg) saturate(3) contrast(1.8)',
     ];
 
-    function rnd(s) { var v = Math.sin(s * 127.1 + 311.7) * 43758.5453; return v - Math.floor(v); }
-    function easeOut3(x) { return 1 - Math.pow(1 - x, 3); }
-    function easeInOut(x) { return x < 0.5 ? 4*x*x*x : 1 - Math.pow(-2*x+2,3)/2; }
-    function lerp(a, b, t) { return a + (b - a) * t; }
+    function rnd(seed) {
+      var s = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+      return s - Math.floor(s);
+    }
 
     var canvas = document.createElement('canvas');
-    var ctx    = canvas.getContext('2d');
-    canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:4;';
+    var ctx = canvas.getContext('2d');
     frame.appendChild(canvas);
+    frame.style.overflow = 'visible';
 
+    var boxes = [];
     var W = 0, H = 0;
-    var mouse   = { x: 0.5, y: 0.5 }; // normalized 0-1
-    var hasMouse = false;
+    var mouse = null;
+    var hovering = false;
     var raf = null;
+    var t0 = performance.now();
 
-    // State: 0=composing, 1=idle, 2=decomposing (auto), 3=mouse-scatter
-    var state = 0, stateT = 0;
-    var COMPOSE_DUR    = 2.2;
-    var IDLE_DUR       = 6.0;   // stay composed before next auto-decompose
-    var DECOMPOSE_DUR  = 1.0;
-    var RECOMPOSE_DUR  = 1.8;
-
-    var tiles = [];
-
-    function buildTiles() {
-      tiles = [];
-      var tw = W / COLS, th = H / ROWS;
-      for (var row = 0; row < ROWS; row++) {
-        for (var col = 0; col < COLS; col++) {
-          var i = row * COLS + col;
-          var s = i * 19.3 + 3;
-          var hx = col * tw, hy = row * th;
-          // scatter: radial burst outward
-          var ang  = rnd(s)     * Math.PI * 2;
-          var dist = 0.8 + rnd(s+1) * 1.0;
-          var sx   = W*0.5 + Math.cos(ang) * W * dist - tw*0.5;
-          var sy   = H*0.5 + Math.sin(ang) * H * dist - th*0.5;
-          tiles.push({
-            hx: hx, hy: hy,  // home
-            sx: sx, sy: sy,  // scatter origin
-            cx: hx, cy: hy,  // current (animated)
-            tw: tw, th: th,
-            srcX: col * tw, srcY: row * th,
-            // idle breathe
-            bAx: 1.5 + rnd(s+4)*3.5, bAy: 1.5 + rnd(s+5)*3.5,
-            bFx: 0.03+rnd(s+6)*0.06, bFy: 0.025+rnd(s+7)*0.06,
-            bPx: rnd(s+8)*Math.PI*2,  bPy: rnd(s+9)*Math.PI*2,
-            // filter
-            fi:   i % FILTERS.length,
-            fiN: (i + 1) % FILTERS.length,
-            fFq:  0.035+rnd(s+13)*0.08, fPh: rnd(s+14)*Math.PI*2,
-            al:   0.88 + rnd(s+12)*0.12,
-            // compose stagger
-            delay: i / (ROWS*COLS) * 0.65,
-            // mouse repel
-            repA: rnd(s+20)*Math.PI*2,
-            repD: 0.05 + rnd(s+21)*0.12,
-          });
-        }
-      }
-    }
-
-    function getCurrentPos(b, t, dt) {
-      switch (state) {
-        case 0: { // compose: scatter → home
-          var eff  = Math.max(0, dt - b.delay);
-          var span = COMPOSE_DUR - b.delay;
-          var p    = easeOut3(Math.min(1, eff / Math.max(0.01, span)));
-          return { x: lerp(b.sx, b.hx, p), y: lerp(b.sy, b.hy, p) };
-        }
-        case 1: { // idle drift + mouse-based parallax
-          var bx = b.hx + b.bAx * Math.sin(Math.PI*2 * b.bFx * t + b.bPx);
-          var by = b.hy + b.bAy * Math.sin(Math.PI*2 * b.bFy * t + b.bPy);
-          if (hasMouse) {
-            // tiles shift slightly based on mouse — parallax-like
-            var mx = (mouse.x - 0.5) * W * 0.06;
-            var my = (mouse.y - 0.5) * H * 0.06;
-            bx += mx * (0.5 + (b.hx/W)*0.5);
-            by += my * (0.5 + (b.hy/H)*0.5);
-          }
-          return { x: bx, y: by };
-        }
-        case 2: { // auto-decompose: home → scatter
-          var p2 = easeInOut(Math.min(1, dt / DECOMPOSE_DUR));
-          return { x: lerp(b.hx, b.sx, p2), y: lerp(b.hy, b.sy, p2) };
-        }
-        case 3: { // re-compose after auto-decompose
-          var p3 = easeOut3(Math.min(1, dt / RECOMPOSE_DUR));
-          return { x: lerp(b.sx, b.hx, p3), y: lerp(b.sy, b.hy, p3) };
-        }
-        default: return { x: b.hx, y: b.hy };
-      }
-    }
-
-    function loop(ts) {
-      var t  = ((ts || performance.now()) - t0) * 0.001;
-      var dt = t - stateT;
-      ctx.clearRect(0, 0, W, H);
-
-      // ── geo lines ──
-      for (var g = 0; g < 8; g++) {
-        var gs = g * 37.1 + 9;
-        var pa = (Math.sin(Math.PI*2 * (0.015+rnd(gs+4)*0.03) * t + rnd(gs+5)*Math.PI*2) + 1) * 0.5;
-        ctx.save();
-        ctx.globalAlpha  = 0.025 + 0.025 * pa;
-        ctx.strokeStyle  = g % 2 === 0 ? '#00ff88' : '#00d4ff';
-        ctx.lineWidth    = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(rnd(gs)*W, rnd(gs+1)*H);
-        ctx.lineTo(rnd(gs+2)*W, rnd(gs+3)*H);
-        ctx.stroke();
-        ctx.restore();
-      }
-
-      tiles.forEach(function (b, i) {
-        var pos = getCurrentPos(b, t, dt);
-        var fph = (Math.sin(Math.PI*2 * b.fFq * t + b.fPh) + 1) * 0.5;
-
-        ctx.save();
-        ctx.filter      = FILTERS[b.fi];
-        ctx.globalAlpha = b.al * (1 - fph * 0.5);
-        ctx.drawImage(img, b.srcX, b.srcY, b.tw, b.th, pos.x, pos.y, b.tw, b.th);
-        ctx.restore();
-
-        ctx.save();
-        ctx.filter      = FILTERS[b.fiN];
-        ctx.globalAlpha = b.al * (fph * 0.5);
-        ctx.drawImage(img, b.srcX, b.srcY, b.tw, b.th, pos.x, pos.y, b.tw, b.th);
-        ctx.restore();
-
-        // neon edge
-        var col = i % 3 === 0 ? '#00ff88' : i % 3 === 1 ? '#00d4ff' : 'rgba(255,255,255,0.5)';
-        ctx.save();
-        ctx.strokeStyle = col;
-        ctx.lineWidth   = 0.5;
-        ctx.globalAlpha = 0.2 + 0.5 * fph;
-        ctx.strokeRect(pos.x + 0.5, pos.y + 0.5, b.tw - 1, b.th - 1);
-        ctx.restore();
-
-        b._px = pos.x + b.tw * 0.5;
-        b._py = pos.y + b.th * 0.5;
-      });
-
-      // mouse cursor interaction: draw neon lines from each tile to cursor
-      if (hasMouse) {
-        var mx = mouse.x * W, my = mouse.y * H;
-        tiles.forEach(function (b, i) {
-          ctx.save();
-          ctx.strokeStyle = i % 2 === 0 ? '#00ff88' : '#00d4ff';
-          ctx.lineWidth   = 0.45;
-          ctx.globalAlpha = 0.18;
-          ctx.shadowColor = '#00ff88'; ctx.shadowBlur = 6;
-          ctx.beginPath(); ctx.moveTo(b._px, b._py); ctx.lineTo(mx, my); ctx.stroke();
-          ctx.restore();
+    function buildBoxes(w, h) {
+      boxes = [];
+      var N = 10;
+      for (var i = 0; i < N; i++) {
+        var s = i * 17.3;
+        boxes.push({
+          nx: rnd(s + 2), ny: rnd(s + 3),
+          posAmpX: 12 + rnd(s + 21) * 28,
+          posAmpY: 12 + rnd(s + 22) * 28,
+          posFreqX: 0.06 + rnd(s + 23) * 0.18,
+          posFreqY: 0.05 + rnd(s + 24) * 0.16,
+          posPhaseX: rnd(s + 25) * Math.PI * 2,
+          posPhaseY: rnd(s + 26) * Math.PI * 2,
+          baseW: 28 + rnd(s) * 52,
+          baseH: 28 + rnd(s + 1) * 52,
+          ampW: 8 + rnd(s + 7) * 22,
+          ampH: 8 + rnd(s + 8) * 22,
+          freqW: 0.18 + rnd(s + 9) * 0.55,
+          freqH: 0.15 + rnd(s + 10) * 0.60,
+          phaseW: rnd(s + 11) * Math.PI * 2,
+          phaseH: rnd(s + 12) * Math.PI * 2,
+          filterBase: i % FILTERS.length,
+          filterNext: (i + 1) % FILTERS.length,
+          filterFreq: 0.04 + rnd(s + 13) * 0.10,
+          filterPhase: rnd(s + 14) * Math.PI * 2,
+          alpha: 0.65 + rnd(s + 4) * 0.30,
+          cpOxBase: (rnd(s + 5) - 0.5) * 260,
+          cpOyBase: (rnd(s + 6) - 0.5) * 260,
+          cpAmpX: 20 + rnd(s + 15) * 80,
+          cpAmpY: 20 + rnd(s + 16) * 80,
+          cpFreqX: 0.10 + rnd(s + 17) * 0.35,
+          cpFreqY: 0.08 + rnd(s + 18) * 0.38,
+          cpPhaseX: rnd(s + 19) * Math.PI * 2,
+          cpPhaseY: rnd(s + 20) * Math.PI * 2,
         });
-        ctx.save();
-        ctx.fillStyle   = '#00ff88'; ctx.globalAlpha = 0.9;
-        ctx.shadowColor = '#00ff88'; ctx.shadowBlur  = 16;
-        ctx.beginPath(); ctx.arc(mx, my, 3, 0, Math.PI*2); ctx.fill();
-        ctx.restore();
       }
-
-      // State transitions
-      if (state === 0 && dt > COMPOSE_DUR + 0.3) { state = 1; stateT = t; }
-      if (state === 1 && dt > IDLE_DUR)           { state = 2; stateT = t; }
-      if (state === 2 && dt > DECOMPOSE_DUR + 0.1){ state = 3; stateT = t; }
-      if (state === 3 && dt > RECOMPOSE_DUR + 0.3){ state = 1; stateT = t; }
-
-      raf = requestAnimationFrame(loop);
     }
 
     function setup() {
-      W = frame.offsetWidth;
-      H = frame.offsetHeight;
+      W = img.offsetWidth;
+      H = img.offsetHeight;
       if (!W || !H) { setTimeout(setup, 80); return; }
-      canvas.width  = W;
-      canvas.height = H;
-      buildTiles();
-      state = 0; stateT = (performance.now() - t0) * 0.001;
+      canvas.width  = W + PAD * 2;
+      canvas.height = H + PAD * 2;
+      Object.assign(canvas.style, {
+        position: 'absolute',
+        top:  -PAD + 'px',
+        left: -PAD + 'px',
+        width:  (W + PAD * 2) + 'px',
+        height: (H + PAD * 2) + 'px',
+        pointerEvents: 'none',
+        zIndex: '5',
+      });
+      buildBoxes(W, H);
       if (raf) cancelAnimationFrame(raf);
       loop();
     }
 
-    // Mouse tracking over entire hero section
-    var hero = document.getElementById('mpCinemaHero');
-    hero.addEventListener('mousemove', function (e) {
-      var r  = frame.getBoundingClientRect();
-      hasMouse = true;
-      mouse.x = (e.clientX - r.left) / (r.width  || 1);
-      mouse.y = (e.clientY - r.top)  / (r.height || 1);
-    }, { passive: true });
-    hero.addEventListener('mouseleave', function () { hasMouse = false; }, { passive: true });
+    function loop(ts) {
+      var t = ((ts || performance.now()) - t0) * 0.001;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    window.addEventListener('resize', setup, { passive: true });
+      boxes.forEach(function (b) {
+        var bw = b.baseW + b.ampW * Math.sin(Math.PI * 2 * b.freqW * t + b.phaseW);
+        var bh = b.baseH + b.ampH * Math.sin(Math.PI * 2 * b.freqH * t + b.phaseH);
+        bw = Math.max(18, bw);
+        bh = Math.max(18, bh);
+
+        var driftX = b.posAmpX * Math.sin(Math.PI * 2 * b.posFreqX * t + b.posPhaseX);
+        var driftY = b.posAmpY * Math.sin(Math.PI * 2 * b.posFreqY * t + b.posPhaseY);
+        var bx = Math.max(0, Math.min(W - bw, b.nx * (W - bw) + driftX));
+        var by = Math.max(0, Math.min(H - bh, b.ny * (H - bh) + driftY));
+
+        var fPhase = (Math.sin(Math.PI * 2 * b.filterFreq * t + b.filterPhase) + 1) * 0.5;
+
+        ctx.save();
+        ctx.filter = FILTERS[b.filterBase];
+        ctx.globalAlpha = b.alpha * (1 - fPhase * 0.6);
+        ctx.drawImage(img, bx, by, bw, bh, PAD + bx, PAD + by, bw, bh);
+        ctx.restore();
+
+        ctx.save();
+        ctx.filter = FILTERS[b.filterNext];
+        ctx.globalAlpha = b.alpha * (fPhase * 0.6);
+        ctx.drawImage(img, bx, by, bw, bh, PAD + bx, PAD + by, bw, bh);
+        ctx.restore();
+
+        ctx.save();
+        ctx.strokeStyle = '#00ff88';
+        ctx.lineWidth = 0.7;
+        ctx.globalAlpha = 0.55 + 0.3 * fPhase;
+        ctx.strokeRect(PAD + bx + 0.5, PAD + by + 0.5, bw - 1, bh - 1);
+        ctx.restore();
+
+        b._cx = PAD + bx + bw * 0.5;
+        b._cy = PAD + by + bh * 0.5;
+        b._cpx = b.cpOxBase + b.cpAmpX * Math.sin(Math.PI * 2 * b.cpFreqX * t + b.cpPhaseX);
+        b._cpy = b.cpOyBase + b.cpAmpY * Math.sin(Math.PI * 2 * b.cpFreqY * t + b.cpPhaseY);
+      });
+
+      if (hovering && mouse) {
+        var mx = PAD + mouse.x;
+        var my = PAD + mouse.y;
+        boxes.forEach(function (b) {
+          var cpx = (b._cx + mx) * 0.5 + b._cpx;
+          var cpy = (b._cy + my) * 0.5 + b._cpy;
+          ctx.save();
+          ctx.strokeStyle = '#00ff88';
+          ctx.lineWidth = 0.55;
+          ctx.globalAlpha = 0.45;
+          ctx.shadowColor = '#00ff88';
+          ctx.shadowBlur = 6;
+          ctx.beginPath();
+          ctx.moveTo(b._cx, b._cy);
+          ctx.quadraticCurveTo(cpx, cpy, mx, my);
+          ctx.stroke();
+          ctx.restore();
+        });
+        ctx.save();
+        ctx.fillStyle = '#00ff88';
+        ctx.globalAlpha = 0.9;
+        ctx.shadowColor = '#00ff88';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(mx, my, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      raf = requestAnimationFrame(loop);
+    }
+
+    img.addEventListener('mouseenter', function () { hovering = true; });
+    img.addEventListener('mouseleave', function () { hovering = false; mouse = null; });
+    img.addEventListener('mousemove', function (e) {
+      var r = img.getBoundingClientRect();
+      mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+    });
+    window.addEventListener('resize', function () { setup(); }, { passive: true });
+
     if (img.complete && img.naturalWidth) setup();
     else img.addEventListener('load', setup);
   }
@@ -490,19 +446,7 @@ layout: default
 
 </div>
 
-<script>
-(function () {
-  'use strict';
 
-  function initPhotoFX() {
-    var frame = document.getElementById('mpPhotoFrame');
-    if (!frame) return;
-    var img = frame.querySelector('img');
-    if (!img) return;
-
-    // ── Hide raw image: visible ONLY through canvas tiles ──────
-    img.style.opacity = '0';
-    img.style.visibility = 'hidden';
 
     var PAD  = 160;
     var COLS = 4, ROWS = 5;
@@ -809,17 +753,6 @@ layout: default
 })();
 </script>
 
-    var FILTERS = [
-      'grayscale(1) contrast(2.8)',
-      'sepia(1) saturate(4) hue-rotate(320deg)',
-      'hue-rotate(130deg) saturate(5) brightness(0.85)',
-      'invert(1) hue-rotate(180deg) contrast(1.2)',
-      'contrast(6) grayscale(1)',
-      'saturate(6) hue-rotate(210deg)',
-      'blur(1.5px) contrast(3) saturate(2)',
-      'brightness(0.35) contrast(5) sepia(1)',
-      'hue-rotate(60deg) saturate(3) contrast(1.8)',
-    ];
 
     function rnd(seed) {
       var s = Math.sin(seed * 127.1 + 311.7) * 43758.5453;

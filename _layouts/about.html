@@ -4,51 +4,51 @@ layout: default
 <div class="mp-about-page">
 
   <!-- ═══════════════════════════════════════════════════
-       TOP PANEL: name + photo (proper 2-col, no float)
+       SPLIT HERO: photo left (dominant) + text right
        ═══════════════════════════════════════════════════ -->
-  <header class="mp-about-top">
-
-    <div class="mp-about-top__meta">
-      <p class="mp-label">[online] &nbsp;·&nbsp; open to collaboration</p>
-
-      <h1 class="mp-about-top__name">
-        {%- if site.title == "blank" -%}
-          <span class="font-weight-bold">{{ site.first_name }}</span>
-          {{ site.middle_name }} {{ site.last_name }}
-        {%- else -%}
-          {{ site.title }}
-        {%- endif -%}
-      </h1>
-
-      <p class="mp-about-top__sub">{{ page.subtitle }}</p>
-
-      {%- if page.profile.more_info %}
-      <div class="mp-about-top__info">
-        {{ page.profile.more_info }}
-      </div>
-      {%- endif %}
-    </div>
+  <header class="mp-hero-split">
 
     {%- if page.profile.image %}
       {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-      {%- assign profile_image_class = "img-fluid" -%}
-      <div class="mp-about-top__photo">
+      <div class="mp-hero-split__photo">
         <div class="mp-photo-frame" id="mpPhotoFrame">
           {% include figure.html
              path=profile_image_path
-             class=profile_image_class
+             class="img-fluid"
              alt=page.profile.image
              cache_bust=true -%}
           <span class="mp-photo-frame__corner mp-photo-frame__corner--tr"></span>
           <span class="mp-photo-frame__corner mp-photo-frame__corner--bl"></span>
         </div>
-        <div class="mp-photo-meta">
-          <span class="mp-photo-meta__name">{{ site.first_name }} {{ site.last_name }}</span>
-          <span class="mp-photo-meta__role">AI Researcher · PhD</span>
-          <p class="mp-photo-hint">[ hover for FX ]</p>
-        </div>
+        <p class="mp-photo-hint">[ hover for FX ]</p>
       </div>
     {%- endif %}
+
+    <div class="mp-hero-split__text">
+      <p class="mp-label">[online] &nbsp;·&nbsp; open to collaboration</p>
+
+      <h1 class="mp-hero-split__name">
+        {%- if site.first_name != "" -%}
+          {{ site.first_name }}<br>
+          <span class="mp-hero-split__name--last">{{ site.last_name }}</span>
+        {%- else -%}
+          {{ site.title }}
+        {%- endif -%}
+      </h1>
+
+      <p class="mp-hero-split__role">AI Researcher &nbsp;×&nbsp; Computer Vision &nbsp;×&nbsp; PhD</p>
+
+      {%- if page.profile.more_info %}
+      <div class="mp-hero-split__info">
+        {{ page.profile.more_info }}
+      </div>
+      {%- endif %}
+
+      <div class="mp-hero-split__cta">
+        <a href="/publications/" class="mp-btn mp-btn--primary">[View_Research]</a>
+        <a href="mailto:mirco.pl.93@gmail.com" class="mp-btn mp-btn--ghost">[Contact]</a>
+      </div>
+    </div>
 
   </header>
 

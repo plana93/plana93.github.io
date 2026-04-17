@@ -19,13 +19,13 @@ social: true
 ---
 
 <!-- ================================================================
-     HERO SECTION
+     EDITORIAL STATEMENT
      ================================================================ -->
 <div class="mp-hero">
 
   <p class="mp-hero__kicker">T R A N S F O R M I N G</p>
 
-  <h1 class="mp-heading-hero">VISION</h1>
+  <h2 class="mp-heading-hero">VISION</h2>
 
   <p class="mp-hero__separator">
     ...................................... <em>into</em>
@@ -76,11 +76,6 @@ social: true
       <h3 class="mp-tile__title">PyTorch Expert</h3>
     </div>
 
-  </div>
-
-  <div class="mp-hero__cta">
-    <a href="/publications/" class="mp-btn mp-btn--primary">[View_Research]</a>
-    <a href="mailto:mirco.pl.93@gmail.com" class="mp-btn mp-btn--ghost">[Contact]</a>
   </div>
 
 </div>
@@ -173,14 +168,14 @@ social: true
     </div>
     <a href="/py4ai-gallery/" class="mp-talk__img">
       <img src="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg"
-           alt="Py4AI Conference poster" loading="lazy">
+           alt="Py4AI Conference poster" loading="eager">
     </a>
   </div>
 
   <div class="mp-talk mp-talk--reversed">
     <a href="/codemotion-gallery/" class="mp-talk__img">
       <img src="/assets/img/codemotion_01_2025/me_during_codemotion.JPG"
-           alt="Codemotion 2025 talk" loading="lazy">
+           alt="Codemotion 2025 talk" loading="eager">
     </a>
     <div class="mp-animate">
       <span class="mp-talk__label">[EVENT_02] 2025</span>

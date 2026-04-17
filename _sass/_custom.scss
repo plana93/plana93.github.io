@@ -46,6 +46,7 @@
   --mp-sp-4:  2rem;      // 32px
   --mp-sp-6:  3rem;      // 48px
   --mp-sp-8:  4rem;      // 64px
+  --mp-sp-10: 5rem;      // 80px
   --mp-sp-12: 6rem;      // 96px
 
   // Easing
@@ -693,6 +694,16 @@ img { transition: opacity 0.3s ease; }
 // ============================================================
 // 15. RESPONSIVE
 // ============================================================
+@media (max-width: 1024px) {
+  .mp-hero-split {
+    grid-template-columns: 260px 1fr;
+    gap: var(--mp-sp-6);
+    min-height: auto;
+    padding-block: var(--mp-sp-8);
+  }
+  .mp-hero-split__photo { position: static; }
+}
+
 @media (max-width: 900px) {
   .mp-expertise-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -701,6 +712,17 @@ img { transition: opacity 0.3s ease; }
 }
 
 @media (max-width: 768px) {
+  .mp-hero-split {
+    grid-template-columns: 1fr;
+    gap: var(--mp-sp-6);
+    padding-block: var(--mp-sp-6);
+  }
+  .mp-hero-split__photo {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .mp-hero-split__name { font-size: clamp(2.4rem, 10vw, 4rem); }
+
   .mp-heading-hero { font-size: clamp(3rem, 14vw, 5rem); }
   .mp-heading-sub  { font-size: clamp(1.5rem, 7vw, 2.5rem); }
   .mp-section      { padding-block: var(--mp-sp-6); }
@@ -1321,57 +1343,74 @@ body {
   padding-inline: clamp(1rem, 3vw, 2rem);
 }
 
-// Top panel: name/meta left, photo right
-.mp-about-top {
+// ── Split hero: photo dominant left, editorial text right ─────
+.mp-hero-split {
   display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: var(--mp-sp-8);
+  grid-template-columns: 340px 1fr;
+  gap: var(--mp-sp-10);
   align-items: center;
-  padding-block: var(--mp-sp-8);
+  padding-block: var(--mp-sp-10) var(--mp-sp-8);
+  min-height: 70vh;
 }
 
-.mp-about-top__meta {
+.mp-hero-split__photo {
+  position: sticky;
+  top: calc(var(--mp-sp-8));
+  align-self: start;
+}
+
+.mp-hero-split__text {
   display: flex;
   flex-direction: column;
-  gap: var(--mp-sp-2);
+  gap: var(--mp-sp-3);
 }
 
-.mp-about-top__name {
+.mp-hero-split__name {
   font-family: var(--mp-font-sans);
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
-  line-height: 1.1;
-  margin: 0;
+  line-height: 0.95;
+  margin: var(--mp-sp-2) 0;
   color: var(--global-text-color);
+
+  &--last {
+    background: linear-gradient(135deg, var(--global-text-color) 0%, var(--mp-accent) 60%, var(--global-text-color) 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: mp-gradient-shift 10s ease infinite;
+  }
 }
 
-.mp-about-top__sub {
+.mp-hero-split__role {
   font-family: var(--mp-font-mono);
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
-  letter-spacing: 0.12em;
+  font-size: clamp(0.72rem, 1.3vw, 0.88rem);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.55;
   margin: 0;
   color: var(--global-text-color);
 }
 
-.mp-about-top__info {
-  margin-top: var(--mp-sp-2);
+.mp-hero-split__info {
   font-family: var(--mp-font-mono);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   line-height: 1.8;
-  opacity: 0.75;
+  opacity: 0.72;
   padding: var(--mp-sp-2) var(--mp-sp-3);
   background: var(--global-card-bg-color);
   border-left: 2px solid var(--mp-accent);
   border-radius: var(--mp-radius);
+  margin-top: var(--mp-sp-1);
 }
 
-// Photo column
-.mp-about-top__photo {
-  width: 100%;
-  flex-shrink: 0;
+.mp-hero-split__cta {
+  display: flex;
+  gap: var(--mp-sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--mp-sp-2);
 }
 
 .mp-photo-hint {
@@ -1379,35 +1418,10 @@ body {
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.35;
+  opacity: 0.3;
   text-align: center;
   margin: 0.5rem 0 0;
   color: var(--global-text-color);
-}
-
-.mp-photo-meta {
-  text-align: center;
-  margin-top: var(--mp-sp-3);
-
-  &__name {
-    display: block;
-    font-family: var(--mp-font-sans);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--global-text-color);
-  }
-
-  &__role {
-    display: block;
-    font-family: var(--mp-font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--mp-accent);
-    opacity: 0.85;
-    margin: 0.3rem 0 0.5rem;
-  }
 }
 
 // ── Photo frame base ──────────────────────────────────────────
@@ -1417,12 +1431,12 @@ body {
   padding: 6px;
   background: var(--global-bg-color);
   aspect-ratio: 638 / 764;
-  box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.08), 0 12px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.08), 0 16px 48px rgba(0,0,0,0.22);
   transition: box-shadow 0.4s ease;
   // overflow:visible is set by JS so canvas lines can escape
 
   &:hover {
-    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.22), 0 16px 52px rgba(0,0,0,0.24);
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.28), 0 20px 60px rgba(0,0,0,0.28);
   }
 
   img {

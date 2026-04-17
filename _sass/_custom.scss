@@ -696,7 +696,7 @@ img { transition: opacity 0.3s ease; }
 // ============================================================
 @media (max-width: 1024px) {
   .mp-hero-split {
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 280px 1fr;
     gap: var(--mp-sp-6);
     min-height: auto;
     padding-block: var(--mp-sp-8);
@@ -1346,23 +1346,69 @@ body {
 // ── Split hero: photo dominant left, editorial text right ─────
 .mp-hero-split {
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: 380px 1fr;
   gap: var(--mp-sp-10);
   align-items: center;
   padding-block: var(--mp-sp-10) var(--mp-sp-8);
-  min-height: 70vh;
+  min-height: 75vh;
 }
 
 .mp-hero-split__photo {
   position: sticky;
   top: calc(var(--mp-sp-8));
   align-self: start;
+
+  // Geometric background behind the frame
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -28px -24px -28px -24px;
+    background:
+      linear-gradient(135deg, rgba(0,255,136,0.04) 0%, transparent 50%),
+      linear-gradient(225deg, rgba(0,212,255,0.04) 0%, transparent 50%);
+    clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  // Accent corner-bar top-left
+  &::after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 48px;
+    height: 2px;
+    background: var(--mp-accent);
+    box-shadow: 0 0 8px var(--mp-accent-glow);
+    z-index: 10;
+    pointer-events: none;
+  }
 }
 
 .mp-hero-split__text {
   display: flex;
   flex-direction: column;
   gap: var(--mp-sp-3);
+  padding-left: var(--mp-sp-4);
+  border-left: 2px solid var(--mp-accent);
+  position: relative;
+
+  // animated accent glow on the border
+  &::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--mp-accent) 0%, #00d4ff 60%, transparent 100%);
+    animation: mp-border-flow 4s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes mp-border-flow {
+  from { opacity: 0.4; transform: scaleY(0.6); transform-origin: top; }
+  to   { opacity: 1.0; transform: scaleY(1.0); transform-origin: top; }
 }
 
 .mp-hero-split__name {
@@ -1375,7 +1421,8 @@ body {
   color: var(--global-text-color);
 
   &--last {
-    background: linear-gradient(135deg, var(--global-text-color) 0%, var(--mp-accent) 60%, var(--global-text-color) 100%);
+    display: block;
+    background: linear-gradient(135deg, var(--global-text-color) 0%, var(--mp-accent) 55%, #00d4ff 100%);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -1431,12 +1478,20 @@ body {
   padding: 6px;
   background: var(--global-bg-color);
   aspect-ratio: 638 / 764;
-  box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.08), 0 16px 48px rgba(0,0,0,0.22);
+  // Subtle diagonal cut at top-right corner
+  clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%);
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 136, 0.1),
+    0 20px 60px rgba(0,0,0,0.28),
+    inset 0 0 30px rgba(0,0,0,0.05);
   transition: box-shadow 0.4s ease;
-  // overflow:visible is set by JS so canvas lines can escape
+  cursor: crosshair;
 
   &:hover {
-    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.28), 0 20px 60px rgba(0,0,0,0.28);
+    box-shadow:
+      0 0 0 1px rgba(0, 255, 136, 0.30),
+      0 24px 70px rgba(0,0,0,0.35),
+      0 0 40px rgba(0,255,136,0.08);
   }
 
   img {
@@ -1445,6 +1500,9 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center top;
+    // hidden — canvas draws instead
+    opacity: 0;
+    visibility: hidden;
   }
 
   .mp-photo-frame__corner {

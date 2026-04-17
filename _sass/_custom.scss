@@ -442,10 +442,15 @@ img { transition: opacity 0.3s ease; }
     overflow: hidden;
     box-shadow: 0 8px 36px rgba(0, 0, 0, 0.15);
     transition: box-shadow 0.3s var(--mp-ease);
+    aspect-ratio: 4 / 3;
+    background: var(--global-card-bg-color);
 
     img {
       width: 100%;
+      height: 100%;
       display: block;
+      object-fit: cover;
+      object-position: center;
       transition: transform 0.5s var(--mp-ease);
     }
 
@@ -1380,6 +1385,31 @@ body {
   color: var(--global-text-color);
 }
 
+.mp-photo-meta {
+  text-align: center;
+  margin-top: var(--mp-sp-3);
+
+  &__name {
+    display: block;
+    font-family: var(--mp-font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--global-text-color);
+  }
+
+  &__role {
+    display: block;
+    font-family: var(--mp-font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mp-accent);
+    opacity: 0.85;
+    margin: 0.3rem 0 0.5rem;
+  }
+}
+
 // ── Photo frame base ──────────────────────────────────────────
 .mp-photo-frame {
   position: relative;
@@ -1387,7 +1417,13 @@ body {
   padding: 6px;
   background: var(--global-bg-color);
   aspect-ratio: 638 / 764;
+  box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.08), 0 12px 40px rgba(0,0,0,0.18);
+  transition: box-shadow 0.4s ease;
   // overflow:visible is set by JS so canvas lines can escape
+
+  &:hover {
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.22), 0 16px 52px rgba(0,0,0,0.24);
+  }
 
   img {
     display: block;

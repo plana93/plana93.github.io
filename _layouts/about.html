@@ -1,44 +1,44 @@
 ---
 layout: default
 ---
-<div class="mp-about-page">
 
-  <!-- ═══════════════════════════════════════════════════
-       CINEMATIC HERO: typography interlaced with cutout
-       ═══════════════════════════════════════════════════ -->
-  <header class="mp-cinema-hero" id="mpCinemaHero">
+<!-- ═══════════════════════════════════════════════════
+     CINEMATIC HERO — full-bleed, outside container
+     ═══════════════════════════════════════════════════ -->
+<header class="mp-cinema-hero" id="mpCinemaHero">
 
-    <!-- Background large text: TRANSFORMING -->
-    <p class="mp-cinema-hero__kicker" data-parallax="0.04">T R A N S F O R M I N G</p>
+  <!-- Kicker -->
+  <p class="mp-cinema-hero__kicker" data-parallax="0.04">T R A N S F O R M I N G</p>
 
-    <!-- Stage: VISION (back) + figure (mid) + INTELLIGENCE (front) -->
-    <div class="mp-cinema-hero__stage">
+  <!-- Stage: VISION (back, full-width) + figure (absolute center) -->
+  <div class="mp-cinema-hero__stage">
 
-      <!-- VISION — behind figure -->
-      <div class="mp-cinema-hero__word mp-cinema-hero__word--vision" data-parallax="0.06">
-        <span>VISION</span>
-      </div>
-
-      <!-- Figure + canvas FX -->
-      <div class="mp-cinema-hero__figure">
-        <div id="mpPhotoFrame" class="mp-cinema-frame">
-          <img id="mpPhotoImg"
-               src="/assets/img/io_without_bg.png"
-               alt="Mirco Planamente"
-               width="638" height="764">
-        </div>
-      </div>
-
-      <!-- INTELLI-GENCE — in front -->
-      <div class="mp-cinema-hero__word mp-cinema-hero__word--intel" data-parallax="0.08">
-        <span class="mp-cinema-hero__separator">............................. <em>into</em></span>
-        <span class="mp-cinema-hero__intel-a">INTELLI-</span>
-        <span class="mp-cinema-hero__intel-b">GENCE</span>
-      </div>
-
+    <!-- VISION — full-width horizontal band -->
+    <div class="mp-cinema-hero__word--vision" data-parallax="0.05">
+      <span>VISION</span>
     </div>
 
-    <!-- Bottom bar: name + meta + CTA -->
+    <!-- Figure: transparent cutout, larger, overlaid on VISION -->
+    <div class="mp-cinema-hero__figure">
+      <div id="mpPhotoFrame" class="mp-cinema-frame">
+        <img id="mpPhotoImg"
+             src="/assets/img/io_without_bg.png"
+             alt="Mirco Planamente"
+             width="638" height="764">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INTELLI-GENCE + bar: constrained to container width -->
+  <div class="mp-cinema-hero__lower">
+
+    <div class="mp-cinema-hero__word--intel" data-parallax="0.08">
+      <span class="mp-cinema-hero__separator">............................. <em>into</em></span>
+      <span class="mp-cinema-hero__intel-a">INTELLI-</span>
+      <span class="mp-cinema-hero__intel-b">GENCE</span>
+    </div>
+
     <div class="mp-cinema-hero__bar">
       <div class="mp-cinema-hero__identity">
         <p class="mp-label">[online] · open to collaboration</p>
@@ -55,7 +55,11 @@ layout: default
       </div>
     </div>
 
-  </header>
+  </div>
+
+</header>
+
+<div class="mp-about-page">
 
   <hr class="mp-divider">
 

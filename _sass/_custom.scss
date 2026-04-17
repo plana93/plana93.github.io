@@ -1344,17 +1344,20 @@ body {
 }
 
 // ── Cinematic hero ────────────────────────────────────────────
+// Full-bleed: hero è fuori da .mp-about-page, nessun vincolo di larghezza
 .mp-cinema-hero {
   position: relative;
   overflow: hidden;
-  padding-block: var(--mp-sp-8) var(--mp-sp-6);
+  padding-top: var(--mp-sp-6);
   cursor: crosshair;
-  // subtle dark vignette
+  background: var(--global-bg-color);
+
+  // vignette laterale
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, transparent 55%, var(--global-bg-color) 100%);
+    background: radial-gradient(ellipse at center, transparent 40%, var(--global-bg-color) 100%);
     pointer-events: none;
     z-index: 0;
   }
@@ -1367,35 +1370,40 @@ body {
   text-transform: uppercase;
   opacity: 0.3;
   text-align: center;
-  margin-bottom: var(--mp-sp-2);
+  margin-bottom: var(--mp-sp-1);
   position: relative;
   z-index: 2;
   will-change: transform;
 }
 
-// The three-layer stage
+// Stage: VISION full-width + figura sovrapposta
 .mp-cinema-hero__stage {
-  position: relative;
+  position: relative;           // ancora per la figura assoluta
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 2;
+  // altezza = altezza testo VISION + margini, la figura straborda in alto/basso
+  padding-block: 0;
 }
 
-// VISION — large, behind figure (z-index 1)
+// VISION — testo orizzontale full-width, fondo del stage
 .mp-cinema-hero__word--vision {
   position: relative;
   z-index: 1;
+  width: 100%;
   text-align: center;
-  margin-bottom: -0.12em;
+  line-height: 1;
   will-change: transform;
 
   span {
     font-family: var(--mp-font-sans);
-    font-size: clamp(5rem, 18vw, 14rem);
+    // font grande: vuole riempire la larghezza
+    font-size: clamp(6rem, 22vw, 20rem);
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1;
+    white-space: nowrap;
     background: linear-gradient(135deg, var(--global-text-color) 0%, var(--mp-accent) 50%, #00d4ff 100%);
     background-size: 200% auto;
     background-clip: text;
@@ -1405,12 +1413,15 @@ body {
   }
 }
 
-// Figure — midlayer (z-index 2)
+// Figura — assoluta, centrata sull'asse del testo VISION, molto più grande
 .mp-cinema-hero__figure {
-  position: relative;
-  z-index: 2;
-  width: clamp(200px, 32vw, 420px);
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;                          // sopra VISION
+  width: clamp(280px, 48vw, 680px);   // grande, interlaccia la scritta
+  pointer-events: none;
 }
 
 .mp-cinema-frame {
@@ -1434,17 +1445,23 @@ body {
   }
 }
 
-// INTELLI-GENCE — front layer (z-index 3)
-.mp-cinema-hero__word--intel {
+// Lower section: INTELLI-GENCE + bar, allineata al container
+.mp-cinema-hero__lower {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 3vw, 2rem);
   position: relative;
-  z-index: 3;
-  text-align: center;
-  margin-top: -0.08em;
-  will-change: transform;
+  z-index: 4;
+}
+
+// INTELLI-GENCE — sotto lo stage
+.mp-cinema-hero__word--intel {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-left: clamp(2rem, 8vw, 8rem);
+  margin-top: var(--mp-sp-2);
+  will-change: transform;
 }
 
 .mp-cinema-hero__separator {
@@ -1482,8 +1499,6 @@ body {
 
 // Bottom bar: name + CTA
 .mp-cinema-hero__bar {
-  position: relative;
-  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1491,6 +1506,7 @@ body {
   padding-top: var(--mp-sp-6);
   border-top: 1px solid var(--global-divider-color);
   margin-top: var(--mp-sp-4);
+  padding-bottom: var(--mp-sp-6);
   flex-wrap: wrap;
 }
 
@@ -1534,6 +1550,9 @@ body {
   .mp-cinema-hero__bar {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .mp-cinema-hero__figure {
+    width: clamp(200px, 70vw, 380px);
   }
 }
 

@@ -19,24 +19,9 @@ social: true
 ---
 
 <!-- ================================================================
-     EDITORIAL STATEMENT
+     TECHNICAL STACK
      ================================================================ -->
 <div class="mp-hero">
-
-  <p class="mp-hero__kicker">T R A N S F O R M I N G</p>
-
-  <h2 class="mp-heading-hero">VISION</h2>
-
-  <p class="mp-hero__separator">
-    ...................................... <em>into</em>
-  </p>
-
-  <div class="mp-heading-sub">
-    <span class="accent">INTELLI</span>-<br>
-    <span class="indent">GENCE</span>
-  </div>
-
-  <hr class="mp-divider">
 
   <p class="mp-label">/// TECHNICAL STACK</p>
   <p class="mp-hero__stack-intro">

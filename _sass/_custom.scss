@@ -1343,6 +1343,200 @@ body {
   padding-inline: clamp(1rem, 3vw, 2rem);
 }
 
+// ── Cinematic hero ────────────────────────────────────────────
+.mp-cinema-hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--mp-sp-8) var(--mp-sp-6);
+  cursor: crosshair;
+  // subtle dark vignette
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, var(--global-bg-color) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.mp-cinema-hero__kicker {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.55rem, 1.2vw, 0.8rem);
+  letter-spacing: 0.7em;
+  text-transform: uppercase;
+  opacity: 0.3;
+  text-align: center;
+  margin-bottom: var(--mp-sp-2);
+  position: relative;
+  z-index: 2;
+  will-change: transform;
+}
+
+// The three-layer stage
+.mp-cinema-hero__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+// VISION — large, behind figure (z-index 1)
+.mp-cinema-hero__word--vision {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: -0.12em;
+  will-change: transform;
+
+  span {
+    font-family: var(--mp-font-sans);
+    font-size: clamp(5rem, 18vw, 14rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--global-text-color) 0%, var(--mp-accent) 50%, #00d4ff 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: mp-gradient-shift 12s ease infinite;
+  }
+}
+
+// Figure — midlayer (z-index 2)
+.mp-cinema-hero__figure {
+  position: relative;
+  z-index: 2;
+  width: clamp(200px, 32vw, 420px);
+  margin: 0 auto;
+}
+
+.mp-cinema-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 638 / 764;
+  overflow: visible;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+}
+
+// INTELLI-GENCE — front layer (z-index 3)
+.mp-cinema-hero__word--intel {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin-top: -0.08em;
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: clamp(2rem, 8vw, 8rem);
+}
+
+.mp-cinema-hero__separator {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.72rem, 1.3vw, 0.95rem);
+  opacity: 0.3;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2em;
+  display: block;
+  em { font-style: normal; }
+}
+
+.mp-cinema-hero__intel-a {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(1.8rem, 5.5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  color: var(--global-text-color);
+  opacity: 0.82;
+  display: block;
+}
+
+.mp-cinema-hero__intel-b {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(1.8rem, 5.5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  color: var(--mp-accent);
+  display: block;
+  margin-left: clamp(1rem, 3vw, 3rem);
+  text-shadow: 0 0 30px rgba(0,255,136,0.3);
+}
+
+// Bottom bar: name + CTA
+.mp-cinema-hero__bar {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mp-sp-4);
+  padding-top: var(--mp-sp-6);
+  border-top: 1px solid var(--global-divider-color);
+  margin-top: var(--mp-sp-4);
+  flex-wrap: wrap;
+}
+
+.mp-cinema-hero__name {
+  font-family: var(--mp-font-sans);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: var(--mp-sp-1) 0;
+  color: var(--global-text-color);
+
+  &--accent {
+    background: linear-gradient(90deg, var(--mp-accent) 0%, #00d4ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.mp-cinema-hero__role {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.68rem, 1.2vw, 0.82rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0;
+}
+
+.mp-cinema-hero__cta {
+  display: flex;
+  gap: var(--mp-sp-2);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .mp-cinema-hero__word--intel {
+    padding-left: var(--mp-sp-2);
+  }
+  .mp-cinema-hero__bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 // ── Split hero: photo dominant left, editorial text right ─────
 .mp-hero-split {
   display: grid;

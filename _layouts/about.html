@@ -10,22 +10,12 @@ layout: default
   <!-- Kicker -->
   <p class="mp-cinema-hero__kicker" data-parallax="0.04">T R A N S F O R M I N G</p>
 
-  <!-- Stage: VISION (back, full-width) + figure (absolute center) -->
-  <div class="mp-cinema-hero__stage">
+  <!-- Canvas: tutti i layer di testo + foto sovrapposta.
+       La foto è absolute top:0/bottom:0 → alta quanto il blocco testi.
+       I testi in flow (flex column) determinano l'altezza del canvas. -->
+  <div class="mp-cinema-hero__canvas">
 
-    <!-- VISION — full-width horizontal band -->
-    <div class="mp-cinema-hero__word--vision" data-parallax="0.05">
-      <span>VISION</span>
-    </div>
-
-    <!-- Figure BG: second transparent cutout, blended into typography -->
-    <img class="mp-cinema-hero__cutout-bg"
-         src="/assets/img/io_without_bg.png"
-         alt=""
-         aria-hidden="true"
-         width="638" height="764">
-
-    <!-- Figure FG: main canvas FX frame (centered, overlaid on VISION) -->
+    <!-- Foto: absolute, alta quanto l'intero canvas testi, centrata -->
     <div class="mp-cinema-hero__figure">
       <div id="mpPhotoFrame" class="mp-cinema-frame">
         <img id="mpPhotoImg"
@@ -35,17 +25,36 @@ layout: default
       </div>
     </div>
 
-  </div>
-
-  <!-- INTELLI-GENCE + bar: constrained to container width -->
-  <div class="mp-cinema-hero__lower">
-
-    <div class="mp-cinema-hero__word--intel" data-parallax="0.08">
-      <span class="mp-cinema-hero__separator">............................. <em>into</em></span>
-      <span class="mp-cinema-hero__intel-a">INTELLI-</span>
-      <span class="mp-cinema-hero__intel-b">GENCE</span>
+    <!-- VISION — full-width, z-index basso (dietro la foto) -->
+    <div class="mp-cinema-hero__word--vision" data-parallax="0.05">
+      <span>VISION</span>
     </div>
 
+    <!-- sep + INTELLIGENCE — sotto VISION, davanti alla foto -->
+    <div class="mp-cinema-hero__lower">
+      <div class="mp-cinema-hero__intel-block">
+
+        <div class="mp-cinema-hero__sep-row" data-parallax="0.03">
+          <span class="mp-cinema-hero__sep-line"></span>
+          <span class="mp-cinema-hero__sep-into">Into</span>
+        </div>
+
+        <div class="mp-cinema-hero__word--intel" data-parallax="0.08">
+          <span class="mp-cinema-hero__intelligence">INTELLIGENCE</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /.mp-cinema-hero__canvas -->
+
+  <!-- Linea decorativa di palline con gradient VISION -->
+  <div class="mp-cinema-hero__dots" aria-hidden="true">
+    <span>● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ● ●</span>
+  </div>
+
+  <!-- Bottom bar fuori dal canvas -->
+  <div class="mp-cinema-hero__lower-bar">
     <div class="mp-cinema-hero__bar">
       <div class="mp-cinema-hero__identity">
         <p class="mp-label">[online] · open to collaboration</p>
@@ -60,9 +69,8 @@ layout: default
         <a href="/publications/" class="mp-btn mp-btn--primary">[View_Research]</a>
         <a href="mailto:mirco.pl.93@gmail.com" class="mp-btn mp-btn--ghost">[Contact]</a>
       </div>
-    </div>
-
-  </div>
+    </div><!-- /.mp-cinema-hero__bar -->
+  </div><!-- /.mp-cinema-hero__lower-bar -->
 
 </header>
 
@@ -131,18 +139,6 @@ layout: default
 
     var PAD = 40;
 
-    var FILTERS = [
-      'grayscale(1) contrast(2.8)',
-      'sepia(1) saturate(4) hue-rotate(320deg)',
-      'hue-rotate(130deg) saturate(5) brightness(0.85)',
-      'invert(1) hue-rotate(180deg) contrast(1.2)',
-      'contrast(6) grayscale(1)',
-      'saturate(6) hue-rotate(210deg)',
-      'blur(1.5px) contrast(3) saturate(2)',
-      'brightness(0.35) contrast(5) sepia(1)',
-      'hue-rotate(60deg) saturate(3) contrast(1.8)',
-    ];
-
     function rnd(seed) {
       var s = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
       return s - Math.floor(s);
@@ -177,15 +173,11 @@ layout: default
           baseH: 28 + rnd(s + 1) * 52,
           ampW: 8 + rnd(s + 7) * 22,
           ampH: 8 + rnd(s + 8) * 22,
-          freqW: 0.18 + rnd(s + 9) * 0.55,
-          freqH: 0.15 + rnd(s + 10) * 0.60,
+          freqW: 0.28 + rnd(s + 9) * 0.75,
+          freqH: 0.24 + rnd(s + 10) * 0.80,
           phaseW: rnd(s + 11) * Math.PI * 2,
           phaseH: rnd(s + 12) * Math.PI * 2,
-          filterBase: i % FILTERS.length,
-          filterNext: (i + 1) % FILTERS.length,
-          filterFreq: 0.04 + rnd(s + 13) * 0.10,
-          filterPhase: rnd(s + 14) * Math.PI * 2,
-          alpha: 0.65 + rnd(s + 4) * 0.30,
+          alpha: 0.70 + rnd(s + 4) * 0.25,
           cpOxBase: (rnd(s + 5) - 0.5) * 260,
           cpOyBase: (rnd(s + 6) - 0.5) * 260,
           cpAmpX: 20 + rnd(s + 15) * 80,
@@ -233,25 +225,9 @@ layout: default
         var bx = Math.max(0, Math.min(W - bw, b.nx * (W - bw) + driftX));
         var by = Math.max(0, Math.min(H - bh, b.ny * (H - bh) + driftY));
 
-        var fPhase = (Math.sin(Math.PI * 2 * b.filterFreq * t + b.filterPhase) + 1) * 0.5;
-
         ctx.save();
-        ctx.filter = FILTERS[b.filterBase];
-        ctx.globalAlpha = b.alpha * (1 - fPhase * 0.6);
+        ctx.globalAlpha = b.alpha;
         ctx.drawImage(img, bx, by, bw, bh, PAD + bx, PAD + by, bw, bh);
-        ctx.restore();
-
-        ctx.save();
-        ctx.filter = FILTERS[b.filterNext];
-        ctx.globalAlpha = b.alpha * (fPhase * 0.6);
-        ctx.drawImage(img, bx, by, bw, bh, PAD + bx, PAD + by, bw, bh);
-        ctx.restore();
-
-        ctx.save();
-        ctx.strokeStyle = '#00ff88';
-        ctx.lineWidth = 0.7;
-        ctx.globalAlpha = 0.55 + 0.3 * fPhase;
-        ctx.strokeRect(PAD + bx + 0.5, PAD + by + 0.5, bw - 1, bh - 1);
         ctx.restore();
 
         b._cx = PAD + bx + bw * 0.5;

@@ -1,10 +1,11 @@
 ---
 layout: page
-title: <a href="https://plana93.github.io/good-habits/" target="_blank">Good-Habits Application</a>
+title: Good-Habits Application
 description: Android Application for building better habits
 img: assets/img/good_habits/good_habits.png
 importance: 2
 category: work
+redirect: https://plana93.github.io/good-habits/
 giscus_comments: true
 ---
 

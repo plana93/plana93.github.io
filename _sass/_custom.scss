@@ -1413,7 +1413,24 @@ body {
   }
 }
 
-// Figura — assoluta, centrata sull'asse del testo VISION, molto più grande
+// Seconda immagine: blended nel testo tipografico, sfumata a destra
+.mp-cinema-hero__cutout-bg {
+  position: absolute;
+  bottom: 0;
+  right: clamp(-1rem, 6vw, 5rem);
+  z-index: 4;
+  width: clamp(200px, 36vw, 480px);
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  opacity: 0.28;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  filter: hue-rotate(145deg) saturate(3) brightness(1.2);
+  will-change: transform;
+}
+
+// Figura principale — assoluta, centrata sull'asse del testo VISION, molto più grande
 .mp-cinema-hero__figure {
   position: absolute;
   top: 50%;

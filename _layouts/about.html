@@ -18,7 +18,14 @@ layout: default
       <span>VISION</span>
     </div>
 
-    <!-- Figure: transparent cutout, larger, overlaid on VISION -->
+    <!-- Figure BG: second transparent cutout, blended into typography -->
+    <img class="mp-cinema-hero__cutout-bg"
+         src="/assets/img/io_without_bg.png"
+         alt=""
+         aria-hidden="true"
+         width="638" height="764">
+
+    <!-- Figure FG: main canvas FX frame (centered, overlaid on VISION) -->
     <div class="mp-cinema-hero__figure">
       <div id="mpPhotoFrame" class="mp-cinema-frame">
         <img id="mpPhotoImg"
@@ -333,118 +340,6 @@ layout: default
   else init();
 })();
 </script>
-
-
-    {%- if page.profile.image %}
-      {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-      <div class="mp-hero-split__photo">
-        <div class="mp-photo-frame" id="mpPhotoFrame">
-          {% include figure.html
-             path=profile_image_path
-             class="img-fluid"
-             alt=page.profile.image
-             cache_bust=true -%}
-          <span class="mp-photo-frame__corner mp-photo-frame__corner--tr"></span>
-          <span class="mp-photo-frame__corner mp-photo-frame__corner--bl"></span>
-        </div>
-        <p class="mp-photo-hint">[ hover for FX ]</p>
-      </div>
-    {%- endif %}
-
-    <div class="mp-hero-split__text">
-      <p class="mp-label">[online] &nbsp;·&nbsp; open to collaboration</p>
-
-      <h1 class="mp-hero-split__name">
-        {%- if site.first_name != "" -%}
-          {{ site.first_name }}<br>
-          <span class="mp-hero-split__name--last">{{ site.last_name }}</span>
-        {%- else -%}
-          {{ site.title }}
-        {%- endif -%}
-      </h1>
-
-      <p class="mp-hero-split__role">AI Researcher &nbsp;×&nbsp; Computer Vision &nbsp;×&nbsp; PhD</p>
-
-      {%- if page.profile.more_info %}
-      <div class="mp-hero-split__info">
-        {{ page.profile.more_info }}
-      </div>
-      {%- endif %}
-
-      <div class="mp-hero-split__cta">
-        <a href="/publications/" class="mp-btn mp-btn--primary">[View_Research]</a>
-        <a href="mailto:mirco.pl.93@gmail.com" class="mp-btn mp-btn--ghost">[Contact]</a>
-      </div>
-    </div>
-
-  </header>
-
-  <hr class="mp-divider">
-
-  <!-- ═══════════════════════════════════════════════════
-       MAIN CONTENT (full-width — no float interference)
-       ═══════════════════════════════════════════════════ -->
-  <article class="mp-about-content">
-    {{ content }}
-  </article>
-
-  <!-- ═══════════════════════════════════════════════════
-       SELECTED PUBLICATIONS
-       ═══════════════════════════════════════════════════ -->
-  {%- if page.selected_papers %}
-  <section class="mp-section">
-    <p class="mp-label">$ grep --selected publications.bib</p>
-    <h2 class="mp-heading">
-      <a href="{{ '/publications/' | relative_url }}" class="mp-heading-link">
-        Selected Publications
-      </a>
-    </h2>
-    {%- include selected_papers.html %}
-  </section>
-  {%- endif %}
-
-  <!-- ═══════════════════════════════════════════════════
-       NEWS (optional)
-       ═══════════════════════════════════════════════════ -->
-  {%- if page.news and site.announcements.enabled %}
-  <section class="mp-section">
-    <p class="mp-label">$ cat news.log</p>
-    <h2 class="mp-heading">
-      <a href="{{ '/news/' | relative_url }}" class="mp-heading-link">News</a>
-    </h2>
-    {%- include news.html limit=true %}
-  </section>
-  {%- endif %}
-
-  <!-- ═══════════════════════════════════════════════════
-       LATEST POSTS (optional)
-       ═══════════════════════════════════════════════════ -->
-  {%- if page.latest_posts %}
-  <section class="mp-section">
-    <p class="mp-label">$ ls ./blog --latest</p>
-    <h2 class="mp-heading">
-      <a href="{{ '/blog/' | relative_url }}" class="mp-heading-link">Latest Posts</a>
-    </h2>
-    {%- include latest_posts.html %}
-  </section>
-  {%- endif %}
-
-  <!-- ═══════════════════════════════════════════════════
-       SOCIAL
-       ═══════════════════════════════════════════════════ -->
-  {%- if page.social %}
-  <section class="mp-social">
-    <p class="mp-label">$ connect --social</p>
-    <div class="mp-social__icons">
-      {% include social.html %}
-    </div>
-    {%- if site.contact_note %}
-    <p class="mp-social__note">{{ site.contact_note }}</p>
-    {%- endif %}
-  </section>
-  {%- endif %}
-
-</div>
 
 
 

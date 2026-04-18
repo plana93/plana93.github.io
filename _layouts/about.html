@@ -46,23 +46,25 @@ layout: default
       </div>
     </div>
 
-    <!-- Curved decorative line — back layer (behind photo) -->
-    <svg class="mp-hero-curve mp-hero-curve--back" aria-hidden="true"
-         viewBox="0 0 1000 700" preserveAspectRatio="none"
-         xmlns="http://www.w3.org/2000/svg">
-      <path class="mp-hero-curve__path"
-            d="M -40,640 C 60,500 140,380 310,310 C 440,255 530,340 640,270 C 760,195 870,140 1040,110"/>
-    </svg>
-
-    <!-- Curved decorative line — front layer (in front of photo, clipped to photo zone) -->
-    <svg class="mp-hero-curve mp-hero-curve--front" aria-hidden="true"
-         viewBox="0 0 1000 700" preserveAspectRatio="none"
-         xmlns="http://www.w3.org/2000/svg">
-      <path class="mp-hero-curve__path"
-            d="M -40,640 C 60,500 140,380 310,310 C 440,255 530,340 640,270 C 760,195 870,140 1040,110"/>
-    </svg>
+    </div>
 
   </div><!-- /.mp-cinema-hero__canvas -->
+
+  <!-- Curved decorative line — back layer (behind photo, z-index 2) -->
+  <svg class="mp-hero-curve mp-hero-curve--back" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="none"
+       xmlns="http://www.w3.org/2000/svg">
+    <path class="mp-hero-curve__path"
+          d="M -40,640 C 60,500 140,380 310,310 C 440,255 530,340 640,270 C 760,195 870,140 1040,110"/>
+  </svg>
+
+  <!-- Curved decorative line — front layer (in front of photo, z-index 4, clipped to photo zone) -->
+  <svg class="mp-hero-curve mp-hero-curve--front" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="none"
+       xmlns="http://www.w3.org/2000/svg">
+    <path class="mp-hero-curve__path"
+          d="M -40,640 C 60,500 140,380 310,310 C 440,255 530,340 640,270 C 760,195 870,140 1040,110"/>
+  </svg>
 
   <!-- Linea decorativa di palline con gradient VISION -->
   <div class="mp-cinema-hero__dots" aria-hidden="true">

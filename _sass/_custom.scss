@@ -1443,7 +1443,50 @@ body {
   }
 }
 
-// Lower (dentro canvas): sep + INTELLIGENCE, davanti alla foto (z-index alto)
+// ── Linea curva decorativa (weave behind/in front of photo) ──────────────────
+// Il colore si adatta al tema tramite variabile CSS definita nei temi
+.mp-hero-curve {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+
+  &__path {
+    fill: none;
+    stroke: var(--mp-curve-stroke);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+// Dietro la foto — z-index 2 (sotto la .mp-cinema-hero__figure al z-index 3)
+.mp-hero-curve--back  { z-index: 2; }
+
+// Davanti alla foto — z-index 4, visibile solo nella zona centrale (dove sta la foto)
+// clip-path: inset(0 0 0 42%) mostra solo il lato destro (zona foto)
+.mp-hero-curve--front {
+  z-index: 4;
+  clip-path: inset(0 0 0 42%);
+}
+
+// ── Colori tema ──────────────────────────────────────────────────────────────
+// Dark mode: linea verde/cyan tenue, si sposa col palette accent
+html[data-theme="dark"],
+[data-theme="dark"] {
+  --mp-curve-stroke: rgba(0, 220, 130, 0.32);
+}
+
+// Light mode: linea grigio-blu scuro, leggera
+html[data-theme="light"],
+[data-theme="light"],
+html:not([data-theme]) {
+  --mp-curve-stroke: rgba(25, 25, 60, 0.14);
+}
+
+// ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────
 .mp-cinema-hero__lower {
   position: relative;
   z-index: 5;   // davanti alla foto

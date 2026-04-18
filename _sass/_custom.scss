@@ -62,6 +62,9 @@
   --phd-neon-accent: #00ff88;
   --phd-neon-blue:   #00d4ff;
   --phd-neon-pink:   #ff006e;
+
+  // Curve decorativa hero — light mode default
+  --mp-curve-stroke: rgba(25, 25, 60, 0.13);
 }
 
 // ============================================================
@@ -1444,10 +1447,10 @@ body {
 }
 
 // ── Linea curva decorativa (weave behind/in front of photo) ──────────────────
-// Il colore si adatta al tema tramite variabile CSS definita nei temi
 .mp-hero-curve {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -1456,9 +1459,10 @@ body {
   &__path {
     fill: none;
     stroke: var(--mp-curve-stroke);
-    stroke-width: 1.8;
+    stroke-width: 2px;
     stroke-linecap: round;
     stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;  // mantiene stroke-width in px indipendentemente da scale
   }
 }
 
@@ -1466,24 +1470,14 @@ body {
 .mp-hero-curve--back  { z-index: 2; }
 
 // Davanti alla foto — z-index 4, visibile solo nella zona centrale (dove sta la foto)
-// clip-path: inset(0 0 0 42%) mostra solo il lato destro (zona foto)
 .mp-hero-curve--front {
   z-index: 4;
   clip-path: inset(0 0 0 42%);
 }
 
-// ── Colori tema ──────────────────────────────────────────────────────────────
-// Dark mode: linea verde/cyan tenue, si sposa col palette accent
-html[data-theme="dark"],
-[data-theme="dark"] {
-  --mp-curve-stroke: rgba(0, 220, 130, 0.32);
-}
-
-// Light mode: linea grigio-blu scuro, leggera
-html[data-theme="light"],
-[data-theme="light"],
-html:not([data-theme]) {
-  --mp-curve-stroke: rgba(25, 25, 60, 0.14);
+// Dark mode override
+html[data-theme='dark'] {
+  --mp-curve-stroke: rgba(0, 255, 136, 0.28);
 }
 
 // ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────

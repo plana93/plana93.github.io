@@ -1487,15 +1487,27 @@ body {
   }
 }
 
-// Back — dietro la foto (z-index 2, sotto figure che è 3)
-.mp-hero-curve--back  { z-index: 2; }
+// Back — z:2 → in front di VISION (z:1), DIETRO la foto (z:3)
+// Visibile ovunque TRANNE la zona foto centrale
+.mp-hero-curve--l1 {
+  z-index: 2;
+  clip-path: inset(0 18% 20% 0);   // esclude la zona foto (centro-destra) e la parte bassa
+}
 
-// Front — davanti alla foto (z-index 4)
-// clip sulla zona foto + glow per enfatizzare il distacco in avanti
-.mp-hero-curve--front {
+// Mid — z:4 → in front della foto (z:3), DIETRO INTELLIGENCE (z:5)
+// Clip sulla sola zona foto (fascia centrale orizzontale)
+.mp-hero-curve--l2 {
   z-index: 4;
-  clip-path: inset(0 18% 0 40%);
-  filter: drop-shadow(0 0 5px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.25));
+  clip-path: inset(0 18% 0 38%);   // zona foto: ~38% sx → ~82% dx
+  filter: drop-shadow(0 0 4px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+}
+
+// Front — z:6 → in front di INTELLIGENCE (z:5)
+// Clip sulla fascia bassa dell'hero
+.mp-hero-curve--l3 {
+  z-index: 6;
+  clip-path: inset(62% 0 0 0);   // solo il bottom ~38% dell'hero
+  filter: drop-shadow(0 0 6px var(--mp-curve-c2));
 }
 
 // Dark mode
@@ -1509,7 +1521,7 @@ html[data-theme='dark'] {
 // ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────
 .mp-cinema-hero__lower {
   position: relative;
-  z-index: 5;   // davanti alla foto
+  z-index: 5;   // davanti alla foto (z:3) e al layer ribbon l2 (z:4), sotto l3 (z:6)
 }
 
 // intel-block: centrato orizzontalmente

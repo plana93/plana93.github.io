@@ -1487,27 +1487,33 @@ body {
   }
 }
 
-// Back — z:2 → in front di VISION (z:1), DIETRO la foto (z:3)
-// Visibile ovunque TRANNE la zona foto centrale
+// L0 — z:0 → DIETRO VISION, metà sinistra (weave back)
+.mp-hero-curve--l0 {
+  z-index: 0;
+  clip-path: inset(0 50% 54% 0);   // top 46% dell'hero, metà sinistra → dietro lettere VISION sx
+  filter: drop-shadow(0 0 4px var(--mp-curve-c1)) drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+}
+
+// L1 — z:2 → DAVANTI VISION, metà destra (weave front)
+// Visibile nella metà destra della zona VISION
 .mp-hero-curve--l1 {
   z-index: 2;
-  clip-path: inset(0 18% 20% 0);   // esclude la zona foto (centro-destra) e la parte bassa
+  clip-path: inset(0 0 54% 50%);   // top 46%, metà destra → davanti lettere VISION dx
   filter: drop-shadow(0 0 4px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
-// Mid — z:4 → in front della foto (z:3), DIETRO INTELLIGENCE (z:5)
-// Clip sulla sola zona foto (fascia centrale orizzontale)
+// L2 — z:4 → davanti foto, DIETRO Into + INTELLIGENCE
+// Copre zona foto + area "Into" (estremo dx del sep-row)
 .mp-hero-curve--l2 {
   z-index: 4;
-  clip-path: inset(0 18% 0 38%);   // zona foto: ~38% sx → ~82% dx
+  clip-path: inset(42% 0 0 26%);   // da 42% in giù, dal 26% sx → include foto + Into a dx
   filter: drop-shadow(0 0 4px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
-// Front — z:6 → in front di INTELLIGENCE (z:5)
-// Clip sulla fascia bassa dell'hero
+// L3 — z:6 → davanti INTELLIGENCE
 .mp-hero-curve--l3 {
   z-index: 6;
-  clip-path: inset(62% 0 0 0);   // solo il bottom ~38% dell'hero
+  clip-path: inset(72% 0 0 0);   // bottom 28% → davanti INTELLIGENCE
   filter: drop-shadow(0 0 4px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 

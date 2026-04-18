@@ -50,71 +50,55 @@ layout: default
 
   </div><!-- /.mp-cinema-hero__canvas -->
 
-  <!-- Calligraphic curve — back layer (behind photo, z-index 2) -->
+  <!--
+    RIBBON CURVE — 3 layer:
+      #1 back   z:2  → segmenti che passano DIETRO la foto
+      #2 front  z:4  → segmenti che passano DAVANTI alla foto (glow)
+    Stesso path, clip-path divide le zone.
+    Gradient userSpaceOnUse: mappa sul sistema di coordinate SVG (x -60→1080).
+    Spessore variabile: __halo (30px, opacità 8%) + __body (10px, 18%) + __spine (1.5px, 92%).
+    L'animazione stroke-dashoffset disegna la linea "in entrata" al load.
+  -->
   <svg class="mp-hero-curve mp-hero-curve--back" aria-hidden="true"
-       viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet"
+       viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="mpCurveGradBack" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="var(--mp-curve-start)"  stop-opacity="0"/>
-        <stop offset="10%"  stop-color="var(--mp-curve-start)"  stop-opacity="1"/>
-        <stop offset="48%"  stop-color="var(--mp-curve-mid)"/>
-        <stop offset="82%"  stop-color="var(--mp-curve-bright)"/>
-        <stop offset="100%" stop-color="var(--mp-curve-bright)" stop-opacity="0"/>
+      <linearGradient id="mpCurveGradB" gradientUnits="userSpaceOnUse" x1="-60" y1="0" x2="1080" y2="0">
+        <stop offset="0%"   stop-color="var(--mp-curve-c0)" stop-opacity="0"/>
+        <stop offset="8%"   stop-color="var(--mp-curve-c0)"/>
+        <stop offset="38%"  stop-color="var(--mp-curve-c1)"/>
+        <stop offset="68%"  stop-color="var(--mp-curve-c2)"/>
+        <stop offset="90%"  stop-color="var(--mp-curve-c3)"/>
+        <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
     </defs>
-    <path class="mp-hero-curve__body" stroke="url(#mpCurveGradBack)"
-          d="M -50,420
-             C  20,340  60,160 150,180
-             C 210,195 230,360 290,300
-             C 340,255 360,140 430,160
-             C 490,175 510,360 570,300
-             C 620,255 645,130 715,155
-             C 775,170 795,320 855,275
-             C 900,245 940,140 1060,110"/>
-    <path class="mp-hero-curve__spine" stroke="url(#mpCurveGradBack)"
-          d="M -50,420
-             C  20,340  60,160 150,180
-             C 210,195 230,360 290,300
-             C 340,255 360,140 430,160
-             C 490,175 510,360 570,300
-             C 620,255 645,130 715,155
-             C 775,170 795,320 855,275
-             C 900,245 940,140 1060,110"/>
+    <!-- halo — alone luminoso intorno al tratto -->
+    <path class="mp-hero-curve__halo"  stroke="url(#mpCurveGradB)" d="M -60,155 C 20,55 95,310 185,295 C 258,283 275,110 355,128 C 420,142 445,320 520,288 C 585,260 615,100 695,115 C 765,128 790,295 855,262 C 912,234 965,108 1080,82"/>
+    <!-- body — nastro spesso -->
+    <path class="mp-hero-curve__body"  stroke="url(#mpCurveGradB)" d="M -60,155 C 20,55 95,310 185,295 C 258,283 275,110 355,128 C 420,142 445,320 520,288 C 585,260 615,100 695,115 C 765,128 790,295 855,262 C 912,234 965,108 1080,82"/>
+    <!-- spine — filo conduttore animato -->
+    <path class="mp-hero-curve__spine" stroke="url(#mpCurveGradB)" d="M -60,155 C 20,55 95,310 185,295 C 258,283 275,110 355,128 C 420,142 445,320 520,288 C 585,260 615,100 695,115 C 765,128 790,295 855,262 C 912,234 965,108 1080,82"/>
   </svg>
 
-  <!-- Calligraphic curve — front layer (in front of photo, z-index 4) -->
   <svg class="mp-hero-curve mp-hero-curve--front" aria-hidden="true"
-       viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet"
+       viewBox="0 0 1000 520" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="mpCurveGradFront" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="var(--mp-curve-start)"  stop-opacity="0"/>
-        <stop offset="10%"  stop-color="var(--mp-curve-start)"  stop-opacity="1"/>
-        <stop offset="48%"  stop-color="var(--mp-curve-mid)"/>
-        <stop offset="82%"  stop-color="var(--mp-curve-bright)"/>
-        <stop offset="100%" stop-color="var(--mp-curve-bright)" stop-opacity="0"/>
+      <linearGradient id="mpCurveGradF" gradientUnits="userSpaceOnUse" x1="-60" y1="0" x2="1080" y2="0">
+        <stop offset="0%"   stop-color="var(--mp-curve-c0)" stop-opacity="0"/>
+        <stop offset="8%"   stop-color="var(--mp-curve-c0)"/>
+        <stop offset="38%"  stop-color="var(--mp-curve-c1)"/>
+        <stop offset="68%"  stop-color="var(--mp-curve-c2)"/>
+        <stop offset="90%"  stop-color="var(--mp-curve-c3)"/>
+        <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
     </defs>
-    <path class="mp-hero-curve__body" stroke="url(#mpCurveGradFront)"
-          d="M -50,420
-             C  20,340  60,160 150,180
-             C 210,195 230,360 290,300
-             C 340,255 360,140 430,160
-             C 490,175 510,360 570,300
-             C 620,255 645,130 715,155
-             C 775,170 795,320 855,275
-             C 900,245 940,140 1060,110"/>
-    <path class="mp-hero-curve__spine" stroke="url(#mpCurveGradFront)"
-          d="M -50,420
-             C  20,340  60,160 150,180
-             C 210,195 230,360 290,300
-             C 340,255 360,140 430,160
-             C 490,175 510,360 570,300
-             C 620,255 645,130 715,155
-             C 775,170 795,320 855,275
-             C 900,245 940,140 1060,110"/>
+    <path class="mp-hero-curve__halo"  stroke="url(#mpCurveGradF)" d="M -60,155 C 20,55 95,310 185,295 C 258,283 275,110 355,128 C 420,142 445,320 520,288 C 585,260 615,100 695,115 C 765,128 790,295 855,262 C 912,234 965,108 1080,82"/>
+    <path class="mp-hero-curve__body"  stroke="url(#mpCurveGradF)" d="M -60,155 C 20,55 95,310 185,295 C 258,283 275,110 355,128 C 420,142 445,320 520,288 C 585,260 615,100 695,115 C 765,128 790,295 855,262 C 912,234 965,108 1080,82"/>
+    <path class="mp-hero-curve__spine" stroke="url(#mpCurveGradF)" d="M -60,155 C 20,55 95,310 185,295 C 258,283 275,110 355,128 C 420,142 445,320 520,288 C 585,260 615,100 695,115 C 765,128 790,295 855,262 C 912,234 965,108 1080,82"/>
   </svg>
+
+
 
   <!-- Linea decorativa di palline con gradient VISION -->
   <div class="mp-cinema-hero__dots" aria-hidden="true">

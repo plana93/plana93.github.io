@@ -63,11 +63,12 @@
   --phd-neon-blue:   #00d4ff;
   --phd-neon-pink:   #ff006e;
 
-  // Curve decorativa hero — light mode default
-  --mp-curve-stroke: rgba(25, 25, 60, 0.18);   // fallback (non usato col gradient)
-  --mp-curve-start:  #1a1050;
-  --mp-curve-mid:    #5535aa;
-  --mp-curve-bright: #a060e0;
+  // Curve decorativa hero — light mode
+  --mp-curve-stroke: rgba(25, 25, 60, 0.18);  // fallback
+  --mp-curve-c0: #1a1b6e;    // indigo profondo
+  --mp-curve-c1: #6d28d9;    // viola
+  --mp-curve-c2: #c026d3;    // fuchsia
+  --mp-curve-c3: #f43f82;    // rosa neon
 }
 
 // ============================================================
@@ -1449,51 +1450,70 @@ body {
   }
 }
 
-// ── Linea curva decorativa (weave behind/in front of photo) ──────────────────
+// ── Ribbon curve (calligraphic, back/front weave) ────────────────────────────
+@keyframes mp-curve-draw {
+  from { stroke-dashoffset: 2400; }
+  to   { stroke-dashoffset: 0; }
+}
+
 .mp-hero-curve {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   overflow: visible;
 
-  // Corpo spesso — bassa opacità → simula la pressione del pennino
+  // Alone luminoso — spessissimo, quasi trasparente
+  &__halo {
+    fill: none;
+    stroke-width: 32px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.07;
+  }
+
+  // Nastro — spessore medio, simula il corpo del ribbon
   &__body {
     fill: none;
-    stroke-width: 10px;
+    stroke-width: 9px;
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
-    opacity: 0.22;
+    opacity: 0.20;
   }
 
-  // Spina sottile — opacità piena → il filo conduttore
+  // Filo conduttore — sottile, animato draw-on al load
   &__spine {
     fill: none;
-    stroke-width: 1.4px;
+    stroke-width: 1.6px;
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
-    opacity: 0.9;
+    opacity: 0.88;
+    stroke-dasharray: 2400;
+    stroke-dashoffset: 2400;
+    animation: mp-curve-draw 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
   }
 }
 
-// Dietro la foto — z-index 2
+// Back — dietro la foto (z-index 2, sotto figure che è 3)
 .mp-hero-curve--back  { z-index: 2; }
 
-// Davanti alla foto — z-index 4, solo nella zona della foto
+// Front — davanti alla foto (z-index 4)
+// clip sulla zona foto + glow per enfatizzare il distacco in avanti
 .mp-hero-curve--front {
   z-index: 4;
-  clip-path: inset(0 0 0 42%);
+  clip-path: inset(0 18% 0 40%);
+  filter: drop-shadow(0 0 5px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.25));
 }
 
-// Dark mode override
+// Dark mode
 html[data-theme='dark'] {
-  --mp-curve-start:  #003d22;
-  --mp-curve-mid:    #00bb66;
-  --mp-curve-bright: #00ffaa;
+  --mp-curve-c0: #003d22;
+  --mp-curve-c1: #00994d;
+  --mp-curve-c2: #00ff88;
+  --mp-curve-c3: #7fffd4;
 }
 
 // ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────

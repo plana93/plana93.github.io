@@ -64,7 +64,10 @@
   --phd-neon-pink:   #ff006e;
 
   // Curve decorativa hero — light mode default
-  --mp-curve-stroke: rgba(25, 25, 60, 0.18);
+  --mp-curve-stroke: rgba(25, 25, 60, 0.18);   // fallback (non usato col gradient)
+  --mp-curve-start:  #1a1050;
+  --mp-curve-mid:    #5535aa;
+  --mp-curve-bright: #a060e0;
 }
 
 // ============================================================
@@ -1456,20 +1459,31 @@ body {
   pointer-events: none;
   overflow: visible;
 
-  &__path {
+  // Corpo spesso — bassa opacità → simula la pressione del pennino
+  &__body {
     fill: none;
-    stroke: var(--mp-curve-stroke);
-    stroke-width: 1.5px;
+    stroke-width: 10px;
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
+    opacity: 0.22;
+  }
+
+  // Spina sottile — opacità piena → il filo conduttore
+  &__spine {
+    fill: none;
+    stroke-width: 1.4px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.9;
   }
 }
 
-// Dietro la foto — z-index 2 (sotto la .mp-cinema-hero__figure al z-index 3)
+// Dietro la foto — z-index 2
 .mp-hero-curve--back  { z-index: 2; }
 
-// Davanti alla foto — z-index 4, visibile solo nella zona centrale (dove sta la foto)
+// Davanti alla foto — z-index 4, solo nella zona della foto
 .mp-hero-curve--front {
   z-index: 4;
   clip-path: inset(0 0 0 42%);
@@ -1477,7 +1491,9 @@ body {
 
 // Dark mode override
 html[data-theme='dark'] {
-  --mp-curve-stroke: rgba(0, 255, 136, 0.35);
+  --mp-curve-start:  #003d22;
+  --mp-curve-mid:    #00bb66;
+  --mp-curve-bright: #00ffaa;
 }
 
 // ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────

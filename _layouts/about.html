@@ -50,30 +50,70 @@ layout: default
 
   </div><!-- /.mp-cinema-hero__canvas -->
 
-  <!-- Curved decorative line — back layer (behind photo, z-index 2) -->
+  <!-- Calligraphic curve — back layer (behind photo, z-index 2) -->
   <svg class="mp-hero-curve mp-hero-curve--back" aria-hidden="true"
-       viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet"
+       viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
-    <path class="mp-hero-curve__path"
-          d="M -40,560
-             C  40,470  90,360 180,300
-             C 255,248 310,310 390,268
-             C 465,228 490,160 570,148
-             C 648,136 690,200 770,172
-             C 848,145 910, 95 1050, 72"/>
+    <defs>
+      <linearGradient id="mpCurveGradBack" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="var(--mp-curve-start)"  stop-opacity="0"/>
+        <stop offset="10%"  stop-color="var(--mp-curve-start)"  stop-opacity="1"/>
+        <stop offset="48%"  stop-color="var(--mp-curve-mid)"/>
+        <stop offset="82%"  stop-color="var(--mp-curve-bright)"/>
+        <stop offset="100%" stop-color="var(--mp-curve-bright)" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path class="mp-hero-curve__body" stroke="url(#mpCurveGradBack)"
+          d="M -50,420
+             C  20,340  60,160 150,180
+             C 210,195 230,360 290,300
+             C 340,255 360,140 430,160
+             C 490,175 510,360 570,300
+             C 620,255 645,130 715,155
+             C 775,170 795,320 855,275
+             C 900,245 940,140 1060,110"/>
+    <path class="mp-hero-curve__spine" stroke="url(#mpCurveGradBack)"
+          d="M -50,420
+             C  20,340  60,160 150,180
+             C 210,195 230,360 290,300
+             C 340,255 360,140 430,160
+             C 490,175 510,360 570,300
+             C 620,255 645,130 715,155
+             C 775,170 795,320 855,275
+             C 900,245 940,140 1060,110"/>
   </svg>
 
-  <!-- Curved decorative line — front layer (in front of photo, z-index 4, clipped to photo zone) -->
+  <!-- Calligraphic curve — front layer (in front of photo, z-index 4) -->
   <svg class="mp-hero-curve mp-hero-curve--front" aria-hidden="true"
-       viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet"
+       viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
-    <path class="mp-hero-curve__path"
-          d="M -40,560
-             C  40,470  90,360 180,300
-             C 255,248 310,310 390,268
-             C 465,228 490,160 570,148
-             C 648,136 690,200 770,172
-             C 848,145 910, 95 1050, 72"/>
+    <defs>
+      <linearGradient id="mpCurveGradFront" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="var(--mp-curve-start)"  stop-opacity="0"/>
+        <stop offset="10%"  stop-color="var(--mp-curve-start)"  stop-opacity="1"/>
+        <stop offset="48%"  stop-color="var(--mp-curve-mid)"/>
+        <stop offset="82%"  stop-color="var(--mp-curve-bright)"/>
+        <stop offset="100%" stop-color="var(--mp-curve-bright)" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path class="mp-hero-curve__body" stroke="url(#mpCurveGradFront)"
+          d="M -50,420
+             C  20,340  60,160 150,180
+             C 210,195 230,360 290,300
+             C 340,255 360,140 430,160
+             C 490,175 510,360 570,300
+             C 620,255 645,130 715,155
+             C 775,170 795,320 855,275
+             C 900,245 940,140 1060,110"/>
+    <path class="mp-hero-curve__spine" stroke="url(#mpCurveGradFront)"
+          d="M -50,420
+             C  20,340  60,160 150,180
+             C 210,195 230,360 290,300
+             C 340,255 360,140 430,160
+             C 490,175 510,360 570,300
+             C 620,255 645,130 715,155
+             C 775,170 795,320 855,275
+             C 900,245 940,140 1060,110"/>
   </svg>
 
   <!-- Linea decorativa di palline con gradient VISION -->

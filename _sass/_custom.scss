@@ -1452,7 +1452,7 @@ body {
 
 // ── Ribbon curve (calligraphic, back/front weave) ────────────────────────────
 @keyframes mp-curve-draw {
-  from { stroke-dashoffset: 2400; }
+  from { stroke-dashoffset: 35000; }
   to   { stroke-dashoffset: 0; }
 }
 
@@ -1470,7 +1470,7 @@ body {
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
-    opacity: 0.48;
+    opacity: 0.85;
   }
 
   // Filo conduttore — sottile sopra, animato draw-on al load
@@ -1481,8 +1481,8 @@ body {
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
     opacity: 0.95;
-    stroke-dasharray: 3200;
-    stroke-dashoffset: 3200;
+    stroke-dasharray: 35000;
+    stroke-dashoffset: 35000;
     animation: mp-curve-draw 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
   }
 }
@@ -1492,6 +1492,7 @@ body {
 .mp-hero-curve--l1 {
   z-index: 2;
   clip-path: inset(0 18% 20% 0);   // esclude la zona foto (centro-destra) e la parte bassa
+  filter: drop-shadow(0 0 4px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
 // Mid — z:4 → in front della foto (z:3), DIETRO INTELLIGENCE (z:5)
@@ -1507,7 +1508,7 @@ body {
 .mp-hero-curve--l3 {
   z-index: 6;
   clip-path: inset(62% 0 0 0);   // solo il bottom ~38% dell'hero
-  filter: drop-shadow(0 0 6px var(--mp-curve-c2));
+  filter: drop-shadow(0 0 4px var(--mp-curve-c2)) drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
 // Dark mode

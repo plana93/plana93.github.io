@@ -64,7 +64,7 @@
   --phd-neon-pink:   #ff006e;
 
   // Curve decorativa hero — light mode default
-  --mp-curve-stroke: rgba(25, 25, 60, 0.13);
+  --mp-curve-stroke: rgba(25, 25, 60, 0.18);
 }
 
 // ============================================================
@@ -1459,10 +1459,10 @@ body {
   &__path {
     fill: none;
     stroke: var(--mp-curve-stroke);
-    stroke-width: 2px;
+    stroke-width: 1.5px;
     stroke-linecap: round;
     stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;  // mantiene stroke-width in px indipendentemente da scale
+    vector-effect: non-scaling-stroke;
   }
 }
 
@@ -1477,7 +1477,7 @@ body {
 
 // Dark mode override
 html[data-theme='dark'] {
-  --mp-curve-stroke: rgba(0, 255, 136, 0.28);
+  --mp-curve-stroke: rgba(0, 255, 136, 0.35);
 }
 
 // ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────

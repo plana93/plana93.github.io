@@ -1466,7 +1466,7 @@ body {
 // Usiamo padding-right per fermare "into" esattamente sotto la N.
 .mp-cinema-hero__sep-row {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 0.6em;
   width: 100%;
   padding-right: clamp(0.5rem, 4vw, 5rem);   // offset bordo dx di VISION

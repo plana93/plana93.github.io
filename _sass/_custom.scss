@@ -1463,36 +1463,26 @@ body {
   pointer-events: none;
   overflow: visible;
 
-  // Alone luminoso — spessissimo, quasi trasparente
-  &__halo {
-    fill: none;
-    stroke-width: 50px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;
-    opacity: 0.09;
-  }
-
-  // Nastro — spessore medio, simula il corpo del ribbon
+  // Nastro — spessore principale, denso e compatto
   &__body {
     fill: none;
-    stroke-width: 16px;
+    stroke-width: 18px;
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
-    opacity: 0.28;
+    opacity: 0.48;
   }
 
-  // Filo conduttore — sottile, animato draw-on al load
+  // Filo conduttore — sottile sopra, animato draw-on al load
   &__spine {
     fill: none;
     stroke-width: 2.2px;
     stroke-linecap: round;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
-    opacity: 0.92;
-    stroke-dasharray: 2800;
-    stroke-dashoffset: 2800;
+    opacity: 0.95;
+    stroke-dasharray: 3200;
+    stroke-dashoffset: 3200;
     animation: mp-curve-draw 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
   }
 }

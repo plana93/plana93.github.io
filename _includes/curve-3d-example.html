@@ -1,0 +1,247 @@
+<!-- 
+  3D CURVE WEAVING SYSTEM — Implementation Example
+  
+  Questo file mostra come implementare il sistema di weaving 3D
+  con tutti i layer e gli effetti di profondità.
+-->
+
+<!-- STEP 1: Include CSS (già fatto in _custom.scss) -->
+
+<!-- STEP 2: Include JavaScript opzionale per occlusione dinamica -->
+<script src="{{ '/assets/js/curve-3d-weaving.js' | relative_url }}" defer></script>
+
+<!-- STEP 3: Definisci SVG Gradients (una volta sola nel layout) -->
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <!-- Gradient per layer L0 (dietro VISION) -->
+    <linearGradient id="curveGradientL0" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--mp-curve-c0)" />
+      <stop offset="50%" stop-color="var(--mp-curve-c1)" />
+      <stop offset="100%" stop-color="var(--mp-curve-c0)" />
+    </linearGradient>
+    
+    <!-- Gradient per layer L1 (davanti VISION) -->
+    <linearGradient id="curveGradientL1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--mp-curve-c1)" />
+      <stop offset="50%" stop-color="var(--mp-curve-c2)" />
+      <stop offset="100%" stop-color="var(--mp-curve-c1)" />
+    </linearGradient>
+    
+    <!-- Gradient per layer L2 (attorno foto) -->
+    <linearGradient id="curveGradientL2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--mp-curve-c2)" />
+      <stop offset="50%" stop-color="var(--mp-curve-c3)" />
+      <stop offset="100%" stop-color="var(--mp-curve-c2)" />
+    </linearGradient>
+    
+    <!-- Gradient per layer L3 (davanti INTELLIGENCE) -->
+    <linearGradient id="curveGradientL3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="var(--mp-curve-c2)" />
+      <stop offset="30%" stop-color="var(--mp-curve-c3)" />
+      <stop offset="70%" stop-color="var(--mp-curve-c3)" />
+      <stop offset="100%" stop-color="var(--mp-curve-c2)" />
+    </linearGradient>
+    
+    <!-- Spine gradient (filo conduttore brillante) -->
+    <linearGradient id="curveSpineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.2)" />
+      <stop offset="50%" stop-color="var(--mp-accent)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.2)" />
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- STEP 4: Hero Container -->
+<div class="mp-cinema-hero">
+  
+  <!-- Canvas: contiene testi + foto + curve -->
+  <div class="mp-cinema-hero__canvas">
+    
+    <!-- ═══ LAYER 0: DIETRO VISION (sinistra) ═══ -->
+    <svg class="mp-hero-curve mp-hero-curve--l0" 
+         viewBox="0 0 1000 800" 
+         preserveAspectRatio="xMidYMid slice"
+         aria-hidden="true">
+      <!-- Percorso principale (nastro) -->
+      <path class="mp-hero-curve__body"
+            stroke="url(#curveGradientL0)"
+            d="M 100,150 
+               Q 250,120 350,180 
+               Q 450,240 500,300 
+               Q 550,360 600,400 
+               Q 650,440 750,480 
+               Q 850,520 900,600" />
+      
+      <!-- Spine (filo superiore) -->
+      <path class="mp-hero-curve__spine"
+            stroke="url(#curveSpineGradient)"
+            d="M 100,145 
+               Q 250,115 350,175 
+               Q 450,235 500,295 
+               Q 550,355 600,395 
+               Q 650,435 750,475 
+               Q 850,515 900,595" />
+    </svg>
+    
+    <!-- ═══ LAYER 1: DAVANTI VISION (destra) ═══ -->
+    <svg class="mp-hero-curve mp-hero-curve--l1" 
+         viewBox="0 0 1000 800" 
+         preserveAspectRatio="xMidYMid slice"
+         aria-hidden="true">
+      <path class="mp-hero-curve__body"
+            stroke="url(#curveGradientL1)"
+            d="M 100,150 
+               Q 250,120 350,180 
+               Q 450,240 500,300 
+               Q 550,360 600,400 
+               Q 650,440 750,480 
+               Q 850,520 900,600" />
+      
+      <path class="mp-hero-curve__spine"
+            stroke="url(#curveSpineGradient)"
+            d="M 100,145 
+               Q 250,115 350,175 
+               Q 450,235 500,295 
+               Q 550,355 600,395 
+               Q 650,435 750,475 
+               Q 850,515 900,595" />
+    </svg>
+    
+    <!-- ═══ LAYER 2: ATTORNO FOTO, DIETRO "Into" ═══ -->
+    <svg class="mp-hero-curve mp-hero-curve--l2" 
+         viewBox="0 0 1000 800" 
+         preserveAspectRatio="xMidYMid slice"
+         aria-hidden="true">
+      <!-- Percorso con tapering (più sottile nel mezzo) -->
+      <path class="mp-hero-curve__body mp-hero-curve--taper-start"
+            stroke="url(#curveGradientL2)"
+            d="M 100,150 
+               Q 250,120 350,180 
+               Q 450,240 500,300 
+               Q 550,360 600,400 
+               Q 650,440 750,480 
+               Q 850,520 900,600" />
+      
+      <path class="mp-hero-curve__spine"
+            stroke="url(#curveSpineGradient)"
+            d="M 100,145 
+               Q 250,115 350,175 
+               Q 450,235 500,295 
+               Q 550,355 600,395 
+               Q 650,435 750,475 
+               Q 850,515 900,595" />
+    </svg>
+    
+    <!-- ═══ LAYER 3: DAVANTI INTELLIGENCE ═══ -->
+    <svg class="mp-hero-curve mp-hero-curve--l3 mp-hero-curve--glow-intense" 
+         viewBox="0 0 1000 800" 
+         preserveAspectRatio="xMidYMid slice"
+         aria-hidden="true">
+      <path class="mp-hero-curve__body"
+            stroke="url(#curveGradientL3)"
+            d="M 100,150 
+               Q 250,120 350,180 
+               Q 450,240 500,300 
+               Q 550,360 600,400 
+               Q 650,440 750,480 
+               Q 850,520 900,600" />
+      
+      <path class="mp-hero-curve__spine"
+            stroke="url(#curveSpineGradient)"
+            d="M 100,145 
+               Q 250,115 350,175 
+               Q 450,235 500,295 
+               Q 550,355 600,395 
+               Q 650,435 750,475 
+               Q 850,515 900,595" />
+    </svg>
+    
+    <!-- ═══ CONTENUTO TESTI (z-index intermedi) ═══ -->
+    
+    <!-- VISION (z:1 — tra L0 e L1) -->
+    <div class="mp-cinema-hero__word--vision" style="position: relative; z-index: 1;">
+      <span>VISION</span>
+    </div>
+    
+    <!-- Foto (z:3 — tra L1 e L2) -->
+    <figure class="mp-cinema-hero__figure" style="position: relative; z-index: 3;">
+      <div class="mp-cinema-frame">
+        <img src="io.png" alt="Mirco Plana" loading="lazy">
+      </div>
+    </figure>
+    
+    <!-- Lower (z:5 — tra L2 e L3) -->
+    <div class="mp-cinema-hero__lower" style="position: relative; z-index: 5;">
+      <div class="mp-cinema-hero__intel-block">
+        
+        <!-- Separator row -->
+        <div class="mp-cinema-hero__sep-row">
+          <span class="mp-cinema-hero__sep-line"></span>
+          <span class="mp-cinema-hero__sep-into">into</span>
+        </div>
+        
+        <!-- INTELLIGENCE (z:5, ma L3 è z:6 quindi passa sopra) -->
+        <div class="mp-cinema-hero__word--intel">
+          <span class="mp-cinema-hero__intelligence">INTELLIGENCE</span>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div><!-- .mp-cinema-hero__canvas -->
+  
+</div><!-- .mp-cinema-hero -->
+
+<!-- 
+  NOTE:
+  - Tutti gli SVG hanno lo STESSO percorso (path d="...")
+  - Le differenze sono solo nei layer (z-index) e clipping (CSS)
+  - Il clipping CSS nasconde le parti non volute di ogni layer
+  - I filtri CSS creano la profondità (ombre, saturazione, luminosità)
+-->
+
+<!-- STEP 5 (OPZIONALE): Override path per personalizzazione avanzata -->
+<!-- 
+  Se vuoi curve diverse per ogni layer (es. L3 più ampia di L0),
+  modifica solo il parametro d="" del path in quel layer specifico.
+  
+  Esempio percorso custom per L3 (più ampio):
+  
+  <path d="M 80,130 
+           Q 240,100 340,170 
+           Q 440,250 490,320 
+           Q 540,390 590,430 
+           Q 640,470 740,510 
+           Q 840,550 920,630" />
+-->
+
+<!-- STEP 6 (OPZIONALE): Controllo JS programmatico -->
+<script>
+  // Esempio: applica occlusione manuale a L1
+  document.addEventListener('DOMContentLoaded', () => {
+    const layer1 = document.querySelector('.mp-hero-curve--l1');
+    
+    // Simula occlusione dietro la lettera "O" di VISION
+    if (layer1) {
+      layer1.classList.add('mp-hero-curve--occluded');
+    }
+    
+    // Cambia glow intensity al click
+    layer1.addEventListener('click', () => {
+      layer1.classList.toggle('mp-hero-curve--glow-intense');
+      layer1.classList.toggle('mp-hero-curve--glow-subtle');
+    });
+  });
+</script>
+
+<!-- 
+  TESTING CHECKLIST:
+  
+  [✓] Apri DevTools → Elements
+  [✓] Verifica che ci siano 4 elementi .mp-hero-curve
+  [✓] Ispeziona z-index: 0, 2, 4, 6
+  [✓] Hover sull'hero → verifica cambio stroke-width
+  [✓] Toggle dark mode → verifica cambio colori gradient
+  [✓] Resize finestra → verifica responsive clipping
+  [✓] Console → scrivi: CONFIG.debugMode = true (se JS attivo)
+-->

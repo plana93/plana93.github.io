@@ -1433,13 +1433,14 @@ body {
 }
 
 // Foto: spostata leggermente a sinistra rispetto al centro
+// DIETRO la curva L2 (z:3 < z:4)
 .mp-cinema-hero__figure {
   position: absolute;
   top: 0;
   bottom: 0;
   left: calc(50% + 5vw);
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 3;  // DIETRO L2 (z:4) - la curva passa DAVANTI
   width: auto;
   display: flex;
   align-items: stretch;
@@ -1507,16 +1508,17 @@ body {
   }
 }
 
-// ═══ LAYER 0: DIETRO VISION (sinistra) ═══
-// Zona: top 46%, metà sinistra
-// Comportamento: passa DIETRO le lettere V-I-S (sinistra di VISION)
+// ═══ LAYER 0: DIETRO VISION (sinistra) CON ALTERNANZA FISICA ═══
+// Zona: top 46%, alternanza seguendo la fisica della curva
+// Comportamento: passa DIETRO le zone piene (V, S, O-dx), DAVANTI agli spazi vuoti
 // Effetto profondità: più scura, meno saturata (in ombra)
 .mp-hero-curve--l0 {
   z-index: 0;
-  // MASK COMPOSITA: combina clip verticale + fade-out morbidissimo
-  // NO clip-path per evitare tagli netti
+  // Usa mix-blend-mode per interagire con il testo
+  mix-blend-mode: multiply;
+  
+  // MASK COMPOSITA: NO maschere CSS, usa SVG mask integrato
   mask-image: 
-    linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 52%),
     linear-gradient(to bottom, 
       rgba(0,0,0,1) 0%, 
       rgba(0,0,0,1) 30%, 
@@ -1526,7 +1528,6 @@ body {
     );
   mask-composite: intersect;
   -webkit-mask-image: 
-    linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 52%),
     linear-gradient(to bottom, 
       rgba(0,0,0,1) 0%, 
       rgba(0,0,0,1) 30%, 
@@ -1547,16 +1548,17 @@ body {
   }
 }
 
-// ═══ LAYER 1: DAVANTI VISION (destra) ═══
-// Zona: top 46%, metà destra
-// Comportamento: passa DAVANTI alle lettere I-O-N (destra di VISION)
+// ═══ LAYER 1: DAVANTI VISION (destra) CON ALTERNANZA FISICA ═══
+// Zona: top 46%, alternanza opposta a L0
+// Comportamento: passa DAVANTI agli spazi vuoti (I, I, N), DIETRO alle zone piene
 // Effetto profondità: ombra portata forte, colori vividi, in primo piano
 .mp-hero-curve--l1 {
   z-index: 2;
-  // MASK COMPOSITA: combina clip verticale + fade-out morbidissimo
-  // NO clip-path per evitare tagli netti
+  // Usa mix-blend-mode per interagire con il testo 3D
+  mix-blend-mode: screen;
+  
+  // MASK COMPOSITA: NO maschere CSS orizzontali, usa SVG mask integrato
   mask-image: 
-    linear-gradient(to right, rgba(0,0,0,0) 48%, rgba(0,0,0,1) 52%, rgba(0,0,0,1) 100%),
     linear-gradient(to bottom, 
       rgba(0,0,0,1) 0%, 
       rgba(0,0,0,1) 30%, 
@@ -1566,7 +1568,6 @@ body {
     );
   mask-composite: intersect;
   -webkit-mask-image: 
-    linear-gradient(to right, rgba(0,0,0,0) 48%, rgba(0,0,0,1) 52%, rgba(0,0,0,1) 100%),
     linear-gradient(to bottom, 
       rgba(0,0,0,1) 0%, 
       rgba(0,0,0,1) 30%, 
@@ -1589,24 +1590,21 @@ body {
   }
 }
 
-// ═══ LAYER 2: ZONA FOTO - TRASPARENZA RADIALE + MULTI-PUNCH ═══
-// La foto ha sfondo trasparente, quindi la curva deve "attraversare" invisibile
-// Usa gradiente radiale + punti multipli per simulare passaggio attraverso "buchi" visuali
+// ═══ LAYER 2: DAVANTI FOTO (zona centrale) ═══
+// La foto deve essere DIETRO la curva (z:2 < z:3 foto... NO! z:3 foto < z:4 curva)
+// CORREZIONE: spostare z-index L2 a 4 per passare DAVANTI alla foto
+// Comportamento: passa DAVANTI all'immagine, trasparenza ridotta
 .mp-hero-curve--l2 {
-  z-index: 2;   // DIETRO la foto (z:3)
-  // MASK RADIALE MULTIPLA: combina ellisse centrale (foto) + buchi laterali (occhielli lettere)
+  z-index: 4;  // DAVANTI alla foto (z:3) - CORRETTO!
+  
+  // Gradiente radiale per focus sulla zona centrale
   mask-image: 
-    // Buco centrale grande (zona foto)
-    radial-gradient(ellipse 55% 95% at 50% 50%, 
-      rgba(0,0,0,0) 0%,      // centro: completamente trasparente (foto)
-      rgba(0,0,0,0) 22%,     
-      rgba(0,0,0,0.1) 35%,   // inizia a comparire leggermente
-      rgba(0,0,0,0.3) 48%,   
-      rgba(0,0,0,0.55) 62%,  
-      rgba(0,0,0,0.8) 75%,   
-      rgba(0,0,0,1) 88%      // opaco ai bordi
+    radial-gradient(ellipse 60% 100% at 50% 50%, 
+      rgba(0,0,0,0.3) 0%,      // centro semi-trasparente (zona foto)
+      rgba(0,0,0,0.5) 25%,     
+      rgba(0,0,0,0.8) 50%,  
+      rgba(0,0,0,1) 75%       // opaco ai bordi
     ),
-    // Clip verticale (limita alle zone foto)
     linear-gradient(to bottom,
       rgba(0,0,0,0) 28%,
       rgba(0,0,0,1) 38%,
@@ -1615,14 +1613,11 @@ body {
     );
   mask-composite: intersect;
   -webkit-mask-image: 
-    radial-gradient(ellipse 55% 95% at 50% 50%, 
-      rgba(0,0,0,0) 0%, 
-      rgba(0,0,0,0) 22%,
-      rgba(0,0,0,0.1) 35%,
-      rgba(0,0,0,0.3) 48%,
-      rgba(0,0,0,0.55) 62%,
-      rgba(0,0,0,0.8) 75%,
-      rgba(0,0,0,1) 88%
+    radial-gradient(ellipse 60% 100% at 50% 50%, 
+      rgba(0,0,0,0.3) 0%, 
+      rgba(0,0,0,0.5) 25%,
+      rgba(0,0,0,0.8) 50%,
+      rgba(0,0,0,1) 75%
     ),
     linear-gradient(to bottom,
       rgba(0,0,0,0) 28%,
@@ -1631,47 +1626,46 @@ body {
       rgba(0,0,0,0) 72%
     );
   -webkit-mask-composite: source-in;
-  opacity: 0.55; // Trasparenza generale molto ridotta (effetto "passa dietro")
+  opacity: 0.85; // Più visibile (passa DAVANTI)
   filter: 
     drop-shadow(0 2px 4px rgba(0,0,0,0.15))
-    brightness(0.92)   // più scura (in ombra della foto)
-    saturate(0.85);
+    brightness(1.05) saturate(1.1);  // Più luminosa
   
   .mp-hero-curve__body {
     stroke-width: 21px;
-    opacity: 0.6; // Ulteriore riduzione opacità
+    opacity: 0.8;
   }
 }
 
-// ═══ LAYER 3: PASSA SOTTO INTELLIGENCE (completamente nascosto) ═══
-// Zona: SOTTO il blocco verde INTELLIGENCE (z:5) - INVISIBILE sotto il blocco
-// Comportamento CORRETTO:
-//   - z-index: 4 (SOTTO il blocco lower che ha z:5)
-//   - Invisibile nella zona INTELLIGENCE (50-75% verticale)
-//   - Emerge SOLO sotto il bordo inferiore del blocco verde
+// ═══ LAYER 3: PARTE BASSA - SOTTO EVIDENZIATORE INTELLIGENCE (blocco fisico) ═══
+// Zona: SOTTO il blocco verde INTELLIGENCE (z:5)
+// Comportamento FISICO: il blocco evidenziatore è un oggetto SOLIDO 3D
+//   - La curva è COMPLETAMENTE BLOCCATA dal blocco verde
+//   - Visibile SOLO nella zona inferiore (sotto il bordo del blocco)
+//   - NO attraversamento: il blocco è opaco e fisicamente solido
 .mp-hero-curve--l3 {
   z-index: 4;  // SOTTO il blocco lower (z:5) che contiene INTELLIGENCE
-  // Gradiente: invisibile fino al 75% (sotto INTELLIGENCE), poi emerge gradualmente
+  
+  // Gradiente: invisibile fino al 78% (completamente bloccata dal blocco verde)
+  // Emerge solo DOPO il bordo inferiore dell'evidenziatore
   mask-image: linear-gradient(to bottom, 
-    rgba(0,0,0,0) 0%,      // invisibile all'inizio
-    rgba(0,0,0,0) 75%,     // ancora invisibile (SOTTO INTELLIGENCE)
-    rgba(0,0,0,0.1) 78%,   // inizia a emergere DOPO il bordo inferiore
-    rgba(0,0,0,0.25) 81%,
-    rgba(0,0,0,0.5) 84%,
-    rgba(0,0,0,0.75) 87%,
-    rgba(0,0,0,0.9) 90%,
-    rgba(0,0,0,1) 93%,     // completamente visibile in basso
+    rgba(0,0,0,0) 0%,      // invisibile dall'inizio
+    rgba(0,0,0,0) 78%,     // ancora invisibile (SOTTO blocco verde solido)
+    rgba(0,0,0,0.1) 80%,   // inizia a emergere DOPO il bordo inferiore
+    rgba(0,0,0,0.3) 83%,
+    rgba(0,0,0,0.6) 86%,
+    rgba(0,0,0,0.85) 89%,
+    rgba(0,0,0,1) 92%,     // completamente visibile in basso
     rgba(0,0,0,1) 100%
   );
   -webkit-mask-image: linear-gradient(to bottom, 
     rgba(0,0,0,0) 0%, 
-    rgba(0,0,0,0) 75%,
-    rgba(0,0,0,0.1) 78%,
-    rgba(0,0,0,0.25) 81%,
-    rgba(0,0,0,0.5) 84%,
-    rgba(0,0,0,0.75) 87%,
-    rgba(0,0,0,0.9) 90%,
-    rgba(0,0,0,1) 93%, 
+    rgba(0,0,0,0) 78%,
+    rgba(0,0,0,0.1) 80%,
+    rgba(0,0,0,0.3) 83%,
+    rgba(0,0,0,0.6) 86%,
+    rgba(0,0,0,0.85) 89%,
+    rgba(0,0,0,1) 92%, 
     rgba(0,0,0,1) 100%
   );
   filter: 

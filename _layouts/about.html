@@ -51,21 +51,17 @@ layout: default
   </div><!-- /.mp-cinema-hero__canvas -->
 
   <!--
-    RIBBON CURVE — 3 layer per weave completo tra tutti gli elementi:
-      z:2  → in front di VISION (z:1),  DIETRO la foto  (z:3)
-      z:4  → in front della foto (z:3), DIETRO INTELLIGENCE (z:5)
-      z:6  → in front di INTELLIGENCE (z:5)
-
-    ViewBox 0 0 1000 700 — copre l'intera altezza dell'hero:
-      Y≈80  = zona VISION (top)
-      Y≈350 = zona foto (middle)
-      Y≈620 = zona INTELLIGENCE (bottom)
-
-    Path: 13 semi-onde da 80px → ~6.5 spire complete (coda di maiale)
-    Gradient userSpaceOnUse mappa sull'asse X: indigo→viola→fuchsia→rosa
+    RIBBON CURVE — Sistema 3D con occlusione fisica alternata
+    La curva passa DIETRO le zone piene del testo e DAVANTI agli spazi vuoti
+    Usa mix-blend-mode e mask per simulare profondità reale
+    
+    ViewBox 0 0 1000 700:
+      Y≈80-200  = zona VISION (top)
+      Y≈250-450 = zona foto (middle) 
+      Y≈500-650 = zona INTELLIGENCE (bottom)
   -->
 
-  <!-- LAYER 0: z:0 — DIETRO VISION (metà sinistra) — weave front/back -->
+  <!-- LAYER 0: z:0 — DIETRO VISION (zona sinistra + alternanza fisica) -->
   <svg class="mp-hero-curve mp-hero-curve--l0" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
@@ -78,12 +74,25 @@ layout: default
         <stop offset="92%"  stop-color="var(--mp-curve-c3)"/>
         <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
+      
+      <!-- Maschera per alternanza fisica: nasconde dove ci sono le lettere piene -->
+      <mask id="visionMaskBack">
+        <!-- Bianco = visibile, nero = nascosto -->
+        <rect width="1000" height="700" fill="white"/>
+        <!-- Zona VISION: alterna visibilità seguendo la fisica della curva -->
+        <!-- Onde dispari (V, S, O destra) = passa DIETRO → zona nera -->
+        <rect x="0" y="60" width="200" height="180" fill="black" opacity="0.8"/>
+        <rect x="400" y="60" width="200" height="180" fill="black" opacity="0.8"/>
+        <rect x="700" y="60" width="150" height="180" fill="black" opacity="0.8"/>
+      </mask>
     </defs>
-    <path class="mp-hero-curve__body"  stroke="url(#mpCGrad0)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
-    <path class="mp-hero-curve__spine" stroke="url(#mpCGrad0)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
+    <g mask="url(#visionMaskBack)">
+      <path class="mp-hero-curve__body"  stroke="url(#mpCGrad0)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
+      <path class="mp-hero-curve__spine" stroke="url(#mpCGrad0)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
+    </g>
   </svg>
 
-  <!-- LAYER 1: z:2 — DAVANTI VISION metà destra (weave con L0) -->
+  <!-- LAYER 1: z:2 — DAVANTI VISION (zona destra + spazi vuoti) -->
   <svg class="mp-hero-curve mp-hero-curve--l1" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
@@ -96,13 +105,22 @@ layout: default
         <stop offset="92%"  stop-color="var(--mp-curve-c3)"/>
         <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
+      
+      <!-- Maschera per alternanza DAVANTI: passa attraverso spazi vuoti -->
+      <mask id="visionMaskFront">
+        <rect width="1000" height="700" fill="white"/>
+        <!-- Onde pari (I, I, N) = passa DAVANTI → zona bianca (già bianca) -->
+        <!-- Zona destra più visibile -->
+        <rect x="0" y="60" width="400" height="180" fill="black" opacity="0.5"/>
+      </mask>
     </defs>
-    <path class="mp-hero-curve__body"  stroke="url(#mpCGrad1)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
-    <path class="mp-hero-curve__spine" stroke="url(#mpCGrad1)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
+    <g mask="url(#visionMaskFront)">
+      <path class="mp-hero-curve__body"  stroke="url(#mpCGrad1)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
+      <path class="mp-hero-curve__spine" stroke="url(#mpCGrad1)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
+    </g>
   </svg>
 
-  <!-- LAYER 2: z:4 — in front della foto, dietro INTELLIGENCE -->
-  <!-- clip sulla zona foto (center ~38%→82% width) -->
+  <!-- LAYER 2: z:2 — DIETRO FOTO (passa attraverso la trasparenza) -->
   <svg class="mp-hero-curve mp-hero-curve--l2" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">

@@ -59,139 +59,235 @@ layout: default
   <!-- ═══ DEFINIZIONI CONDIVISE ═══ -->
   <svg width="0" height="0" style="position: absolute;">
     <defs>
-      <!-- Path curva con ampiezza AUMENTATA -->
-      <path id="mpCurvePathWide" d="M -40,350 C -20,50 20,50 40,350 C 60,650 100,650 120,350 C 140,50 180,50 200,350 C 220,650 260,650 280,350 C 300,50 340,50 360,350 C 380,650 420,650 440,350 C 460,50 500,50 520,350 C 540,650 580,650 600,350 C 620,50 660,50 680,350 C 700,650 740,650 760,350 C 780,50 820,50 840,350 C 860,650 900,650 920,350 C 940,50 980,50 1040,350"/>
+      <!-- Path curva con AMPIEZZA MASSIMA per arrivare sotto INTELLIGENCE -->
+      <!-- Y: 20 (molto alto) ↔ 680 (molto basso) -->
+      <path id="mpCurvePathWide" d="M -40,350 C -10,20 10,20 40,350 C 70,680 110,680 140,350 C 170,20 210,20 240,350 C 270,680 310,680 340,350 C 370,20 410,20 440,350 C 470,680 510,680 540,350 C 570,20 610,20 640,350 C 670,680 710,680 740,350 C 770,20 810,20 840,350 C 870,680 910,680 940,350 C 970,20 1010,20 1040,350"/>
       
-      <!-- ClipPath per segmenti VISION (7 segmenti orizzontali) -->
-      <clipPath id="clipVision1"><rect x="0" y="0" width="140" height="280"/></clipPath>
-      <clipPath id="clipVision2"><rect x="140" y="0" width="140" height="280"/></clipPath>
-      <clipPath id="clipVision3"><rect x="280" y="0" width="140" height="280"/></clipPath>
-      <clipPath id="clipVision4"><rect x="420" y="0" width="140" height="280"/></clipPath>
-      <clipPath id="clipVision5"><rect x="560" y="0" width="140" height="280"/></clipPath>
-      <clipPath id="clipVision6"><rect x="700" y="0" width="140" height="280"/></clipPath>
-      <clipPath id="clipVision7"><rect x="840" y="0" width="200" height="280"/></clipPath>
+      <!-- ═══ VISION: Clip ai BORDI delle lettere (ogni lettera = 2 cambi stato) ═══ -->
+      <!-- V: inizio → bordo SX (DIETRO) -->
+      <clipPath id="clipV1"><rect x="0" y="0" width="70" height="300"/></clipPath>
+      <!-- V: spazio interno (DAVANTI) -->
+      <clipPath id="clipV2"><rect x="70" y="0" width="80" height="300"/></clipPath>
+      <!-- V-I: bordo DX V + gap (DIETRO) -->
+      <clipPath id="clipV3"><rect x="150" y="0" width="60" height="300"/></clipPath>
       
-      <!-- ClipPath per zona FOTO -->
-      <clipPath id="clipPhoto"><rect x="0" y="245" width="1000" height="210"/></clipPath>
+      <!-- I: bordo SX (DAVANTI) -->
+      <clipPath id="clipV4"><rect x="210" y="0" width="50" height="300"/></clipPath>
+      <!-- I-S: bordo DX I + gap (DIETRO) -->
+      <clipPath id="clipV5"><rect x="260" y="0" width="60" height="300"/></clipPath>
       
-      <!-- ClipPath per segmenti INTELLIGENCE (5 segmenti) -->
-      <clipPath id="clipIntel1"><rect x="0" y="490" width="200" height="210"/></clipPath>
-      <clipPath id="clipIntel2"><rect x="200" y="490" width="200" height="210"/></clipPath>
-      <clipPath id="clipIntel3"><rect x="400" y="490" width="200" height="210"/></clipPath>
-      <clipPath id="clipIntel4"><rect x="600" y="490" width="200" height="210"/></clipPath>
-      <clipPath id="clipIntel5"><rect x="800" y="490" width="200" height="210"/></clipPath>
+      <!-- S: bordo SX (DAVANTI) -->
+      <clipPath id="clipV6"><rect x="320" y="0" width="75" height="300"/></clipPath>
+      <!-- S-I: bordo DX S + gap (DIETRO) -->
+      <clipPath id="clipV7"><rect x="395" y="0" width="60" height="300"/></clipPath>
       
-      <!-- Gradienti per ogni segmento -->
+      <!-- I: bordo SX (DAVANTI) -->
+      <clipPath id="clipV8"><rect x="455" y="0" width="50" height="300"/></clipPath>
+      <!-- I-O: bordo DX I + gap (DIETRO) -->
+      <clipPath id="clipV9"><rect x="505" y="0" width="60" height="300"/></clipPath>
+      
+      <!-- O: bordo SX (DAVANTI) -->
+      <clipPath id="clipV10"><rect x="565" y="0" width="85" height="300"/></clipPath>
+      <!-- O-N: bordo DX O + gap (DIETRO) -->
+      <clipPath id="clipV11"><rect x="650" y="0" width="60" height="300"/></clipPath>
+      
+      <!-- N: bordo SX (DAVANTI) -->
+      <clipPath id="clipV12"><rect x="710" y="0" width="95" height="300"/></clipPath>
+      <!-- N: bordo DX finale (DIETRO) -->
+      <clipPath id="clipV13"><rect x="805" y="0" width="235" height="300"/></clipPath>
+      
+      <!-- ClipPath per zona FOTO (centrale) -->
+      <clipPath id="clipPhoto"><rect x="0" y="240" width="1000" height="220"/></clipPath>
+      
+      <!-- ═══ INTELLIGENCE: Clip ai BORDI del blocco evidenziato ═══ -->
+      <!-- Blocco evidenziato: circa 10% - 90% width, Y: 520-600 -->
+      
+      <!-- Prima del blocco: DAVANTI -->
+      <clipPath id="clipI1"><rect x="0" y="460" width="100" height="240"/></clipPath>
+      <!-- Bordo SX blocco: DIETRO -->
+      <clipPath id="clipI2"><rect x="100" y="460" width="50" height="240"/></clipPath>
+      <!-- Dentro blocco parte 1: DAVANTI -->
+      <clipPath id="clipI3"><rect x="150" y="460" width="200" height="240"/></clipPath>
+      <!-- Dentro blocco parte 2: DIETRO -->
+      <clipPath id="clipI4"><rect x="350" y="460" width="200" height="240"/></clipPath>
+      <!-- Dentro blocco parte 3: DAVANTI -->
+      <clipPath id="clipI5"><rect x="550" y="460" width="200" height="240"/></clipPath>
+      <!-- Bordo DX blocco: DIETRO -->
+      <clipPath id="clipI6"><rect x="750" y="460" width="50" height="240"/></clipPath>
+      <!-- Dopo il blocco: DAVANTI -->
+      <clipPath id="clipI7"><rect x="800" y="460" width="240" height="240"/></clipPath>
+      
+      <!-- ═══ GRADIENTI PROGRESSIVI ═══ -->
+      <!-- VISION: 13 gradienti -->
       <linearGradient id="mpGradV1" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stop-color="var(--mp-curve-c0)" stop-opacity="0"/>
-        <stop offset="10%" stop-color="var(--mp-curve-c0)"/>
-        <stop offset="35%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="7%" stop-color="var(--mp-curve-c0)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradV2" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="10%" stop-color="var(--mp-curve-c0)"/>
-        <stop offset="25%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="5%" stop-color="var(--mp-curve-c0)"/>
+        <stop offset="15%" stop-color="var(--mp-curve-c0)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradV3" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="20%" stop-color="var(--mp-curve-c1)"/>
-        <stop offset="40%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="13%" stop-color="var(--mp-curve-c0)"/>
+        <stop offset="21%" stop-color="var(--mp-curve-c1)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradV4" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="35%" stop-color="var(--mp-curve-c1)"/>
-        <stop offset="55%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="19%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="26%" stop-color="var(--mp-curve-c1)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradV5" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="50%" stop-color="var(--mp-curve-c2)"/>
-        <stop offset="70%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="24%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="32%" stop-color="var(--mp-curve-c1)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradV6" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="65%" stop-color="var(--mp-curve-c2)"/>
-        <stop offset="85%" stop-color="var(--mp-curve-c3)"/>
+        <stop offset="30%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="39%" stop-color="var(--mp-curve-c1)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradV7" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="37%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="45%" stop-color="var(--mp-curve-c2)"/>
+      </linearGradient>
+      <linearGradient id="mpGradV8" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="43%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="50%" stop-color="var(--mp-curve-c2)"/>
+      </linearGradient>
+      <linearGradient id="mpGradV9" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="48%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="56%" stop-color="var(--mp-curve-c2)"/>
+      </linearGradient>
+      <linearGradient id="mpGradV10" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="54%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="65%" stop-color="var(--mp-curve-c2)"/>
+      </linearGradient>
+      <linearGradient id="mpGradV11" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="63%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="71%" stop-color="var(--mp-curve-c3)"/>
+      </linearGradient>
+      <linearGradient id="mpGradV12" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="69%" stop-color="var(--mp-curve-c3)"/>
         <stop offset="80%" stop-color="var(--mp-curve-c3)"/>
+      </linearGradient>
+      <linearGradient id="mpGradV13" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="78%" stop-color="var(--mp-curve-c3)"/>
         <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
       
+      <!-- FOTO: gradiente centrale -->
       <linearGradient id="mpGradPhoto" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="var(--mp-curve-c0)" stop-opacity="0.3"/>
-        <stop offset="50%" stop-color="var(--mp-curve-c1)"/>
+        <stop offset="0%" stop-color="var(--mp-curve-c1)" stop-opacity="0.3"/>
+        <stop offset="50%" stop-color="var(--mp-curve-c2)"/>
         <stop offset="100%" stop-color="var(--mp-curve-c2)" stop-opacity="0.3"/>
       </linearGradient>
       
+      <!-- INTELLIGENCE: 7 gradienti -->
       <linearGradient id="mpGradI1" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="var(--mp-curve-c1)" stop-opacity="0"/>
-        <stop offset="20%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="0%" stop-color="var(--mp-curve-c2)" stop-opacity="0"/>
+        <stop offset="10%" stop-color="var(--mp-curve-c2)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradI2" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="8%" stop-color="var(--mp-curve-c2)"/>
         <stop offset="15%" stop-color="var(--mp-curve-c2)"/>
-        <stop offset="40%" stop-color="var(--mp-curve-c2)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradI3" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="13%" stop-color="var(--mp-curve-c2)"/>
         <stop offset="35%" stop-color="var(--mp-curve-c2)"/>
-        <stop offset="65%" stop-color="var(--mp-curve-c2)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradI4" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
-        <stop offset="60%" stop-color="var(--mp-curve-c2)"/>
-        <stop offset="85%" stop-color="var(--mp-curve-c3)"/>
+        <stop offset="33%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="55%" stop-color="var(--mp-curve-c2)"/>
       </linearGradient>
-      
       <linearGradient id="mpGradI5" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="53%" stop-color="var(--mp-curve-c2)"/>
+        <stop offset="75%" stop-color="var(--mp-curve-c3)"/>
+      </linearGradient>
+      <linearGradient id="mpGradI6" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="73%" stop-color="var(--mp-curve-c3)"/>
         <stop offset="80%" stop-color="var(--mp-curve-c3)"/>
+      </linearGradient>
+      <linearGradient id="mpGradI7" x1="0" x2="1040" gradientUnits="userSpaceOnUse">
+        <stop offset="78%" stop-color="var(--mp-curve-c3)"/>
         <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
     </defs>
   </svg>
 
-  <!-- ═══ ZONA VISION: 7 segmenti con weaving ═══ -->
-  <!-- Segmento 1: DIETRO (z:0) -->
+  <!-- ═══ ZONA VISION: 13 segmenti (ogni lettera = 2 bordi) ═══ -->
+  <!-- V bordo SX: DIETRO -->
   <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--1" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV1)" clip-path="url(#clipVision1)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV1)" clip-path="url(#clipV1)"/>
   </svg>
 
-  <!-- Segmento 2: DAVANTI (z:2) -->
+  <!-- V interno: DAVANTI -->
   <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--2" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV2)" clip-path="url(#clipVision2)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV2)" clip-path="url(#clipV2)"/>
   </svg>
 
-  <!-- Segmento 3: DIETRO (z:0) -->
+  <!-- V bordo DX + gap: DIETRO -->
   <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--3" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV3)" clip-path="url(#clipVision3)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV3)" clip-path="url(#clipV3)"/>
   </svg>
 
-  <!-- Segmento 4: DAVANTI (z:2) -->
+  <!-- I bordo SX: DAVANTI -->
   <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--4" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV4)" clip-path="url(#clipVision4)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV4)" clip-path="url(#clipV4)"/>
   </svg>
 
-  <!-- Segmento 5: DIETRO (z:0) -->
+  <!-- I bordo DX + gap: DIETRO -->
   <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--5" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV5)" clip-path="url(#clipVision5)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV5)" clip-path="url(#clipV5)"/>
   </svg>
 
-  <!-- Segmento 6: DAVANTI (z:2) -->
+  <!-- S bordo SX: DAVANTI -->
   <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--6" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV6)" clip-path="url(#clipVision6)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV6)" clip-path="url(#clipV6)"/>
   </svg>
 
-  <!-- Segmento 7: DIETRO (z:0) -->
+  <!-- S bordo DX + gap: DIETRO -->
   <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--7" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV7)" clip-path="url(#clipVision7)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV7)" clip-path="url(#clipV7)"/>
+  </svg>
+
+  <!-- I bordo SX: DAVANTI -->
+  <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--8" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV8)" clip-path="url(#clipV8)"/>
+  </svg>
+
+  <!-- I bordo DX + gap: DIETRO -->
+  <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--9" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV9)" clip-path="url(#clipV9)"/>
+  </svg>
+
+  <!-- O bordo SX: DAVANTI -->
+  <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--10" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV10)" clip-path="url(#clipV10)"/>
+  </svg>
+
+  <!-- O bordo DX + gap: DIETRO -->
+  <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--11" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV11)" clip-path="url(#clipV11)"/>
+  </svg>
+
+  <!-- N bordo SX: DAVANTI -->
+  <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--12" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV12)" clip-path="url(#clipV12)"/>
+  </svg>
+
+  <!-- N bordo DX finale: DIETRO -->
+  <svg class="mp-hero-curve mp-hero-curve--vision-seg mp-hero-curve--vision-seg--13" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradV13)" clip-path="url(#clipV13)"/>
   </svg>
 
   <!-- ═══ ZONA FOTO: Curva singola dietro ═══ -->
@@ -200,35 +296,47 @@ layout: default
     <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradPhoto)" clip-path="url(#clipPhoto)"/>
   </svg>
 
-  <!-- ═══ ZONA INTELLIGENCE: 5 segmenti con weaving ═══ -->
-  <!-- Segmento 1: DAVANTI (z:6) -->
+  <!-- ═══ ZONA INTELLIGENCE: 7 segmenti (blocco evidenziato = cambi stato) ═══ -->
+  <!-- Prima del blocco: DAVANTI -->
   <svg class="mp-hero-curve mp-hero-curve--intel-seg mp-hero-curve--intel-seg--1" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI1)" clip-path="url(#clipIntel1)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI1)" clip-path="url(#clipI1)"/>
   </svg>
 
-  <!-- Segmento 2: DIETRO (z:4) -->
+  <!-- Bordo SX blocco: DIETRO -->
   <svg class="mp-hero-curve mp-hero-curve--intel-seg mp-hero-curve--intel-seg--2" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI2)" clip-path="url(#clipIntel2)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI2)" clip-path="url(#clipI2)"/>
   </svg>
 
-  <!-- Segmento 3: DIETRO (z:4) -->
+  <!-- Dentro blocco parte 1: DAVANTI -->
   <svg class="mp-hero-curve mp-hero-curve--intel-seg mp-hero-curve--intel-seg--3" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI3)" clip-path="url(#clipIntel3)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI3)" clip-path="url(#clipI3)"/>
   </svg>
 
-  <!-- Segmento 4: DAVANTI (z:6) -->
+  <!-- Dentro blocco parte 2: DIETRO -->
   <svg class="mp-hero-curve mp-hero-curve--intel-seg mp-hero-curve--intel-seg--4" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI4)" clip-path="url(#clipIntel4)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI4)" clip-path="url(#clipI4)"/>
   </svg>
 
-  <!-- Segmento 5: DIETRO (z:4) -->
+  <!-- Dentro blocco parte 3: DAVANTI -->
   <svg class="mp-hero-curve mp-hero-curve--intel-seg mp-hero-curve--intel-seg--5" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
-    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI5)" clip-path="url(#clipIntel5)"/>
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI5)" clip-path="url(#clipI5)"/>
+  </svg>
+
+  <!-- Bordo DX blocco: DIETRO -->
+  <svg class="mp-hero-curve mp-hero-curve--intel-seg mp-hero-curve--intel-seg--6" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI6)" clip-path="url(#clipI6)"/>
+  </svg>
+
+  <!-- Dopo il blocco: DAVANTI -->
+  <svg class="mp-hero-curve mp-hero-curve--intel-seg mp-hero-curve--intel-seg--7" aria-hidden="true"
+       viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+    <use class="mp-hero-curve__body" href="#mpCurvePathWide" stroke="url(#mpGradI7)" clip-path="url(#clipI7)"/>
   </svg>
 
   <!-- Linea decorativa di palline con gradient VISION -->

@@ -1509,11 +1509,15 @@ body {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// 🎯 SISTEMA CURVE 3D CON WEAVING CORRETTO (SVG clipPath nativi)
+// 🎯 SISTEMA WEAVING AI BORDI LETTERE (cambio stato ad ogni bordo)
 // ═══════════════════════════════════════════════════════════════════════
-// Clipping gestito da SVG <clipPath> in HTML, non da CSS clip-path
-// Z-index alterna per creare effetto tessuto 3D
-// Ampiezza aumentata (Y: 50-650) per avvolgere INTELLIGENCE
+// VISION: 13 segmenti (ogni lettera = bordo SX + DX)
+//   - Bordi/gap: DIETRO (segmenti dispari: 1,3,5,7,9,11,13)
+//   - Interni lettera: DAVANTI (segmenti pari: 2,4,6,8,10,12)
+// INTELLIGENCE: 7 segmenti (blocco evidenziato = cambio stato)
+//   - Fuori/davanti blocco: DAVANTI (1,3,5,7)
+//   - Bordi/dentro blocco: DIETRO (2,4,6)
+// Ampiezza MASSIMA: Y 20-680 per arrivare sotto INTELLIGENCE
 
 // ═══ ZONA VISION: Weaving attraverso le lettere ═══
 .mp-hero-curve--vision-seg {
@@ -1530,18 +1534,18 @@ body {
     vector-effect: non-scaling-stroke;
   }
 
-  // Segmenti dispari (1,3,5,7): DIETRO testo VISION
-  &--1, &--3, &--5, &--7 {
+  // Segmenti dispari (1,3,5,7,9,11,13): bordi/gap → DIETRO
+  &--1, &--3, &--5, &--7, &--9, &--11, &--13 {
     z-index: 0;  // DIETRO VISION text (z:1)
-    opacity: 0.75;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.12)) brightness(0.85);
+    opacity: 0.7;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)) brightness(0.8);
   }
 
-  // Segmenti pari (2,4,6): DAVANTI testo VISION
-  &--2, &--4, &--6 {
+  // Segmenti pari (2,4,6,8,10,12): interni lettere → DAVANTI
+  &--2, &--4, &--6, &--8, &--10, &--12 {
     z-index: 2;  // DAVANTI VISION text (z:1)
-    opacity: 0.9;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(1.1);
+    opacity: 0.95;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25)) brightness(1.15);
   }
 }
 
@@ -1564,7 +1568,7 @@ body {
   }
 }
 
-// ═══ ZONA INTELLIGENCE: Weaving attorno al blocco ═══
+// ═══ ZONA INTELLIGENCE: Weaving attorno al blocco evidenziato ═══
 .mp-hero-curve--intel-seg {
   position: absolute;
   top: 0; left: 0;
@@ -1574,23 +1578,23 @@ body {
   transition: z-index 0s, opacity 0.3s ease;
   
   .mp-hero-curve__body {
-    stroke-width: 28px;  // Più spessa per maggiore impatto
+    stroke-width: 30px;  // Più spessa per maggiore impatto
     opacity: 0.95;
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
-  // Segmenti DAVANTI al blocco INTELLIGENCE (1,4)
-  &--1, &--4 {
+  // Segmenti DAVANTI al blocco (1,3,5,7): fuori e attraverso evidenziatore
+  &--1, &--3, &--5, &--7 {
     z-index: 6;  // DAVANTI evidenziatore (z:5)
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)) brightness(1.15);
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35)) brightness(1.2);
   }
 
-  // Segmenti DIETRO al blocco (2,3,5)
-  &--2, &--3, &--5 {
+  // Segmenti DIETRO (2,4,6): bordi e dentro blocco
+  &--2, &--4, &--6 {
     z-index: 4;  // DIETRO evidenziatore (z:5)
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.85);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.8);
   }
 }
 

@@ -51,17 +51,50 @@ layout: default
   </div><!-- /.mp-cinema-hero__canvas -->
 
   <!--
-    RIBBON CURVE — Sistema 3D con occlusione fisica alternata
-    La curva passa DIETRO le zone piene del testo e DAVANTI agli spazi vuoti
-    Usa mix-blend-mode e mask per simulare profondità reale
-    
-    ViewBox 0 0 1000 700:
-      Y≈80-200  = zona VISION (top)
-      Y≈250-450 = zona foto (middle) 
-      Y≈500-650 = zona INTELLIGENCE (bottom)
+    RIBBON CURVE — Sistema con maschera basata sul TESTO REALE
+    Usa <clipPath> con il testo VISION per creare occlusione precisa
+    La curva passa ATTRAVERSO gli spazi vuoti delle lettere
   -->
 
-  <!-- LAYER 0: z:0 — DIETRO VISION (zona sinistra + alternanza fisica) -->
+  <!-- Definizione maschere SVG condivise -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <!-- Maschera VISION: usa il testo stesso per occlusione -->
+      <mask id="visionTextMask" maskUnits="userSpaceOnUse">
+        <!-- Bianco = visibile, Nero = nascosto -->
+        <rect width="1000" height="700" fill="white"/>
+        <!-- Testo VISION come forma nera → nasconde la curva dove c'è il testo -->
+        <text x="500" y="150" 
+              font-family="var(--mp-font-sans)" 
+              font-size="220" 
+              font-weight="900" 
+              text-anchor="middle"
+              fill="black"
+              letter-spacing="-8">VISION</text>
+      </mask>
+      
+      <!-- Maschera VISION invertita: mostra solo dove c'è il testo -->
+      <mask id="visionTextMaskInvert" maskUnits="userSpaceOnUse">
+        <rect width="1000" height="700" fill="black"/>
+        <text x="500" y="150" 
+              font-family="var(--mp-font-sans)" 
+              font-size="220" 
+              font-weight="900" 
+              text-anchor="middle"
+              fill="white"
+              letter-spacing="-8">VISION</text>
+      </mask>
+      
+      <!-- Maschera INTELLIGENCE -->
+      <mask id="intelligenceMask" maskUnits="userSpaceOnUse">
+        <rect width="1000" height="700" fill="white"/>
+        <!-- Blocco INTELLIGENCE come rettangolo nero solido -->
+        <rect x="200" y="520" width="600" height="120" fill="black"/>
+      </mask>
+    </defs>
+  </svg>
+
+  <!-- LAYER 0: Passa DIETRO il testo (visibile solo negli spazi vuoti) -->
   <svg class="mp-hero-curve mp-hero-curve--l0" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
@@ -74,25 +107,14 @@ layout: default
         <stop offset="92%"  stop-color="var(--mp-curve-c3)"/>
         <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
-      
-      <!-- Maschera per alternanza fisica: nasconde dove ci sono le lettere piene -->
-      <mask id="visionMaskBack">
-        <!-- Bianco = visibile, nero = nascosto -->
-        <rect width="1000" height="700" fill="white"/>
-        <!-- Zona VISION: alterna visibilità seguendo la fisica della curva -->
-        <!-- Onde dispari (V, S, O destra) = passa DIETRO → zona nera -->
-        <rect x="0" y="60" width="200" height="180" fill="black" opacity="0.8"/>
-        <rect x="400" y="60" width="200" height="180" fill="black" opacity="0.8"/>
-        <rect x="700" y="60" width="150" height="180" fill="black" opacity="0.8"/>
-      </mask>
     </defs>
-    <g mask="url(#visionMaskBack)">
+    <g mask="url(#visionTextMask)">
       <path class="mp-hero-curve__body"  stroke="url(#mpCGrad0)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
       <path class="mp-hero-curve__spine" stroke="url(#mpCGrad0)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
     </g>
   </svg>
 
-  <!-- LAYER 1: z:2 — DAVANTI VISION (zona destra + spazi vuoti) -->
+  <!-- LAYER 1: Passa DAVANTI al testo (nascosto dove c'è testo) -->
   <svg class="mp-hero-curve mp-hero-curve--l1" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">
@@ -105,22 +127,15 @@ layout: default
         <stop offset="92%"  stop-color="var(--mp-curve-c3)"/>
         <stop offset="100%" stop-color="var(--mp-curve-c3)" stop-opacity="0"/>
       </linearGradient>
-      
-      <!-- Maschera per alternanza DAVANTI: passa attraverso spazi vuoti -->
-      <mask id="visionMaskFront">
-        <rect width="1000" height="700" fill="white"/>
-        <!-- Onde pari (I, I, N) = passa DAVANTI → zona bianca (già bianca) -->
-        <!-- Zona destra più visibile -->
-        <rect x="0" y="60" width="400" height="180" fill="black" opacity="0.5"/>
-      </mask>
     </defs>
-    <g mask="url(#visionMaskFront)">
+    <!-- NESSUNA maschera: visibile ovunque nella zona top -->
+    <g>
       <path class="mp-hero-curve__body"  stroke="url(#mpCGrad1)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
       <path class="mp-hero-curve__spine" stroke="url(#mpCGrad1)" d="M -40,350 C -20,80 20,80 40,350 C 60,620 100,620 120,350 C 140,80 180,80 200,350 C 220,620 260,620 280,350 C 300,80 340,80 360,350 C 380,620 420,620 440,350 C 460,80 500,80 520,350 C 540,620 580,620 600,350 C 620,80 660,80 680,350 C 700,620 740,620 760,350 C 780,80 820,80 840,350 C 860,620 900,620 920,350 C 940,80 980,80 1040,350"/>
     </g>
   </svg>
 
-  <!-- LAYER 2: z:2 — DIETRO FOTO (passa attraverso la trasparenza) -->
+  <!-- LAYER 2: DAVANTI foto -->
   <svg class="mp-hero-curve mp-hero-curve--l2" aria-hidden="true"
        viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet"
        xmlns="http://www.w3.org/2000/svg">

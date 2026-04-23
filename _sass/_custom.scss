@@ -1509,29 +1509,90 @@ body {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// 🎯 SISTEMA CURVE 3D PULITO - Architettura Semplificata
+// 🎯 SISTEMA CURVE 3D CON WEAVING INTELLIGENTE
 // ═══════════════════════════════════════════════════════════════════════
-// 3 curve separate per 3 zone verticali, NO maschere complesse
-// Z-Index: 0 (vision) < 1 (VISION text) < 2 (photo curve) < 4 (FOTO) < 5 (INTELLIGENCE) > 4 (intel curve)
+// La curva cambia z-index (davanti/dietro) ad ogni bordo di lettera
+// Considera la direzione fisica (salita/discesa) per il cambio di stato
+// Ampiezza aumentata per avvolgere INTELLIGENCE come tubo
 
-// ═══ CURVA SUPERIORE: ZONA VISION (0-35%) ═══
+// ═══ ZONA VISION: Weaving attraverso le lettere (0-35%) ═══
 .mp-hero-curve--vision {
-  z-index: 0;  // DIETRO testo VISION (z:1)
-  clip-path: inset(0 0 65% 0);  // Visibile solo top 35%
+  z-index: 0;  // Base layer (dietro VISION z:1)
+  clip-path: inset(0 0 65% 0);
+  opacity: 0;  // Nascosta - gestita dai segmenti
+  pointer-events: none;
+}
+
+// Segmenti individuali per weaving VISION
+// Logica: ogni segmento alterna davanti/dietro in base alla fisica della curva
+.mp-hero-curve--vision-seg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
   opacity: 0.85;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: z-index 0s, opacity 0.3s ease;
   
   .mp-hero-curve__body {
     stroke-width: 22px;
     opacity: 0.9;
   }
+
+  // Segmento 1: inizio → primo bordo V (discesa, dietro)
+  &--1 {
+    z-index: 0;  // DIETRO
+    clip-path: polygon(0% 0%, 15% 0%, 15% 100%, 0% 100%);
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15)) brightness(0.8);
+  }
+
+  // Segmento 2: V interno → bordo I (salita, davanti)
+  &--2 {
+    z-index: 2;  // DAVANTI
+    clip-path: polygon(15% 0%, 30% 0%, 30% 100%, 15% 100%);
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25)) brightness(1.1);
+  }
+
+  // Segmento 3: I interno → bordo S (discesa, dietro)
+  &--3 {
+    z-index: 0;  // DIETRO
+    clip-path: polygon(30% 0%, 45% 0%, 45% 100%, 30% 100%);
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15)) brightness(0.8);
+  }
+
+  // Segmento 4: S interno → bordo I (salita, davanti)
+  &--4 {
+    z-index: 2;  // DAVANTI
+    clip-path: polygon(45% 0%, 60% 0%, 60% 100%, 45% 100%);
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25)) brightness(1.1);
+  }
+
+  // Segmento 5: I interno → bordo O (discesa, dietro)
+  &--5 {
+    z-index: 0;  // DIETRO
+    clip-path: polygon(60% 0%, 75% 0%, 75% 100%, 60% 100%);
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15)) brightness(0.8);
+  }
+
+  // Segmento 6: O interno → bordo N (salita, davanti)
+  &--6 {
+    z-index: 2;  // DAVANTI
+    clip-path: polygon(75% 0%, 90% 0%, 90% 100%, 75% 100%);
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25)) brightness(1.1);
+  }
+
+  // Segmento 7: N finale (discesa, dietro)
+  &--7 {
+    z-index: 0;  // DIETRO
+    clip-path: polygon(90% 0%, 100% 0%, 100% 100%, 90% 100%);
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15)) brightness(0.8);
+  }
 }
 
-// ═══ CURVA CENTRALE: ZONA FOTO (35-65%) ═══
+// ═══ ZONA FOTO: Passa sempre dietro (35-65%) ═══
 .mp-hero-curve--photo {
   z-index: 2;  // DIETRO foto (z:4)
-  clip-path: inset(35% 0 35% 0);  // Visibile solo centro 30%
-  opacity: 0.6;  // Più trasparente
+  clip-path: inset(35% 0 35% 0);
+  opacity: 0.6;
   filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
   
   .mp-hero-curve__body {
@@ -1540,17 +1601,62 @@ body {
   }
 }
 
-// ═══ CURVA INFERIORE: ZONA INTELLIGENCE (85-100%) ═══
+// ═══ ZONA INTELLIGENCE: Weaving + Evidenziatore (70-100%) ═══
+// Ampiezza aumentata per avvolgere il blocco come tubo
 .mp-hero-curve--intel {
-  z-index: 4;  // SOTTO blocco LOWER (z:5)
-  clip-path: inset(85% 0 0 0);  // Visibile solo bottom 15%
+  z-index: 4;  // Base sotto INTELLIGENCE (z:5)
+  clip-path: inset(70% 0 0 0);  // Inizia prima (era 85%)
+  opacity: 0;  // Nascosta - gestita dai segmenti
+  pointer-events: none;
+}
+
+// Segmenti per weaving INTELLIGENCE
+.mp-hero-curve--intel-seg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
   opacity: 0.95;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  transition: z-index 0s, opacity 0.3s ease;
   
   .mp-hero-curve__body {
-    stroke-width: 26px;
+    stroke-width: 28px;  // Più spessa
     opacity: 0.95;
-    animation: mp-curve-breathe 6s ease-in-out infinite;
+  }
+
+  // Segmento 1: prima del blocco (salita, davanti)
+  &--1 {
+    z-index: 6;  // DAVANTI evidenziatore
+    clip-path: polygon(0% 70%, 20% 70%, 20% 100%, 0% 100%);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)) brightness(1.15);
+  }
+
+  // Segmento 2: incontra bordo sx (discesa, dietro)
+  &--2 {
+    z-index: 4;  // DIETRO evidenziatore (z:5)
+    clip-path: polygon(20% 70%, 40% 70%, 40% 100%, 20% 100%);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.85);
+  }
+
+  // Segmento 3: attraversa blocco (ancora discesa, ancora dietro)
+  &--3 {
+    z-index: 4;  // DIETRO
+    clip-path: polygon(40% 70%, 60% 70%, 60% 100%, 40% 100%);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.85);
+  }
+
+  // Segmento 4: esce dal blocco (salita, davanti)
+  &--4 {
+    z-index: 6;  // DAVANTI evidenziatore
+    clip-path: polygon(60% 70%, 80% 70%, 80% 100%, 60% 100%);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)) brightness(1.15);
+  }
+
+  // Segmento 5: finale (discesa, dietro)
+  &--5 {
+    z-index: 4;  // DIETRO
+    clip-path: polygon(80% 70%, 100% 70%, 100% 100%, 80% 100%);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.85);
   }
 }
 
@@ -1566,8 +1672,10 @@ body {
   }
 }
 
-// ═══ CODICE VECCHIO RIMOSSO (L0, L1, L2, L3, occluded, taper) ═══
-// Tutto il codice vecchio eliminato per manutenibilità
+// ═══ NOTA TECNICA ═══
+// Ogni segmento usa clip-path per mostrare solo una porzione orizzontale della curva
+// Z-index alternato simula il passaggio fisico davanti/dietro le lettere
+// Filter brightness crea profondità: più chiaro = davanti, più scuro = dietro
 
 // ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────
 .mp-cinema-hero__lower {

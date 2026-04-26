@@ -66,7 +66,7 @@
   // Curve decorativa hero — light mode
   --mp-curve-stroke: rgba(25, 25, 60, 0.18);  // fallback
   --mp-curve-c0: #1a1b6e;    // indigo profondo
-  --mp-curve-c1: #6d28d9;    // viola
+  --mp-curve-c1: #a084f5;    // viola più chiaro
   --mp-curve-c2: #c026d3;    // fuchsia
   --mp-curve-c3: #f43f82;    // rosa neon
 }
@@ -1414,21 +1414,27 @@ body {
   line-height: 1;
   will-change: transform;
 
-  span {
+  // Span outer: porta il gradient e le proprietà tipografiche
+  > span {
     font-family: var(--mp-font-sans);
-    font-size: clamp(6.5rem, 22vw, 21rem);   // leggermente ridotto
+    font-size: clamp(6.5rem, 22vw, 21rem);
     font-weight: 900;
-    letter-spacing: 0.02em;                  // più spazio tra le lettere (era -0.04em)
+    letter-spacing: 0.02em;
     line-height: 1;
     white-space: nowrap;
     position: relative;
-    left: -1.5vw;   // corregge l'effetto ottico di non centratura
+    left: -1.5vw;
     background: linear-gradient(135deg, var(--global-text-color) 0%, var(--mp-accent) 50%, #00d4ff 100%);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: mp-gradient-shift 12s ease infinite;
+  }
+
+  // Span lettera: display inline, nessun override di stile
+  .mp-v-l {
+    display: inline;
   }
 }
 
@@ -1486,6 +1492,7 @@ body {
   // Nastro principale — VARIABLE STROKE WIDTH per effetto tapering
   &__body {
     fill: none;
+    stroke: var(--mp-curve-c1);
     stroke-width: 18px;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -1509,197 +1516,72 @@ body {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// 🎯 WEAVING AL SECONDO BORDO (Effetto 3D Realistico)
+// 🎯 WAVE WEAVING — 3 SVG, stacking context nativo (mask SVG-nativa)
 // ═══════════════════════════════════════════════════════════════════════
-// LOGICA: Cambio stato avviene al 2° bordo (uscita), non al 1° (entrata)
-// - ENTRA lettera (1° bordo) = MANTIENE stato corrente
-// - ESCE lettera (2° bordo) = CAMBIA stato
-// Questo simula la curva che passa ATTRAVERSO la lettera come oggetto 3D
+// z-index stack:
+//   canvas     z:2
+//   vision     z:1
+//   wave-back  z:0  → sempre sotto tutto (effetto "dietro")
+//   vision-front z:3 → sopra VISION(z:1), sotto foto(z:4)
+//   figure     z:4
+//   lower      z:5
+//   intel-front z:6 → sopra blocco INTELLIGENCE(z:5)
 
-// ═══ ZONA VISION: 16 segmenti ═══
-.mp-hero-curve--vision-seg {
+// ─── Base comune a tutti e 3 i layer ────────────────────────────────────
+.mp-wave {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
-  
-  .mp-hero-curve__body {
+  overflow: visible;
+}
+
+// ─── Stile del path — NESSUN CSS filter (glow gestito da SVG <filter> nativo) ──
+// Il CSS filter sfora le mask SVG → artefatti "taglio" e "doppio"
+// Il glow è definito tramite feGaussianBlur nei <defs> di ogni SVG
+.mp-wave__path {
+  fill: none;
+  stroke: var(--mp-curve-c1, #6d28d9);
+  stroke-width: 22px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 3200;
+  stroke-dashoffset: 3200;
+  animation: mp-curve-draw 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+}
+
+// ─── Layer 1: sempre sotto tutto (z:0) — filo "dietro al tessuto"
+// Il back layer è più scuro + stroke leggermente più sottile per comunicare profondità
+
+.mp-wave--back {
+  z-index: 0;
+  opacity: 1;
+
+  .mp-wave__path {
+  stroke: var(--mp-curve-c1, #6d28d9);
     stroke-width: 22px;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;
-  }
-
-  // Seg 1: Inizio → entra V (DAVANTI)
-  &--1 {
-    z-index: 2;  // DAVANTI
-    opacity: 0.95;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25)) brightness(1.15);
-  }
-
-  // Seg 2: Esce V (cambia DIETRO)
-  &--2 {
-    z-index: 0;  // DIETRO
-    opacity: 0.7;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)) brightness(0.8);
-  }
-
-  // Seg 3,4: Gap + entra I (mantiene DIETRO)
-  &--3, &--4 {
-    z-index: 0;  // DIETRO
-    opacity: 0.7;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)) brightness(0.8);
-  }
-
-  // Seg 5: Esce I (cambia DAVANTI)
-  &--5 {
-    z-index: 2;  // DAVANTI
-    opacity: 0.95;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25)) brightness(1.15);
-  }
-
-  // Seg 6,7: Gap + entra S (mantiene DAVANTI)
-  &--6, &--7 {
-    z-index: 2;  // DAVANTI
-    opacity: 0.95;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25)) brightness(1.15);
-  }
-
-  // Seg 8: Esce S (cambia DIETRO)
-  &--8 {
-    z-index: 0;  // DIETRO
-    opacity: 0.7;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)) brightness(0.8);
-  }
-
-  // Seg 9,10: Gap + entra I (mantiene DIETRO)
-  &--9, &--10 {
-    z-index: 0;  // DIETRO
-    opacity: 0.7;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)) brightness(0.8);
-  }
-
-  // Seg 11: Esce I (cambia DAVANTI)
-  &--11 {
-    z-index: 2;  // DAVANTI
-    opacity: 0.95;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25)) brightness(1.15);
-  }
-
-  // Seg 12,13: Gap + entra O (mantiene DAVANTI)
-  &--12, &--13 {
-    z-index: 2;  // DAVANTI
-    opacity: 0.95;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25)) brightness(1.15);
-  }
-
-  // Seg 14: Esce O (cambia DIETRO)
-  &--14 {
-    z-index: 0;  // DIETRO
-    opacity: 0.7;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)) brightness(0.8);
-  }
-
-  // Seg 15,16: Gap + entra N → finale (mantiene DIETRO)
-  &--15, &--16 {
-    z-index: 0;  // DIETRO
-    opacity: 0.7;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)) brightness(0.8);
   }
 }
 
-// ═══ ZONA FOTO: Passa sempre dietro ═══
-.mp-hero-curve--photo {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 2;  // DIETRO foto (z:4)
-  opacity: 0.6;
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
-  
-  .mp-hero-curve__body {
-    stroke-width: 20px;
-    opacity: 0.75;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
+// ─── Layer 2: davanti a VISION(z:1), dietro foto(z:4) ───────────────────
+.mp-wave--vision-front {
+  z-index: 3;
+  opacity: 1;
 }
 
-// ═══ ZONA INTELLIGENCE: Weaving attorno al blocco evidenziato ═══
-.mp-hero-curve--intel-seg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  opacity: 0.95;
-  transition: z-index 0s, opacity 0.3s ease;
-  
-  .mp-hero-curve__body {
-    stroke-width: 30px;  // Più spessa per maggiore impatto
-    opacity: 0.95;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
+// ─── Layer 3: non più usato (intel-front rimosso — la curva passa SOTTO l'highlight) ───
 
-  // Seg 1,2: Prima blocco + entra (mantiene DAVANTI)
-  &--1, &--2 {
-    z-index: 6;  // DAVANTI evidenziatore (z:5)
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35)) brightness(1.2);
-  }
-
-  // Seg 3: Esce da blocco (cambia DIETRO)
-  &--3 {
-    z-index: 4;  // DIETRO evidenziatore
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.8);
-  }
-
-  // Seg 4: Dentro blocco (mantiene DIETRO)
-  &--4 {
-    z-index: 4;  // DIETRO
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.8);
-  }
-
-  // Seg 5: Esce da blocco (cambia DAVANTI)
-  &--5 {
-    z-index: 6;  // DAVANTI
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35)) brightness(1.2);
-  }
-
-  // Seg 6: Dentro blocco (mantiene DAVANTI)
-  &--6 {
-    z-index: 6;  // DAVANTI
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35)) brightness(1.2);
-  }
-
-  // Seg 7: Esce finale (cambia DIETRO)
-  &--7 {
-    z-index: 4;  // DIETRO
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)) brightness(0.8);
-  }
+// ─── Draw-on animation ──────────────────────────────────────────────────
+@keyframes mp-curve-draw {
+  to { stroke-dashoffset: 0; }
 }
 
-// ═══ ANIMAZIONI ═══
-@keyframes mp-curve-breathe {
-  0%, 100% { 
-    opacity: 0.95;
-    filter: brightness(1);
-  }
-  50% { 
-    opacity: 1;
-    filter: brightness(1.15);
-  }
-}
 
-// ═══ NOTA TECNICA ═══
-// SVG <clipPath> in HTML definisce porzioni visibili (approccio nativo corretto)
-// Z-index alternato simula passaggio fisico davanti/dietro
-// Filter brightness: più chiaro = davanti, più scuro = dietro
 
-// ── Linea a tratti — Lower (dentro canvas) ───────────────────────────────────
+
+
+// ── Lower (dentro canvas) ─────────────────────────────────────────────────────
 .mp-cinema-hero__lower {
   position: relative;
   z-index: 5;   // davanti alla foto (z:4), blocca la curva SOTTO

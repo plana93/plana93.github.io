@@ -234,10 +234,32 @@ layout: default
   })();
   </script>
 
+  <!-- ═══════════════════════════════════════════════════
+       BAR SOTTO L'HERO: nome · ruolo · info · cta
+       Usa le classi già definite in _custom.scss
+       ═══════════════════════════════════════════════════ -->
+  <div class="mp-cinema-hero__bar">
+    <div>
+      <p class="mp-label">[ONLINE] &nbsp;·&nbsp; OPEN TO COLLABORATION</p>
+      <h1 class="mp-cinema-hero__name">
+        {%- if site.title == "blank" -%}
+          <span class="font-weight-bold">{{ site.first_name }}</span>
+          {{ site.middle_name }} {{ site.last_name }}
+        {%- else -%}
+          {{ site.title }}
+        {%- endif -%}
+      </h1>
+      {%- if page.subtitle %}<p class="mp-cinema-hero__role">{{ page.subtitle }}</p>{%- endif %}
+      {%- if page.profile.more_info %}<div class="mp-profile-info-wrap">{{ page.profile.more_info }}</div>{%- endif %}
+    </div>
+    <div class="mp-cinema-hero__cta">
+      <a href="{{ '/publications/' | relative_url }}" class="mp-btn mp-btn--primary">[VIEW_RESEARCH]</a>
+      <a href="mailto:{{ site.email }}" class="mp-btn mp-btn--ghost">[CONTACT]</a>
+    </div>
+  </div>
+
 </header>
 
-
-      
 
 <div class="mp-about-page">
 

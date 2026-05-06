@@ -21,7 +21,7 @@ social: true
 <!-- ================================================================
      TECHNICAL STACK
      ================================================================ -->
-<div class="mp-hero">
+<section class="mp-section">
 
   <p class="mp-label">/// TECHNICAL STACK</p>
   <p class="mp-hero__stack-intro">
@@ -63,7 +63,7 @@ social: true
 
   </div>
 
-</div>
+</section>
 
 <hr class="mp-divider">
 

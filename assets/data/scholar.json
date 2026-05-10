@@ -1,0 +1,149 @@
+{
+  "name": "Mirco Planamente",
+  "affiliation": "ARGO Vision & Politecnico di Torino & Italian Institute of Technology",
+  "citations": 414,
+  "h_index": 0,
+  "i10_index": 0,
+  "publications": [
+    {
+      "title": "E2 (go) motion: Motion augmented event stream for egocentric action recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2022",
+      "citations": 105
+    },
+    {
+      "title": "Domain generalization through audio-visual relative norm alignment in first person action recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2022",
+      "citations": 94
+    },
+    {
+      "title": "Recurrent convolutional fusion for RGB-D object recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2019",
+      "citations": 58
+    },
+    {
+      "title": "Unsupervised domain adaptation through inter-modal rotation for rgb-d object recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2020",
+      "citations": 37
+    },
+    {
+      "title": "Da4event: towards bridging the sim-to-real gap for event cameras using domain adaptation",
+      "authors": "",
+      "venue": "",
+      "year": "2021",
+      "citations": 26
+    },
+    {
+      "title": "Relative norm alignment for tackling domain shift in deep multi-modal classification",
+      "authors": "",
+      "venue": "",
+      "year": "2024",
+      "citations": 17
+    },
+    {
+      "title": "N-rod: A neuromorphic dataset for synthetic-to-real domain adaptation",
+      "authors": "",
+      "venue": "",
+      "year": "2021",
+      "citations": 15
+    },
+    {
+      "title": "Self-supervised joint encoding of motion and appearance for first person action recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2021",
+      "citations": 13
+    },
+    {
+      "title": "Test-time adaptation for egocentric action recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2022",
+      "citations": 12
+    },
+    {
+      "title": "Egocentric zone-aware action recognition across environments",
+      "authors": "",
+      "venue": "",
+      "year": "2025",
+      "citations": 8
+    },
+    {
+      "title": "Bringing online egocentric action recognition into the wild",
+      "authors": "",
+      "venue": "",
+      "year": "2023",
+      "citations": 7
+    },
+    {
+      "title": "Polito-iit submission to the epic-kitchens-100 unsupervised domain adaptation challenge for action recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2021",
+      "citations": 7
+    },
+    {
+      "title": "Toward human-robot cooperation: Unsupervised domain adaptation for egocentric action recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2022",
+      "citations": 6
+    },
+    {
+      "title": "PoliTO-IIT-CINI submission to the EPIC-KITCHENS-100 unsupervised domain adaptation challenge for action recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2022",
+      "citations": 4
+    },
+    {
+      "title": "FS-SAM2: Adapting Segment Anything Model 2 for Few-Shot Semantic Segmentation via Low-Rank Adaptation",
+      "authors": "",
+      "venue": "",
+      "year": "2025",
+      "citations": 2
+    },
+    {
+      "title": "Multi-Modal Learning for Cross-Domain Analysis of Egocentric Action and Object Recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2023",
+      "citations": 2
+    },
+    {
+      "title": "LCMV: lightweight classification module for video domain adaptation",
+      "authors": "",
+      "venue": "",
+      "year": "2023",
+      "citations": 1
+    },
+    {
+      "title": "Toward Human-Robot Cooperation: Unsupervised Domain Adaptation",
+      "authors": "",
+      "venue": "",
+      "year": "2023",
+      "citations": 0
+    },
+    {
+      "title": "Test Time Adaptation for Egocentric Vision.",
+      "authors": "",
+      "venue": "",
+      "year": "2023",
+      "citations": 0
+    },
+    {
+      "title": "Unsupervised Domain Adaptation Through Inter-Modal Rotation for RGB-D Object Recognition",
+      "authors": "",
+      "venue": "",
+      "year": "2020",
+      "citations": 0
+    }
+  ]
+}

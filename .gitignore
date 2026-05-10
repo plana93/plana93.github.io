@@ -9,3 +9,6 @@ _site
 Gemfile.lock
 vendor
 
+_old/
+.jekyll-cache/
+_site/

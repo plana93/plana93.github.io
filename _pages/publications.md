@@ -8,6 +8,6 @@ nav_order: 1
 <!-- _pages/publications.md -->
 <div class="publications">
 
-{% bibliography -f {{ site.scholar.bibliography }} %}
+<p><em>Publications list is rendered locally with jekyll-scholar.</em></p>
 
 </div>

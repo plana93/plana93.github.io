@@ -242,6 +242,41 @@
     }
   }
 
+  // Use Fitty to better fit large headline text into available width
+  function initFittyForHero() {
+    // guard
+    if (typeof fitty === 'undefined') return;
+    try {
+      // Fitty on VISION (the big gradient word)
+      var visionSpan = document.querySelector('.p-bb__vision span');
+      if (visionSpan) {
+        // limit size via options: minSize, maxSize (px)
+        fitty(visionSpan, { minSize: 40, maxSize: 400, multiLine: false });
+      }
+
+      // Fitty on INTELLIGENCE bar
+      var intelSpan = document.querySelector('.p-bb__intel span');
+      if (intelSpan) {
+        fitty(intelSpan, { minSize: 18, maxSize: 200, multiLine: false });
+      }
+
+      // Re-run fitIntelBar fallback resize logic after fitty settles
+      window.addEventListener('resize', function () {
+        setTimeout(function () { fitIntelBar(); }, 80);
+      }, { passive: true });
+
+      // Also re-run when the hero image loads (it can affect layout)
+      var heroImg = document.querySelector('.p-bb__photo');
+      if (heroImg) {
+        if (heroImg.complete) fitIntelBar();
+        else heroImg.addEventListener('load', fitIntelBar);
+      }
+    } catch (e) {
+      // silent
+      console.warn('fitty init failed', e);
+    }
+  }
+
   function initBillboardHero() {
     var isBillboard = !!$('.p-hero--billboard');
     if (!isBillboard) return;

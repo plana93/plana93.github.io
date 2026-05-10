@@ -543,14 +543,18 @@ img { max-width: 100%; height: auto; display: block; }
   left: 50%;
   transform: translate(-50%, -44%);
   z-index: 4;
-  width: clamp(240px, 42vw, 520px);
+  width: clamp(220px, 42vw, 520px);
+  max-height: 70vh;
+  aspect-ratio: 3 / 4;
   opacity: 0;
   will-change: transform;
 }
 
 .p-bb__photo {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
   display: block;
   // Effetto B&W con lieve contrasto
   filter: grayscale(100%) contrast(1.1) brightness(0.95);

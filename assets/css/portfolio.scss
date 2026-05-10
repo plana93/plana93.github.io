@@ -521,17 +521,16 @@ img { max-width: 100%; height: auto; display: block; }
   span {
     font-family: var(--p-font-head);
     font-weight: 800;
-    // Font che riempia la viewport orizzontalmente
-    font-size: clamp(5rem, 20vw, 18rem);
+    // Clamp calibrato: max 12rem evita oversizing su schermi >1200px
+    font-size: clamp(4rem, 17vw, 12rem);
     line-height: 0.88;
     letter-spacing: -0.04em;
-    // Gradient teal → verde brillante (come nell'immagine)
+    // Gradient teal → verde brillante
     background: linear-gradient(100deg, #00d4aa 0%, #00ff88 55%, #00d4aa 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: block;
-    // Il testo deve stare nella viewport: usa container query-like trick
     padding-inline: 2vw;
   }
 }
@@ -590,7 +589,8 @@ img { max-width: 100%; height: auto; display: block; }
   span {
     font-family: var(--p-font-head);
     font-weight: 800;
-    font-size: clamp(2.5rem, 9vw, 10rem);
+    // Clamp calibrato: max 7rem evita oversizing
+    font-size: clamp(2.2rem, 8vw, 7rem);
     line-height: 0.92;
     letter-spacing: -0.02em;
     color: #0d1117;
@@ -640,25 +640,141 @@ img { max-width: 100%; height: auto; display: block; }
   &.is-visible { opacity: 1; }
 }
 
-// Responsive tweaks
+// ============================================================
+// HERO BILLBOARD — RESPONSIVE BREAKPOINTS
+// ============================================================
+
+// ── Tablet largo / small desktop (< 1024px) ─────────────────
+@media (max-width: 1024px) {
+  .p-bb__photo-wrap {
+    width: clamp(200px, 38vw, 400px);
+    transform: translate(-50%, -42%);
+  }
+  .p-bb__into {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    right: -1.5rem;
+  }
+  .p-bb__footer {
+    bottom: clamp(0.5rem, 1.5vw, 1rem);
+  }
+}
+
+// ── Tablet (< 768px) ────────────────────────────────────────
+@media (max-width: 768px) {
+  .p-bb__vision span {
+    font-size: clamp(3.5rem, 16vw, 8rem);
+  }
+  .p-bb__intel {
+    bottom: clamp(4.5rem, 11vw, 8rem);
+    span {
+      font-size: clamp(2rem, 9vw, 5rem);
+    }
+  }
+  .p-bb__photo-wrap {
+    width: clamp(180px, 45vw, 320px);
+    transform: translate(-50%, -40%);
+  }
+  .p-bb__into {
+    right: -0.75rem;
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
+  }
+  .p-bb__overline {
+    font-size: clamp(0.55rem, 1.6vw, 0.85rem);
+    letter-spacing: 0.3em;
+  }
+  .p-bb__footer {
+    bottom: clamp(0.5rem, 1.5vw, 1rem);
+    left: 1.25rem;
+    right: 1.25rem;
+  }
+  .p-hero__cta {
+    gap: 0.6rem;
+    .p-btn {
+      font-size: 0.82rem;
+      padding: 0.65rem 1.25rem;
+    }
+  }
+}
+
+// ── Mobile (< 640px) ────────────────────────────────────────
 @media (max-width: 640px) {
+  .p-bb__vision span {
+    font-size: clamp(3rem, 17vw, 6rem);
+  }
   .p-bb__into {
     right: -0.5rem;
     font-size: clamp(1rem, 5vw, 1.6rem);
+    top: 42%;
   }
   .p-bb__intel {
     bottom: clamp(4rem, 10vw, 7rem);
     span {
-      font-size: clamp(1.8rem, 10vw, 4rem);
+      font-size: clamp(1.6rem, 11vw, 4rem);
       letter-spacing: -0.01em;
       padding: 0.08em 0.15em;
     }
   }
+  .p-bb__photo-wrap {
+    width: clamp(160px, 55vw, 280px);
+    transform: translate(-50%, -38%);
+  }
   .p-bb__footer {
-    bottom: clamp(0.75rem, 2vw, 1.5rem);
+    bottom: clamp(0.5rem, 1.5vw, 1rem);
     left: 1rem;
     right: 1rem;
   }
+  .p-hero__cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    .p-btn { width: 100%; justify-content: center; }
+  }
+  // Sezioni dopo l'hero
+  .p-section { padding-block: clamp(3rem, 8vw, 5rem); }
+  .p-h2 { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+  .p-research-grid { grid-template-columns: 1fr; }
+  .p-industry-grid { grid-template-columns: 1fr; }
+  .p-pub {
+    grid-template-columns: 1fr;
+    gap: var(--p-s2);
+    &__cite { flex-direction: row; gap: 0.5rem; align-self: start; }
+    &__year { padding-top: 0; }
+  }
+}
+
+// ── Small mobile (< 480px) ───────────────────────────────────
+@media (max-width: 480px) {
+  .p-bb__vision span {
+    font-size: clamp(2.8rem, 18vw, 5rem);
+    letter-spacing: -0.03em;
+  }
+  .p-bb__intel span {
+    font-size: clamp(1.4rem, 12vw, 3.5rem);
+    padding: 0.07em 0.12em;
+    white-space: normal;
+    text-align: center;
+    line-height: 1;
+  }
+  .p-bb__intel {
+    bottom: clamp(3.5rem, 9vw, 6rem);
+  }
+  .p-bb__photo-wrap {
+    width: clamp(140px, 60vw, 240px);
+  }
+  .p-bb__overline {
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+  }
+  .p-bb__into {
+    font-size: clamp(0.9rem, 5vw, 1.4rem);
+    right: -0.25rem;
+  }
+  .p-bb__footer {
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+  // Nav nascosta su small mobile: mostra hamburger placeholder
+  .p-nav__links { display: none; }
 }
 
 // ============================================================

@@ -296,11 +296,30 @@
     var footer    = $('.p-bb__footer');
     var photo     = $('.p-bb__photo');
 
-    // ── Fallback senza GSAP ──────────────────────────────────
-    if (typeof gsap === 'undefined') {
+    // Utility: mostra tutti gli elementi senza animazione
+    function showAllImmediate() {
       [overline, vision, photoWrap, intel, footer].forEach(function(el) {
-        if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+        if (!el) return;
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.filter = '';
+        el.classList.add('is-visible');
       });
+    }
+
+    // ── Mobile (< 768px): niente GSAP/parallax, layout CSS gestisce tutto ──
+    if (window.innerWidth < 768) {
+      showAllImmediate();
+      // Ri-controlla se ruota lo schermo
+      window.addEventListener('resize', function() {
+        if (window.innerWidth < 768) showAllImmediate();
+      }, { passive: true });
+      return;
+    }
+
+    // ── Fallback senza GSAP (desktop) ────────────────────────
+    if (typeof gsap === 'undefined') {
+      showAllImmediate();
       return;
     }
 
@@ -664,6 +683,7 @@
     initHeroEntrance();   // fallback per layout classico
     initActiveNav();
     initPublications();
+    initFittyForHero();   // Fitty: adatta testo hero alla viewport
 
     // Ricalcola il font-size al resize (es. rotazione schermo)
     var resizeTimer;

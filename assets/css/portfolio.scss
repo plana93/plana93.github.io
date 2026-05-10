@@ -663,16 +663,14 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-// ── Tablet (< 768px) ────────────────────────────────────────
+// ── Tablet (768px) — layout ancora absolute ma ridimensionato ─
 @media (max-width: 768px) {
   .p-bb__vision span {
     font-size: clamp(3.5rem, 16vw, 8rem);
   }
   .p-bb__intel {
     bottom: clamp(4.5rem, 11vw, 8rem);
-    span {
-      font-size: clamp(2rem, 9vw, 5rem);
-    }
+    span { font-size: clamp(2rem, 9vw, 5rem); }
   }
   .p-bb__photo-wrap {
     width: clamp(180px, 45vw, 320px);
@@ -682,10 +680,6 @@ img { max-width: 100%; height: auto; display: block; }
     right: -0.75rem;
     font-size: clamp(1.1rem, 4vw, 1.8rem);
   }
-  .p-bb__overline {
-    font-size: clamp(0.55rem, 1.6vw, 0.85rem);
-    letter-spacing: 0.3em;
-  }
   .p-bb__footer {
     bottom: clamp(0.5rem, 1.5vw, 1rem);
     left: 1.25rem;
@@ -693,49 +687,130 @@ img { max-width: 100%; height: auto; display: block; }
   }
   .p-hero__cta {
     gap: 0.6rem;
-    .p-btn {
-      font-size: 0.82rem;
-      padding: 0.65rem 1.25rem;
-    }
+    .p-btn { font-size: 0.82rem; padding: 0.65rem 1.25rem; }
   }
 }
 
-// ── Mobile (< 640px) ────────────────────────────────────────
+// ── Mobile (< 640px) — LAYOUT STACKED FLEXBOX ────────────────
+// Abbandona l'absolute-overlay: tutti gli elementi tornano in flusso
 @media (max-width: 640px) {
-  .p-bb__vision span {
-    font-size: clamp(3rem, 17vw, 6rem);
+
+  // La section diventa flex column
+  .p-hero--billboard {
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    justify-content: flex-start;
+    padding-top:    4.5rem;  // spazio sotto navbar
+    padding-bottom: 2rem;
+    gap:            0;
+    overflow:       hidden;
   }
-  .p-bb__into {
-    right: -0.5rem;
-    font-size: clamp(1rem, 5vw, 1.6rem);
-    top: 42%;
+
+  // TRANSFORMING — statico, centrato
+  .p-bb__overline {
+    position:  static;
+    transform: none;
+    left:      auto;
+    top:       auto;
+    text-align: center;
+    opacity:   1 !important;
+    margin-bottom: 0.5rem;
   }
-  .p-bb__intel {
-    bottom: clamp(4rem, 10vw, 7rem);
+
+  // VISION — statico, occupa tutto il width, no clip
+  .p-bb__vision {
+    position:   static;
+    transform:  none;
+    width:      100%;
+    text-align: center;
+    opacity:    1 !important;
+    margin-bottom: 0.5rem;
+
     span {
-      font-size: clamp(1.6rem, 11vw, 4rem);
-      letter-spacing: -0.01em;
-      padding: 0.08em 0.15em;
+      font-size:   clamp(2.8rem, 17vw, 5.5rem);
+      padding-inline: 0;
+      white-space: nowrap;
+      overflow:    hidden;
+      text-overflow: ellipsis;
+      display:     block;
+      width:       100%;
     }
   }
+
+  // Foto — statica, centrata, proporzionata
   .p-bb__photo-wrap {
-    width: clamp(160px, 55vw, 280px);
-    transform: translate(-50%, -38%);
+    position:   relative;
+    top:        auto;
+    left:       auto;
+    transform:  none;
+    width:      min(260px, 72vw);
+    max-height: 45vh;
+    aspect-ratio: 3 / 4;
+    margin:     0 auto;
+    opacity:    1 !important;
+    order:      3;
   }
+
+  // "Into" label — resta sovrapposta alla foto (position absolute relativa al wrap)
+  .p-bb__into {
+    position:  absolute;
+    right:     -0.5rem;
+    top:       35%;
+    font-size: clamp(0.95rem, 4.5vw, 1.4rem);
+  }
+
+  // INTELLIGENCE — statica, subito sotto la foto
+  .p-bb__intel {
+    position:   static;
+    bottom:     auto;
+    transform:  none;
+    width:      100%;
+    margin-top: 0.5rem;
+    opacity:    1 !important;
+
+    span {
+      font-size:   clamp(1.6rem, 11vw, 4rem);
+      padding:     0.08em 0.4em;
+      white-space: nowrap;
+      width:       auto;
+      max-width:   95vw;
+      overflow:    hidden;
+      text-align:  center;
+      display:     block;
+      margin:      0 auto;
+    }
+  }
+
+  // CTA footer — statico, sotto intelligence
   .p-bb__footer {
-    bottom: clamp(0.5rem, 1.5vw, 1rem);
-    left: 1rem;
-    right: 1rem;
+    position:  static;
+    bottom:    auto;
+    left:      auto;
+    right:     auto;
+    width:     100%;
+    padding:   0 1rem;
+    margin-top: 1rem;
+    opacity:   1 !important;
   }
+
   .p-hero__cta {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    .p-btn { width: 100%; justify-content: center; }
+    align-items:    center;
+    gap:            0.5rem;
+    .p-btn {
+      width:           100%;
+      max-width:       320px;
+      justify-content: center;
+    }
   }
-  // Sezioni dopo l'hero
+
+  // Scroll hint nascosto su mobile (non serve in layout statico)
+  .p-hero--billboard .p-hero__scroll-hint { display: none; }
+
+  // Sezioni sotto l'hero
   .p-section { padding-block: clamp(3rem, 8vw, 5rem); }
-  .p-h2 { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+  .p-h2      { font-size: clamp(1.6rem, 6vw, 2.5rem); }
   .p-research-grid { grid-template-columns: 1fr; }
   .p-industry-grid { grid-template-columns: 1fr; }
   .p-pub {
@@ -746,39 +821,26 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-// ── Small mobile (< 480px) ───────────────────────────────────
+// ── Small mobile (< 480px) — ulteriori aggiustamenti ─────────
 @media (max-width: 480px) {
   .p-bb__vision span {
-    font-size: clamp(2.8rem, 18vw, 5rem);
-    letter-spacing: -0.03em;
+    font-size: clamp(2.4rem, 17vw, 4.5rem);
   }
   .p-bb__intel span {
-    font-size: clamp(1.4rem, 12vw, 3.5rem);
-    padding: 0.07em 0.12em;
-    white-space: normal;
-    text-align: center;
-    line-height: 1;
-  }
-  .p-bb__intel {
-    bottom: clamp(3.5rem, 9vw, 6rem);
+    font-size: clamp(1.3rem, 12vw, 3rem);
+    padding:   0.07em 0.3em;
   }
   .p-bb__photo-wrap {
-    width: clamp(140px, 60vw, 240px);
+    width: min(220px, 78vw);
   }
   .p-bb__overline {
-    font-size: 0.55rem;
+    font-size:      0.55rem;
     letter-spacing: 0.25em;
   }
   .p-bb__into {
-    font-size: clamp(0.9rem, 5vw, 1.4rem);
-    right: -0.25rem;
+    font-size: clamp(0.85rem, 4.5vw, 1.2rem);
+    right:     -0.2rem;
   }
-  .p-bb__footer {
-    left: 0.75rem;
-    right: 0.75rem;
-  }
-  // Nav nascosta su small mobile: mostra hamburger placeholder
-  .p-nav__links { display: none; }
 }
 
 // ============================================================

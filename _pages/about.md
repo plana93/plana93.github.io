@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About
-permalink: /
+permalink: /about-old/
 subtitle: AI Researcher × Computer Vision × PhD
 
 profile:

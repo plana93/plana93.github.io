@@ -1,7 +1,7 @@
 ---
 layout: portfolio
 title:
-permalink: /new/
+permalink: /
 description: "AI Researcher specializing in Computer Vision, Egocentric Vision & Domain Adaptation. PhD @ Politecnico di Torino | ARGO Vision | Italian Institute of Technology."
 ---
 

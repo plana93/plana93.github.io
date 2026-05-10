@@ -68,5 +68,5 @@ nav: false
 <div class="p-cta-row p-reveal">
   <a href="https://www.linkedin.com/feed/update/urn:li:activity:7330195774300934145/"
      target="_blank" rel="noopener" class="p-btn p-btn--primary">View on LinkedIn ↗</a>
-  <a href="/new/#talks" class="p-btn p-btn--outline">← Back to Talks</a>
+  <a href="/#talks" class="p-btn p-btn--outline">← Back to Talks</a>
 </div>

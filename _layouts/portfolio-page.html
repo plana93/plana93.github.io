@@ -38,15 +38,15 @@
 <!-- Navigation -->
 <nav class="p-nav p-nav--solid" id="pNav" role="navigation" aria-label="Main navigation">
   <div class="p-nav__inner">
-    <a href="{{ '/new/' | relative_url }}" class="p-nav__logo" aria-label="{{ site.first_name }} {{ site.last_name }} home">
+    <a href="{{ '/' | relative_url }}" class="p-nav__logo" aria-label="{{ site.first_name }} {{ site.last_name }} home">
       {{ site.first_name }} <span class="p-nav__logo-accent">{{ site.last_name }}</span><span style="color:var(--p-teal)">_</span>
     </a>
     <ul class="p-nav__links" role="list">
-      <li><a href="{{ '/new/#research' | relative_url }}" class="p-nav__link">Research</a></li>
-      <li><a href="{{ '/new/#publications' | relative_url }}" class="p-nav__link">Publications</a></li>
-      <li><a href="{{ '/new/#projects' | relative_url }}" class="p-nav__link">Projects</a></li>
-      <li><a href="{{ '/new/#talks' | relative_url }}" class="p-nav__link">Talks</a></li>
-      <li><a href="{{ '/new/#contact' | relative_url }}" class="p-nav__link">Contact</a></li>
+      <li><a href="{{ '/#research' | relative_url }}" class="p-nav__link">Research</a></li>
+      <li><a href="{{ '/#publications' | relative_url }}" class="p-nav__link">Publications</a></li>
+      <li><a href="{{ '/#projects' | relative_url }}" class="p-nav__link">Projects</a></li>
+      <li><a href="{{ '/#talks' | relative_url }}" class="p-nav__link">Talks</a></li>
+      <li><a href="{{ '/#contact' | relative_url }}" class="p-nav__link">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -54,7 +54,7 @@
 <!-- Page Header -->
 <header class="p-page-header">
   <div class="p-container">
-    <a href="{{ '/new/' | relative_url }}" class="p-back-link" aria-label="Back to home">
+    <a href="{{ '/' | relative_url }}" class="p-back-link" aria-label="Back to home">
       ← Back
     </a>
     <span class="p-overline">{{ page.overline | default: page.category }}</span>

@@ -84,5 +84,5 @@ nav: false
 
 <!-- CTA -->
 <div class="p-cta-row p-reveal">
-  <a href="/new/#talks" class="p-btn p-btn--outline">← Back to Talks</a>
+  <a href="/#talks" class="p-btn p-btn--outline">← Back to Talks</a>
 </div>

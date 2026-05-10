@@ -134,7 +134,7 @@ nav: false
 <div class="p-cta-row p-reveal">
   <a href="https://epic-kitchens.github.io/2022.html#results"
      target="_blank" rel="noopener" class="p-btn p-btn--primary">View Official Results ↗</a>
-  <a href="/new/#talks" class="p-btn p-btn--outline">← Back to Talks</a>
+  <a href="/#talks" class="p-btn p-btn--outline">← Back to Talks</a>
 </div>
 
 <div class="mp-callout">

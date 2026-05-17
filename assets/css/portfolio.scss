@@ -691,122 +691,136 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-// ── Mobile (< 640px) — LAYOUT STACKED FLEXBOX ────────────────
-// Abbandona l'absolute-overlay: tutti gli elementi tornano in flusso
+// ── Mobile (< 640px) — FLEXBOX + NEGATIVE MARGINS OVERLAP ───────
+// Gli elementi restano in flusso ma si sovrappongono come sul desktop:
+// VISION sporge sotto la foto dalla parte superiore,
+// INTELLIGENCE sporge sopra la foto dalla parte inferiore.
 @media (max-width: 640px) {
 
-  // La section diventa flex column
+  // Container: flex column, overflow visible per permettere overlap
   .p-hero--billboard {
     display:         flex;
     flex-direction:  column;
     align-items:     center;
     justify-content: flex-start;
-    min-height:      auto;       // rimuove il 100dvh — il contenuto detta l'altezza
-    padding-top:     4.5rem;     // spazio sotto navbar
-    padding-bottom:  3rem;
+    min-height:      auto;
+    height:          auto;
+    padding-top:     4rem;
+    padding-bottom:  2.5rem;
     gap:             0;
-    overflow:        hidden;
+    overflow-x:      clip;   // evita scrollbar orizzontale
+    overflow-y:      visible; // permette overlap verticale (negative margins)
   }
 
-  // TRANSFORMING — statico, centrato
+  // Canvas + onde: non interferiscono col layout
+  .p-hero__canvas,
+  .p-hero__waves {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  // TRANSFORMING — in flusso, centrato, sopra VISION
   .p-bb__overline {
-    position:  static;
-    transform: none;
-    left:      auto;
-    top:       auto;
-    text-align: center;
-    opacity:   1 !important;
-    margin-bottom: 0.5rem;
+    position:       relative;
+    z-index:        6;
+    transform:      none;
+    left:           auto;
+    top:            auto;
+    text-align:     center;
+    opacity:        1 !important;
+    margin-bottom:  0.4rem;
+    font-size:      clamp(0.5rem, 2.8vw, 0.75rem);
+    letter-spacing: 0.4em;
   }
 
-  // VISION — statico, occupa tutto il width, no clip
+  // VISION — in flusso, margin-bottom negativo → la foto si sovrappone sopra
   .p-bb__vision {
-    position:   static;
-    transform:  none;
-    width:      100%;
-    text-align: center;
-    opacity:    1 !important;
-    margin-bottom: 0.5rem;
+    position:      relative;
+    z-index:       3;          // sotto la foto (z:4)
+    transform:     none;
+    width:         100%;
+    text-align:    center;
+    opacity:       1 !important;
+    margin-bottom: -2.5rem;    // overlap: il bordo superiore della foto copre il testo
 
     span {
-      font-size:   clamp(2.8rem, 17vw, 5.5rem);
+      font-size:      clamp(3rem, 22vw, 5.5rem);
+      line-height:    0.88;
+      letter-spacing: -0.04em;
+      display:        block;
       padding-inline: 0;
-      white-space: nowrap;
-      overflow:    hidden;
-      text-overflow: ellipsis;
-      display:     block;
-      width:       100%;
+      white-space:    nowrap;
     }
   }
 
-  // Foto — statica, centrata, proporzionata
+  // Foto — in flusso, centrata, margin-bottom negativo → INTELLIGENCE si sovrappone
   .p-bb__photo-wrap {
-    position:   relative;
-    top:        auto;
-    left:       auto;
-    transform:  none;
-    width:      min(260px, 72vw);
-    max-height: 45vh;
+    position:     relative;    // indispensabile per .p-bb__into child + z-index
+    z-index:      4;
+    top:          auto;
+    left:         auto;
+    transform:    none;
+    width:        min(260px, 72vw);
+    max-height:   none;
     aspect-ratio: 3 / 4;
-    margin:     0 auto;
-    opacity:    1 !important;
-    order:      3;
+    margin:       0 auto -2.5rem; // overlap: INTELLIGENCE si sovrappone al fondo
+    opacity:      1 !important;
   }
 
-  // "Into" label — resta sovrapposta alla foto (position absolute relativa al wrap)
+  // "Into" label — resta assoluta rispetto al photo-wrap
   .p-bb__into {
     position:  absolute;
-    right:     -0.5rem;
-    top:       35%;
-    font-size: clamp(0.95rem, 4.5vw, 1.4rem);
+    right:     -0.8rem;
+    top:       36%;
+    font-size: clamp(1rem, 5vw, 1.5rem);
+    z-index:   5;
   }
 
-  // INTELLIGENCE — statica, subito sotto la foto
+  // INTELLIGENCE — in flusso, z-index sopra la foto
   .p-bb__intel {
-    position:   static;
-    bottom:     auto;
-    transform:  none;
-    width:      100%;
-    margin-top: 0.5rem;
-    opacity:    1 !important;
+    position:  relative;
+    z-index:   5;              // sopra la foto (z:4)
+    bottom:    auto;
+    transform: none;
+    width:     auto;
+    opacity:   1 !important;
 
     span {
-      font-size:   clamp(1.6rem, 11vw, 4rem);
-      padding:     0.08em 0.4em;
+      font-size:   clamp(1.8rem, 13vw, 4rem);
+      line-height: 0.92;
+      padding:     0.08em 0.35em;
       white-space: nowrap;
-      width:       auto;
-      max-width:   95vw;
-      overflow:    hidden;
-      text-align:  center;
       display:     block;
-      margin:      0 auto;
+      width:       fit-content;
     }
   }
 
-  // CTA footer — statico, sotto intelligence
+  // CTA footer — in flusso, sotto tutto
   .p-bb__footer {
-    position:  static;
-    bottom:    auto;
-    left:      auto;
-    right:     auto;
-    width:     100%;
-    padding:   0 1rem;
-    margin-top: 1rem;
-    opacity:   1 !important;
+    position:   relative;
+    z-index:    6;
+    bottom:     auto;
+    left:       auto;
+    right:      auto;
+    width:      100%;
+    padding:    0 1rem;
+    margin-top: 2rem;
+    opacity:    1 !important;
   }
 
   .p-hero__cta {
     flex-direction: column;
     align-items:    center;
-    gap:            0.5rem;
+    gap:            0.6rem;
     .p-btn {
       width:           100%;
-      max-width:       320px;
+      max-width:       300px;
       justify-content: center;
     }
   }
 
-  // Scroll hint nascosto su mobile (non serve in layout statico)
   .p-hero--billboard .p-hero__scroll-hint { display: none; }
 
   // Sezioni sotto l'hero
@@ -822,25 +836,29 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-// ── Small mobile (< 480px) — ulteriori aggiustamenti ─────────
+// ── Small mobile (< 480px) ────────────────────────────────────
 @media (max-width: 480px) {
   .p-bb__vision span {
-    font-size: clamp(2.4rem, 17vw, 4.5rem);
+    font-size: clamp(2.6rem, 22vw, 4.5rem);
   }
   .p-bb__intel span {
-    font-size: clamp(1.3rem, 12vw, 3rem);
+    font-size: clamp(1.5rem, 13vw, 3rem);
     padding:   0.07em 0.3em;
   }
   .p-bb__photo-wrap {
-    width: min(220px, 78vw);
+    width:         min(220px, 78vw);
+    margin-bottom: -2rem;
+  }
+  .p-bb__vision {
+    margin-bottom: -2rem;
   }
   .p-bb__overline {
-    font-size:      0.55rem;
-    letter-spacing: 0.25em;
+    font-size:      0.5rem;
+    letter-spacing: 0.3em;
   }
   .p-bb__into {
-    font-size: clamp(0.85rem, 4.5vw, 1.2rem);
-    right:     -0.2rem;
+    font-size: clamp(0.9rem, 4.8vw, 1.3rem);
+    right:     -0.4rem;
   }
 }
 

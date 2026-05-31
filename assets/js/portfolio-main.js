@@ -614,64 +614,6 @@
   }
 
   /* ============================================================
-     8. PUBLICATIONS: LOAD FROM JSON
-  ============================================================ */
-  function initPublications() {
-    var container = document.getElementById('pubContainer');
-    if (!container) return;
-
-    var skeleton = document.getElementById('pubSkeleton');
-
-    fetch('/assets/data/scholar.json')
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (skeleton) skeleton.style.display = 'none';
-        if (!data || !data.publications || !data.publications.length) {
-          container.innerHTML = '<p class="p-body" style="text-align:center;opacity:0.5;">Publications loading…</p>';
-          return;
-        }
-
-        // Show top 8 by citation count
-        var pubs = data.publications
-          .sort(function (a, b) { return (b.citedBy || 0) - (a.citedBy || 0); })
-          .slice(0, 8);
-
-        container.innerHTML = pubs.map(function (p, i) {
-          return '<article class="p-pub p-reveal" aria-label="' + (p.title || '') + '">'
-            + '<div class="p-pub__year">' + (p.year || '—') + '</div>'
-            + '<div class="p-pub__body">'
-            +   '<h3 class="p-pub__title">'
-            +     (p.url ? '<a href="' + p.url + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;" onmouseover="this.style.color=\'var(--p-purple)\'" onmouseout="this.style.color=\'inherit\'">' : '')
-            +     (p.title || 'Untitled')
-            +     (p.url ? '</a>' : '')
-            +   '</h3>'
-            +   '<p class="p-pub__authors">' + (p.authors || '') + '</p>'
-            +   '<span class="p-pub__venue">' + (p.venue || '') + '</span>'
-            + '</div>'
-            + '<div class="p-pub__cite" title="Citations">'
-            +   '<span class="p-pub__cite-num">' + (p.citedBy || 0) + '</span>'
-            +   '<span class="p-pub__cite-label">cit.</span>'
-            + '</div>'
-            + '</article>';
-        }).join('');
-
-        // Trigger reveal for newly added elements
-        initScrollReveal();
-
-        // Update stats if present
-        var totalCites = data.publications.reduce(function (s, p) { return s + (p.citedBy || 0); }, 0);
-        var elCites = document.querySelector('[data-count="citations"]');
-        if (elCites) elCites.dataset.count = totalCites;
-        var elPubs = document.querySelector('[data-count="publications"]');
-        if (elPubs) elPubs.dataset.count = data.publications.length;
-      })
-      .catch(function () {
-        if (skeleton) skeleton.style.display = 'none';
-        container.innerHTML = '<p class="p-body" style="text-align:center;opacity:0.5;">See publications on <a href="https://scholar.google.com/citations?user=GIJ3h4AAAAAJ" target="_blank" style="color:var(--p-purple)">Google Scholar</a></p>';
-      });
-  }
-
-  /* ============================================================
      INIT
   ============================================================ */
   function init() {
@@ -682,7 +624,6 @@
     initBillboardHero();  // billboard hero (nuovo design)
     initHeroEntrance();   // fallback per layout classico
     initActiveNav();
-    initPublications();
     initFittyForHero();   // Fitty: adatta testo hero alla viewport
 
     // Ricalcola il font-size al resize (es. rotazione schermo)

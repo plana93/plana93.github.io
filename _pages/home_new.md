@@ -245,15 +245,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         <div class="p-chat">
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">ok so the model got 97% on test set. deployed it this morning. it's flagging EVERYTHING. like literally everything is a defect. production is stopped. client is calling. what the hell</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--me">
-            <span class="p-chat__bubble">did you test on the actual line lighting or just the lab images</span>
-            <span class="p-chat__avatar">🧑‍💻</span>
+            <span class="p-chat__bubble">97% on test set. deployed. now it flags EVERYTHING. production stopped. help</span>
           </div>
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">...the lab ones. oh no</span>
+            <span class="p-chat__bubble">we have 3 defect photos. three. how do I train a model with THREE images</span>
           </div>
         </div>
       </div>
@@ -263,15 +259,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         <div class="p-chat">
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">they changed the conveyor belt last week. now accuracy is 61%. we're back to square one. I CANNOT retrain this thing every time they sneeze on the factory floor</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--me">
-            <span class="p-chat__bubble">we need domain adaptation. you can't keep labelling from scratch every shift change</span>
-            <span class="p-chat__avatar">🧑‍💻</span>
+            <span class="p-chat__bubble">they changed the belt last week. accuracy went from 94% to 61%. I cannot keep retraining every time something changes on the floor</span>
           </div>
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">yes please fix this before I lose my mind</span>
+            <span class="p-chat__bubble">new camera arrives monday. do we start from scratch AGAIN</span>
           </div>
         </div>
       </div>
@@ -281,15 +273,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         <div class="p-chat">
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">we have 12k images. spent 3 months labelling. loss is still garbage. my manager wants answers tomorrow</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--me">
-            <span class="p-chat__bubble">can I see a sample? ... ok yeah. at least 30% of these labels are wrong. some are literally the same image copy-pasted</span>
-            <span class="p-chat__avatar">🧑‍💻</span>
+            <span class="p-chat__bubble">12k images. 3 months of labelling. loss still garbage. the intern did it btw</span>
           </div>
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">the intern did it. I'm going to cry</span>
+            <span class="p-chat__bubble">all 800 "defect" images look identical. I think he copy-pasted</span>
           </div>
         </div>
       </div>
@@ -299,15 +287,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         <div class="p-chat">
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">inference is 900ms. line does 60 pieces/min. do the math. it's not working. and they want this on a Raspberry Pi. a RASPBERRY PI.</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--me">
-            <span class="p-chat__bubble">ok. quantization, pruning, maybe distillation. what's the accuracy floor you can live with</span>
-            <span class="p-chat__avatar">🧑‍💻</span>
+            <span class="p-chat__bubble">900ms inference. line does 60 ppm. they also want it on a Raspberry Pi. a RASPBERRY PI.</span>
           </div>
           <div class="p-chat__msg p-chat__msg--them">
             <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">above "gets us sued". so... high</span>
+            <span class="p-chat__bubble">demo is friday. it runs at 2fps. I need a miracle</span>
           </div>
         </div>
       </div>

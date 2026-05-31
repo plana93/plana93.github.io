@@ -1984,24 +1984,12 @@ img { max-width: 100%; height: auto; display: block; }
     align-items: flex-end;
     gap: 0.5rem;
 
-    // messaggio "loro" — avatar a sinistra
     &--them {
       flex-direction: row;
       .p-chat__bubble {
         background: rgba(255,255,255,0.07);
         border-radius: 14px 14px 14px 3px;
         color: var(--p-text-muted);
-      }
-    }
-
-    // messaggio "me" — avatar a destra, bolla colorata
-    &--me {
-      flex-direction: row-reverse;
-      .p-chat__bubble {
-        background: rgba(0,212,170,0.12);
-        border: 1px solid rgba(0,212,170,0.2);
-        border-radius: 14px 14px 3px 14px;
-        color: var(--p-text);
       }
     }
   }

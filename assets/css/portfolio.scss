@@ -777,21 +777,21 @@ img { max-width: 100%; height: auto; display: block; }
 
   // INTELLIGENCE — in flusso, z-index sopra la foto
   .p-bb__intel {
-    position:  relative;
-    z-index:   5;              // sopra la foto (z:4)
-    bottom:    auto;
-    transform: none;
-    width:     100%;           // larghezza piena così non viene clip dal container
-    overflow:  visible;
+    position:   relative;
+    z-index:    5;              // sopra la foto (z:4)
+    bottom:     auto;
+    transform:  none;
+    width:      100%;           // prende tutta la larghezza
+    overflow:   visible;
 
     span {
-      font-size:   clamp(1.8rem, 13vw, 4rem);
-      line-height: 0.92;
-      padding:     0.08em 0.45em; // padding leggermente aumentato per non tagliare bordi
-      white-space: nowrap;
-      display:     block;
-      width:       fit-content;
-      margin:      0 auto;    // centra la span nella width: 100%
+      font-size:        clamp(1.4rem, 10vw, 4rem);  // ridotto: evita overflow
+      line-height:      0.92;
+      padding:          0.08em 0.35em;
+      white-space:      nowrap;
+      display:          block;
+      width:            fit-content;
+      margin-inline:    auto;   // centrato
     }
   }
 
@@ -882,7 +882,7 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: clamp(2.6rem, 22vw, 4.5rem);
   }
   .p-bb__intel span {
-    font-size: clamp(1.5rem, 13vw, 3rem);
+    font-size: clamp(1.2rem, 9vw, 3rem);
     padding:   0.07em 0.3em;
   }
   .p-bb__photo-wrap {
@@ -1444,9 +1444,14 @@ img { max-width: 100%; height: auto; display: block; }
     transform: translateX(0);
   }
 
-  // Delay scalato per l'effetto a cascata (card 1→5)
-  @for $i from 1 through 8 {
+  // Delay scalato per l'effetto a cascata (card 1→9)
+  // Le ultime 3 card (7,8,9) usano --reveal-delay inline per stagger preciso
+  @for $i from 1 through 6 {
     &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.1}s; }
+  }
+  // Riga 3 (card 7,8,9): --reveal-delay inline nel markup
+  &[style*="--reveal-delay"] {
+    transition-delay: var(--reveal-delay, 0ms);
   }
 }
 
@@ -2252,22 +2257,8 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  position: relative;       // necessario per il link-overlay assoluto
-  cursor: pointer;
+  position: relative;  // necessario per stretched-link
   transition: border-color 0.3s, transform 0.35s, box-shadow 0.35s;
-
-  // Link overlay invisibile — rende cliccabile tutta la card
-  &__link-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-  }
-
-  // I link reali devono stare sopra l'overlay
-  &__links {
-    position: relative;
-    z-index: 2;
-  }
 
   &:hover {
     border-color: rgba(110,86,255,0.45);
@@ -2370,6 +2361,14 @@ img { max-width: 100%; height: auto; display: block; }
     &:hover {
       border-color: var(--p-teal);
       color: #fff;
+    }
+
+    // Stretched link — copre tutta la card rendendola cliccabile
+    &--stretched::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
     }
   }
 

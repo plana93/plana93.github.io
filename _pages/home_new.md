@@ -118,7 +118,6 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           <span class="p-research-card__venue">Trimmed/Untrimmed</span>
           <span class="p-research-card__venue">Summarization</span>
           <span class="p-research-card__venue">Retrieval</span>
-          <span class="p-research-card__venue">ICPR</span>
         </div>
       </div>
 
@@ -193,7 +192,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Object Detection -->
-      <div class="p-research-card p-reveal-right">
+      <div class="p-research-card p-reveal-right" style="--reveal-delay:0ms">
         <div class="p-card__icon" style="background:rgba(255,165,0,0.12)">🎯</div>
         <span class="p-card__tag">[07] Localization</span>
         <h3 class="p-research-card__area">Object Detection</h3>
@@ -210,7 +209,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Object Recognition / Human Pose -->
-      <div class="p-research-card p-reveal-right">
+      <div class="p-research-card p-reveal-right" style="--reveal-delay:100ms">
         <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🔎</div>
         <span class="p-card__tag">[08] Recognition</span>
         <h3 class="p-research-card__area">Object Recognition</h3>
@@ -228,7 +227,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Human Pose -->
-      <div class="p-research-card p-reveal-right">
+      <div class="p-research-card p-reveal-right" style="--reveal-delay:200ms">
         <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🧍</div>
         <span class="p-card__tag">[09] Body Understanding</span>
         <h3 class="p-research-card__area">Human Pose Estimation</h3>
@@ -354,7 +353,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     <div class="p-section-header p-section-header--split p-reveal">
       <div>
-        <span class="p-overline">Auto-fetched via GitHub Actions</span>
+        <span class="p-overline">From Google Scholar</span>
         <h2 class="p-h2">Publications</h2>
         <span class="p-scholar-badge">Live data from Google Scholar</span>
         <div class="p-pub-hook p-reveal" aria-label="Not many, but every single one cost blood, sweat and deadline nights — quality over quantity.">
@@ -471,7 +470,6 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <!-- EPIC-KITCHENS -->
       <article class="p-talk-card p-reveal" aria-label="EPIC-KITCHENS Challenge">
-        <a href="/ek100-challenge/" class="p-talk-card__link-overlay" aria-hidden="true" tabindex="-1"></a>
         <div class="p-talk-card__media">
           <img src="/assets/img/EK100_Challenge_2021_2022/ek_100_2022.jpeg"
                alt="EPIC-KITCHENS 100 Challenge 2022" loading="lazy">
@@ -484,7 +482,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             Unsupervised Domain Adaptation track — Top 3 for two consecutive years.
           </p>
           <div class="p-talk-card__links">
-            <a href="/ek100-challenge/" class="p-talk-card__link">Details</a>
+            <a href="/ek100-challenge/" class="p-talk-card__link p-talk-card__link--stretched">Details</a>
             <a href="https://epic-kitchens.github.io/2022.html#results" target="_blank"
                rel="noopener" class="p-talk-card__link">Results ↗</a>
           </div>
@@ -497,7 +495,6 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <!-- Codemotion -->
       <article class="p-talk-card p-reveal" aria-label="Codemotion 2025">
-        <a href="/codemotion-gallery/" class="p-talk-card__link-overlay" aria-hidden="true" tabindex="-1"></a>
         <div class="p-talk-card__media">
           <img src="/assets/img/codemotion_01_2025/me_during_code_motion_emotional.jpg"
                alt="Codemotion 2025 talk" loading="lazy">
@@ -510,7 +507,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             From hand-crafted descriptors to foundation models — one backbone to rule them all.
           </p>
           <div class="p-talk-card__links">
-            <a href="/codemotion-gallery/" class="p-talk-card__link">Details</a>
+            <a href="/codemotion-gallery/" class="p-talk-card__link p-talk-card__link--stretched">Read more</a>
           </div>
         </div>
         <div class="p-talk-card__thumb">
@@ -521,7 +518,6 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <!-- Py4AI -->
       <article class="p-talk-card p-reveal" aria-label="Py4AI 2024">
-        <a href="/py4ai-gallery/" class="p-talk-card__link-overlay" aria-hidden="true" tabindex="-1"></a>
         <div class="p-talk-card__media">
           <img src="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg"
                alt="Py4AI 2024 poster" loading="lazy">
@@ -534,7 +530,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             Presented cutting-edge first-person action recognition to Italy's Python AI community.
           </p>
           <div class="p-talk-card__links">
-            <a href="/py4ai-gallery/" class="p-talk-card__link">Gallery</a>
+            <a href="/py4ai-gallery/" class="p-talk-card__link p-talk-card__link--stretched">Gallery</a>
             <a href="https://www.linkedin.com/feed/update/urn:li:activity:7330195774300934145/"
                target="_blank" rel="noopener" class="p-talk-card__link">LinkedIn ↗</a>
           </div>

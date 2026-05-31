@@ -12,7 +12,6 @@ group :jekyll_plugins do
     gem 'jekyll-link-attributes'
     gem 'jekyll-minifier'
     gem 'jekyll-paginate-v2'
-    gem 'jekyll-scholar'
     gem 'jekyll-sitemap'
     gem 'jekyll-toc'
     # gem 'jekyll-twitter-plugin'  # Temporarily disabled - requires ostruct (not in Ruby 4.0)

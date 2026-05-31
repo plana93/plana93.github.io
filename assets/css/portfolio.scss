@@ -1940,66 +1940,68 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 // ============================================================
-// NEW: APPLICATION STRIP (dentro Research Identity)
+// PROBLEM BOARD (dentro Research Identity — sostituisce app-strip)
 // ============================================================
-.p-app-strip {
+.p-problem-board {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--p-s4);
-  margin-top: var(--p-s4);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--p-s5) var(--p-s6);
+  margin-top: var(--p-s5);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: var(--p-s5);
+  }
 }
 
-.p-app-card {
-  background: var(--p-surface);
-  border: 1px solid var(--p-border);
-  border-radius: 10px;
-  padding: var(--p-s5);
+.p-problem-topic {
+  padding: var(--p-s4) 0 var(--p-s4) var(--p-s4);
+  border-left: 3px solid var(--topic-color, var(--p-teal));
+  position: relative;
+
+  &__label {
+    display: inline-block;
+    font-family: var(--p-font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--topic-color, var(--p-teal));
+    margin-bottom: var(--p-s3);
+  }
+}
+
+.p-problem-questions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--p-s2);
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  gap: var(--p-s3);
 
-  &:hover {
-    border-color: rgba(0,212,170,0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(0,0,0,0.35);
-  }
-
-  &__icon {
-    font-size: 1.8rem;
-    margin-bottom: 0.3rem;
-  }
-
-  &__title {
-    font-family: var(--p-font-head);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--p-text);
-  }
-
-  &__desc {
-    font-size: 0.83rem;
-    line-height: 1.6;
+  li {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    line-height: 1.65;
     color: var(--p-text-muted);
-    flex: 1;
-  }
+    position: relative;
+    padding-left: 0;
 
-  &__tags {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-    margin-top: var(--p-s2);
+    // virgolette decorative in teal prima di ogni domanda
+    &::before {
+      content: '›';
+      font-style: normal;
+      font-size: 1.1rem;
+      color: var(--topic-color, var(--p-teal));
+      margin-right: 0.5rem;
+      opacity: 0.7;
+    }
 
-    span {
-      font-family: var(--p-font-mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.2em 0.6em;
-      border-radius: 4px;
-      background: rgba(0,212,170,0.08);
-      color: var(--p-teal);
-      border: 1px solid rgba(0,212,170,0.18);
+    em {
+      font-style: normal;
+      color: var(--p-text);
+      font-weight: 600;
     }
   }
 }

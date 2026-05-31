@@ -229,39 +229,47 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     </div>
 
-    <!-- Applications row — dove la ricerca incontra la produzione -->
+    <!-- Problem Board — Industrial Challenges -->
     <div class="p-section-header p-reveal" style="margin-top:4rem">
       <span class="p-overline">Where Research Meets Production</span>
-      <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">Industrial <span class="p-accent">Applications</span></h3>
+      <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">Real <span class="p-accent">Industrial Problems</span></h3>
+      <p class="p-body" style="max-width:52ch">
+        The questions I actually get asked — and the ones I ask myself before writing a single line of code.
+      </p>
     </div>
 
-    <div class="p-app-strip">
+    <div class="p-problem-board">
 
-      <div class="p-app-card p-reveal" data-delay="0">
-        <div class="p-app-card__icon">🏭</div>
-        <h4 class="p-app-card__title">Manufacturing Inspection</h4>
-        <p class="p-app-card__desc">Visual quality control with anomaly detection — near-zero false positives on production lines.</p>
-        <div class="p-app-card__tags">
-          <span>Anomaly Detection</span><span>QA Automation</span>
-        </div>
+      <div class="p-problem-topic p-reveal-right">
+        <span class="p-problem-topic__label" style="--topic-color:#ff4d6d">Anomaly Detection</span>
+        <ul class="p-problem-questions">
+          <li>"The model worked perfectly in the lab — why is it flagging 40% false positives on the real production line?"</li>
+          <li>"We have thousands of <em>good</em> samples and only 3 defect images. How do we train anything useful?"</li>
+        </ul>
       </div>
 
-      <div class="p-app-card p-reveal" data-delay="80">
-        <div class="p-app-card__icon">📊</div>
-        <h4 class="p-app-card__title">Visual Data Intelligence</h4>
-        <p class="p-app-card__desc">Turning raw sensor and video streams into structured insights — dashboards, KPIs and predictive analytics.</p>
-        <div class="p-app-card__tags">
-          <span>Data Analytics</span><span>Sensor Fusion</span>
-        </div>
+      <div class="p-problem-topic p-reveal-right">
+        <span class="p-problem-topic__label" style="--topic-color:#6e56ff">Domain Adaptation</span>
+        <ul class="p-problem-questions">
+          <li>"We retrained last quarter. Two months later the line changed and accuracy dropped 20%. How do we stop chasing the data?"</li>
+          <li>"Source data is labelled, target data isn't. Can we adapt without starting from scratch every time?"</li>
+        </ul>
       </div>
 
-      <div class="p-app-card p-reveal" data-delay="160">
-        <div class="p-app-card__icon">�</div>
-        <h4 class="p-app-card__title">On-Device Vision</h4>
-        <p class="p-app-card__desc">Lightweight and quantized models optimized for mobile and edge hardware — Android &amp; embedded systems.</p>
-        <div class="p-app-card__tags">
-          <span>Edge AI</span><span>Mobile</span>
-        </div>
+      <div class="p-problem-topic p-reveal-right">
+        <span class="p-problem-topic__label" style="--topic-color:#00d4aa">Data Cleaning</span>
+        <ul class="p-problem-questions">
+          <li>"30% of our training images are mislabelled or out-of-distribution. How bad is that — and is it worth fixing?"</li>
+          <li>"The dataset has 10k images but they all look the same. What does <em>actually</em> diverse data look like for our use case?"</li>
+        </ul>
+      </div>
+
+      <div class="p-problem-topic p-reveal-right">
+        <span class="p-problem-topic__label" style="--topic-color:#f4a227">Model Speed</span>
+        <ul class="p-problem-questions">
+          <li>"Inference takes 800ms. The line runs at 60 ppm. What's the fastest path to real-time without losing accuracy?"</li>
+          <li>"We need this on a €150 edge device with no GPU. Where do we even start?"</li>
+        </ul>
       </div>
 
     </div>

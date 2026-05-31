@@ -242,7 +242,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <div class="p-chat__msg p-chat__msg--them">
         <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">97% on test set. deployed. now it flags EVERYTHING. production stopped. help</span>
+        <span class="p-chat__bubble">it was working fine yesterday. today it's broken. nothing changed</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">why did it fail on this one? it looks the same as all the others</span>
       </div>
 
       <div class="p-chat__msg p-chat__msg--them">
@@ -252,17 +257,17 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <div class="p-chat__msg p-chat__msg--them">
         <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">the model isn't learning anything. loss just stays flat</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
         <span class="p-chat__bubble">how many images do we actually need?</span>
       </div>
 
       <div class="p-chat__msg p-chat__msg--them">
         <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">they changed the setup last week. accuracy dropped 30 points. do I really need to retrain from scratch every time?</span>
+        <span class="p-chat__bubble">the model isn't learning anything</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">they changed the setup last week. accuracy dropped 30 points. do I need to redo everything?</span>
       </div>
 
       <div class="p-chat__msg p-chat__msg--them">
@@ -272,27 +277,47 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <div class="p-chat__msg p-chat__msg--them">
         <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">the model forgot everything it learned before. we added new classes and now the old ones are broken</span>
+        <span class="p-chat__bubble">the model forgot everything it learned before</span>
       </div>
 
       <div class="p-chat__msg p-chat__msg--them">
         <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">training takes 6 hours. every experiment. I can't iterate like this</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">��</span>
-        <span class="p-chat__bubble">can this run on a Raspberry Pi? or at least on a phone?</span>
+        <span class="p-chat__bubble">training takes 6 hours. every time. I can't keep doing this</span>
       </div>
 
       <div class="p-chat__msg p-chat__msg--them">
         <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">how do I even know what the model is actually learning?</span>
+        <span class="p-chat__bubble">can this run on a phone?</span>
       </div>
 
       <div class="p-chat__msg p-chat__msg--them">
         <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">what does fine-tuning actually mean? like, where do I start</span>
+        <span class="p-chat__bubble">how do I even know what it's actually doing under the hood?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">what does fine-tuning actually mean?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">🧑‍💼</span>
+        <span class="p-chat__bubble">can't we just use ChatGPT for this?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">🧑‍💼</span>
+        <span class="p-chat__bubble">I saw a LinkedIn post saying AI can do this in 5 minutes. why is ours taking weeks</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">🧑‍💼</span>
+        <span class="p-chat__bubble">can we plug GPT-4 into the camera and just let it decide?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">🧑‍💼</span>
+        <span class="p-chat__bubble">the CEO wants an AI strategy by friday. what do I tell him</span>
       </div>
 
     </div>

@@ -743,7 +743,7 @@ img { max-width: 100%; height: auto; display: block; }
     width:         100%;
     text-align:    center;
     opacity:       1 !important;
-    margin-bottom: -1.7rem;    // overlap: il bordo superiore della foto copre il testo
+    margin-bottom: -0.6rem;    // overlap: il bordo superiore della foto copre il testo
 
     span {
       font-size:      clamp(3rem, 22vw, 5.5rem);
@@ -850,7 +850,7 @@ img { max-width: 100%; height: auto; display: block; }
     margin-bottom: -2rem;
   }
   .p-bb__vision {
-    margin-bottom: -1.5rem;
+    margin-bottom: -0.5rem;
   }
   .p-bb__overline {
     font-size:      0.5rem;

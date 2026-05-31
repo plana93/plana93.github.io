@@ -781,15 +781,17 @@ img { max-width: 100%; height: auto; display: block; }
     z-index:   5;              // sopra la foto (z:4)
     bottom:    auto;
     transform: none;
-    width:     auto;
+    width:     100%;           // larghezza piena così non viene clip dal container
+    overflow:  visible;
 
     span {
       font-size:   clamp(1.8rem, 13vw, 4rem);
       line-height: 0.92;
-      padding:     0.08em 0.35em;
+      padding:     0.08em 0.45em; // padding leggermente aumentato per non tagliare bordi
       white-space: nowrap;
       display:     block;
       width:       fit-content;
+      margin:      0 auto;    // centra la span nella width: 100%
     }
   }
 
@@ -2250,7 +2252,22 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;       // necessario per il link-overlay assoluto
+  cursor: pointer;
   transition: border-color 0.3s, transform 0.35s, box-shadow 0.35s;
+
+  // Link overlay invisibile — rende cliccabile tutta la card
+  &__link-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  // I link reali devono stare sopra l'overlay
+  &__links {
+    position: relative;
+    z-index: 2;
+  }
 
   &:hover {
     border-color: rgba(110,86,255,0.45);

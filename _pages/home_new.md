@@ -83,12 +83,8 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   <div class="p-container">
 
     <div class="p-section-header p-reveal">
-      <span class="p-overline">From Scholar Profile</span>
+      <span class="p-overline">From Academia to Industry</span>
       <h2 class="p-h2">Research <span class="p-accent">Identity</span></h2>
-      <p class="p-body">
-        Five interconnected research areas that form the foundation of my work —
-        from fundamental computer vision to applied industrial systems.
-      </p>
     </div>
 
     <div class="p-research-grid">
@@ -105,20 +101,24 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           <span class="p-research-card__venue">CVPR</span>
           <span class="p-research-card__venue">WACV</span>
           <span class="p-research-card__venue">IEEE RA-L</span>
+          <span class="p-research-card__venue">IJCV</span>
         </div>
       </div>
 
       <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🎬</div>
         <span class="p-card__tag">[02] Core Research</span>
-        <h3 class="p-research-card__area">Action Recognition</h3>
+        <h3 class="p-research-card__area">Video Understanding</h3>
         <p class="p-research-card__desc">
           Temporal video understanding and classification. Designing architectures that
           capture motion dynamics across diverse domains and perspectives.
         </p>
         <div class="p-research-card__papers">
+          <span class="p-research-card__venue">2D/3D</span>
+          <span class="p-research-card__venue">Trimmed/Untrimmed</span>
+          <span class="p-research-card__venue">Summarization</span>
+          <span class="p-research-card__venue">Retrieval</span>
           <span class="p-research-card__venue">ICPR</span>
-          <span class="p-research-card__venue">IEEE</span>
         </div>
       </div>
 
@@ -131,8 +131,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           Unsupervised and semi-supervised transfer learning for cross-domain robustness.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue">EPIC-KITCHENS</span>
-          <span class="p-research-card__venue">CVPR</span>
+          <span class="p-research-card__venue">UDA</span>
+          <span class="p-research-card__venue">Open-set</span>
+          <span class="p-research-card__venue">Closed-set</span>
+          <span class="p-research-card__venue">Partial UDA</span>
+          <span class="p-research-card__venue">Universal UDA</span>
         </div>
       </div>
 
@@ -159,8 +162,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           Applications in autonomous systems, industrial inspection and AR interfaces.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue">Real-world</span>
-          <span class="p-research-card__venue">IIT</span>
+          <span class="p-research-card__venue">SAM</span>
+          <span class="p-research-card__venue">DINO</span>
+          <span class="p-research-card__venue">U-Net</span>
+          <span class="p-research-card__venue">Few-Shot</span>
+          <span class="p-research-card__venue">SegFormer</span>
+          <span class="p-research-card__venue">Weakly-Supervised</span>
         </div>
       </div>
 
@@ -174,8 +181,14 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           Joint representation learning across modalities.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Audio+Vision</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">IMU+RGB</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Depth</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">RGB</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Optical Flow</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Audio</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Event</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">IMU</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Keypoints</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Text</span>
         </div>
       </div>
 
@@ -190,8 +203,9 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </p>
         <div class="p-research-card__papers">
           <span class="p-research-card__venue">YOLO</span>
-          <span class="p-research-card__venue">DETR</span>
-          <span class="p-research-card__venue">Industry</span>
+          <span class="p-research-card__venue">Mask R-CNN</span>
+          <span class="p-research-card__venue">RT-DETR</span>
+          <span class="p-research-card__venue">DEIM</span>
         </div>
       </div>
 
@@ -205,9 +219,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           Metric learning and embedding-based approaches for few-shot and open-set scenarios.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue">Few-Shot</span>
-          <span class="p-research-card__venue">Open-Set</span>
-          <span class="p-research-card__venue">Retrieval</span>
+          <span class="p-research-card__venue">ConvNeXt</span>
+          <span class="p-research-card__venue">ViT</span>
+          <span class="p-research-card__venue">Swin</span>
+          <span class="p-research-card__venue">CLIP</span>
+          <span class="p-research-card__venue">DINO</span>
         </div>
       </div>
 
@@ -221,9 +237,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           action anticipation and human-machine interaction.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue">Skeleton</span>
-          <span class="p-research-card__venue">HMI</span>
-          <span class="p-research-card__venue">Wearable</span>
+          <span class="p-research-card__venue">MoveNet</span>
+          <span class="p-research-card__venue">BlazePose</span>
+          <span class="p-research-card__venue">YOLO-Pose</span>
+          <span class="p-research-card__venue">MediaPipe</span>
+          <span class="p-research-card__venue">HRNet</span>
+          <span class="p-research-card__venue">ViTPose</span>
         </div>
       </div>
 
@@ -452,6 +471,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <!-- EPIC-KITCHENS -->
       <article class="p-talk-card p-reveal" aria-label="EPIC-KITCHENS Challenge">
+        <a href="/ek100-challenge/" class="p-talk-card__link-overlay" aria-hidden="true" tabindex="-1"></a>
         <div class="p-talk-card__media">
           <img src="/assets/img/EK100_Challenge_2021_2022/ek_100_2022.jpeg"
                alt="EPIC-KITCHENS 100 Challenge 2022" loading="lazy">
@@ -461,8 +481,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           <span class="p-talk-card__event">CVPR Workshop · 2021–2022</span>
           <h3 class="p-talk-card__title">EPIC-KITCHENS-100 Challenge</h3>
           <p class="p-talk-card__desc">
-            <strong style="color:var(--p-teal)">Two-time consecutive winner</strong> of the
-            Unsupervised Domain Adaptation track — Top 3 for two years running.
+            Unsupervised Domain Adaptation track — Top 3 for two consecutive years.
           </p>
           <div class="p-talk-card__links">
             <a href="/ek100-challenge/" class="p-talk-card__link">Details</a>
@@ -478,6 +497,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <!-- Codemotion -->
       <article class="p-talk-card p-reveal" aria-label="Codemotion 2025">
+        <a href="/codemotion-gallery/" class="p-talk-card__link-overlay" aria-hidden="true" tabindex="-1"></a>
         <div class="p-talk-card__media">
           <img src="/assets/img/codemotion_01_2025/me_during_code_motion_emotional.jpg"
                alt="Codemotion 2025 talk" loading="lazy">
@@ -490,7 +510,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             From hand-crafted descriptors to foundation models — one backbone to rule them all.
           </p>
           <div class="p-talk-card__links">
-            <a href="/codemotion-gallery/" class="p-talk-card__link">Read more</a>
+            <a href="/codemotion-gallery/" class="p-talk-card__link">Details</a>
           </div>
         </div>
         <div class="p-talk-card__thumb">
@@ -501,6 +521,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <!-- Py4AI -->
       <article class="p-talk-card p-reveal" aria-label="Py4AI 2024">
+        <a href="/py4ai-gallery/" class="p-talk-card__link-overlay" aria-hidden="true" tabindex="-1"></a>
         <div class="p-talk-card__media">
           <img src="/assets/img/py4ai_05_2024/egocentric_vision_py4ai_poster.jpeg"
                alt="Py4AI 2024 poster" loading="lazy">

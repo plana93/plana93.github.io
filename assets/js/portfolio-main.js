@@ -454,6 +454,15 @@
       return;
     }
 
+    // Per le p-reveal-right (research cards in griglia 3 colonne), aggiungi
+    // un transition-delay basato sulla posizione nella riga (index % 3)
+    // così card 7-8-9 entrano da sinistra a destra, non tutte insieme.
+    var revealRight = $$('.p-reveal-right');
+    revealRight.forEach(function(el, i) {
+      var col = i % 3;
+      el.style.transitionDelay = (col * 100) + 'ms';
+    });
+
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -461,7 +470,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     targets.forEach(function (el) { observer.observe(el); });
   }

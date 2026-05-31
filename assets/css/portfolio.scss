@@ -741,7 +741,7 @@ img { max-width: 100%; height: auto; display: block; }
     transform:     none;
     width:         100%;
     text-align:    center;
-    margin-bottom: 0.5rem;     // gap: foto leggermente più in basso rispetto a VISION
+    margin-bottom: 1.2rem;     // gap: foto leggermente più in basso rispetto a VISION
 
     span {
       font-size:      clamp(3rem, 22vw, 5.5rem);
@@ -888,7 +888,7 @@ img { max-width: 100%; height: auto; display: block; }
     margin-bottom: -2rem;
   }
   .p-bb__vision {
-    margin-bottom: 0.4rem;
+    margin-bottom: 1.0rem;
   }
   .p-bb__overline {
     font-size:      0.5rem;

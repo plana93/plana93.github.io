@@ -1940,7 +1940,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 // ============================================================
-// PROBLEM BOARD (dentro Research Identity — sostituisce app-strip)
+// PROBLEM BOARD — chat style (Slack/Teams vibes)
 // ============================================================
 .p-problem-board {
   display: grid;
@@ -1955,54 +1955,70 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .p-problem-topic {
-  padding: var(--p-s4) 0 var(--p-s4) var(--p-s4);
-  border-left: 3px solid var(--topic-color, var(--p-teal));
-  position: relative;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--p-border);
+  border-top: 3px solid var(--topic-color, var(--p-teal));
+  border-radius: 10px;
+  padding: var(--p-s4);
 
   &__label {
     display: inline-block;
     font-family: var(--p-font-mono);
-    font-size: 0.62rem;
+    font-size: 0.58rem;
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--topic-color, var(--p-teal));
-    margin-bottom: var(--p-s3);
+    margin-bottom: var(--p-s4);
   }
 }
 
-.p-problem-questions {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+// Chat thread
+.p-chat {
   display: flex;
   flex-direction: column;
-  gap: var(--p-s3);
+  gap: 0.6rem;
 
-  li {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
-    line-height: 1.65;
-    color: var(--p-text-muted);
-    position: relative;
-    padding-left: 0;
+  &__msg {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
 
-    // virgolette decorative in teal prima di ogni domanda
-    &::before {
-      content: '›';
-      font-style: normal;
-      font-size: 1.1rem;
-      color: var(--topic-color, var(--p-teal));
-      margin-right: 0.5rem;
-      opacity: 0.7;
+    // messaggio "loro" — avatar a sinistra
+    &--them {
+      flex-direction: row;
+      .p-chat__bubble {
+        background: rgba(255,255,255,0.07);
+        border-radius: 14px 14px 14px 3px;
+        color: var(--p-text-muted);
+      }
     }
 
-    em {
-      font-style: normal;
-      color: var(--p-text);
-      font-weight: 600;
+    // messaggio "me" — avatar a destra, bolla colorata
+    &--me {
+      flex-direction: row-reverse;
+      .p-chat__bubble {
+        background: rgba(0,212,170,0.12);
+        border: 1px solid rgba(0,212,170,0.2);
+        border-radius: 14px 14px 3px 14px;
+        color: var(--p-text);
+      }
     }
+  }
+
+  &__avatar {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  &__bubble {
+    font-size: 0.83rem;
+    line-height: 1.55;
+    padding: 0.55em 0.85em;
+    max-width: 88%;
+    word-break: break-word;
   }
 }
 

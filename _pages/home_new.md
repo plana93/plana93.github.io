@@ -229,12 +229,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     </div>
 
-    <!-- Problem Board — Industrial Challenges -->
+    <!-- Problem Board — Chat style -->
     <div class="p-section-header p-reveal" style="margin-top:4rem">
-      <span class="p-overline">Where Research Meets Production</span>
+      <span class="p-overline">Actual conversations. Actual pain.</span>
       <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">Real <span class="p-accent">Industrial Problems</span></h3>
       <p class="p-body" style="max-width:52ch">
-        The questions I actually get asked — and the ones I ask myself before writing a single line of code.
+        Things people actually type at 11pm before a demo.
       </p>
     </div>
 
@@ -242,34 +242,74 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <div class="p-problem-topic p-reveal-right">
         <span class="p-problem-topic__label" style="--topic-color:#ff4d6d">Anomaly Detection</span>
-        <ul class="p-problem-questions">
-          <li>"The model worked perfectly in the lab — why is it flagging 40% false positives on the real production line?"</li>
-          <li>"We have thousands of <em>good</em> samples and only 3 defect images. How do we train anything useful?"</li>
-        </ul>
+        <div class="p-chat">
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">ok so the model got 97% on test set. deployed it this morning. it's flagging EVERYTHING. like literally everything is a defect. production is stopped. client is calling. what the hell</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--me">
+            <span class="p-chat__bubble">did you test on the actual line lighting or just the lab images</span>
+            <span class="p-chat__avatar">🧑‍💻</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">...the lab ones. oh no</span>
+          </div>
+        </div>
       </div>
 
       <div class="p-problem-topic p-reveal-right">
         <span class="p-problem-topic__label" style="--topic-color:#6e56ff">Domain Adaptation</span>
-        <ul class="p-problem-questions">
-          <li>"We retrained last quarter. Two months later the line changed and accuracy dropped 20%. How do we stop chasing the data?"</li>
-          <li>"Source data is labelled, target data isn't. Can we adapt without starting from scratch every time?"</li>
-        </ul>
+        <div class="p-chat">
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">they changed the conveyor belt last week. now accuracy is 61%. we're back to square one. I CANNOT retrain this thing every time they sneeze on the factory floor</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--me">
+            <span class="p-chat__bubble">we need domain adaptation. you can't keep labelling from scratch every shift change</span>
+            <span class="p-chat__avatar">🧑‍💻</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">yes please fix this before I lose my mind</span>
+          </div>
+        </div>
       </div>
 
       <div class="p-problem-topic p-reveal-right">
         <span class="p-problem-topic__label" style="--topic-color:#00d4aa">Data Cleaning</span>
-        <ul class="p-problem-questions">
-          <li>"30% of our training images are mislabelled or out-of-distribution. How bad is that — and is it worth fixing?"</li>
-          <li>"The dataset has 10k images but they all look the same. What does <em>actually</em> diverse data look like for our use case?"</li>
-        </ul>
+        <div class="p-chat">
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">we have 12k images. spent 3 months labelling. loss is still garbage. my manager wants answers tomorrow</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--me">
+            <span class="p-chat__bubble">can I see a sample? ... ok yeah. at least 30% of these labels are wrong. some are literally the same image copy-pasted</span>
+            <span class="p-chat__avatar">🧑‍💻</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">the intern did it. I'm going to cry</span>
+          </div>
+        </div>
       </div>
 
       <div class="p-problem-topic p-reveal-right">
         <span class="p-problem-topic__label" style="--topic-color:#f4a227">Model Speed</span>
-        <ul class="p-problem-questions">
-          <li>"Inference takes 800ms. The line runs at 60 ppm. What's the fastest path to real-time without losing accuracy?"</li>
-          <li>"We need this on a €150 edge device with no GPU. Where do we even start?"</li>
-        </ul>
+        <div class="p-chat">
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">inference is 900ms. line does 60 pieces/min. do the math. it's not working. and they want this on a Raspberry Pi. a RASPBERRY PI.</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--me">
+            <span class="p-chat__bubble">ok. quantization, pruning, maybe distillation. what's the accuracy floor you can live with</span>
+            <span class="p-chat__avatar">🧑‍💻</span>
+          </div>
+          <div class="p-chat__msg p-chat__msg--them">
+            <span class="p-chat__avatar">👷</span>
+            <span class="p-chat__bubble">above "gets us sued". so... high</span>
+          </div>
+        </div>
       </div>
 
     </div>

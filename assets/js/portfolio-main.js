@@ -307,13 +307,14 @@
       });
     }
 
-    // ── Mobile (< 768px): niente GSAP/parallax, layout CSS gestisce tutto ──
+    var hero = $('.p-hero--billboard');
+
+    // ── Mobile (< 768px): CSS entrance via classe, niente GSAP ──
     if (window.innerWidth < 768) {
-      showAllImmediate();
-      // Ri-controlla se ruota lo schermo
-      window.addEventListener('resize', function() {
-        if (window.innerWidth < 768) showAllImmediate();
-      }, { passive: true });
+      // Triggera le animazioni CSS mobile aggiungendo la classe dopo 1 frame
+      requestAnimationFrame(function() {
+        if (hero) hero.classList.add('p-hero--ready');
+      });
       return;
     }
 
@@ -338,11 +339,17 @@
       '-=0.2'
     );
 
-    // 3. Foto emerge al centro con scale
-    if (photoWrap) tl.fromTo(photoWrap,
-      { opacity: 0, scale: 0.85 },
-      { opacity: 1, scale: 1,   duration: 1.0, ease: 'power3.out' },
+    // 3. Foto: fade in sul WRAP (preserva il CSS translate), scale sull'IMG interna
+    //    NON animare scale su photoWrap: GSAP bakerebbe translate(-50%,-44%) in px
+    //    e la posizione divergerebbe dopo resize o caricamento immagine.
+    if (photoWrap) tl.to(photoWrap,
+      { opacity: 1, duration: 0.9, ease: 'power2.out' },
       '-=0.6'
+    );
+    if (photo) tl.fromTo(photo,
+      { scale: 0.86 },
+      { scale: 1, duration: 1.0, ease: 'power3.out' },
+      '<'  // parte insieme al fade del wrap
     );
 
     // 4. "INTELLIGENCE" barra verde sale da sotto
@@ -357,46 +364,33 @@
       '-=0.3'
     );
 
-    // ── Parallax foto sullo scroll ────────────────────────────
-    // La foto sale più lentamente del testo quando si scrolla giù
-    if (typeof ScrollTrigger !== 'undefined' && photo) {
+    // ── Parallax scroll (solo testo, NON la foto) ─────────────
+    // La foto rimane ferma — serve come ancora visiva.
+    // VISION e INTEL si muovono a velocità diverse per la profondità.
+    if (typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
-
-      var hero = $('.p-hero--billboard');
-
-      // Foto: movimento verticale lento (parallax profondità)
-      gsap.to(photo, {
-        y: '-15%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: hero,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.2
-        }
-      });
 
       // "VISION" va su più veloce (piano lontano)
       if (vision) gsap.to(vision, {
-        y: '-30%',
+        yPercent: -20,
         ease: 'none',
         scrollTrigger: {
           trigger: hero,
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.8
+          scrub: 0.6
         }
       });
 
       // "INTELLIGENCE" va giù lentamente (piano più vicino)
       if (intel) gsap.to(intel, {
-        y: '20%',
+        yPercent: 15,
         ease: 'none',
         scrollTrigger: {
           trigger: hero,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1.5
+          scrub: 1.0
         }
       });
 
@@ -404,7 +398,7 @@
       var waves = $$('.p-wave');
       waves.forEach(function(wave, i) {
         gsap.to(wave, {
-          x: (i % 2 === 0 ? '-8%' : '8%'),
+          xPercent: (i % 2 === 0 ? -8 : 8),
           ease: 'none',
           scrollTrigger: {
             trigger: hero,

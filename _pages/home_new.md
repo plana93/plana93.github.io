@@ -238,84 +238,84 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </p>
     </div>
 
-    <div class="p-chat p-chat--board p-reveal">
+    <div class="p-chat p-chat--board">
 
-      <div class="p-chat__msg p-chat__msg--them">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:0ms">
         <span class="p-chat__avatar">👷</span>
         <span class="p-chat__bubble">it was working fine yesterday. today it's broken. nothing changed</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:80ms">
+        <span class="p-chat__avatar">🧑‍🔧</span>
         <span class="p-chat__bubble">why did it fail on this one? it looks the same as all the others</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:160ms">
+        <span class="p-chat__avatar">👩‍💻</span>
         <span class="p-chat__bubble">we have only 3 defect images. how do I train a model?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:240ms">
+        <span class="p-chat__avatar">🧑‍🏭</span>
         <span class="p-chat__bubble">how many images do we actually need?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:320ms">
+        <span class="p-chat__avatar">👩‍🔬</span>
         <span class="p-chat__bubble">the model isn't learning anything</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:400ms">
+        <span class="p-chat__avatar">��‍💼</span>
         <span class="p-chat__bubble">they changed the setup last week. accuracy dropped 30 points. do I need to redo everything?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:480ms">
+        <span class="p-chat__avatar">🧑‍🔧</span>
         <span class="p-chat__bubble">new camera arrives monday. do we start from scratch AGAIN</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:560ms">
+        <span class="p-chat__avatar">👩‍🏭</span>
         <span class="p-chat__bubble">the model forgot everything it learned before</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:640ms">
         <span class="p-chat__avatar">👷</span>
         <span class="p-chat__bubble">training takes 6 hours. every time. I can't keep doing this</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:720ms">
+        <span class="p-chat__avatar">👩‍💻</span>
         <span class="p-chat__bubble">can this run on a phone?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:800ms">
+        <span class="p-chat__avatar">🧑‍🔬</span>
         <span class="p-chat__bubble">how do I even know what it's actually doing under the hood?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">👷</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:880ms">
+        <span class="p-chat__avatar">👨‍🏭</span>
         <span class="p-chat__bubble">what does fine-tuning actually mean?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:960ms">
         <span class="p-chat__avatar">🧑‍💼</span>
         <span class="p-chat__bubble">can't we just use ChatGPT for this?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">🧑‍💼</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:1040ms">
+        <span class="p-chat__avatar">👩‍💼</span>
         <span class="p-chat__bubble">I saw a LinkedIn post saying AI can do this in 5 minutes. why is ours taking weeks</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
-        <span class="p-chat__avatar">🧑‍💼</span>
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:1120ms">
+        <span class="p-chat__avatar">👨‍💼</span>
         <span class="p-chat__bubble">can we plug GPT-4 into the camera and just let it decide?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:1200ms">
         <span class="p-chat__avatar">🧑‍💼</span>
         <span class="p-chat__bubble">the CEO wants an AI strategy by friday. what do I tell him</span>
       </div>

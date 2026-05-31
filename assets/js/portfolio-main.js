@@ -452,7 +452,7 @@
      5. SCROLL REVEAL (IntersectionObserver)
   ============================================================ */
   function initScrollReveal() {
-    var targets = $$('.p-reveal, .p-reveal-left, .p-reveal-right, .p-reveal-scale');
+    var targets = $$('.p-reveal, .p-reveal-left, .p-reveal-right, .p-reveal-scale, .p-chat__msg--reveal');
     if (!targets.length) return;
 
     if (!('IntersectionObserver' in window)) {

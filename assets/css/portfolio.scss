@@ -1945,7 +1945,7 @@ img { max-width: 100%; height: auto; display: block; }
 .p-chat--board {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 1rem;          // più spazio tra i messaggi
   margin-top: var(--p-s5);
   max-width: 640px;
 }
@@ -1963,6 +1963,20 @@ img { max-width: 100%; height: auto; display: block; }
         background: rgba(255,255,255,0.07);
         border-radius: 14px 14px 14px 3px;
         color: var(--p-text-muted);
+      }
+    }
+
+    // Animazione slide-in da destra su scroll
+    &--reveal {
+      opacity: 0;
+      transform: translateX(50px);
+      transition:
+        opacity  0.5s var(--p-ease-out) var(--chat-delay, 0ms),
+        transform 0.5s var(--p-ease-out) var(--chat-delay, 0ms);
+
+      &.is-visible {
+        opacity: 1;
+        transform: translateX(0);
       }
     }
   }

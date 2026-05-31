@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.first_name }} {{ site.last_name }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
+  <meta name="keywords" content="Mirco Planamente, AI Researcher, Computer Vision, Egocentric Vision, Domain Adaptation, PhD, Politecnico di Torino, ARGO Vision, IIT, machine learning">
+  <meta name="author" content="{{ site.first_name }} {{ site.last_name }}">
+  <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -14,6 +17,34 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  <!-- JSON-LD structured data (Google Knowledge Panel) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mirco Planamente",
+    "url": "{{ site.url }}",
+    "image": "{{ '/assets/img/io_without_bg.png' | absolute_url }}",
+    "jobTitle": "AI Researcher",
+    "description": "{{ site.description | strip_newlines }}",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Politecnico di Torino"
+    },
+    "worksFor": [
+      { "@type": "Organization", "name": "ARGO Vision" },
+      { "@type": "Organization", "name": "Italian Institute of Technology" }
+    ],
+    "sameAs": [
+      "https://scholar.google.com/citations?user=GIJ3h4AAAAAJ",
+      "https://github.com/{{ site.github_username }}",
+      "https://linkedin.com/in/{{ site.linkedin_username }}",
+      "https://twitter.com/{{ site.twitter_username }}"
+    ],
+    "knowsAbout": ["Computer Vision", "Egocentric Vision", "Domain Adaptation", "Anomaly Detection", "Machine Learning"]
+  }
+  </script>
 
   <!-- Fonts (preconnect for speed) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

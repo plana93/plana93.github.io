@@ -234,8 +234,9 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       <span class="p-overline">Actual conversations. Actual pain.</span>
       <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">Real <span class="p-accent">Industrial Problems</span></h3>
       <p class="p-body" style="max-width:52ch">
-        Things people actually type at 11pm before a demo.
+        don't panic. we'll figure it out.
       </p>
+      <p class="p-chat-subtitle-it">mio padre dice sempre: <em>"calma e sangue freddo"</em></p>
     </div>
 
     <div class="p-chat p-chat--board">
@@ -266,7 +267,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:400ms">
-        <span class="p-chat__avatar">��‍💼</span>
+        <span class="p-chat__avatar">👩‍💼</span>
         <span class="p-chat__bubble">they changed the setup last week. accuracy dropped 30 points. do I need to redo everything?</span>
       </div>
 

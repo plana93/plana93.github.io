@@ -1940,45 +1940,18 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 // ============================================================
-// PROBLEM BOARD — chat style (Slack/Teams vibes)
+// PROBLEM BOARD — chat thread unico
 // ============================================================
-.p-problem-board {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--p-s5) var(--p-s6);
+.p-chat--board {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
   margin-top: var(--p-s5);
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: var(--p-s5);
-  }
-}
-
-.p-problem-topic {
-  background: rgba(255,255,255,0.025);
-  border: 1px solid var(--p-border);
-  border-top: 3px solid var(--topic-color, var(--p-teal));
-  border-radius: 10px;
-  padding: var(--p-s4);
-
-  &__label {
-    display: inline-block;
-    font-family: var(--p-font-mono);
-    font-size: 0.58rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--topic-color, var(--p-teal));
-    margin-bottom: var(--p-s4);
-  }
+  max-width: 640px;
 }
 
 // Chat thread
 .p-chat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-
   &__msg {
     display: flex;
     align-items: flex-end;

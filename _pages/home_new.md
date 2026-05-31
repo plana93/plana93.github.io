@@ -238,62 +238,61 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </p>
     </div>
 
-    <div class="p-problem-board">
+    <div class="p-chat p-chat--board p-reveal">
 
-      <div class="p-problem-topic p-reveal-right">
-        <span class="p-problem-topic__label" style="--topic-color:#ff4d6d">Anomaly Detection</span>
-        <div class="p-chat">
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">97% on test set. deployed. now it flags EVERYTHING. production stopped. help</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">we have 3 defect photos. three. how do I train a model with THREE images</span>
-          </div>
-        </div>
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">97% on test set. deployed. now it flags EVERYTHING. production stopped. help</span>
       </div>
 
-      <div class="p-problem-topic p-reveal-right">
-        <span class="p-problem-topic__label" style="--topic-color:#6e56ff">Domain Adaptation</span>
-        <div class="p-chat">
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">they changed the belt last week. accuracy went from 94% to 61%. I cannot keep retraining every time something changes on the floor</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">new camera arrives monday. do we start from scratch AGAIN</span>
-          </div>
-        </div>
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">we have only 3 defect images. how do I train a model?</span>
       </div>
 
-      <div class="p-problem-topic p-reveal-right">
-        <span class="p-problem-topic__label" style="--topic-color:#00d4aa">Data Cleaning</span>
-        <div class="p-chat">
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">12k images. 3 months of labelling. loss still garbage. the intern did it btw</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">all 800 "defect" images look identical. I think he copy-pasted</span>
-          </div>
-        </div>
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">the model isn't learning anything. loss just stays flat</span>
       </div>
 
-      <div class="p-problem-topic p-reveal-right">
-        <span class="p-problem-topic__label" style="--topic-color:#f4a227">Model Speed</span>
-        <div class="p-chat">
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">900ms inference. line does 60 ppm. they also want it on a Raspberry Pi. a RASPBERRY PI.</span>
-          </div>
-          <div class="p-chat__msg p-chat__msg--them">
-            <span class="p-chat__avatar">👷</span>
-            <span class="p-chat__bubble">demo is friday. it runs at 2fps. I need a miracle</span>
-          </div>
-        </div>
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">how many images do we actually need?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">they changed the setup last week. accuracy dropped 30 points. do I really need to retrain from scratch every time?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">new camera arrives monday. do we start from scratch AGAIN</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">the model forgot everything it learned before. we added new classes and now the old ones are broken</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">training takes 6 hours. every experiment. I can't iterate like this</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">��</span>
+        <span class="p-chat__bubble">can this run on a Raspberry Pi? or at least on a phone?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">how do I even know what the model is actually learning?</span>
+      </div>
+
+      <div class="p-chat__msg p-chat__msg--them">
+        <span class="p-chat__avatar">👷</span>
+        <span class="p-chat__bubble">what does fine-tuning actually mean? like, where do I start</span>
       </div>
 
     </div>

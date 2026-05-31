@@ -93,7 +93,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     <div class="p-research-grid">
 
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(110,86,255,0.15)">👁️</div>
         <span class="p-card__tag">[01] Primary Focus</span>
         <h3 class="p-research-card__area">Egocentric Vision</h3>
@@ -108,7 +108,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </div>
       </div>
 
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🎬</div>
         <span class="p-card__tag">[02] Core Research</span>
         <h3 class="p-research-card__area">Action Recognition</h3>
@@ -122,7 +122,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </div>
       </div>
 
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(110,86,255,0.15)">🔄</div>
         <span class="p-card__tag">[03] Generalization</span>
         <h3 class="p-research-card__area">Domain Adaptation</h3>
@@ -136,7 +136,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </div>
       </div>
 
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🔍</div>
         <span class="p-card__tag">[04] Safety & QA</span>
         <h3 class="p-research-card__area">Anomaly Detection</h3>
@@ -150,7 +150,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </div>
       </div>
 
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🗺️</div>
         <span class="p-card__tag">[05] Scene Understanding</span>
         <h3 class="p-research-card__area">Semantic Segmentation</h3>
@@ -165,7 +165,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Cross-cutting: Multi-Modal -->
-      <div class="p-research-card p-reveal" style="border-color:rgba(0,212,170,0.3)">
+      <div class="p-research-card p-reveal-right" style="border-color:rgba(0,212,170,0.3)">
         <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🎵</div>
         <span class="p-card__tag" style="color:var(--p-teal)">[06] Fusion</span>
         <h3 class="p-research-card__area">Multi-Modal Learning</h3>
@@ -180,7 +180,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Object Detection -->
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(255,165,0,0.12)">🎯</div>
         <span class="p-card__tag">[07] Localization</span>
         <h3 class="p-research-card__area">Object Detection</h3>
@@ -196,7 +196,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Object Recognition / Human Pose -->
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🔎</div>
         <span class="p-card__tag">[08] Recognition</span>
         <h3 class="p-research-card__area">Object Recognition</h3>
@@ -212,7 +212,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Human Pose -->
-      <div class="p-research-card p-reveal">
+      <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🧍</div>
         <span class="p-card__tag">[09] Body Understanding</span>
         <h3 class="p-research-card__area">Human Pose Estimation</h3>

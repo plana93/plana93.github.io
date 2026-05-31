@@ -1391,6 +1391,25 @@ img { max-width: 100%; height: auto; display: block; }
   &.is-visible { opacity: 1; transform: translateX(0); }
 }
 
+// Slide-in da destra — usato per le research card
+.p-reveal-right {
+  opacity: 0;
+  transform: translateX(70px);
+  transition:
+    opacity 0.65s var(--p-ease-out),
+    transform 0.65s var(--p-ease-out);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  // Delay scalato per l'effetto a cascata (card 1→5)
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.1}s; }
+  }
+}
+
 .p-reveal-scale {
   opacity: 0;
   transform: scale(0.92);

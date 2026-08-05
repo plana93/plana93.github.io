@@ -397,6 +397,14 @@
       return;
     }
 
+    // Stagger automatico delle research card da sinistra a destra.
+    // Il delay riparte a ogni riga della griglia a tre colonne.
+    var revealRight = $$('.p-reveal-right');
+    revealRight.forEach(function (el, i) {
+      var col = i % 3;
+      el.style.transitionDelay = (col * 100) + 'ms';
+    });
+
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {

@@ -470,6 +470,9 @@ img { max-width: 100%; height: auto; display: block; }
   aspect-ratio: 3 / 4;
   opacity: 0;
   will-change: transform;
+  --p-lens-x: 50%;
+  --p-lens-y: 42%;
+  --p-lens-radius: 28%;
 }
 
 .p-bb__photo {
@@ -482,6 +485,95 @@ img { max-width: 100%; height: auto; display: block; }
   filter: grayscale(100%) contrast(1.1) brightness(0.95);
   // La foto si muove col parallax JS: aggiunge la propria trasformazione
   will-change: transform;
+}
+
+// Interactive computer-vision lens: the resting portrait stays minimal,
+// while interaction reveals a pop-art AI interpretation of the same image.
+.p-bb__lens-layer,
+.p-bb__lens-reticle {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.p-bb__lens-layer {
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0;
+  clip-path: circle(0 at var(--p-lens-x) var(--p-lens-y));
+  transition: clip-path 0.45s var(--p-ease-out), opacity 0.25s ease;
+  background: var(--p-purple);
+}
+
+.p-bb__lens-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+  filter: grayscale(1) contrast(1.45) sepia(1) hue-rotate(105deg) saturate(4.5) brightness(1.05);
+  mix-blend-mode: screen;
+}
+
+.p-bb__lens-halftone {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle, rgba(7,7,15,0.72) 1px, transparent 1.6px) 0 0 / 7px 7px,
+    linear-gradient(135deg, rgba(0,255,136,0.2), rgba(110,86,255,0.5));
+  mix-blend-mode: multiply;
+}
+
+.p-bb__lens-reticle {
+  z-index: 3;
+  top: var(--p-lens-y);
+  left: var(--p-lens-x);
+  inset: auto;
+  width: clamp(92px, 34%, 160px);
+  aspect-ratio: 1;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.82);
+  transition: opacity 0.2s ease, transform 0.35s var(--p-spring);
+}
+
+.p-bb__photo-wrap.is-lens-active {
+  .p-bb__lens-layer {
+    opacity: 1;
+    clip-path: circle(var(--p-lens-radius) at var(--p-lens-x) var(--p-lens-y));
+  }
+
+  .p-bb__lens-reticle {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.p-bb__lens-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: var(--p-teal);
+  border-style: solid;
+  filter: drop-shadow(0 0 5px rgba(0,212,170,0.55));
+
+  &--tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+  &--tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+  &--bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+  &--br { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
+}
+
+.p-bb__lens-label {
+  position: absolute;
+  left: 0;
+  bottom: -1.6rem;
+  font-family: var(--p-font-mono);
+  font-size: clamp(0.48rem, 1vw, 0.62rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--p-teal);
+  background: rgba(7,7,15,0.82);
+  border-left: 2px solid var(--p-teal);
+  padding: 0.2rem 0.42rem;
+  white-space: nowrap;
 }
 
 // "Into" — label italic serif sovrapposta alla foto, destra
@@ -682,6 +774,7 @@ img { max-width: 100%; height: auto; display: block; }
     max-height:   none;
     aspect-ratio: 3 / 4;
     margin:       0 auto -2.5rem; // overlap: INTELLIGENCE si sovrappone al fondo
+    --p-lens-radius: 32%;
   }
 
   // "Into" label — resta assoluta rispetto al photo-wrap
@@ -740,6 +833,24 @@ img { max-width: 100%; height: auto; display: block; }
   @keyframes p-mb-scale-in {
     from { opacity: 0; transform: scale(0.9); }
     to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes p-lens-scan {
+    0%, 100% { opacity: 0; clip-path: circle(0 at 18% 48%); }
+    18%      { opacity: 1; clip-path: circle(32% at 18% 48%); }
+    72%      { opacity: 1; clip-path: circle(32% at 82% 48%); }
+  }
+  @keyframes p-reticle-scan {
+    0%, 100% { opacity: 0; left: 18%; top: 48%; }
+    18%      { opacity: 1; left: 18%; top: 48%; }
+    72%      { opacity: 1; left: 82%; top: 48%; }
+  }
+
+  .p-bb__photo-wrap.is-auto-scanning {
+    .p-bb__lens-layer { animation: p-lens-scan 2.4s 1.25s var(--p-ease) both; }
+    .p-bb__lens-reticle {
+      animation: p-reticle-scan 2.4s 1.25s var(--p-ease) both;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
   }
 
   // Senza .p-hero--ready: elementi visibili subito (fallback JS lento/assente)
@@ -914,11 +1025,29 @@ img { max-width: 100%; height: auto; display: block; }
     transition: opacity 0.3s;
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      320px circle at var(--p-spot-x, 50%) var(--p-spot-y, 50%),
+      rgba(110,86,255,0.13),
+      transparent 64%
+    );
+    transition: opacity 0.3s ease;
+  }
+
+  > * { position: relative; z-index: 1; }
+
   &:hover {
     transform: translateY(-6px);
     border-color: var(--p-purple-mid);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--p-purple-mid);
     &::before { opacity: 1; }
+    &::after { opacity: 1; }
   }
 
   &:focus-within {
@@ -1244,6 +1373,110 @@ img { max-width: 100%; height: auto; display: block; }
   height: 1px;
   background: var(--p-border);
   margin: 0;
+}
+
+// Editorial bridge between academic research and shipped creative work.
+.p-mode-shift {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid var(--p-border);
+  background:
+    linear-gradient(90deg, rgba(110,86,255,0.08), transparent 45%, rgba(0,212,170,0.07)),
+    var(--p-bg);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(rgba(226,226,242,0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(226,226,242,0.18) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+  }
+
+  &__inner {
+    min-height: clamp(9rem, 18vw, 14rem);
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(90px, 1fr) auto;
+    align-items: center;
+    gap: clamp(1rem, 4vw, 3.5rem);
+  }
+
+  &__mode {
+    font-family: var(--p-font-head);
+    font-size: clamp(2rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--p-text);
+    text-transform: uppercase;
+
+    &--build {
+      color: var(--p-teal);
+      text-shadow: 0 0 35px rgba(0,212,170,0.22);
+    }
+  }
+
+  &__signal {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    &::before,
+    &::after {
+      content: '';
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, var(--p-purple), var(--p-teal), transparent);
+    }
+
+    i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--p-teal);
+      box-shadow: 0 0 10px rgba(0,212,170,0.7);
+      animation: p-signal-pulse 1.8s ease-in-out infinite;
+
+      &:nth-child(2) { animation-delay: 0.18s; }
+      &:nth-child(3) { animation-delay: 0.36s; }
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    left: 50%;
+    bottom: 1.25rem;
+    transform: translateX(-50%);
+    font-family: var(--p-font-mono);
+    font-size: clamp(0.56rem, 1.2vw, 0.72rem);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--p-text-muted);
+    white-space: nowrap;
+  }
+}
+
+@keyframes p-signal-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+@media (max-width: 640px) {
+  .p-mode-shift {
+    &__inner {
+      min-height: 9rem;
+      grid-template-columns: auto 1fr auto;
+      gap: 0.75rem;
+    }
+
+    &__mode { font-size: clamp(1.35rem, 8vw, 2.4rem); }
+    &__signal { gap: 0.25rem; }
+    &__caption { letter-spacing: 0.08em; bottom: 1rem; }
+  }
 }
 
 // ============================================================

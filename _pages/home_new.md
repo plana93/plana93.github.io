@@ -39,9 +39,23 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   <div class="p-bb__photo-wrap p-bb__reveal">
     <img src="{{ '/assets/img/io_without_bg.png' | relative_url }}"
          alt="Mirco Planamente"
-         class="p-bb__photo"
+         class="p-bb__photo p-bb__photo--base"
          loading="eager"
          draggable="false" />
+    <div class="p-bb__lens-layer" aria-hidden="true">
+      <img src="{{ '/assets/img/io_without_bg.png' | relative_url }}"
+           alt=""
+           class="p-bb__lens-photo"
+           draggable="false" />
+      <div class="p-bb__lens-halftone"></div>
+    </div>
+    <div class="p-bb__lens-reticle" aria-hidden="true">
+      <span class="p-bb__lens-corner p-bb__lens-corner--tl"></span>
+      <span class="p-bb__lens-corner p-bb__lens-corner--tr"></span>
+      <span class="p-bb__lens-corner p-bb__lens-corner--bl"></span>
+      <span class="p-bb__lens-corner p-bb__lens-corner--br"></span>
+      <span class="p-bb__lens-label">PERSON&nbsp;&nbsp;99.8%</span>
+    </div>
     <!-- etichetta "Into" in stile serif italic -->
     <span class="p-bb__into" aria-hidden="true"><em>Into</em></span>
   </div>
@@ -375,7 +389,16 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   </div>
 </section>
 
-<div class="p-divider"></div>
+<div class="p-mode-shift p-reveal" aria-label="From research to building products">
+  <div class="p-container p-mode-shift__inner">
+    <span class="p-mode-shift__mode">Research</span>
+    <span class="p-mode-shift__signal" aria-hidden="true">
+      <i></i><i></i><i></i>
+    </span>
+    <span class="p-mode-shift__mode p-mode-shift__mode--build">Build</span>
+    <span class="p-mode-shift__caption">models → systems → experiences</span>
+  </div>
+</div>
 
 <!-- ================================================================
      PROJECTS — cinematic staggered layout

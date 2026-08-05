@@ -223,6 +223,64 @@
      3b. HERO BILLBOARD — entrance + parallax foto + scroll layers
   ============================================================ */
 
+  function initVisionLens() {
+    var wrap = $('.p-bb__photo-wrap');
+    if (!wrap || !$('.p-bb__lens-layer', wrap)) return;
+
+    var hideTimer;
+
+    function moveLens(event) {
+      var rect = wrap.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      var x = Math.max(5, Math.min(95, ((event.clientX - rect.left) / rect.width) * 100));
+      var y = Math.max(5, Math.min(95, ((event.clientY - rect.top) / rect.height) * 100));
+      wrap.style.setProperty('--p-lens-x', x.toFixed(2) + '%');
+      wrap.style.setProperty('--p-lens-y', y.toFixed(2) + '%');
+    }
+
+    wrap.addEventListener('pointerenter', function (event) {
+      if (event.pointerType === 'touch') return;
+      moveLens(event);
+      wrap.classList.add('is-lens-active');
+    });
+
+    wrap.addEventListener('pointermove', function (event) {
+      if (event.pointerType === 'touch') return;
+      moveLens(event);
+    }, { passive: true });
+
+    wrap.addEventListener('pointerleave', function () {
+      wrap.classList.remove('is-lens-active');
+    });
+
+    // Touch devices get a tap interaction plus one short introductory scan.
+    wrap.addEventListener('pointerdown', function (event) {
+      if (event.pointerType !== 'touch') return;
+      clearTimeout(hideTimer);
+      wrap.classList.remove('is-auto-scanning');
+      moveLens(event);
+      wrap.classList.add('is-lens-active');
+      hideTimer = setTimeout(function () {
+        wrap.classList.remove('is-lens-active');
+      }, 1400);
+    }, { passive: true });
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mobile = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+    if (mobile && !reduceMotion) wrap.classList.add('is-auto-scanning');
+  }
+
+  function initCardSpotlights() {
+    $$('.p-research-card').forEach(function (card) {
+      card.addEventListener('pointermove', function (event) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--p-spot-x', (event.clientX - rect.left) + 'px');
+        card.style.setProperty('--p-spot-y', (event.clientY - rect.top) + 'px');
+      }, { passive: true });
+    });
+  }
+
   // Ridimensiona il titolo usando la larghezza realmente disponibile.
   // Cambiare il font-size (invece di scaleX) mantiene intatte le proporzioni
   // delle lettere e funziona anche con font scaling/accessibility del browser.
@@ -546,6 +604,8 @@
     initNav();
     initScrollReveal();
     initProjectCards();
+    initVisionLens();
+    initCardSpotlights();
     initBillboardHero();
     initActiveNav();
 

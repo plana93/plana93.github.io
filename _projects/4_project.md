@@ -106,9 +106,8 @@ category: fun
 
 <!-- CTA -->
 <div class="p-cta-row p-reveal">
-  <a href="/new/#projects" class="p-btn p-btn--outline">← Back to Projects</a>
+  <a href="/#projects" class="p-btn p-btn--outline">← Back to Projects</a>
   <a href="http://vandal.polito.it/" target="_blank" class="p-btn p-btn--ghost">Vandal Lab ↗</a>
 </div>
-
 
 

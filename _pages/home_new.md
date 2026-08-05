@@ -346,16 +346,16 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <div class="p-divider"></div>
 
 <!-- ================================================================
-     PUBLICATIONS (auto-fetched from Scholar)
+     PUBLICATIONS
 ================================================================ -->
 <section class="p-section" id="publications" data-section="publications" aria-label="Publications">
   <div class="p-container">
 
     <div class="p-section-header p-section-header--split p-reveal">
       <div>
-        <span class="p-overline">From Google Scholar</span>
+        <span class="p-overline">Selected Research Output</span>
         <h2 class="p-h2">Publications</h2>
-        <span class="p-scholar-badge">Live data from Google Scholar</span>
+        <span class="p-scholar-badge">Full publication record on Google Scholar</span>
         <div class="p-pub-hook p-reveal" aria-label="Not many, but every single one cost blood, sweat and deadline nights — quality over quantity.">
           <span class="p-pub-hook__label">The hard truth</span>
           <p class="p-pub-hook__hero">Not many.</p>

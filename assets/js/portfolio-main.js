@@ -223,58 +223,23 @@
      3b. HERO BILLBOARD — entrance + parallax foto + scroll layers
   ============================================================ */
 
-  // Scala la span di INTELLIGENCE in modo che non esca dal viewport
+  // Ridimensiona il titolo usando la larghezza realmente disponibile.
+  // Cambiare il font-size (invece di scaleX) mantiene intatte le proporzioni
+  // delle lettere e funziona anche con font scaling/accessibility del browser.
   function fitIntelBar() {
     var intel = $('.p-bb__intel');
     if (!intel) return;
     var span = intel.querySelector('span');
     if (!span) return;
-    span.style.transform = ''; // reset
-    var spanW = span.scrollWidth;
-    var vw    = window.innerWidth;
-    if (spanW > vw * 0.96) {
-      var scale = (vw * 0.96) / spanW;
-      span.style.transformOrigin = '50% 50%';
-      span.style.transform = 'scaleX(' + scale + ')';
-    } else {
-      span.style.transformOrigin = '50% 50%';
-      span.style.transform = '';
-    }
-  }
+    span.style.fontSize = '';
 
-  // Use Fitty to better fit large headline text into available width
-  function initFittyForHero() {
-    // guard
-    if (typeof fitty === 'undefined') return;
-    try {
-      // Fitty on VISION (the big gradient word)
-      var visionSpan = document.querySelector('.p-bb__vision span');
-      if (visionSpan) {
-        // limit size via options: minSize, maxSize (px)
-        fitty(visionSpan, { minSize: 40, maxSize: 400, multiLine: false });
-      }
+    var availableWidth = Math.max(0, intel.clientWidth - 32);
+    var naturalWidth = span.scrollWidth;
+    if (!availableWidth || naturalWidth <= availableWidth) return;
 
-      // Fitty on INTELLIGENCE bar
-      var intelSpan = document.querySelector('.p-bb__intel span');
-      if (intelSpan) {
-        fitty(intelSpan, { minSize: 18, maxSize: 200, multiLine: false });
-      }
-
-      // Re-run fitIntelBar fallback resize logic after fitty settles
-      window.addEventListener('resize', function () {
-        setTimeout(function () { fitIntelBar(); }, 80);
-      }, { passive: true });
-
-      // Also re-run when the hero image loads (it can affect layout)
-      var heroImg = document.querySelector('.p-bb__photo');
-      if (heroImg) {
-        if (heroImg.complete) fitIntelBar();
-        else heroImg.addEventListener('load', fitIntelBar);
-      }
-    } catch (e) {
-      // silent
-      console.warn('fitty init failed', e);
-    }
+    var naturalSize = parseFloat(window.getComputedStyle(span).fontSize);
+    var fittedSize = Math.max(18, naturalSize * availableWidth / naturalWidth);
+    span.style.fontSize = fittedSize.toFixed(2) + 'px';
   }
 
   function initBillboardHero() {
@@ -287,7 +252,16 @@
     window.addEventListener('resize', function () {
       clearTimeout(resizeT);
       resizeT = setTimeout(fitIntelBar, 80);
-    });
+    }, { passive: true });
+
+    // Web fonts can change the measured word width after first paint.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitIntelBar);
+    }
+
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(fitIntelBar).observe($('.p-bb__intel'));
+    }
 
     var overline  = $('.p-bb__overline');
     var vision    = $('.p-bb__vision');
@@ -412,37 +386,6 @@
   }
 
   /* ============================================================
-     4. HERO TEXT ENTRANCE (GSAP) — layout classico (non billboard)
-  ============================================================ */
-  function initHeroEntrance() {
-    // Se è il billboard, già gestito da initBillboardHero
-    if ($('.p-hero--billboard')) return;
-
-    if (typeof gsap === 'undefined') {
-      $$('.p-hero__name-line > span').forEach(function (el) {
-        el.style.transform = 'translateY(0)';
-        el.style.opacity = '1';
-      });
-      var sub = $('.p-hero__subtitle');
-      var cta = $('.p-hero__cta');
-      var stats = $('.p-hero__stats');
-      if (sub)   { sub.style.opacity = '1'; sub.style.transform = 'none'; }
-      if (cta)   { cta.style.opacity = '1'; cta.style.transform = 'none'; }
-      if (stats) { stats.style.opacity = '1'; stats.style.transform = 'none'; }
-      return;
-    }
-
-    var tl = gsap.timeline({ delay: 0.3 });
-    var lines = $$('.p-hero__name-line > span');
-    if (lines.length) {
-      tl.to(lines, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.12 });
-    }
-    tl.to('.p-hero__subtitle', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.4');
-    tl.to('.p-hero__cta',      { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5');
-    tl.to('.p-hero__stats',    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
-  }
-
-  /* ============================================================
      5. SCROLL REVEAL (IntersectionObserver)
   ============================================================ */
   function initScrollReveal() {
@@ -454,15 +397,6 @@
       return;
     }
 
-    // Per le p-reveal-right (research cards in griglia 3 colonne), aggiungi
-    // un transition-delay basato sulla posizione nella riga (index % 3)
-    // così card 7-8-9 entrano da sinistra a destra, non tutte insieme.
-    var revealRight = $$('.p-reveal-right');
-    revealRight.forEach(function(el, i) {
-      var col = i % 3;
-      el.style.transitionDelay = (col * 100) + 'ms';
-    });
-
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -470,7 +404,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
     targets.forEach(function (el) { observer.observe(el); });
   }
@@ -572,26 +506,6 @@
       );
     });
 
-    // Number counter animation for stats
-    $$('.p-stat__num[data-count]').forEach(function (el) {
-      var target = parseInt(el.dataset.count);
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 85%',
-        once: true,
-        onEnter: function () {
-          var obj = { val: 0 };
-          gsap.to(obj, {
-            val: target,
-            duration: 1.5,
-            ease: 'power2.out',
-            onUpdate: function () {
-              el.textContent = Math.round(obj.val) + (el.dataset.suffix || '');
-            }
-          });
-        }
-      });
-    });
   }
 
   /* ============================================================
@@ -624,17 +538,8 @@
     initNav();
     initScrollReveal();
     initProjectCards();
-    initBillboardHero();  // billboard hero (nuovo design)
-    initHeroEntrance();   // fallback per layout classico
+    initBillboardHero();
     initActiveNav();
-    initFittyForHero();   // Fitty: adatta testo hero alla viewport
-
-    // Ricalcola il font-size al resize (es. rotazione schermo)
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(fitHeroTitle, 80);
-    });
 
     // Three.js and GSAP load async — wait for them
     function waitForLibs(tries) {

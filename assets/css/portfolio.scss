@@ -9,11 +9,6 @@
  ******************************************************************************/
 
 // ============================================================
-// 0. GOOGLE FONTS IMPORT
-// ============================================================
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
-
-// ============================================================
 // 1. DESIGN TOKENS
 // ============================================================
 :root {
@@ -25,6 +20,7 @@
   --p-text:       #e2e2f2;          // primary text
   --p-text-muted: rgba(226, 226, 242, 0.5);
   --p-text-dim:   rgba(226, 226, 242, 0.25);
+  --p-muted:      var(--p-text-muted);
 
   // Accent colors
   --p-purple:     #6e56ff;          // electric purple
@@ -45,10 +41,15 @@
   --p-s2: 1rem;
   --p-s3: 1.5rem;
   --p-s4: 2rem;
+  --p-s5: 2.5rem;
   --p-s6: 3rem;
   --p-s8: 4rem;
+  --p-s10: 5rem;
   --p-s12: 6rem;
+  --p-s14: 7rem;
   --p-s16: 8rem;
+  --p-s20: 10rem;
+  --p-nav-h: 4.5rem;
 
   // Motion
   --p-ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -80,6 +81,11 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid var(--p-teal);
+  outline-offset: 4px;
 }
 
 ::selection {
@@ -123,17 +129,6 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--p-purple);
   display: block;
   margin-bottom: var(--p-s2);
-}
-
-// H1 hero headline
-.p-h1 {
-  font-family: var(--p-font-head);
-  font-size: clamp(3.5rem, 10vw, 8rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  color: var(--p-text);
-  margin: 0;
 }
 
 // H2 section heading
@@ -329,83 +324,10 @@ img { max-width: 100%; height: auto; display: block; }
   50%       { transform: translateX(-50%) translateY(8px); }
 }
 
-.p-hero__name {
-  font-family: var(--p-font-head);
-  /*
-    "Planamente" = 10 caratteri. Con Syne 800 ogni char è ~0.85em di larghezza.
-    Per stare nel viewport: font-size ≤ viewport / (10 × 0.85) ≈ viewport / 8.5
-    → usiamo min(10vw, calc(88vw / 10)) così la parola più lunga
-      occupa sempre ≤ 88% della viewport, qualsiasi sia la risoluzione.
-  */
-  font-size: clamp(3rem, min(10vw, calc(88vw / 10)), 9rem);
-  font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  color: var(--p-text);
-  margin-bottom: var(--p-s3);
-  position: relative;
-
-  .p-hero__name-line {
-    display: block;
-    /*
-      Non nascondere l’overflow di default: su viewport stretti (o con font scaling)
-      il cognome può finire parzialmente “tagliato”.
-      Durante l’animazione d’ingresso (GSAP) ri-applichiamo il clipping con una classe.
-    */
-    overflow: visible;
-    > span {
-      display: block;
-      transform: translateY(100%);
-      opacity: 0;
-    }
-  }
-}
-
-/* Clipping solo quando serve per l’animazione di reveal (evita tagli permanenti) */
-.p-hero__name.p-hero__name--clip-lines {
-  .p-hero__name-line { overflow: hidden; }
-}
-
-/* Mobile polish: permetti al nome di andare a capo in modo leggibile */
-@media (max-width: 480px) {
-  .p-hero__name {
-    font-size: clamp(3rem, 14vw, 5.25rem);
-    letter-spacing: -0.03em;
-  }
-  .p-hero__name-line > span {
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-}
-
-.p-hero__subtitle {
-  font-family: var(--p-font-body);
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  font-weight: 400;
-  color: var(--p-text-muted);
-  max-width: 56ch;
-  line-height: 1.65;
-  margin-bottom: var(--p-s6);
-  opacity: 0;
-  transform: translateY(20px);
-}
-
 .p-hero__cta {
   display: flex;
   gap: var(--p-s2);
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.p-hero__stats {
-  display: flex;
-  gap: var(--p-s8);
-  flex-wrap: wrap;
-  margin-top: var(--p-s8);
-  padding-top: var(--p-s4);
-  border-top: 1px solid var(--p-border);
   opacity: 0;
   transform: translateY(20px);
 }
@@ -602,6 +524,7 @@ img { max-width: 100%; height: auto; display: block; }
     padding: 0.08em 0.22em;
     display: block;
     width: fit-content;
+    max-width: calc(100% - 2rem);
     white-space: nowrap;
     transform-origin: 50% 50%;
   }
@@ -615,11 +538,6 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 6;
   opacity: 0;
 
-  .p-hero__stats {
-    opacity: 1;
-    transform: none;
-    gap: clamp(1rem, 3vw, 3rem);
-  }
 }
 
 // Scroll hint (ereditato dal layout base)
@@ -782,7 +700,8 @@ img { max-width: 100%; height: auto; display: block; }
     bottom:     auto;
     transform:  none;
     width:      100%;           // prende tutta la larghezza
-    overflow:   visible;
+    padding-inline: 1rem;
+    overflow:   hidden;
 
     span {
       font-size:        clamp(1.4rem, 10vw, 4rem);  // ridotto: evita overflow
@@ -791,6 +710,7 @@ img { max-width: 100%; height: auto; display: block; }
       white-space:      nowrap;
       display:          block;
       width:            fit-content;
+      max-width:        100%;
       margin-inline:    auto;   // centrato
     }
   }
@@ -867,7 +787,6 @@ img { max-width: 100%; height: auto; display: block; }
   .p-section { padding-block: clamp(3rem, 8vw, 5rem); }
   .p-h2      { font-size: clamp(1.6rem, 6vw, 2.5rem); }
   .p-research-grid { grid-template-columns: 1fr; }
-  .p-industry-grid { grid-template-columns: 1fr; }
   .p-pub {
     grid-template-columns: 1fr;
     gap: var(--p-s2);
@@ -955,13 +874,26 @@ img { max-width: 100%; height: auto; display: block; }
       text-decoration: none;
     }
   }
+
+  &--ghost {
+    background: transparent;
+    color: var(--p-text-muted) !important;
+    padding-inline: 0.5rem;
+
+    &:hover {
+      color: var(--p-teal) !important;
+      transform: translateX(3px);
+    }
+  }
 }
 
 // ============================================================
 // 8. CARDS
 // ============================================================
 .p-card {
-  background: var(--p-surface);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.025), transparent 42%),
+    var(--p-surface);
   border: 1px solid var(--p-border);
   border-radius: var(--p-r-lg);
   padding: var(--p-s4);
@@ -987,6 +919,10 @@ img { max-width: 100%; height: auto; display: block; }
     border-color: var(--p-purple-mid);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--p-purple-mid);
     &::before { opacity: 1; }
+  }
+
+  &:focus-within {
+    border-color: var(--p-purple-mid);
   }
 
   &__tag {
@@ -1147,64 +1083,6 @@ img { max-width: 100%; height: auto; display: block; }
       color: var(--p-text-dim);
       margin-top: 0.2rem;
     }
-  }
-}
-
-// ============================================================
-// 11. INDUSTRIAL SECTION
-// ============================================================
-.p-industry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--p-s3);
-  margin-top: var(--p-s6);
-}
-
-.p-industry-card {
-  @extend .p-card;
-  display: flex;
-  flex-direction: column;
-  gap: var(--p-s2);
-
-  &__number {
-    font-family: var(--p-font-mono);
-    font-size: 3rem;
-    font-weight: 600;
-    line-height: 1;
-    color: var(--p-purple-mid);
-    border-bottom: 1px solid var(--p-border);
-    padding-bottom: var(--p-s3);
-    margin-bottom: var(--p-s2);
-  }
-
-  &__title {
-    font-family: var(--p-font-head);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--p-text);
-  }
-
-  &__desc {
-    font-size: 0.92rem;
-    line-height: 1.7;
-    color: var(--p-text-muted);
-    flex: 1;
-  }
-
-  &__tags {
-    display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: var(--p-s2);
-  }
-
-  &__tag {
-    font-family: var(--p-font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.2em 0.65em;
-    border-radius: 4px;
-    background: var(--p-teal-dim);
-    color: var(--p-teal);
-    border: 1px solid rgba(0, 212, 170, 0.2);
   }
 }
 
@@ -1381,27 +1259,6 @@ img { max-width: 100%; height: auto; display: block; }
     gap: var(--p-s4);
     flex-wrap: wrap;
   }
-}
-
-// ============================================================
-// 16. SKELETON LOADING (Scholar fetch)
-// ============================================================
-.p-skeleton {
-  background: linear-gradient(90deg, var(--p-surface) 25%, var(--p-surface-2) 50%, var(--p-surface) 75%);
-  background-size: 400% 100%;
-  animation: p-skeleton-wave 1.8s ease-in-out infinite;
-  border-radius: var(--p-r);
-}
-
-@keyframes p-skeleton-wave {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.p-pub-skeleton {
-  height: 90px;
-  border-radius: var(--p-r-lg);
-  @extend .p-skeleton;
 }
 
 // ============================================================
@@ -1633,91 +1490,6 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: 1fr;
     gap: var(--p-s2);
     &__cite { flex-direction: row; align-self: flex-start; }
-  }
-
-  .p-hero__stats { gap: var(--p-s6); }
-}
-
-@media (max-width: 480px) {
-  .p-hero__stats { gap: var(--p-s4); }
-  .p-h1 { letter-spacing: -0.02em; }
-}
-
-// ============================================================
-// 19. PROJECTS GRID
-// ============================================================
-.p-projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--p-s8);
-  margin-top: var(--p-s10);
-}
-
-.p-project-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--p-surface);
-  border: 1px solid var(--p-border);
-  border-radius: 12px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-6px);
-    border-color: rgba(110,86,255,0.5);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
-  }
-
-  &__img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    background: rgba(255,255,255,0.04);
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    &--art img { object-fit: contain; padding: 1rem; }
-  }
-
-  &:hover &__img img { transform: scale(1.04); }
-
-  &__body {
-    padding: var(--p-s6);
-    display: flex;
-    flex-direction: column;
-    gap: var(--p-s3);
-    flex: 1;
-  }
-
-  &__title {
-    font-family: var(--p-font-head);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--p-text);
-    margin: 0;
-  }
-
-  &__desc {
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: var(--p-muted);
-    margin: 0;
-    flex: 1;
-  }
-
-  &__link {
-    font-size: 0.82rem;
-    font-family: var(--p-font-mono);
-    color: var(--p-purple);
-    margin-top: auto;
-    padding-top: var(--p-s3);
   }
 }
 
@@ -2398,5 +2170,28 @@ img { max-width: 100%; height: auto; display: block; }
   &:hover &__thumb img {
     filter: grayscale(0%) brightness(0.95);
     transform: scale(1.04);
+  }
+}
+
+// Respect system accessibility settings without changing the default experience.
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .p-reveal,
+  .p-reveal-left,
+  .p-reveal-right,
+  .p-reveal-scale,
+  .p-chat__msg--reveal,
+  .p-bb__reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }

@@ -65,14 +65,6 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
     <span>INTELLIGENCE</span>
   </div>
 
-  <!-- ── LAYER 5: CTA in basso a sinistra ── -->
-  <div class="p-bb__footer p-bb__reveal">
-    <div class="p-hero__cta">
-      <a href="#research"     class="p-btn p-btn--primary">Explore Research</a>
-      <a href="#publications" class="p-btn p-btn--outline">Publications</a>
-    </div>
-  </div>
-
   <!-- nome accessibile per screen reader -->
   <h1 class="p-bb__sr-only" aria-label="Mirco Planamente — AI Researcher">
     Mirco Planamente — Transforming Vision Into Intelligence

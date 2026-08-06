@@ -325,12 +325,11 @@
     var vision    = $('.p-bb__vision');
     var photoWrap = $('.p-bb__photo-wrap');
     var intel     = $('.p-bb__intel');
-    var footer    = $('.p-bb__footer');
     var photo     = $('.p-bb__photo');
 
     // Utility: mostra tutti gli elementi senza animazione
     function showAllImmediate() {
-      [overline, vision, photoWrap, intel, footer].forEach(function(el) {
+      [overline, vision, photoWrap, intel].forEach(function(el) {
         if (!el) return;
         el.style.opacity = '1';
         el.style.transform = 'none';
@@ -388,12 +387,6 @@
     if (intel) tl.to(intel,
       { opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.4)' },
       '-=0.5'
-    );
-
-    // 5. Footer stats + CTA
-    if (footer) tl.to(footer,
-      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
-      '-=0.3'
     );
 
     // ── Parallax scroll (solo testo, NON la foto) ─────────────

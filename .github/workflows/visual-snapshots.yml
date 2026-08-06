@@ -1,0 +1,66 @@
+name: Visual snapshots
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: URL to capture
+        required: false
+        default: https://plana93.github.io/
+  push:
+    branches: [master]
+    paths:
+      - "_layouts/**"
+      - "_pages/**"
+      - "_projects/**"
+      - "assets/css/**"
+      - "assets/js/**"
+      - "_scripts/capture-site.mjs"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/visual-snapshots.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VISUAL_BASE_URL: ${{ inputs.site_url || 'https://plana93.github.io/' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Wait for GitHub Pages deployment
+        if: github.event_name == 'push'
+        run: |
+          echo "Allowing GitHub Pages time to publish the pushed revision..."
+          sleep 120
+          curl --fail --silent --show-error --retry 10 --retry-delay 10 "$VISUAL_BASE_URL" > /dev/null
+
+      - name: Capture responsive screenshots
+        run: npm run screenshots -- --url "$VISUAL_BASE_URL"
+
+      - name: Upload visual report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-visual-report-${{ github.run_number }}
+          path: visual-report/
+          if-no-files-found: error
+          retention-days: 14

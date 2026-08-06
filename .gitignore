@@ -8,6 +8,9 @@ _site
 .tweet-cache
 Gemfile.lock
 vendor
+node_modules/
+visual-report*/
+.playwright-browsers/
 
 _old/
 .jekyll-cache/

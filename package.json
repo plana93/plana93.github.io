@@ -1,0 +1,10 @@
+{
+  "name": "plana93-visual-checks",
+  "private": true,
+  "scripts": {
+    "screenshots": "node _scripts/capture-site.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

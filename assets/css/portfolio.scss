@@ -381,7 +381,7 @@ img { max-width: 100%; height: auto; display: block; }
   opacity: 1;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .p-journey {
     top: auto;
     right: auto;
@@ -792,6 +792,11 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 6;
   opacity: 0;
 
+}
+
+.p-bb__footer .p-hero__cta {
+  opacity: 1;
+  transform: none;
 }
 
 // Scroll hint (ereditato dal layout base)
@@ -1287,6 +1292,83 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
+.p-research-pulse {
+  grid-column: 1 / -1;
+  min-height: clamp(11rem, 22vw, 16rem);
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  overflow: hidden;
+  border: 1px solid rgba(255,77,109,0.32);
+  border-radius: var(--p-r-lg);
+  background:
+    linear-gradient(120deg, rgba(255,77,109,0.15), transparent 48%),
+    var(--p-surface);
+
+  &::before {
+    content: 'REAL SYSTEMS';
+    position: absolute;
+    right: -0.04em;
+    top: -0.08em;
+    font-family: var(--p-font-head);
+    font-size: clamp(4rem, 13vw, 10rem);
+    font-weight: 800;
+    line-height: 0.8;
+    letter-spacing: -0.07em;
+    color: rgba(255,77,109,0.055);
+    white-space: nowrap;
+  }
+
+  &__label {
+    position: relative;
+    z-index: 1;
+    align-self: start;
+    font-family: var(--p-font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    color: var(--p-coral);
+    white-space: nowrap;
+  }
+
+  &__statement {
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+    margin: 0;
+    font-family: var(--p-font-head);
+    font-size: clamp(1.45rem, 4vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--p-text-muted);
+
+    strong { color: var(--p-text); font-weight: 800; }
+  }
+
+  &__trace {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--p-coral) 0 18%, transparent 18% 21%, var(--p-purple) 21% 62%, transparent 62% 65%, var(--p-teal) 65%);
+  }
+}
+
+@media (max-width: 640px) {
+  .p-research-pulse {
+    min-height: 13rem;
+    grid-template-columns: 1fr;
+    align-content: space-between;
+    align-items: start;
+
+    &__statement { justify-self: start; }
+  }
+}
+
 // ============================================================
 // 10. PUBLICATIONS SECTION
 // ============================================================
@@ -1632,13 +1714,20 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 640px) {
   .p-mode-shift {
     &__inner {
-      min-height: 9rem;
-      grid-template-columns: minmax(0, 1fr) minmax(28px, 0.35fr) minmax(0, 0.7fr);
-      gap: clamp(0.35rem, 2vw, 0.75rem);
+      min-height: 12rem;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1rem auto;
+      align-content: center;
+      gap: 0.15rem;
+      padding-block: 1.25rem 2.5rem;
     }
 
-    &__mode { font-size: clamp(1.15rem, 6.6vw, 2rem); }
-    &__signal { gap: 0.25rem; }
+    &__mode {
+      font-size: clamp(1.75rem, 9vw, 2.4rem);
+      justify-self: start;
+    }
+    &__mode--build { justify-self: end; }
+    &__signal { width: 72%; gap: 0.25rem; justify-self: center; }
     &__caption {
       width: calc(100% - 2rem);
       text-align: center;
@@ -1748,7 +1837,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .p-footer { padding-bottom: calc(var(--p-s6) + 3.5rem); }
 }
 

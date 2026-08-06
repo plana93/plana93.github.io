@@ -205,6 +205,14 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </div>
       </div>
 
+      <div class="p-research-pulse p-reveal">
+        <span class="p-research-pulse__label">[ SYSTEM NOTE ]</span>
+        <p class="p-research-pulse__statement">
+          Models are components.<br><strong>Decisions are the product.</strong>
+        </p>
+        <span class="p-research-pulse__trace" aria-hidden="true"></span>
+      </div>
+
       <!-- Object Detection -->
       <div class="p-research-card p-reveal-right" style="--reveal-delay:0ms">
         <div class="p-card__icon" style="background:rgba(255,165,0,0.12)">🎯</div>
@@ -389,7 +397,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   </div>
 </section>
 
-<div class="p-mode-shift p-reveal" aria-label="From research to building products">
+<div class="p-mode-shift p-reveal" id="mode-shift" aria-label="From research to building products">
   <div class="p-container p-mode-shift__inner">
     <span class="p-mode-shift__mode">Research</span>
     <span class="p-mode-shift__signal" aria-hidden="true">

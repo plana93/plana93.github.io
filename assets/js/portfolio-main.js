@@ -575,12 +575,48 @@
   }
 
   /* ============================================================
+     6b. KINETIC SECTION TYPOGRAPHY
+  ============================================================ */
+  function initKineticSections() {
+    var sections = $$('.p-section[data-kinetic]');
+    if (!sections.length) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    var ticking = false;
+
+    function update() {
+      var viewportH = window.innerHeight || 1;
+      sections.forEach(function (section, i) {
+        var rect = section.getBoundingClientRect();
+        var distance = (rect.top + rect.height * 0.5 - viewportH * 0.5) / (viewportH + rect.height);
+        var direction = i % 2 === 0 ? 1 : -1;
+        var shift = Math.max(-7, Math.min(7, distance * 14 * direction));
+        section.style.setProperty('--p-kinetic-x', shift.toFixed(2) + 'vw');
+      });
+      ticking = false;
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    update();
+  }
+
+  /* ============================================================
      7. ACTIVE NAV LINK (IntersectionObserver)
   ============================================================ */
   function initActiveNav() {
     var sections = $$('[data-section]');
     var links    = $$('.p-nav__link[data-nav]');
-    if (!sections.length || !links.length) return;
+    var journeyLinks = $$('.p-journey__link[data-journey]');
+    if (!sections.length || (!links.length && !journeyLinks.length)) return;
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -590,8 +626,21 @@
           if (l.dataset.nav === id) l.classList.add('active');
           else l.classList.remove('active');
         });
+        journeyLinks.forEach(function (l) {
+          if (l.dataset.journey === id) {
+            l.classList.add('active');
+            l.setAttribute('aria-current', 'true');
+          } else {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+          }
+        });
       });
-    }, { threshold: 0.4 });
+    }, {
+      threshold: 0,
+      // A narrow viewport band also works for very tall sections such as Research.
+      rootMargin: '-25% 0px -65% 0px'
+    });
 
     sections.forEach(function (s) { observer.observe(s); });
   }
@@ -607,6 +656,7 @@
     initVisionLens();
     initCardSpotlights();
     initBillboardHero();
+    initKineticSections();
     initActiveNav();
 
     // Three.js and GSAP load async — wait for them

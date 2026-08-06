@@ -115,6 +115,50 @@ img { max-width: 100%; height: auto; display: block; }
   padding-block: clamp(5rem, 10vw, 8rem);
 }
 
+// Oversized chapter words break the rigid rhythm without competing with copy.
+.p-section[data-kinetic] {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+
+  &::before {
+    content: attr(data-kinetic);
+    position: absolute;
+    top: clamp(1.5rem, 5vw, 4rem);
+    left: -0.04em;
+    z-index: 0;
+    max-width: 100%;
+    overflow: hidden;
+    font-family: var(--p-font-head);
+    font-size: clamp(6rem, 19vw, 17rem);
+    font-weight: 800;
+    line-height: 0.75;
+    letter-spacing: -0.08em;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(226,226,242,0.075);
+    opacity: 0.7;
+    transform: translate3d(var(--p-kinetic-x, -3vw), 0, 0) rotate(-1.5deg);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  &:nth-of-type(even)::before {
+    left: auto;
+    right: -0.04em;
+    transform: translate3d(var(--p-kinetic-x, 3vw), 0, 0) rotate(1.5deg);
+  }
+
+  > .p-container { position: relative; z-index: 1; }
+}
+
+@media (max-width: 640px) {
+  .p-section[data-kinetic]::before {
+    top: 2rem;
+    font-size: clamp(5rem, 28vw, 8rem);
+    -webkit-text-stroke-color: rgba(226,226,242,0.065);
+  }
+}
+
 // ============================================================
 // 4. TYPOGRAPHY
 // ============================================================
@@ -259,6 +303,124 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 640px) {
   .p-nav__links { display: none; }
+}
+
+// Persistent chapter rail: a functional instrument that keeps visitors
+// oriented while the visual language changes between sections.
+.p-journey {
+  position: fixed;
+  right: clamp(0.65rem, 1.4vw, 1.25rem);
+  top: 50%;
+  z-index: 850;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  transform: translateY(-50%);
+}
+
+.p-journey__link {
+  min-width: 2.2rem;
+  min-height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--p-text-dim) !important;
+  background: rgba(7,7,15,0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+
+  &::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: currentColor;
+    transition: transform 0.3s var(--p-spring), box-shadow 0.3s ease;
+  }
+
+  &:hover,
+  &.active {
+    color: var(--p-teal) !important;
+    border-color: rgba(0,212,170,0.22);
+    background: rgba(7,7,15,0.82);
+  }
+
+  &.active::after {
+    transform: scale(1.65);
+    box-shadow: 0 0 12px rgba(0,212,170,0.75);
+  }
+}
+
+.p-journey__num,
+.p-journey__label {
+  font-family: var(--p-font-mono);
+  font-size: 0.58rem;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.p-journey__label {
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  transition: width 0.3s var(--p-ease), opacity 0.2s ease;
+}
+
+.p-journey__link:hover .p-journey__label,
+.p-journey__link.active .p-journey__label {
+  width: 4.8rem;
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .p-journey {
+    top: auto;
+    right: auto;
+    left: 50%;
+    bottom: max(0.65rem, env(safe-area-inset-bottom));
+    width: min(calc(100% - 2rem), 360px);
+    padding: 0.25rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--p-border);
+    border-radius: 999px;
+    background: rgba(7,7,15,0.84);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transform: translateX(-50%);
+  }
+
+  .p-journey__link {
+    min-width: 2.35rem;
+    min-height: 2.1rem;
+    padding: 0.3rem 0.5rem;
+    justify-content: center;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    &::after { display: none; }
+  }
+
+  .p-journey__label { display: none; }
+  .p-journey__num { font-size: 0.56rem; }
+
+  .p-journey__link.active {
+    background: var(--p-teal);
+    border-color: var(--p-teal);
+    color: #07110e !important;
+  }
 }
 
 // ============================================================
@@ -1400,12 +1562,13 @@ img { max-width: 100%; height: auto; display: block; }
     min-height: clamp(9rem, 18vw, 14rem);
     position: relative;
     display: grid;
-    grid-template-columns: auto minmax(90px, 1fr) auto;
+    grid-template-columns: minmax(0, auto) minmax(48px, 1fr) minmax(0, auto);
     align-items: center;
     gap: clamp(1rem, 4vw, 3.5rem);
   }
 
   &__mode {
+    min-width: 0;
     font-family: var(--p-font-head);
     font-size: clamp(2rem, 7vw, 6rem);
     font-weight: 800;
@@ -1421,6 +1584,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   &__signal {
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 0.45rem;
@@ -1469,13 +1633,19 @@ img { max-width: 100%; height: auto; display: block; }
   .p-mode-shift {
     &__inner {
       min-height: 9rem;
-      grid-template-columns: auto 1fr auto;
-      gap: 0.75rem;
+      grid-template-columns: minmax(0, 1fr) minmax(28px, 0.35fr) minmax(0, 0.7fr);
+      gap: clamp(0.35rem, 2vw, 0.75rem);
     }
 
-    &__mode { font-size: clamp(1.35rem, 8vw, 2.4rem); }
+    &__mode { font-size: clamp(1.15rem, 6.6vw, 2rem); }
     &__signal { gap: 0.25rem; }
-    &__caption { letter-spacing: 0.08em; bottom: 1rem; }
+    &__caption {
+      width: calc(100% - 2rem);
+      text-align: center;
+      white-space: normal;
+      letter-spacing: 0.06em;
+      bottom: 0.85rem;
+    }
   }
 }
 
@@ -1576,6 +1746,10 @@ img { max-width: 100%; height: auto; display: block; }
     color: var(--p-text-dim);
     letter-spacing: 0.06em;
   }
+}
+
+@media (max-width: 640px) {
+  .p-footer { padding-bottom: calc(var(--p-s6) + 3.5rem); }
 }
 
 // ============================================================
@@ -2240,6 +2414,11 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
+@media (min-width: 769px) {
+  // A deliberate grid break: the middle object drops like a physical exhibit.
+  .p-proj-mini:nth-child(2) { margin-top: 2.5rem; }
+}
+
 // ============================================================
 // NEW: TALK CARDS con foto preview
 // ============================================================
@@ -2404,6 +2583,11 @@ img { max-width: 100%; height: auto; display: block; }
     filter: grayscale(0%) brightness(0.95);
     transform: scale(1.04);
   }
+}
+
+@media (min-width: 901px) {
+  .p-talk-card:nth-child(2) { margin-top: 2rem; }
+  .p-talk-card:nth-child(3) { margin-top: 0.75rem; }
 }
 
 // Respect system accessibility settings without changing the default experience.

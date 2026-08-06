@@ -93,7 +93,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <!-- ================================================================
      RESEARCH IDENTITY
 ================================================================ -->
-<section class="p-section" id="research" data-section="research" aria-label="Research areas">
+<section class="p-section" id="research" data-section="research" data-kinetic="VISION" aria-label="Research areas">
   <div class="p-container">
 
     <div class="p-section-header p-reveal">
@@ -362,7 +362,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <!-- ================================================================
      PUBLICATIONS
 ================================================================ -->
-<section class="p-section" id="publications" data-section="publications" aria-label="Publications">
+<section class="p-section" id="publications" data-section="publications" data-kinetic="PAPERS" aria-label="Publications">
   <div class="p-container">
 
     <div class="p-section-header p-section-header--split p-reveal">
@@ -403,7 +403,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <!-- ================================================================
      PROJECTS — cinematic staggered layout
 ================================================================ -->
-<section class="p-section p-section--dark" id="projects" data-section="projects" aria-label="Projects">
+<section class="p-section p-section--dark" id="projects" data-section="projects" data-kinetic="BUILD" aria-label="Projects">
   <div class="p-container">
 
     <div class="p-section-header p-reveal">
@@ -481,7 +481,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <!-- ================================================================
      TALKS & ACHIEVEMENTS — photo card layout
 ================================================================ -->
-<section class="p-section" id="talks" data-section="talks" aria-label="Talks and achievements">
+<section class="p-section" id="talks" data-section="talks" data-kinetic="SPEAK" aria-label="Talks and achievements">
   <div class="p-container">
 
     <div class="p-section-header p-reveal">
@@ -573,7 +573,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <!-- ================================================================
      CONTACT
 ================================================================ -->
-<section class="p-contact p-section" id="contact" data-section="contact" aria-label="Contact">
+<section class="p-contact p-section" id="contact" data-section="contact" data-kinetic="HELLO" aria-label="Contact">
   <div class="p-container">
 
     <span class="p-overline p-reveal" style="text-align:center;display:block">Let's Connect</span>

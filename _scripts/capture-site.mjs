@@ -28,6 +28,7 @@ if (!selectedViewports.length) {
 }
 
 const sectionIds = ['home', 'research', 'publications', 'mode-shift', 'projects', 'talks', 'contact'];
+const minimumSectionScreenshotBytes = 12_000;
 
 await fs.rm(outputDir, { recursive: true, force: true });
 await fs.mkdir(outputDir, { recursive: true });
@@ -106,6 +107,62 @@ async function inspectLayout(page) {
   });
 }
 
+async function settlePaint(page) {
+  await page.bringToFront();
+  await page.evaluate(() => new Promise(resolve => {
+    requestAnimationFrame(() => requestAnimationFrame(resolve));
+  }));
+}
+
+async function captureSection(page, outputPath, sectionId) {
+  const attempts = [];
+  let screenshot;
+
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    await settlePaint(page);
+    screenshot = await page.screenshot();
+    attempts.push(screenshot.byteLength);
+
+    if (screenshot.byteLength >= minimumSectionScreenshotBytes) break;
+
+    // A nearly uniform PNG is usually a stale compositor frame after a long scroll.
+    // Nudge the viewport and wait for Chrome to paint before trying again.
+    await page.evaluate(() => {
+      const currentY = window.scrollY;
+      window.scrollTo(0, Math.max(0, currentY - 2));
+      window.scrollTo(0, currentY);
+    });
+    await page.waitForTimeout(500 * attempt);
+  }
+
+  await fs.writeFile(outputPath, screenshot);
+
+  const visibleContent = await page.locator(`#${sectionId}`).evaluate(section => {
+    const viewportHeight = window.innerHeight;
+    return [...section.querySelectorAll('h1, h2, h3, p, a, span, img, canvas')].filter(element => {
+      const rect = element.getBoundingClientRect();
+      const style = getComputedStyle(element);
+      return (
+        rect.bottom > 0 &&
+        rect.top < viewportHeight &&
+        rect.width > 0 &&
+        rect.height > 0 &&
+        style.display !== 'none' &&
+        style.visibility !== 'hidden' &&
+        Number(style.opacity) > 0
+      );
+    }).length;
+  });
+
+  return {
+    section: sectionId,
+    bytes: screenshot.byteLength,
+    attempts,
+    visibleContent,
+    passed: screenshot.byteLength >= minimumSectionScreenshotBytes && visibleContent > 0
+  };
+}
+
 try {
   for (const viewport of selectedViewports) {
     const context = await browser.newContext({
@@ -117,6 +174,7 @@ try {
     const page = await context.newPage();
     const consoleErrors = [];
     const failedRequests = [];
+    const sectionChecks = [];
 
     page.on('console', message => {
       if (message.type() === 'error') consoleErrors.push(message.text());
@@ -151,7 +209,11 @@ try {
             setTimeout(resolve, 3000);
           });
         }))).catch(() => {});
-        await page.screenshot({ path: path.join(outputDir, `${viewport.name}-${sectionId}.png`) });
+        sectionChecks.push(await captureSection(
+          page,
+          path.join(outputDir, `${viewport.name}-${sectionId}.png`),
+          sectionId
+        ));
       }
     }
 
@@ -163,7 +225,7 @@ try {
     });
 
     const layout = await inspectLayout(page);
-    report.viewports.push({ ...viewport, layout, consoleErrors, failedRequests });
+    report.viewports.push({ ...viewport, layout, sectionChecks, consoleErrors, failedRequests });
     await context.close();
     await fs.writeFile(path.join(outputDir, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   }
@@ -173,9 +235,18 @@ try {
 
 await fs.writeFile(path.join(outputDir, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
 
-const failures = report.viewports.filter(item => item.layout.hasHorizontalOverflow);
-if (failures.length) {
-  console.error(`Horizontal overflow detected at: ${failures.map(item => item.name).join(', ')}`);
+const overflowFailures = report.viewports.filter(item => item.layout.hasHorizontalOverflow);
+const captureFailures = report.viewports.flatMap(item => item.sectionChecks
+  .filter(check => !check.passed)
+  .map(check => `${item.name}/${check.section}`));
+
+if (overflowFailures.length || captureFailures.length) {
+  if (overflowFailures.length) {
+    console.error(`Horizontal overflow detected at: ${overflowFailures.map(item => item.name).join(', ')}`);
+  }
+  if (captureFailures.length) {
+    console.error(`Blank or incomplete section captures detected at: ${captureFailures.join(', ')}`);
+  }
   process.exitCode = 1;
 } else {
   console.log(`Visual report generated in ${outputDir}`);

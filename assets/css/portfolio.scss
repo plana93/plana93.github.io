@@ -1869,29 +1869,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 // ============================================================
-// 21. SCHOLAR FETCH STATUS
-// ============================================================
-.p-scholar-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--p-font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--p-text-dim);
-  margin-bottom: var(--p-s3);
-
-  &::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--p-teal);
-    flex-shrink: 0;
-  }
-}
-
-// ============================================================
 // Publications hook — pull quote editoriale
 // Regola: ogni riga ha un unico stile, nessun mix su stessa linea
 // ============================================================

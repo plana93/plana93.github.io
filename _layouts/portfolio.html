@@ -119,30 +119,8 @@
 <footer class="p-footer" role="contentinfo">
   <div class="p-footer__inner">
     <p class="p-footer__copy">
-      &copy; {{ 'now' | date: '%Y' }} {{ site.first_name }} {{ site.last_name }} &mdash;
-      Built with Jekyll &amp; Three.js
+      &copy; {{ 'now' | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}
     </p>
-    <div style="display:flex;gap:1.5rem;align-items:center;">
-      {% if site.github_username %}
-      <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener"
-         class="p-footer__copy" style="opacity:0.6;transition:opacity 0.2s;"
-         onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6"
-         aria-label="GitHub profile">GitHub</a>
-      {% endif %}
-      {% if site.scholar_userid %}
-      <a href="https://scholar.google.com/citations?user={{ site.scholar_userid }}"
-         target="_blank" rel="noopener"
-         class="p-footer__copy" style="opacity:0.6;transition:opacity 0.2s;"
-         onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6"
-         aria-label="Google Scholar profile">Scholar</a>
-      {% endif %}
-      {% if site.linkedin_username %}
-      <a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank" rel="noopener"
-         class="p-footer__copy" style="opacity:0.6;transition:opacity 0.2s;"
-         onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6"
-         aria-label="LinkedIn profile">LinkedIn</a>
-      {% endif %}
-    </div>
   </div>
 </footer>
 

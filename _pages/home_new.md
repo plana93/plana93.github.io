@@ -70,8 +70,6 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
     <div class="p-hero__cta">
       <a href="#research"     class="p-btn p-btn--primary">Explore Research</a>
       <a href="#publications" class="p-btn p-btn--outline">Publications</a>
-      <a href="https://scholar.google.com/citations?user=GIJ3h4AAAAAJ&hl=en"
-         target="_blank" rel="noopener" class="p-btn p-btn--outline">Scholar ↗</a>
     </div>
   </div>
 
@@ -145,10 +143,8 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </p>
         <div class="p-research-card__papers">
           <span class="p-research-card__venue">UDA</span>
-          <span class="p-research-card__venue">Open-set</span>
-          <span class="p-research-card__venue">Closed-set</span>
-          <span class="p-research-card__venue">Partial UDA</span>
-          <span class="p-research-card__venue">Universal UDA</span>
+          <span class="p-research-card__venue">Open-world</span>
+          <span class="p-research-card__venue">Cross-domain</span>
         </div>
       </div>
 
@@ -168,19 +164,17 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
       <div class="p-research-card p-reveal-right">
         <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🗺️</div>
-        <span class="p-card__tag">[05] Scene Understanding</span>
-        <h3 class="p-research-card__area">Semantic Segmentation</h3>
+        <span class="p-card__tag">[05] Applied Perception</span>
+        <h3 class="p-research-card__area">Perception Systems</h3>
         <p class="p-research-card__desc">
-          Pixel-wise classification for dense scene understanding.
-          Applications in autonomous systems, industrial inspection and AR interfaces.
+          Detection, segmentation, recognition and pose estimation assembled into
+          reliable pipelines for industry, autonomous systems and human–AI interaction.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue">SAM</span>
-          <span class="p-research-card__venue">DINO</span>
-          <span class="p-research-card__venue">U-Net</span>
-          <span class="p-research-card__venue">Few-Shot</span>
-          <span class="p-research-card__venue">SegFormer</span>
-          <span class="p-research-card__venue">Weakly-Supervised</span>
+          <span class="p-research-card__venue">Detection</span>
+          <span class="p-research-card__venue">Segmentation</span>
+          <span class="p-research-card__venue">Recognition</span>
+          <span class="p-research-card__venue">Pose</span>
         </div>
       </div>
 
@@ -194,88 +188,27 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           Joint representation learning across modalities.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Depth</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">RGB</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Optical Flow</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Vision</span>
           <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Audio</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Event</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">IMU</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Keypoints</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Text</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Sensors</span>
+          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Language</span>
         </div>
       </div>
 
       <div class="p-research-pulse p-reveal">
-        <span class="p-research-pulse__label">[ SYSTEM NOTE ]</span>
+        <span class="p-research-pulse__label">[ FIELD NOTE ]</span>
         <p class="p-research-pulse__statement">
-          Models are components.<br><strong>Decisions are the product.</strong>
+          The demo is controlled.<br><strong>Reality is the benchmark.</strong>
         </p>
         <span class="p-research-pulse__trace" aria-hidden="true"></span>
-      </div>
-
-      <!-- Object Detection -->
-      <div class="p-research-card p-reveal-right" style="--reveal-delay:0ms">
-        <div class="p-card__icon" style="background:rgba(255,165,0,0.12)">🎯</div>
-        <span class="p-card__tag">[07] Localization</span>
-        <h3 class="p-research-card__area">Object Detection</h3>
-        <p class="p-research-card__desc">
-          Real-time and high-accuracy object detection pipelines for unconstrained scenes.
-          From anchor-based to transformer-based detectors deployed in production.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">YOLO</span>
-          <span class="p-research-card__venue">Mask R-CNN</span>
-          <span class="p-research-card__venue">RT-DETR</span>
-          <span class="p-research-card__venue">DEIM</span>
-        </div>
-      </div>
-
-      <!-- Object Recognition / Human Pose -->
-      <div class="p-research-card p-reveal-right" style="--reveal-delay:100ms">
-        <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🔎</div>
-        <span class="p-card__tag">[08] Recognition</span>
-        <h3 class="p-research-card__area">Object Recognition</h3>
-        <p class="p-research-card__desc">
-          Fine-grained visual recognition of objects across categories, instances and contexts.
-          Metric learning and embedding-based approaches for few-shot and open-set scenarios.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">ConvNeXt</span>
-          <span class="p-research-card__venue">ViT</span>
-          <span class="p-research-card__venue">Swin</span>
-          <span class="p-research-card__venue">CLIP</span>
-          <span class="p-research-card__venue">DINO</span>
-        </div>
-      </div>
-
-      <!-- Human Pose -->
-      <div class="p-research-card p-reveal-right" style="--reveal-delay:200ms">
-        <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🧍</div>
-        <span class="p-card__tag">[09] Body Understanding</span>
-        <h3 class="p-research-card__area">Human Pose Estimation</h3>
-        <p class="p-research-card__desc">
-          Skeleton-based and heatmap-driven pose estimation for activity monitoring,
-          action anticipation and human-machine interaction.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">MoveNet</span>
-          <span class="p-research-card__venue">BlazePose</span>
-          <span class="p-research-card__venue">YOLO-Pose</span>
-          <span class="p-research-card__venue">MediaPipe</span>
-          <span class="p-research-card__venue">HRNet</span>
-          <span class="p-research-card__venue">ViTPose</span>
-        </div>
       </div>
 
     </div>
 
     <!-- Problem Board — Chat style -->
     <div class="p-section-header p-reveal" style="margin-top:4rem">
-      <span class="p-overline">Actual conversations. Actual pain.</span>
+      <span class="p-overline">From the factory floor</span>
       <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">Real <span class="p-accent">Industrial Problems</span></h3>
-      <p class="p-body" style="max-width:52ch">
-        don't panic. we'll figure it out.
-      </p>
       <p class="p-chat-subtitle-it">mio padre dice sempre: <em>"calma e sangue freddo"</em></p>
     </div>
 
@@ -286,77 +219,37 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         <span class="p-chat__bubble">it was working fine yesterday. today it's broken. nothing changed</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:80ms">
-        <span class="p-chat__avatar">🧑‍🔧</span>
-        <span class="p-chat__bubble">why did it fail on this one? it looks the same as all the others</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:160ms">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:100ms">
         <span class="p-chat__avatar">👩‍💻</span>
         <span class="p-chat__bubble">we have only 3 defect images. how do I train a model?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:240ms">
-        <span class="p-chat__avatar">🧑‍🏭</span>
-        <span class="p-chat__bubble">how many images do we actually need?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:320ms">
-        <span class="p-chat__avatar">👩‍🔬</span>
-        <span class="p-chat__bubble">the model isn't learning anything</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:400ms">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:200ms">
         <span class="p-chat__avatar">👩‍💼</span>
         <span class="p-chat__bubble">they changed the setup last week. accuracy dropped 30 points. do I need to redo everything?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:480ms">
-        <span class="p-chat__avatar">🧑‍🔧</span>
-        <span class="p-chat__bubble">new camera arrives monday. do we start from scratch AGAIN</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:560ms">
-        <span class="p-chat__avatar">👩‍🏭</span>
-        <span class="p-chat__bubble">the model forgot everything it learned before</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:640ms">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:300ms">
         <span class="p-chat__avatar">👷</span>
         <span class="p-chat__bubble">training takes 6 hours. every time. I can't keep doing this</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:720ms">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:400ms">
         <span class="p-chat__avatar">👩‍💻</span>
         <span class="p-chat__bubble">can this run on a phone?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:800ms">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:500ms">
         <span class="p-chat__avatar">🧑‍🔬</span>
         <span class="p-chat__bubble">how do I even know what it's actually doing under the hood?</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:880ms">
-        <span class="p-chat__avatar">👨‍🏭</span>
-        <span class="p-chat__bubble">what does fine-tuning actually mean?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:960ms">
-        <span class="p-chat__avatar">🧑‍💼</span>
-        <span class="p-chat__bubble">can't we just use ChatGPT for this?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:1040ms">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:600ms">
         <span class="p-chat__avatar">👩‍💼</span>
         <span class="p-chat__bubble">I saw a LinkedIn post saying AI can do this in 5 minutes. why is ours taking weeks</span>
       </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:1120ms">
-        <span class="p-chat__avatar">👨‍💼</span>
-        <span class="p-chat__bubble">can we plug GPT-4 into the camera and just let it decide?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:1200ms">
+      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:700ms">
         <span class="p-chat__avatar">🧑‍💼</span>
         <span class="p-chat__bubble">the CEO wants an AI strategy by friday. what do I tell him</span>
       </div>
@@ -377,7 +270,6 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       <div>
         <span class="p-overline">Selected Research Output</span>
         <h2 class="p-h2">Publications</h2>
-        <span class="p-scholar-badge">Full publication record on Google Scholar</span>
         <div class="p-pub-hook p-reveal" aria-label="Not many, but every single one cost blood, sweat and deadline nights — quality over quantity.">
           <span class="p-pub-hook__label">The hard truth</span>
           <p class="p-pub-hook__hero">Not many.</p>
@@ -584,15 +476,14 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <section class="p-contact p-section" id="contact" data-section="contact" data-kinetic="HELLO" aria-label="Contact">
   <div class="p-container">
 
-    <span class="p-overline p-reveal" style="text-align:center;display:block">Let's Connect</span>
+    <span class="p-overline p-reveal" style="text-align:center;display:block">Research · Industry · Speaking</span>
 
     <h2 class="p-h2 p-reveal" style="text-align:center;max-width:none;font-size:clamp(2rem,5vw,3.5rem)">
       Interested in collaboration?
     </h2>
 
     <p class="p-body p-reveal" style="text-align:center;max-width:52ch;margin-inline:auto">
-      Open to research collaborations, industry projects and speaking engagements.
-      Currently at ARGO Vision · Politecnico di Torino · IIT.
+      ARGO Vision · Politecnico di Torino · IIT
     </p>
 
     <div class="p-reveal" style="text-align:center">

@@ -492,7 +492,8 @@
       var hint = $('.p-notification-storm__hint', storm);
       var rect = storm.getBoundingClientRect();
       var distance = Math.max(1, storm.offsetHeight - window.innerHeight);
-      var progress = clamp(-rect.top / distance, 0, 1);
+      var leadIn = window.innerHeight * 0.55;
+      var progress = clamp((leadIn - rect.top) / (distance + leadIn), 0, 1);
       var opened = 0;
 
       notifications.forEach(function (notification, index) {

@@ -212,7 +212,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         </div>
 
         <div class="p-notification-storm__stage" aria-label="A growing stream of realistic questions from AI projects">
-          <article class="p-notification" style="--storm-x:-27vw;--storm-y:-24vh;--storm-mobile-x:-3vw;--storm-mobile-y:-24vh;--storm-rotate:-3deg">
+          <article class="p-notification" style="--storm-x:-18vw;--storm-y:-24vh;--storm-mobile-x:-3vw;--storm-mobile-y:-24vh;--storm-rotate:-3deg">
             <span class="p-notification__icon" aria-hidden="true">🔧</span>
             <p>it was fine yesterday. today it's broken. nobody touched it.</p>
           </article>
@@ -224,11 +224,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             <span class="p-notification__icon" aria-hidden="true">📷</span>
             <p>they moved the camera last week and accuracy dropped 30%. do we retrain everything?</p>
           </article>
-          <article class="p-notification" style="--storm-x:25vw;--storm-y:18vh;--storm-mobile-x:3vw;--storm-mobile-y:-7vh;--storm-rotate:-2deg">
+          <article class="p-notification" style="--storm-x:17vw;--storm-y:18vh;--storm-mobile-x:3vw;--storm-mobile-y:-7vh;--storm-rotate:-2deg">
             <span class="p-notification__icon" aria-hidden="true">⏳</span>
             <p>training takes 6 hours every time. we can't keep doing this.</p>
           </article>
-          <article class="p-notification" style="--storm-x:-29vw;--storm-y:25vh;--storm-mobile-x:-4vw;--storm-mobile-y:-1vh;--storm-rotate:3deg">
+          <article class="p-notification" style="--storm-x:-19vw;--storm-y:25vh;--storm-mobile-x:-4vw;--storm-mobile-y:-1vh;--storm-rotate:3deg">
             <span class="p-notification__icon" aria-hidden="true">📱</span>
             <p>can this actually run on the phone or do we need a server?</p>
           </article>
@@ -236,11 +236,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             <span class="p-notification__icon" aria-hidden="true">🕵️</span>
             <p>when it gets one wrong, how do i find out why?</p>
           </article>
-          <article class="p-notification" style="--storm-x:29vw;--storm-y:-2vh;--storm-mobile-x:-3vw;--storm-mobile-y:11vh;--storm-rotate:2deg">
+          <article class="p-notification" style="--storm-x:18vw;--storm-y:-2vh;--storm-mobile-x:-3vw;--storm-mobile-y:11vh;--storm-rotate:2deg">
             <span class="p-notification__icon" aria-hidden="true">📣</span>
             <p>linkedin says this takes five minutes. why are we still on it after three weeks?</p>
           </article>
-          <article class="p-notification" style="--storm-x:-20vw;--storm-y:12vh;--storm-mobile-x:4vw;--storm-mobile-y:17vh;--storm-rotate:-2deg">
+          <article class="p-notification" style="--storm-x:-17vw;--storm-y:12vh;--storm-mobile-x:4vw;--storm-mobile-y:17vh;--storm-rotate:-2deg">
             <span class="p-notification__icon" aria-hidden="true">📊</span>
             <p>the ceo wants an ai strategy by friday. what am i supposed to put in it?</p>
           </article>
@@ -248,7 +248,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             <span class="p-notification__icon" aria-hidden="true">🤷</span>
             <p>why did it fail on this one? it looks exactly like the others.</p>
           </article>
-          <article class="p-notification" style="--storm-x:-31vw;--storm-y:-7vh;--storm-mobile-x:3vw;--storm-mobile-y:-21vh;--storm-rotate:-1deg">
+          <article class="p-notification" style="--storm-x:-18vw;--storm-y:-7vh;--storm-mobile-x:3vw;--storm-mobile-y:-21vh;--storm-rotate:-1deg">
             <span class="p-notification__icon" aria-hidden="true">📦</span>
             <p>how many images do you actually need? i need a number.</p>
           </article>
@@ -256,7 +256,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             <span class="p-notification__icon" aria-hidden="true">📉</span>
             <p>the model isn't learning anything. the loss just sits there.</p>
           </article>
-          <article class="p-notification" style="--storm-x:30vw;--storm-y:-25vh;--storm-mobile-x:2vw;--storm-mobile-y:-9vh;--storm-rotate:-3deg">
+          <article class="p-notification" style="--storm-x:18vw;--storm-y:-25vh;--storm-mobile-x:2vw;--storm-mobile-y:-9vh;--storm-rotate:-3deg">
             <span class="p-notification__icon" aria-hidden="true">🚚</span>
             <p>new camera arrives monday. are we starting from zero again?</p>
           </article>
@@ -264,11 +264,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             <span class="p-notification__icon" aria-hidden="true">🧩</span>
             <p>it learned the new parts and forgot the old ones. is that normal?</p>
           </article>
-          <article class="p-notification" style="--storm-x:-25vw;--storm-y:29vh;--storm-mobile-x:4vw;--storm-mobile-y:3vh;--storm-rotate:-2deg">
+          <article class="p-notification" style="--storm-x:-18vw;--storm-y:29vh;--storm-mobile-x:4vw;--storm-mobile-y:3vh;--storm-rotate:-2deg">
             <span class="p-notification__icon" aria-hidden="true">🔍</span>
             <p>what does fine-tuning actually change?</p>
           </article>
-          <article class="p-notification" style="--storm-x:21vw;--storm-y:7vh;--storm-mobile-x:-3vw;--storm-mobile-y:9vh;--storm-rotate:2deg">
+          <article class="p-notification" style="--storm-x:17vw;--storm-y:7vh;--storm-mobile-x:-3vw;--storm-mobile-y:9vh;--storm-rotate:2deg">
             <span class="p-notification__icon" aria-hidden="true">💬</span>
             <p>can't we just send the camera feed to chatgpt?</p>
           </article>

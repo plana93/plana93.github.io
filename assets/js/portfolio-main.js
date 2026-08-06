@@ -497,12 +497,14 @@
       var opened = 0;
 
       notifications.forEach(function (notification, index) {
-        var start = notifications.length === 1 ? 0 : (index / (notifications.length - 1)) * 0.78;
+        var order = notifications.length === 1 ? 0 : index / (notifications.length - 1);
+        // Wide gaps first, then an accelerating cascade that crowds the final frames.
+        var start = (1 - Math.pow(1 - order, 1.8)) * 0.82;
         var age = progress - start;
         var enter = clamp(age / 0.055, 0, 1);
         var easedEnter = easeOutCubic(enter);
         var fade = age > 0.19 ? clamp((age - 0.19) / 0.34, 0, 1) : 0;
-        var opacity = age <= 0 ? 0 : Math.max(0.07, easedEnter * (1 - fade * 0.93));
+        var opacity = age <= 0 ? 0 : Math.max(0.11, easedEnter * (1 - fade * 0.89));
         var scale = 0.68 + easedEnter * 0.4 - clamp((age - 0.08) / 0.45, 0, 1) * 0.22;
         var lift = 34 * (1 - easedEnter) - clamp(age - 0.12, 0, 0.5) * 105;
         var blur = age <= 0 ? 8 : (1 - easedEnter) * 8 + fade * 2.4;

@@ -213,12 +213,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
         <div class="p-notification-storm__stage" aria-label="A growing stream of realistic questions from AI projects">
           <article class="p-notification" style="--storm-x:-18vw;--storm-y:-24vh;--storm-mobile-x:-3vw;--storm-mobile-y:-24vh;--storm-rotate:-3deg">
-            <span class="p-notification__icon" aria-hidden="true">🔧</span>
-            <p>it was fine yesterday. today it's broken. nobody touched it.</p>
+            <span class="p-notification__icon" aria-hidden="true">🌐</span>
+            <p>si è rotto internet. no, davvero. non va più niente.</p>
           </article>
           <article class="p-notification" style="--storm-x:18vw;--storm-y:-17vh;--storm-mobile-x:4vw;--storm-mobile-y:-19vh;--storm-rotate:2deg">
             <span class="p-notification__icon" aria-hidden="true">🖼️</span>
-            <p>we only have 3 photos of the defect. is that enough?</p>
+            <p>domanda stupida: con 3 foto del difetto ci faccio qualcosa o sto perdendo tempo?</p>
           </article>
           <article class="p-notification" style="--storm-x:-12vw;--storm-y:4vh;--storm-mobile-x:-2vw;--storm-mobile-y:-13vh;--storm-rotate:1deg">
             <span class="p-notification__icon" aria-hidden="true">📷</span>
@@ -275,6 +275,62 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           <article class="p-notification" style="--storm-x:-3vw;--storm-y:30vh;--storm-mobile-x:2vw;--storm-mobile-y:15vh;--storm-rotate:-1deg">
             <span class="p-notification__icon" aria-hidden="true">⚠️</span>
             <p>can we let gpt decide and only alert us when something is wrong?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-15vw;--storm-y:-20vh;--storm-mobile-x:-3vw;--storm-mobile-y:21vh;--storm-rotate:2deg">
+            <span class="p-notification__icon" aria-hidden="true">💥</span>
+            <p>non funziona un cazzo. ieri andava.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:12vw;--storm-y:-12vh;--storm-mobile-x:3vw;--storm-mobile-y:-23vh;--storm-rotate:-2deg">
+            <span class="p-notification__icon" aria-hidden="true">🫠</span>
+            <p>non funziona nulla. nemmeno il backup.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-4vw;--storm-y:0vh;--storm-mobile-x:-2vw;--storm-mobile-y:-17vh;--storm-rotate:1deg">
+            <span class="p-notification__icon" aria-hidden="true">🧨</span>
+            <p>ho spaccato tutto o posso ancora salvarlo?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:16vw;--storm-y:12vh;--storm-mobile-x:4vw;--storm-mobile-y:-11vh;--storm-rotate:-3deg">
+            <span class="p-notification__icon" aria-hidden="true">🪙</span>
+            <p>cazzo sono 'ste merde di token? li pago anche quando sbaglia?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-17vw;--storm-y:22vh;--storm-mobile-x:-4vw;--storm-mobile-y:-5vh;--storm-rotate:2deg">
+            <span class="p-notification__icon" aria-hidden="true">🥄</span>
+            <p>spiegamelo in parole povere. proprio povere.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:3vw;--storm-y:-26vh;--storm-mobile-x:2vw;--storm-mobile-y:1vh;--storm-rotate:-1deg">
+            <span class="p-notification__icon" aria-hidden="true">😵</span>
+            <p>non ci ho capito nulla. da dove parto?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:15vw;--storm-y:-2vh;--storm-mobile-x:-3vw;--storm-mobile-y:7vh;--storm-rotate:3deg">
+            <span class="p-notification__icon" aria-hidden="true">🔁</span>
+            <p>it was working fine yesterday. seriously, nothing changed.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-13vw;--storm-y:9vh;--storm-mobile-x:3vw;--storm-mobile-y:13vh;--storm-rotate:-2deg">
+            <span class="p-notification__icon" aria-hidden="true">🧱</span>
+            <p>abbiamo aggiornato una libreria e ora è tutto rosso.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:8vw;--storm-y:25vh;--storm-mobile-x:-2vw;--storm-mobile-y:19vh;--storm-rotate:1deg">
+            <span class="p-notification__icon" aria-hidden="true">🎥</span>
+            <p>the demo starts in 20 minutes and the camera is offline.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-18vw;--storm-y:-6vh;--storm-mobile-x:4vw;--storm-mobile-y:-20vh;--storm-rotate:-3deg">
+            <span class="p-notification__icon" aria-hidden="true">🚀</span>
+            <p>ho cliccato deploy. adesso non risponde più niente.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:1vw;--storm-y:13vh;--storm-mobile-x:-3vw;--storm-mobile-y:-14vh;--storm-rotate:2deg">
+            <span class="p-notification__icon" aria-hidden="true">💾</span>
+            <p>please tell me we have a backup.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:18vw;--storm-y:-21vh;--storm-mobile-x:3vw;--storm-mobile-y:-8vh;--storm-rotate:-2deg">
+            <span class="p-notification__icon" aria-hidden="true">📴</span>
+            <p>non funziona nulla. ho riavviato anche il router.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-7vw;--storm-y:-15vh;--storm-mobile-x:-2vw;--storm-mobile-y:-2vh;--storm-rotate:1deg">
+            <span class="p-notification__icon" aria-hidden="true">🤬</span>
+            <p>non funziona un cazzo. il cliente è già in call.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:0vw;--storm-y:28vh;--storm-mobile-x:2vw;--storm-mobile-y:16vh;--storm-rotate:-1deg">
+            <span class="p-notification__icon" aria-hidden="true">☕</span>
+            <p>okay. chi ha toccato produzione? e chi porta il caffè?</p>
           </article>
         </div>
 

@@ -2152,14 +2152,158 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 // ============================================================
-// PROBLEM BOARD — chat thread unico
+// PROBLEM BOARD — scroll-driven notification storm
 // ============================================================
-.p-chat--board {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.p-notification-storm {
+  position: relative;
+  height: 330vh;
   margin-top: var(--p-s5);
-  max-width: 640px;
+  isolation: isolate;
+
+  &__sticky {
+    position: sticky;
+    top: 4.5rem;
+    height: calc(100vh - 6rem);
+    min-height: 560px;
+    overflow: hidden;
+    border: 1px solid rgba(110,86,255,0.2);
+    border-radius: clamp(18px, 3vw, 32px);
+    background:
+      radial-gradient(circle at 50% 48%, rgba(110,86,255,0.13), transparent 42%),
+      linear-gradient(145deg, rgba(13,13,26,0.94), rgba(7,7,15,0.98));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.035), 0 28px 90px rgba(0,0,0,0.32);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.16;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(110,86,255,0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110,86,255,0.16) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+    }
+  }
+
+  &__stage {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  &__status {
+    position: absolute;
+    top: 1.1rem;
+    left: 1.2rem;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(255,77,109,0.24);
+    border-radius: 999px;
+    background: rgba(7,7,15,0.7);
+    backdrop-filter: blur(12px);
+    font-family: var(--p-font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--p-text-muted);
+
+    strong { color: var(--p-coral); font-weight: 600; }
+  }
+
+  &__pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--p-coral);
+    box-shadow: 0 0 0 0 rgba(255,77,109,0.45);
+    animation: p-notification-pulse 1.8s ease-out infinite;
+  }
+
+  &__hint {
+    position: absolute;
+    right: 1.4rem;
+    bottom: 1.2rem;
+    z-index: 100;
+    font-family: var(--p-font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--p-text-dim);
+  }
+}
+
+.p-notification {
+  --storm-opacity: 0;
+  --storm-scale: 0.68;
+  --storm-lift: 34px;
+  --storm-blur: 8px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: var(--storm-z, 1);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.75rem;
+  width: clamp(250px, 31vw, 430px);
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(226,226,242,0.13);
+  border-radius: 16px;
+  background: rgba(20,20,38,0.88);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.045);
+  backdrop-filter: blur(16px);
+  opacity: var(--storm-opacity);
+  filter: blur(var(--storm-blur));
+  transform:
+    translate(
+      calc(-50% + var(--storm-x)),
+      calc(-50% + var(--storm-y) + var(--storm-lift))
+    )
+    rotate(var(--storm-rotate))
+    scale(var(--storm-scale));
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+
+  &::after {
+    content: 'now';
+    position: absolute;
+    top: 0.55rem;
+    right: 0.7rem;
+    font-family: var(--p-font-mono);
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+    color: var(--p-text-dim);
+  }
+
+  p {
+    margin: 0;
+    padding-right: 1.6rem;
+    font-size: clamp(0.78rem, 1.05vw, 0.92rem);
+    line-height: 1.48;
+    color: rgba(226,226,242,0.82);
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9px;
+    background: rgba(110,86,255,0.14);
+    font-size: 1rem;
+    line-height: 1;
+  }
+}
+
+@keyframes p-notification-pulse {
+  70% { box-shadow: 0 0 0 8px rgba(255,77,109,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,77,109,0); }
 }
 
 .p-chat-subtitle-it {
@@ -2176,50 +2320,27 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-// Chat thread
-.p-chat {
-  &__msg {
-    display: flex;
-    align-items: flex-end;
-    gap: 0.5rem;
+@media (max-width: 640px) {
+  .p-notification-storm {
+    height: 300vh;
 
-    &--them {
-      flex-direction: row;
-      .p-chat__bubble {
-        background: rgba(255,255,255,0.07);
-        border-radius: 14px 14px 14px 3px;
-        color: var(--p-text-muted);
-      }
+    &__sticky {
+      top: 4rem;
+      height: calc(100vh - 5.25rem);
+      min-height: 500px;
+      border-radius: 20px;
     }
 
-    // Animazione slide-in da destra su scroll
-    &--reveal {
-      opacity: 0;
-      transform: translateX(50px);
-      transition:
-        opacity  0.5s var(--p-ease-out) var(--chat-delay, 0ms),
-        transform 0.5s var(--p-ease-out) var(--chat-delay, 0ms);
-
-      &.is-visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+    &__hint { display: none; }
   }
 
-  &__avatar {
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    line-height: 1;
-    margin-bottom: 2px;
-  }
+  .p-notification {
+    --storm-x: var(--storm-mobile-x);
+    --storm-y: var(--storm-mobile-y);
+    width: min(84vw, 340px);
+    padding: 0.8rem 0.85rem;
 
-  &__bubble {
-    font-size: 0.83rem;
-    line-height: 1.55;
-    padding: 0.55em 0.85em;
-    max-width: 88%;
-    word-break: break-word;
+    p { font-size: 0.78rem; }
   }
 }
 
@@ -2593,10 +2714,38 @@ img { max-width: 100%; height: auto; display: block; }
   .p-reveal-left,
   .p-reveal-right,
   .p-reveal-scale,
-  .p-chat__msg--reveal,
   .p-bb__reveal {
     opacity: 1;
     transform: none;
     filter: none;
+  }
+
+  .p-notification-storm {
+    height: auto;
+
+    &__sticky {
+      position: relative;
+      top: auto;
+      height: auto;
+      min-height: 0;
+    }
+
+    &__stage {
+      position: relative;
+      display: grid;
+      gap: 0.75rem;
+      padding: 4.5rem 1rem 3.5rem;
+    }
+
+    &__hint { display: none; }
+  }
+
+  .p-notification {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    opacity: 1;
+    filter: none;
+    transform: none;
   }
 }

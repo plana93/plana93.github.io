@@ -204,48 +204,82 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       <p class="p-chat-subtitle-it">mio padre dice sempre: <em>"calma e sangue freddo"</em></p>
     </div>
 
-    <div class="p-chat p-chat--board">
+    <div class="p-notification-storm" data-notification-storm>
+      <div class="p-notification-storm__sticky">
+        <div class="p-notification-storm__status" aria-hidden="true">
+          <span class="p-notification-storm__pulse"></span>
+          <span><strong data-storm-count>00</strong> incoming</span>
+        </div>
 
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:0ms">
-        <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">it was working fine yesterday. today it's broken. nothing changed</span>
+        <div class="p-notification-storm__stage" aria-label="A growing stream of realistic questions from AI projects">
+          <article class="p-notification" style="--storm-x:-27vw;--storm-y:-24vh;--storm-mobile-x:-3vw;--storm-mobile-y:-24vh;--storm-rotate:-3deg">
+            <span class="p-notification__icon" aria-hidden="true">🔧</span>
+            <p>it was fine yesterday. today it's broken. nobody touched it.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:18vw;--storm-y:-17vh;--storm-mobile-x:4vw;--storm-mobile-y:-19vh;--storm-rotate:2deg">
+            <span class="p-notification__icon" aria-hidden="true">🖼️</span>
+            <p>we only have 3 photos of the defect. is that enough?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-12vw;--storm-y:4vh;--storm-mobile-x:-2vw;--storm-mobile-y:-13vh;--storm-rotate:1deg">
+            <span class="p-notification__icon" aria-hidden="true">📷</span>
+            <p>they moved the camera last week and accuracy dropped 30%. do we retrain everything?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:25vw;--storm-y:18vh;--storm-mobile-x:3vw;--storm-mobile-y:-7vh;--storm-rotate:-2deg">
+            <span class="p-notification__icon" aria-hidden="true">⏳</span>
+            <p>training takes 6 hours every time. we can't keep doing this.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-29vw;--storm-y:25vh;--storm-mobile-x:-4vw;--storm-mobile-y:-1vh;--storm-rotate:3deg">
+            <span class="p-notification__icon" aria-hidden="true">📱</span>
+            <p>can this actually run on the phone or do we need a server?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:4vw;--storm-y:-28vh;--storm-mobile-x:2vw;--storm-mobile-y:5vh;--storm-rotate:-1deg">
+            <span class="p-notification__icon" aria-hidden="true">🕵️</span>
+            <p>when it gets one wrong, how do i find out why?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:29vw;--storm-y:-2vh;--storm-mobile-x:-3vw;--storm-mobile-y:11vh;--storm-rotate:2deg">
+            <span class="p-notification__icon" aria-hidden="true">📣</span>
+            <p>linkedin says this takes five minutes. why are we still on it after three weeks?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-20vw;--storm-y:12vh;--storm-mobile-x:4vw;--storm-mobile-y:17vh;--storm-rotate:-2deg">
+            <span class="p-notification__icon" aria-hidden="true">📊</span>
+            <p>the ceo wants an ai strategy by friday. what am i supposed to put in it?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:14vw;--storm-y:27vh;--storm-mobile-x:-2vw;--storm-mobile-y:23vh;--storm-rotate:3deg">
+            <span class="p-notification__icon" aria-hidden="true">🤷</span>
+            <p>why did it fail on this one? it looks exactly like the others.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-31vw;--storm-y:-7vh;--storm-mobile-x:3vw;--storm-mobile-y:-21vh;--storm-rotate:-1deg">
+            <span class="p-notification__icon" aria-hidden="true">📦</span>
+            <p>how many images do you actually need? i need a number.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:7vw;--storm-y:10vh;--storm-mobile-x:-4vw;--storm-mobile-y:-15vh;--storm-rotate:2deg">
+            <span class="p-notification__icon" aria-hidden="true">📉</span>
+            <p>the model isn't learning anything. the loss just sits there.</p>
+          </article>
+          <article class="p-notification" style="--storm-x:30vw;--storm-y:-25vh;--storm-mobile-x:2vw;--storm-mobile-y:-9vh;--storm-rotate:-3deg">
+            <span class="p-notification__icon" aria-hidden="true">🚚</span>
+            <p>new camera arrives monday. are we starting from zero again?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-8vw;--storm-y:-13vh;--storm-mobile-x:-2vw;--storm-mobile-y:-3vh;--storm-rotate:1deg">
+            <span class="p-notification__icon" aria-hidden="true">🧩</span>
+            <p>it learned the new parts and forgot the old ones. is that normal?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-25vw;--storm-y:29vh;--storm-mobile-x:4vw;--storm-mobile-y:3vh;--storm-rotate:-2deg">
+            <span class="p-notification__icon" aria-hidden="true">🔍</span>
+            <p>what does fine-tuning actually change?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:21vw;--storm-y:7vh;--storm-mobile-x:-3vw;--storm-mobile-y:9vh;--storm-rotate:2deg">
+            <span class="p-notification__icon" aria-hidden="true">💬</span>
+            <p>can't we just send the camera feed to chatgpt?</p>
+          </article>
+          <article class="p-notification" style="--storm-x:-3vw;--storm-y:30vh;--storm-mobile-x:2vw;--storm-mobile-y:15vh;--storm-rotate:-1deg">
+            <span class="p-notification__icon" aria-hidden="true">⚠️</span>
+            <p>can we let gpt decide and only alert us when something is wrong?</p>
+          </article>
+        </div>
+
+        <span class="p-notification-storm__hint" aria-hidden="true">scroll to open the floodgate</span>
       </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:100ms">
-        <span class="p-chat__avatar">👩‍💻</span>
-        <span class="p-chat__bubble">we have only 3 defect images. how do I train a model?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:200ms">
-        <span class="p-chat__avatar">👩‍💼</span>
-        <span class="p-chat__bubble">they changed the setup last week. accuracy dropped 30 points. do I need to redo everything?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:300ms">
-        <span class="p-chat__avatar">👷</span>
-        <span class="p-chat__bubble">training takes 6 hours. every time. I can't keep doing this</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:400ms">
-        <span class="p-chat__avatar">👩‍💻</span>
-        <span class="p-chat__bubble">can this run on a phone?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:500ms">
-        <span class="p-chat__avatar">🧑‍🔬</span>
-        <span class="p-chat__bubble">how do I even know what it's actually doing under the hood?</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:600ms">
-        <span class="p-chat__avatar">👩‍💼</span>
-        <span class="p-chat__bubble">I saw a LinkedIn post saying AI can do this in 5 minutes. why is ours taking weeks</span>
-      </div>
-
-      <div class="p-chat__msg p-chat__msg--them p-chat__msg--reveal" style="--chat-delay:700ms">
-        <span class="p-chat__avatar">🧑‍💼</span>
-        <span class="p-chat__bubble">the CEO wants an AI strategy by friday. what do I tell him</span>
-      </div>
-
     </div>
   </div>
 </section>

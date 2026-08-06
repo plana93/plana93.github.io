@@ -440,7 +440,7 @@
      5. SCROLL REVEAL (IntersectionObserver)
   ============================================================ */
   function initScrollReveal() {
-    var targets = $$('.p-reveal, .p-reveal-left, .p-reveal-right, .p-reveal-scale, .p-chat__msg--reveal');
+    var targets = $$('.p-reveal, .p-reveal-left, .p-reveal-right, .p-reveal-scale');
     if (!targets.length) return;
 
     if (!('IntersectionObserver' in window)) {
@@ -466,6 +466,81 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
     targets.forEach(function (el) { observer.observe(el); });
+  }
+
+  /* ============================================================
+     5a. NOTIFICATION STORM — scroll-driven pressure buildup
+  ============================================================ */
+  function initNotificationStorm() {
+    var storms = $$('[data-notification-storm]');
+    if (!storms.length) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ticking = false;
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function easeOutCubic(value) {
+      return 1 - Math.pow(1 - value, 3);
+    }
+
+    function updateStorm(storm) {
+      var notifications = $$('.p-notification', storm);
+      var counter = $('[data-storm-count]', storm);
+      var hint = $('.p-notification-storm__hint', storm);
+      var rect = storm.getBoundingClientRect();
+      var distance = Math.max(1, storm.offsetHeight - window.innerHeight);
+      var progress = clamp(-rect.top / distance, 0, 1);
+      var opened = 0;
+
+      notifications.forEach(function (notification, index) {
+        var start = notifications.length === 1 ? 0 : (index / (notifications.length - 1)) * 0.78;
+        var age = progress - start;
+        var enter = clamp(age / 0.055, 0, 1);
+        var easedEnter = easeOutCubic(enter);
+        var fade = age > 0.19 ? clamp((age - 0.19) / 0.34, 0, 1) : 0;
+        var opacity = age <= 0 ? 0 : Math.max(0.07, easedEnter * (1 - fade * 0.93));
+        var scale = 0.68 + easedEnter * 0.4 - clamp((age - 0.08) / 0.45, 0, 1) * 0.22;
+        var lift = 34 * (1 - easedEnter) - clamp(age - 0.12, 0, 0.5) * 105;
+        var blur = age <= 0 ? 8 : (1 - easedEnter) * 8 + fade * 2.4;
+
+        if (age > 0) opened += 1;
+        notification.style.setProperty('--storm-opacity', opacity.toFixed(3));
+        notification.style.setProperty('--storm-scale', scale.toFixed(3));
+        notification.style.setProperty('--storm-lift', lift.toFixed(1) + 'px');
+        notification.style.setProperty('--storm-blur', blur.toFixed(1) + 'px');
+        notification.style.setProperty('--storm-z', String(index + 1));
+      });
+
+      if (counter) counter.textContent = String(opened).padStart(2, '0');
+      if (hint) hint.style.opacity = String(clamp(1 - progress * 7, 0, 1));
+    }
+
+    if (reduceMotion) {
+      storms.forEach(function (storm) {
+        storm.classList.add('is-static');
+        var counter = $('[data-storm-count]', storm);
+        if (counter) counter.textContent = String($$('.p-notification', storm).length).padStart(2, '0');
+      });
+      return;
+    }
+
+    function updateAll() {
+      storms.forEach(updateStorm);
+      ticking = false;
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateAll);
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    updateAll();
   }
 
   /* ============================================================
@@ -649,6 +724,7 @@
     initVisionLens();
     initCardSpotlights();
     initBillboardHero();
+    initNotificationStorm();
     initKineticSections();
     initActiveNav();
 

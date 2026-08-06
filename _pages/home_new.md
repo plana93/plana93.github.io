@@ -10,7 +10,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
      Ispirato al concept "Transforming Vision Into Intelligence"
      con foto B&W, testo billboard, onde 3D e parallax GSAP
 ================================================================ -->
-<section class="p-hero p-hero--billboard" id="home" aria-label="Hero section">
+<section class="p-hero p-hero--billboard" id="home" data-section="home" aria-label="Hero section">
 
   <!-- Three.js canvas (sfondo rete neurale) -->
   <canvas id="heroCanvas" class="p-hero__canvas" aria-hidden="true"></canvas>

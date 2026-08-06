@@ -2261,8 +2261,8 @@ img { max-width: 100%; height: auto; display: block; }
   filter: blur(var(--storm-blur));
   transform:
     translate(
-      calc(-50% + var(--storm-x)),
-      calc(-50% + var(--storm-y) + var(--storm-lift))
+      calc(-50% + var(--storm-active-x, var(--storm-x))),
+      calc(-50% + var(--storm-active-y, var(--storm-y)) + var(--storm-lift))
     )
     rotate(var(--storm-rotate))
     scale(var(--storm-scale));
@@ -2335,8 +2335,8 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   .p-notification {
-    --storm-x: var(--storm-mobile-x);
-    --storm-y: var(--storm-mobile-y);
+    --storm-active-x: var(--storm-mobile-x);
+    --storm-active-y: var(--storm-mobile-y);
     width: min(72vw, 310px);
     padding: 0.8rem 0.85rem;
 

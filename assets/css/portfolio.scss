@@ -611,6 +611,7 @@ img { max-width: 100%; height: auto; display: block; }
   --p-lens-x: 50%;
   --p-lens-y: 42%;
   --p-lens-radius: 28%;
+  overflow: visible;
 }
 
 .p-bb__photo {
@@ -628,10 +629,29 @@ img { max-width: 100%; height: auto; display: block; }
 // Interactive computer-vision lens: the resting portrait stays minimal,
 // while interaction reveals a pop-art AI interpretation of the same image.
 .p-bb__lens-layer,
+.p-bb__lens-aura,
 .p-bb__lens-reticle {
   position: absolute;
   inset: 0;
   pointer-events: none;
+}
+
+.p-bb__lens-aura {
+  z-index: 1;
+  top: var(--p-lens-y);
+  left: var(--p-lens-x);
+  inset: auto;
+  width: clamp(108px, 34%, 170px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(0,212,170,0.5);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 34%, rgba(0,255,136,0.2), transparent 40%),
+    radial-gradient(circle, rgba(110,86,255,0.2), rgba(7,7,15,0.08) 68%, transparent 70%);
+  box-shadow: 0 0 34px rgba(0,212,170,0.12), inset 0 0 24px rgba(110,86,255,0.16);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.82);
+  transition: opacity 0.2s ease, transform 0.3s var(--p-spring);
 }
 
 .p-bb__lens-layer {
@@ -680,6 +700,11 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   .p-bb__lens-reticle {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .p-bb__lens-aura {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
@@ -1566,7 +1591,7 @@ img { max-width: 100%; height: auto; display: block; }
     min-height: clamp(9rem, 18vw, 14rem);
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, auto) minmax(48px, 1fr) minmax(0, auto);
+    grid-template-columns: minmax(0, 1fr) clamp(40px, 10vw, 140px) minmax(0, 1fr);
     align-items: center;
     gap: clamp(1rem, 4vw, 3.5rem);
   }
@@ -1574,16 +1599,19 @@ img { max-width: 100%; height: auto; display: block; }
   &__mode {
     min-width: 0;
     font-family: var(--p-font-head);
-    font-size: clamp(2rem, 7vw, 6rem);
+    font-size: clamp(2rem, 4vw, 3.1rem);
     font-weight: 800;
     line-height: 0.9;
     letter-spacing: -0.05em;
     color: var(--p-text);
     text-transform: uppercase;
+    white-space: nowrap;
+    justify-self: start;
 
     &--build {
       color: var(--p-teal);
       text-shadow: 0 0 35px rgba(0,212,170,0.22);
+      justify-self: end;
     }
   }
 
@@ -2191,6 +2219,7 @@ img { max-width: 100%; height: auto; display: block; }
     position: absolute;
     inset: 0;
     overflow: hidden;
+    contain: layout paint style;
   }
 
   &__loading {
@@ -2352,7 +2381,6 @@ img { max-width: 100%; height: auto; display: block; }
   --storm-opacity: 0;
   --storm-scale: 0.68;
   --storm-lift: 34px;
-  --storm-blur: 8px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -2367,19 +2395,29 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 16px;
   background: rgba(20,20,38,0.88);
   box-shadow: 0 18px 50px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.045);
-  backdrop-filter: blur(16px);
   opacity: var(--storm-opacity);
-  filter: blur(var(--storm-blur));
   transform:
-    translate(
+    translate3d(
       calc(-50% + var(--storm-active-x, var(--storm-x))),
-      calc(-50% + var(--storm-active-y, var(--storm-y)) + var(--storm-lift))
+      calc(-50% + var(--storm-active-y, var(--storm-y)) + var(--storm-lift)),
+      0
     )
     rotate(var(--storm-rotate))
     scale(var(--storm-scale));
   transform-origin: center;
-  will-change: transform, opacity, filter;
+  contain: layout style;
   pointer-events: none;
+
+  &[data-storm-state='active'] { will-change: transform, opacity; }
+
+  &.is-storm-ghost {
+    border-color: rgba(226,226,242,0.07);
+    background: rgba(20,20,38,0.72);
+    box-shadow: none;
+    will-change: auto;
+  }
+
+  &.is-storm-buried { visibility: hidden; }
 
   &::after {
     content: 'now';

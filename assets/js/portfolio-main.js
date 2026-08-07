@@ -225,32 +225,107 @@
 
   function initVisionLens() {
     var wrap = $('.p-bb__photo-wrap');
-    if (!wrap || !$('.p-bb__lens-layer', wrap)) return;
+    var hero = $('.p-hero--billboard');
+    var photo = $('.p-bb__photo--base', wrap);
+    var label = $('[data-lens-label]', wrap);
+    if (!wrap || !hero || !photo || !$('.p-bb__lens-layer', wrap)) return;
 
     var hideTimer;
+    var moveFrame;
+    var pendingPoint;
+    var alphaMap;
 
-    function moveLens(event) {
+    function buildAlphaMap() {
+      if (!photo.naturalWidth || !photo.naturalHeight) return;
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d', { willReadFrequently: true });
+      if (!context) return;
+      canvas.width = 96;
+      canvas.height = Math.max(1, Math.round(96 * photo.naturalHeight / photo.naturalWidth));
+      try {
+        context.drawImage(photo, 0, 0, canvas.width, canvas.height);
+        alphaMap = {
+          width: canvas.width,
+          height: canvas.height,
+          pixels: context.getImageData(0, 0, canvas.width, canvas.height).data
+        };
+      } catch (error) {
+        alphaMap = null;
+      }
+    }
+
+    function personCoverage(localX, localY, rect) {
+      if (!alphaMap || !photo.naturalWidth || !photo.naturalHeight) return 0;
+      var scale = Math.max(rect.width / photo.naturalWidth, rect.height / photo.naturalHeight);
+      var renderedWidth = photo.naturalWidth * scale;
+      var renderedHeight = photo.naturalHeight * scale;
+      var offsetX = (rect.width - renderedWidth) / 2;
+      var offsetY = (rect.height - renderedHeight) * 0.4;
+      var radius = Math.min(rect.width, rect.height) * 0.28;
+      var occupied = 0;
+      var sampled = 0;
+      var grid = 15;
+
+      for (var row = 0; row < grid; row += 1) {
+        for (var col = 0; col < grid; col += 1) {
+          var dx = ((col + 0.5) / grid * 2 - 1) * radius;
+          var dy = ((row + 0.5) / grid * 2 - 1) * radius;
+          if (dx * dx + dy * dy > radius * radius) continue;
+          sampled += 1;
+          var pointX = localX + dx;
+          var pointY = localY + dy;
+          if (pointX < 0 || pointX >= rect.width || pointY < 0 || pointY >= rect.height) continue;
+
+          var sourceX = (pointX - offsetX) / renderedWidth;
+          var sourceY = (pointY - offsetY) / renderedHeight;
+          var mapX = Math.max(0, Math.min(alphaMap.width - 1, Math.floor(sourceX * alphaMap.width)));
+          var mapY = Math.max(0, Math.min(alphaMap.height - 1, Math.floor(sourceY * alphaMap.height)));
+          var pixel = (mapY * alphaMap.width + mapX) * 4;
+          var alpha = alphaMap.pixels[pixel + 3];
+          var light = alphaMap.pixels[pixel] + alphaMap.pixels[pixel + 1] + alphaMap.pixels[pixel + 2];
+          if (alpha > 28 && light > 24) occupied += 1;
+        }
+      }
+      return sampled ? occupied / sampled : 0;
+    }
+
+    function renderLens(clientX, clientY) {
       var rect = wrap.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
 
-      var x = Math.max(5, Math.min(95, ((event.clientX - rect.left) / rect.width) * 100));
-      var y = Math.max(5, Math.min(95, ((event.clientY - rect.top) / rect.height) * 100));
+      var localX = clientX - rect.left;
+      var localY = clientY - rect.top;
+      var x = ((clientX - rect.left) / rect.width) * 100;
+      var y = ((clientY - rect.top) / rect.height) * 100;
       wrap.style.setProperty('--p-lens-x', x.toFixed(2) + '%');
       wrap.style.setProperty('--p-lens-y', y.toFixed(2) + '%');
+      if (label) {
+        var score = Math.min(99.8, personCoverage(localX, localY, rect) * 112);
+        label.textContent = 'PERSON  ' + score.toFixed(1) + '%';
+      }
     }
 
-    wrap.addEventListener('pointerenter', function (event) {
+    function moveLens(event) {
+      pendingPoint = { x: event.clientX, y: event.clientY };
+      if (moveFrame) return;
+      moveFrame = window.requestAnimationFrame(function () {
+        moveFrame = null;
+        if (pendingPoint) renderLens(pendingPoint.x, pendingPoint.y);
+      });
+    }
+
+    hero.addEventListener('pointerenter', function (event) {
       if (event.pointerType === 'touch') return;
       moveLens(event);
       wrap.classList.add('is-lens-active');
     });
 
-    wrap.addEventListener('pointermove', function (event) {
+    hero.addEventListener('pointermove', function (event) {
       if (event.pointerType === 'touch') return;
       moveLens(event);
     }, { passive: true });
 
-    wrap.addEventListener('pointerleave', function () {
+    hero.addEventListener('pointerleave', function () {
       wrap.classList.remove('is-lens-active');
     });
 
@@ -269,6 +344,8 @@
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var mobile = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
     if (mobile && !reduceMotion) wrap.classList.add('is-auto-scanning');
+    if (photo.complete) buildAlphaMap();
+    else photo.addEventListener('load', buildAlphaMap, { once: true });
   }
 
   function initCardSpotlights() {
@@ -512,6 +589,9 @@
       card.appendChild(icon);
       card.appendChild(copy);
       setCardPosition(card, index);
+      var order = message.total === 1 ? 0 : index / (message.total - 1);
+      card._stormStart = (1 - Math.pow(1 - order, 1.8)) * 0.82;
+      card.style.setProperty('--storm-z', String(index + 1));
       return card;
     }
 
@@ -536,7 +616,7 @@
       if (!stage) return;
       stage.textContent = '';
       messages.forEach(function (message, index) {
-        stage.appendChild(createNotification(message, index));
+        stage.appendChild(createNotification({ icon: message.icon, text: message.text, total: messages.length }, index));
       });
 
       // Roughly one viewport per 17 messages, plus a generous reading buffer.
@@ -564,30 +644,69 @@
       var hint = $('.p-notification-storm__hint', storm);
       if (!notifications.length) return;
       var rect = storm.getBoundingClientRect();
+      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 1.75) return;
       var distance = Math.max(1, storm.offsetHeight - window.innerHeight);
       var leadIn = window.innerHeight * 0.55;
       var progress = clamp((leadIn - rect.top) / (distance + leadIn), 0, 1);
       var opened = 0;
 
       notifications.forEach(function (notification, index) {
-        var order = notifications.length === 1 ? 0 : index / (notifications.length - 1);
+        if (progress > notification._stormStart) opened += 1;
+      });
+
+      // Only the newest cards remain animated. Older ones become cheap static ghosts,
+      // preserving the crowded look without compositing 100+ moving layers per frame.
+      var activeFloor = Math.max(0, opened - (window.innerWidth <= 768 ? 10 : 12));
+      var buriedFloor = Math.max(0, opened - 60);
+
+      notifications.forEach(function (notification, index) {
         // Wide gaps first, then an accelerating cascade that crowds the final frames.
-        var start = (1 - Math.pow(1 - order, 1.8)) * 0.82;
+        var start = notification._stormStart;
         var age = progress - start;
+        if (age <= 0) {
+          if (notification.dataset.stormState !== 'future') {
+            notification.dataset.stormState = 'future';
+            notification.classList.remove('is-storm-ghost', 'is-storm-buried');
+            notification.style.removeProperty('--storm-opacity');
+            notification.style.removeProperty('--storm-scale');
+            notification.style.removeProperty('--storm-lift');
+          }
+          return;
+        }
+
+        if (index < buriedFloor) {
+          if (notification.dataset.stormState !== 'buried') {
+            notification.dataset.stormState = 'buried';
+            notification.classList.remove('is-storm-ghost');
+            notification.classList.add('is-storm-buried');
+          }
+          return;
+        }
+
+        if (index < activeFloor || age > 0.42) {
+          if (notification.dataset.stormState !== 'ghost') {
+            notification.dataset.stormState = 'ghost';
+            notification.classList.remove('is-storm-buried');
+            notification.classList.add('is-storm-ghost');
+            notification.style.setProperty('--storm-opacity', '0.085');
+            notification.style.setProperty('--storm-scale', '0.82');
+            notification.style.setProperty('--storm-lift', '-28px');
+          }
+          return;
+        }
+
+        notification.dataset.stormState = 'active';
+        notification.classList.remove('is-storm-ghost', 'is-storm-buried');
         var enter = clamp(age / 0.055, 0, 1);
         var easedEnter = easeOutCubic(enter);
         var fade = age > 0.19 ? clamp((age - 0.19) / 0.34, 0, 1) : 0;
         var opacity = age <= 0 ? 0 : Math.max(0.11, easedEnter * (1 - fade * 0.89));
         var scale = 0.68 + easedEnter * 0.4 - clamp((age - 0.08) / 0.45, 0, 1) * 0.22;
         var lift = 34 * (1 - easedEnter) - clamp(age - 0.12, 0, 0.5) * 105;
-        var blur = age <= 0 ? 8 : (1 - easedEnter) * 8 + fade * 2.4;
 
-        if (age > 0) opened += 1;
         notification.style.setProperty('--storm-opacity', opacity.toFixed(3));
         notification.style.setProperty('--storm-scale', scale.toFixed(3));
         notification.style.setProperty('--storm-lift', lift.toFixed(1) + 'px');
-        notification.style.setProperty('--storm-blur', blur.toFixed(1) + 'px');
-        notification.style.setProperty('--storm-z', String(index + 1));
       });
 
       if (counter) counter.textContent = String(opened).padStart(2, '0');

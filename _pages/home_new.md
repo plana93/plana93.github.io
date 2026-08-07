@@ -49,12 +49,13 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
            draggable="false" />
       <div class="p-bb__lens-halftone"></div>
     </div>
+    <div class="p-bb__lens-aura" aria-hidden="true"></div>
     <div class="p-bb__lens-reticle" aria-hidden="true">
       <span class="p-bb__lens-corner p-bb__lens-corner--tl"></span>
       <span class="p-bb__lens-corner p-bb__lens-corner--tr"></span>
       <span class="p-bb__lens-corner p-bb__lens-corner--bl"></span>
       <span class="p-bb__lens-corner p-bb__lens-corner--br"></span>
-      <span class="p-bb__lens-label">PERSON&nbsp;&nbsp;99.8%</span>
+      <span class="p-bb__lens-label" data-lens-label>PERSON&nbsp;&nbsp;99.8%</span>
     </div>
     <!-- etichetta "Into" in stile serif italic -->
     <span class="p-bb__into" aria-hidden="true"><em>Into</em></span>
@@ -223,11 +224,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     <div class="p-notification-contribute p-reveal">
       <div>
-        <span class="p-overline">Add yours</span>
-        <h4 class="p-notification-contribute__title">One more notification?</h4>
+        <span class="p-overline">Your turn</span>
+        <h4 class="p-notification-contribute__title">What broke this time?</h4>
         <p class="p-notification-contribute__copy">
-          Write it here. The message is prepared as one JSON line and GitHub opens the file editor;
-          proposing the change creates a pull request when needed.
+          Drop the message you'd actually send when the demo dies five minutes before the call.
+          Funny, painful, brutally honest — throw yours into the chaos.
         </p>
       </div>
       <form class="p-notification-form" data-notification-form
@@ -240,7 +241,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
           </select>
           <input id="notificationMessage" name="message" type="text" maxlength="220"
                  placeholder="what broke this time?" required autocomplete="off">
-          <button type="submit" class="p-btn p-btn--primary">Prepare PR ↗</button>
+          <button type="submit" class="p-btn p-btn--primary">Throw it in ↗</button>
         </div>
         <p class="p-notification-form__status" data-notification-status aria-live="polite"></p>
       </form>

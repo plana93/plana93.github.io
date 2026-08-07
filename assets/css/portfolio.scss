@@ -2156,7 +2156,7 @@ img { max-width: 100%; height: auto; display: block; }
 // ============================================================
 .p-notification-storm {
   position: relative;
-  height: 330vh;
+  height: 100vh;
   margin-top: var(--p-s5);
   isolation: isolate;
 
@@ -2191,6 +2191,20 @@ img { max-width: 100%; height: auto; display: block; }
     position: absolute;
     inset: 0;
     overflow: hidden;
+  }
+
+  &__loading {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    font-family: var(--p-font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--p-text-dim);
+
+    &.is-error { color: var(--p-coral); }
   }
 
   &__status {
@@ -2234,6 +2248,103 @@ img { max-width: 100%; height: auto; display: block; }
     letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--p-text-dim);
+  }
+}
+
+.p-notification-contribute {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  margin-top: var(--p-s6);
+  padding: clamp(1.35rem, 3vw, 2.5rem);
+  border: 1px solid rgba(110,86,255,0.22);
+  border-radius: clamp(18px, 3vw, 28px);
+  background: linear-gradient(135deg, rgba(110,86,255,0.09), rgba(255,255,255,0.018));
+
+  &__title {
+    margin: 0.35rem 0 0.65rem;
+    font-size: clamp(1.3rem, 2.4vw, 2rem);
+    letter-spacing: -0.035em;
+  }
+
+  &__copy {
+    max-width: 38rem;
+    margin: 0;
+    color: var(--p-text-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  &__preview {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(0,212,170,0.25);
+    border-radius: 14px;
+    background: rgba(20,20,38,0.72);
+
+    &[hidden] { display: none; }
+
+    span { font-size: 1.1rem; }
+
+    p {
+      margin: 0;
+      color: var(--p-text);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+.p-notification-form {
+  align-self: center;
+
+  &__row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.65rem;
+  }
+
+  select,
+  input {
+    min-height: 48px;
+    border: 1px solid var(--p-border);
+    border-radius: 10px;
+    outline: none;
+    background: rgba(7,7,15,0.62);
+    color: var(--p-text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      border-color: var(--p-purple);
+      box-shadow: 0 0 0 3px rgba(110,86,255,0.14);
+    }
+  }
+
+  select {
+    width: 4rem;
+    padding: 0 0.65rem;
+    font-size: 1.05rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0 0.9rem;
+    font: 0.84rem/1.2 var(--p-font-mono);
+
+    &::placeholder { color: var(--p-text-dim); }
+  }
+
+  button { white-space: nowrap; }
+
+  &__status {
+    min-height: 1.4em;
+    margin: 0.65rem 0 0;
+    color: var(--p-teal);
+    font: 0.65rem/1.5 var(--p-font-mono);
   }
 }
 
@@ -2322,8 +2433,6 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 640px) {
   .p-notification-storm {
-    height: 300vh;
-
     &__sticky {
       top: 4rem;
       height: calc(100vh - 5.25rem);
@@ -2341,6 +2450,18 @@ img { max-width: 100%; height: auto; display: block; }
     padding: 0.8rem 0.85rem;
 
     p { font-size: 0.78rem; }
+  }
+
+  .p-notification-contribute {
+    grid-template-columns: 1fr;
+
+    &__preview { grid-column: 1; }
+  }
+
+  .p-notification-form__row {
+    grid-template-columns: 4rem minmax(0, 1fr);
+
+    button { grid-column: 1 / -1; }
   }
 }
 
@@ -2721,7 +2842,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   .p-notification-storm {
-    height: auto;
+    height: auto !important;
 
     &__sticky {
       position: relative;
@@ -2733,6 +2854,7 @@ img { max-width: 100%; height: auto; display: block; }
     &__stage {
       position: relative;
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.75rem;
       padding: 4.5rem 1rem 3.5rem;
     }
@@ -2747,5 +2869,9 @@ img { max-width: 100%; height: auto; display: block; }
     opacity: 1;
     filter: none;
     transform: none;
+  }
+
+  @media (max-width: 640px) {
+    .p-notification-storm__stage { grid-template-columns: 1fr; }
   }
 }

@@ -204,138 +204,47 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       <p class="p-chat-subtitle-it">mio padre dice sempre: <em>"calma e sangue freddo"</em></p>
     </div>
 
-    <div class="p-notification-storm" data-notification-storm>
+    <div class="p-notification-storm" data-notification-storm
+         data-source="{{ '/assets/data/notification-storm.jsonl' | relative_url }}">
       <div class="p-notification-storm__sticky">
         <div class="p-notification-storm__status" aria-hidden="true">
           <span class="p-notification-storm__pulse"></span>
-          <span><strong data-storm-count>00</strong> incoming</span>
+          <span><strong data-storm-count>00</strong> <span data-storm-label>incoming</span></span>
         </div>
 
-        <div class="p-notification-storm__stage" aria-label="A growing stream of realistic questions from AI projects">
-          <article class="p-notification" style="--storm-x:-18vw;--storm-y:-24vh;--storm-mobile-x:-3vw;--storm-mobile-y:-24vh;--storm-rotate:-3deg">
-            <span class="p-notification__icon" aria-hidden="true">🌐</span>
-            <p>si è rotto internet. no, davvero. non va più niente.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:18vw;--storm-y:-17vh;--storm-mobile-x:4vw;--storm-mobile-y:-19vh;--storm-rotate:2deg">
-            <span class="p-notification__icon" aria-hidden="true">🖼️</span>
-            <p>domanda stupida: con 3 foto del difetto ci faccio qualcosa o sto perdendo tempo?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-12vw;--storm-y:4vh;--storm-mobile-x:-2vw;--storm-mobile-y:-13vh;--storm-rotate:1deg">
-            <span class="p-notification__icon" aria-hidden="true">📷</span>
-            <p>they moved the camera last week and accuracy dropped 30%. do we retrain everything?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:17vw;--storm-y:18vh;--storm-mobile-x:3vw;--storm-mobile-y:-7vh;--storm-rotate:-2deg">
-            <span class="p-notification__icon" aria-hidden="true">⏳</span>
-            <p>training takes 6 hours every time. we can't keep doing this.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-19vw;--storm-y:25vh;--storm-mobile-x:-4vw;--storm-mobile-y:-1vh;--storm-rotate:3deg">
-            <span class="p-notification__icon" aria-hidden="true">📱</span>
-            <p>can this actually run on the phone or do we need a server?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:4vw;--storm-y:-28vh;--storm-mobile-x:2vw;--storm-mobile-y:5vh;--storm-rotate:-1deg">
-            <span class="p-notification__icon" aria-hidden="true">🕵️</span>
-            <p>when it gets one wrong, how do i find out why?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:18vw;--storm-y:-2vh;--storm-mobile-x:-3vw;--storm-mobile-y:11vh;--storm-rotate:2deg">
-            <span class="p-notification__icon" aria-hidden="true">📣</span>
-            <p>linkedin says this takes five minutes. why are we still on it after three weeks?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-17vw;--storm-y:12vh;--storm-mobile-x:4vw;--storm-mobile-y:17vh;--storm-rotate:-2deg">
-            <span class="p-notification__icon" aria-hidden="true">📊</span>
-            <p>the ceo wants an ai strategy by friday. what am i supposed to put in it?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:14vw;--storm-y:27vh;--storm-mobile-x:-2vw;--storm-mobile-y:23vh;--storm-rotate:3deg">
-            <span class="p-notification__icon" aria-hidden="true">🤷</span>
-            <p>why did it fail on this one? it looks exactly like the others.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-18vw;--storm-y:-7vh;--storm-mobile-x:3vw;--storm-mobile-y:-21vh;--storm-rotate:-1deg">
-            <span class="p-notification__icon" aria-hidden="true">📦</span>
-            <p>how many images do you actually need? i need a number.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:7vw;--storm-y:10vh;--storm-mobile-x:-4vw;--storm-mobile-y:-15vh;--storm-rotate:2deg">
-            <span class="p-notification__icon" aria-hidden="true">📉</span>
-            <p>the model isn't learning anything. the loss just sits there.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:18vw;--storm-y:-25vh;--storm-mobile-x:2vw;--storm-mobile-y:-9vh;--storm-rotate:-3deg">
-            <span class="p-notification__icon" aria-hidden="true">🚚</span>
-            <p>new camera arrives monday. are we starting from zero again?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-8vw;--storm-y:-13vh;--storm-mobile-x:-2vw;--storm-mobile-y:-3vh;--storm-rotate:1deg">
-            <span class="p-notification__icon" aria-hidden="true">🧩</span>
-            <p>it learned the new parts and forgot the old ones. is that normal?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-18vw;--storm-y:29vh;--storm-mobile-x:4vw;--storm-mobile-y:3vh;--storm-rotate:-2deg">
-            <span class="p-notification__icon" aria-hidden="true">🔍</span>
-            <p>what does fine-tuning actually change?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:17vw;--storm-y:7vh;--storm-mobile-x:-3vw;--storm-mobile-y:9vh;--storm-rotate:2deg">
-            <span class="p-notification__icon" aria-hidden="true">💬</span>
-            <p>can't we just send the camera feed to chatgpt?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-3vw;--storm-y:30vh;--storm-mobile-x:2vw;--storm-mobile-y:15vh;--storm-rotate:-1deg">
-            <span class="p-notification__icon" aria-hidden="true">⚠️</span>
-            <p>can we let gpt decide and only alert us when something is wrong?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-15vw;--storm-y:-20vh;--storm-mobile-x:-3vw;--storm-mobile-y:21vh;--storm-rotate:2deg">
-            <span class="p-notification__icon" aria-hidden="true">💥</span>
-            <p>non funziona un cazzo. ieri andava.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:12vw;--storm-y:-12vh;--storm-mobile-x:3vw;--storm-mobile-y:-23vh;--storm-rotate:-2deg">
-            <span class="p-notification__icon" aria-hidden="true">🫠</span>
-            <p>non funziona nulla. nemmeno il backup.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-4vw;--storm-y:0vh;--storm-mobile-x:-2vw;--storm-mobile-y:-17vh;--storm-rotate:1deg">
-            <span class="p-notification__icon" aria-hidden="true">🧨</span>
-            <p>ho spaccato tutto o posso ancora salvarlo?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:16vw;--storm-y:12vh;--storm-mobile-x:4vw;--storm-mobile-y:-11vh;--storm-rotate:-3deg">
-            <span class="p-notification__icon" aria-hidden="true">🪙</span>
-            <p>cazzo sono 'ste merde di token? li pago anche quando sbaglia?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-17vw;--storm-y:22vh;--storm-mobile-x:-4vw;--storm-mobile-y:-5vh;--storm-rotate:2deg">
-            <span class="p-notification__icon" aria-hidden="true">🥄</span>
-            <p>spiegamelo in parole povere. proprio povere.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:3vw;--storm-y:-26vh;--storm-mobile-x:2vw;--storm-mobile-y:1vh;--storm-rotate:-1deg">
-            <span class="p-notification__icon" aria-hidden="true">😵</span>
-            <p>non ci ho capito nulla. da dove parto?</p>
-          </article>
-          <article class="p-notification" style="--storm-x:15vw;--storm-y:-2vh;--storm-mobile-x:-3vw;--storm-mobile-y:7vh;--storm-rotate:3deg">
-            <span class="p-notification__icon" aria-hidden="true">🔁</span>
-            <p>it was working fine yesterday. seriously, nothing changed.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-13vw;--storm-y:9vh;--storm-mobile-x:3vw;--storm-mobile-y:13vh;--storm-rotate:-2deg">
-            <span class="p-notification__icon" aria-hidden="true">🧱</span>
-            <p>abbiamo aggiornato una libreria e ora è tutto rosso.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:8vw;--storm-y:25vh;--storm-mobile-x:-2vw;--storm-mobile-y:19vh;--storm-rotate:1deg">
-            <span class="p-notification__icon" aria-hidden="true">🎥</span>
-            <p>the demo starts in 20 minutes and the camera is offline.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-18vw;--storm-y:-6vh;--storm-mobile-x:4vw;--storm-mobile-y:-20vh;--storm-rotate:-3deg">
-            <span class="p-notification__icon" aria-hidden="true">🚀</span>
-            <p>ho cliccato deploy. adesso non risponde più niente.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:1vw;--storm-y:13vh;--storm-mobile-x:-3vw;--storm-mobile-y:-14vh;--storm-rotate:2deg">
-            <span class="p-notification__icon" aria-hidden="true">💾</span>
-            <p>please tell me we have a backup.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:18vw;--storm-y:-21vh;--storm-mobile-x:3vw;--storm-mobile-y:-8vh;--storm-rotate:-2deg">
-            <span class="p-notification__icon" aria-hidden="true">📴</span>
-            <p>non funziona nulla. ho riavviato anche il router.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:-7vw;--storm-y:-15vh;--storm-mobile-x:-2vw;--storm-mobile-y:-2vh;--storm-rotate:1deg">
-            <span class="p-notification__icon" aria-hidden="true">🤬</span>
-            <p>non funziona un cazzo. il cliente è già in call.</p>
-          </article>
-          <article class="p-notification" style="--storm-x:0vw;--storm-y:28vh;--storm-mobile-x:2vw;--storm-mobile-y:16vh;--storm-rotate:-1deg">
-            <span class="p-notification__icon" aria-hidden="true">☕</span>
-            <p>okay. chi ha toccato produzione? e chi porta il caffè?</p>
-          </article>
+        <div class="p-notification-storm__stage" data-notification-stage
+             aria-label="A growing stream of realistic questions from AI projects">
+          <span class="p-notification-storm__loading">loading incoming messages…</span>
         </div>
 
         <span class="p-notification-storm__hint" aria-hidden="true">scroll to open the floodgate</span>
       </div>
+    </div>
+
+    <div class="p-notification-contribute p-reveal">
+      <div>
+        <span class="p-overline">Add yours</span>
+        <h4 class="p-notification-contribute__title">One more notification?</h4>
+        <p class="p-notification-contribute__copy">
+          Write it here. The message is prepared as one JSON line and GitHub opens the file editor;
+          proposing the change creates a pull request when needed.
+        </p>
+      </div>
+      <form class="p-notification-form" data-notification-form
+            data-editor-url="https://github.com/plana93/plana93.github.io/edit/master/assets/data/notification-storm.jsonl">
+        <label class="p-bb__sr-only" for="notificationMessage">Your notification</label>
+        <div class="p-notification-form__row">
+          <select name="icon" aria-label="Notification emoji">
+            <option>💥</option><option>🤬</option><option>🫠</option><option>🤖</option>
+            <option>🔥</option><option>🧨</option><option>☕</option><option>🤷</option>
+          </select>
+          <input id="notificationMessage" name="message" type="text" maxlength="220"
+                 placeholder="what broke this time?" required autocomplete="off">
+          <button type="submit" class="p-btn p-btn--primary">Prepare PR ↗</button>
+        </div>
+        <p class="p-notification-form__status" data-notification-status aria-live="polite"></p>
+      </form>
+      <div class="p-notification-contribute__preview" data-notification-preview hidden></div>
     </div>
   </div>
 </section>

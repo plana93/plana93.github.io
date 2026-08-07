@@ -56,15 +56,25 @@ const report = {
 
 async function revealPage(page) {
   await page.evaluate(async () => {
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
     const step = Math.max(320, Math.floor(window.innerHeight * 0.72));
-    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+    for (let y = 0; y < root.scrollHeight; y += step) {
       window.scrollTo(0, y);
       await new Promise(resolve => setTimeout(resolve, 90));
     }
-    window.scrollTo(0, document.documentElement.scrollHeight);
+    window.scrollTo(0, root.scrollHeight);
+    root.style.scrollBehavior = previousScrollBehavior;
   });
   await page.waitForTimeout(700);
-  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.evaluate(() => {
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    root.style.scrollBehavior = previousScrollBehavior;
+  });
   await page.waitForTimeout(500);
 }
 

@@ -486,10 +486,83 @@
       return 1 - Math.pow(1 - value, 3);
     }
 
+    function seededUnit(seed) {
+      var value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+      return value - Math.floor(value);
+    }
+
+    function setCardPosition(card, index) {
+      card.style.setProperty('--storm-x', (seededUnit(index + 1) * 36 - 18).toFixed(1) + 'vw');
+      card.style.setProperty('--storm-y', (seededUnit(index + 101) * 56 - 28).toFixed(1) + 'vh');
+      card.style.setProperty('--storm-mobile-x', (seededUnit(index + 201) * 8 - 4).toFixed(1) + 'vw');
+      card.style.setProperty('--storm-mobile-y', (seededUnit(index + 301) * 48 - 24).toFixed(1) + 'vh');
+      card.style.setProperty('--storm-rotate', (seededUnit(index + 401) * 6 - 3).toFixed(1) + 'deg');
+    }
+
+    function createNotification(message, index) {
+      var card = document.createElement('article');
+      var icon = document.createElement('span');
+      var copy = document.createElement('p');
+
+      card.className = 'p-notification';
+      icon.className = 'p-notification__icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = message.icon || '💬';
+      copy.textContent = message.text;
+      card.appendChild(icon);
+      card.appendChild(copy);
+      setCardPosition(card, index);
+      return card;
+    }
+
+    function parseJsonLines(raw) {
+      return raw.split(/\r?\n/).reduce(function (messages, line, index) {
+        var trimmed = line.trim();
+        if (!trimmed) return messages;
+        try {
+          var message = JSON.parse(trimmed);
+          if (message && typeof message.text === 'string' && message.text.trim()) {
+            messages.push({ icon: String(message.icon || '💬'), text: message.text.trim() });
+          }
+        } catch (error) {
+          console.warn('Notification line ' + (index + 1) + ' is not valid JSON and was skipped.');
+        }
+        return messages;
+      }, []);
+    }
+
+    function renderStorm(storm, messages) {
+      var stage = $('[data-notification-stage]', storm);
+      if (!stage) return;
+      stage.textContent = '';
+      messages.forEach(function (message, index) {
+        stage.appendChild(createNotification(message, index));
+      });
+
+      // Roughly one viewport per 17 messages, plus a generous reading buffer.
+      // The last card arrives at 82%, leaving about 1.5 viewports before release.
+      storm.style.height = Math.max(650, 260 + messages.length * 5.8) + 'vh';
+      storm.dataset.messageCount = String(messages.length);
+      storm.classList.add('is-ready');
+    }
+
+    function showLoadError(storm) {
+      var stage = $('[data-notification-stage]', storm);
+      if (!stage) return;
+      stage.textContent = '';
+      var message = document.createElement('p');
+      message.className = 'p-notification-storm__loading is-error';
+      message.textContent = 'the notifications got lost too. refresh to try again.';
+      stage.appendChild(message);
+      storm.style.height = '100vh';
+    }
+
     function updateStorm(storm) {
       var notifications = $$('.p-notification', storm);
       var counter = $('[data-storm-count]', storm);
+      var label = $('[data-storm-label]', storm);
       var hint = $('.p-notification-storm__hint', storm);
+      if (!notifications.length) return;
       var rect = storm.getBoundingClientRect();
       var distance = Math.max(1, storm.offsetHeight - window.innerHeight);
       var leadIn = window.innerHeight * 0.55;
@@ -518,16 +591,12 @@
       });
 
       if (counter) counter.textContent = String(opened).padStart(2, '0');
+      if (label) {
+        if (opened < notifications.length) label.textContent = 'incoming';
+        else if (progress < 0.96) label.textContent = 'all received · breathe';
+        else label.textContent = 'release';
+      }
       if (hint) hint.style.opacity = String(clamp(1 - progress * 7, 0, 1));
-    }
-
-    if (reduceMotion) {
-      storms.forEach(function (storm) {
-        storm.classList.add('is-static');
-        var counter = $('[data-storm-count]', storm);
-        if (counter) counter.textContent = String($$('.p-notification', storm).length).padStart(2, '0');
-      });
-      return;
     }
 
     function updateAll() {
@@ -541,9 +610,90 @@
       window.requestAnimationFrame(updateAll);
     }
 
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate, { passive: true });
-    updateAll();
+    function copyText(value) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(value);
+      }
+      return new Promise(function (resolve, reject) {
+        var textarea = document.createElement('textarea');
+        textarea.value = value;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy') ? resolve() : reject(new Error('Copy failed'));
+        } catch (error) {
+          reject(error);
+        }
+        textarea.remove();
+      });
+    }
+
+    var form = $('[data-notification-form]');
+    if (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var iconField = $('[name="icon"]', form);
+        var messageField = $('[name="message"]', form);
+        var status = $('[data-notification-status]', form);
+        var preview = $('[data-notification-preview]');
+        var text = messageField ? messageField.value.trim() : '';
+        var icon = iconField ? iconField.value : '💬';
+        if (!text) return;
+
+        var jsonLine = JSON.stringify({ icon: icon, text: text });
+        // Open synchronously from the click so browsers do not block the new tab.
+        window.open(form.dataset.editorUrl, '_blank', 'noopener');
+        copyText(jsonLine).then(function () {
+          if (status) status.textContent = 'Copied. Paste it as the last line, then choose “Propose changes” on GitHub.';
+        }).catch(function () {
+          if (status) status.textContent = 'GitHub is open. Add this as the last line: ' + jsonLine;
+        });
+
+        if (preview) {
+          preview.textContent = '';
+          var previewIcon = document.createElement('span');
+          var previewText = document.createElement('p');
+          previewIcon.textContent = icon;
+          previewText.textContent = text;
+          preview.appendChild(previewIcon);
+          preview.appendChild(previewText);
+          preview.hidden = false;
+        }
+      });
+    }
+
+    Promise.all(storms.map(function (storm) {
+      return fetch(storm.dataset.source, { cache: 'no-cache' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          return response.text();
+        })
+        .then(function (raw) {
+          var messages = parseJsonLines(raw);
+          if (!messages.length) throw new Error('No valid notifications');
+          renderStorm(storm, messages);
+          if (reduceMotion) {
+            storm.classList.add('is-static');
+            var counter = $('[data-storm-count]', storm);
+            var label = $('[data-storm-label]', storm);
+            if (counter) counter.textContent = String(messages.length).padStart(2, '0');
+            if (label) label.textContent = 'messages';
+          }
+        })
+        .catch(function (error) {
+          console.error('Could not load notification storm:', error);
+          showLoadError(storm);
+        });
+    })).then(function () {
+      if (!reduceMotion) {
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate, { passive: true });
+        updateAll();
+      }
+    });
   }
 
   /* ============================================================

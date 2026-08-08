@@ -2625,7 +2625,8 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: -2;
     background-position: center 48%;
     background-size: cover;
-    filter: grayscale(var(--p-break-gray, 100%)) contrast(var(--p-break-contrast, 1.25)) brightness(0.68);
+    // Keep CSS custom properties intact under GitHub Pages' legacy Sass compiler.
+    filter: unquote("grayscale(var(--p-break-gray, 100%)) contrast(var(--p-break-contrast, 1.25)) brightness(0.68)");
     transform: translate3d(0, var(--p-break-y, 0%), 0) scale(var(--p-break-scale, 1.12));
     will-change: transform, filter;
   }

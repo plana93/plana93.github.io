@@ -96,111 +96,123 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       where I got it wrong—<br>often enough to learn.
     </p>
 
-    <div class="p-research-grid">
-
-      <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon">👁️</div>
-        <span class="p-card__tag">[01] Primary Focus</span>
-        <h3 class="p-research-card__area">Egocentric Vision</h3>
-        <p class="p-research-card__desc">
-          First-person action recognition &amp; understanding from wearable cameras.
-          Bridging human activity analysis with computer vision in unconstrained environments.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">CVPR</span>
-          <span class="p-research-card__venue">WACV</span>
-          <span class="p-research-card__venue">IEEE RA-L</span>
-          <span class="p-research-card__venue">IJCV</span>
+    <div class="p-research-deck p-reveal" data-research-deck>
+      <article class="p-research-item is-open" data-research-item>
+        <h3>
+          <button class="p-research-item__trigger" type="button" aria-expanded="true" aria-controls="research-panel-01">
+            <span class="p-research-item__index">01</span>
+            <span class="p-research-item__icon" aria-hidden="true">👁️</span>
+            <span class="p-research-item__title">Egocentric Vision</span>
+            <span class="p-research-item__kind">primary focus</span>
+            <span class="p-research-item__toggle" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div class="p-research-item__panel" id="research-panel-01">
+          <div class="p-research-item__panel-inner">
+            <p>First-person action recognition and understanding from wearable cameras—where real life rarely holds still for the model.</p>
+            <div class="p-research-item__papers"><span>CVPR</span><span>WACV</span><span>IEEE RA-L</span><span>IJCV</span></div>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon">🎬</div>
-        <span class="p-card__tag">[02] Core Research</span>
-        <h3 class="p-research-card__area">Video Understanding</h3>
-        <p class="p-research-card__desc">
-          Temporal video understanding and classification. Designing architectures that
-          capture motion dynamics across diverse domains and perspectives.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">2D/3D</span>
-          <span class="p-research-card__venue">Trimmed/Untrimmed</span>
-          <span class="p-research-card__venue">Summarization</span>
-          <span class="p-research-card__venue">Retrieval</span>
+      <article class="p-research-item" data-research-item>
+        <h3>
+          <button class="p-research-item__trigger" type="button" aria-expanded="false" aria-controls="research-panel-02">
+            <span class="p-research-item__index">02</span>
+            <span class="p-research-item__icon" aria-hidden="true">🎬</span>
+            <span class="p-research-item__title">Video Understanding</span>
+            <span class="p-research-item__kind">time + motion</span>
+            <span class="p-research-item__toggle" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div class="p-research-item__panel" id="research-panel-02" hidden>
+          <div class="p-research-item__panel-inner">
+            <p>Architectures that read motion across time, domains and viewpoints—not just the one clean clip used in the demo.</p>
+            <div class="p-research-item__papers"><span>2D / 3D</span><span>Untrimmed</span><span>Summarization</span><span>Retrieval</span></div>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon">🔄</div>
-        <span class="p-card__tag">[03] Generalization</span>
-        <h3 class="p-research-card__area">Domain Adaptation</h3>
-        <p class="p-research-card__desc">
-          Building AI systems that generalize across domains without retraining.
-          Unsupervised and semi-supervised transfer learning for cross-domain robustness.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">UDA</span>
-          <span class="p-research-card__venue">Open-world</span>
-          <span class="p-research-card__venue">Cross-domain</span>
+      <article class="p-research-item" data-research-item>
+        <h3>
+          <button class="p-research-item__trigger" type="button" aria-expanded="false" aria-controls="research-panel-03">
+            <span class="p-research-item__index">03</span>
+            <span class="p-research-item__icon" aria-hidden="true">↝</span>
+            <span class="p-research-item__title">Domain Adaptation</span>
+            <span class="p-research-item__kind">generalization</span>
+            <span class="p-research-item__toggle" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div class="p-research-item__panel" id="research-panel-03" hidden>
+          <div class="p-research-item__panel-inner">
+            <p>Teaching systems to survive a change of camera, factory or context without starting training from zero every time.</p>
+            <div class="p-research-item__papers"><span>UDA</span><span>Open-world</span><span>Cross-domain</span></div>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon">🔍</div>
-        <span class="p-card__tag">[04] Safety & QA</span>
-        <h3 class="p-research-card__area">Anomaly Detection</h3>
-        <p class="p-research-card__desc">
-          Identifying rare, unusual or dangerous events in industrial and video streams.
-          Unsupervised and one-class approaches for zero-shot anomaly localization.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">Industry</span>
-          <span class="p-research-card__venue">Production</span>
+      <article class="p-research-item" data-research-item>
+        <h3>
+          <button class="p-research-item__trigger" type="button" aria-expanded="false" aria-controls="research-panel-04">
+            <span class="p-research-item__index">04</span>
+            <span class="p-research-item__icon" aria-hidden="true">⌁</span>
+            <span class="p-research-item__title">Anomaly Detection</span>
+            <span class="p-research-item__kind">when things go wrong</span>
+            <span class="p-research-item__toggle" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div class="p-research-item__panel" id="research-panel-04" hidden>
+          <div class="p-research-item__panel-inner">
+            <p>Finding rare, unusual or dangerous events when examples are scarce and “normal” keeps changing in production.</p>
+            <div class="p-research-item__papers"><span>Industry</span><span>Production</span><span>One-class</span></div>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon">🗺️</div>
-        <span class="p-card__tag">[05] Applied Perception</span>
-        <h3 class="p-research-card__area">Perception Systems</h3>
-        <p class="p-research-card__desc">
-          Detection, segmentation, recognition and pose estimation assembled into
-          reliable pipelines for industry, autonomous systems and human–AI interaction.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">Detection</span>
-          <span class="p-research-card__venue">Segmentation</span>
-          <span class="p-research-card__venue">Recognition</span>
-          <span class="p-research-card__venue">Pose</span>
+      <article class="p-research-item" data-research-item>
+        <h3>
+          <button class="p-research-item__trigger" type="button" aria-expanded="false" aria-controls="research-panel-05">
+            <span class="p-research-item__index">05</span>
+            <span class="p-research-item__icon" aria-hidden="true">✣</span>
+            <span class="p-research-item__title">Perception Systems</span>
+            <span class="p-research-item__kind">applied vision</span>
+            <span class="p-research-item__toggle" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div class="p-research-item__panel" id="research-panel-05" hidden>
+          <div class="p-research-item__panel-inner">
+            <p>Detection, segmentation, recognition and pose estimation assembled into pipelines people can actually depend on.</p>
+            <div class="p-research-item__papers"><span>Detection</span><span>Segmentation</span><span>Recognition</span><span>Pose</span></div>
+          </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Cross-cutting: Multi-Modal -->
-      <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon">🎵</div>
-        <span class="p-card__tag">[06] Fusion</span>
-        <h3 class="p-research-card__area">Multi-Modal Learning</h3>
-        <p class="p-research-card__desc">
-          Integrating audio, visual and sensor signals for comprehensive scene understanding.
-          Joint representation learning across modalities.
-        </p>
-        <div class="p-research-card__papers">
-          <span class="p-research-card__venue">Vision</span>
-          <span class="p-research-card__venue">Audio</span>
-          <span class="p-research-card__venue">Sensors</span>
-          <span class="p-research-card__venue">Language</span>
+      <article class="p-research-item" data-research-item>
+        <h3>
+          <button class="p-research-item__trigger" type="button" aria-expanded="false" aria-controls="research-panel-06">
+            <span class="p-research-item__index">06</span>
+            <span class="p-research-item__icon" aria-hidden="true">◉</span>
+            <span class="p-research-item__title">Multi-Modal Learning</span>
+            <span class="p-research-item__kind">signals in conversation</span>
+            <span class="p-research-item__toggle" aria-hidden="true">+</span>
+          </button>
+        </h3>
+        <div class="p-research-item__panel" id="research-panel-06" hidden>
+          <div class="p-research-item__panel-inner">
+            <p>Combining vision, audio, sensors and language when no single signal tells the whole story.</p>
+            <div class="p-research-item__papers"><span>Vision</span><span>Audio</span><span>Sensors</span><span>Language</span></div>
+          </div>
         </div>
-      </div>
+      </article>
+    </div>
 
-      <div class="p-research-pulse p-reveal">
-        <span class="p-research-pulse__label">[ WORKING RULE ]</span>
-        <p class="p-research-pulse__statement">
-          Stay close to people who can explain their <strong>no.</strong>
-          <small>That's how you build a yes that holds.</small>
-        </p>
-        <span class="p-research-pulse__trace" aria-hidden="true"></span>
-      </div>
-
+    <div class="p-research-pulse p-reveal">
+      <span class="p-research-pulse__label">[ WORKING RULE ]</span>
+      <p class="p-research-pulse__statement">
+        Stay close to people who can explain their <strong>no.</strong>
+        <small>That's how you build a yes that holds.</small>
+      </p>
+      <span class="p-research-pulse__trace" aria-hidden="true"></span>
     </div>
 
     <!-- Problem Board — Chat style -->
@@ -232,7 +244,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
                 <span><strong data-storm-count>00</strong> <span data-storm-label>incoming</span></span>
               </div>
 
-              <div class="p-notification-storm__stage" data-notification-stage
+              <div class="p-notification-storm__stage" data-notification-stage tabindex="0"
                    aria-label="A growing stream of realistic questions from AI projects">
                 <span class="p-notification-storm__loading">loading incoming messages…</span>
               </div>
@@ -241,11 +253,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             </div>
           </div>
 
-          <div class="p-notification-storm__finger" data-phone-finger aria-hidden="true">
-            <span></span>
-          </div>
-
-          <span class="p-notification-storm__pace" aria-hidden="true">your scroll sets the pace ↕</span>
+          <span class="p-notification-storm__pace" aria-hidden="true">scroll inside the screen ↕</span>
         </div>
       </div>
     </div>

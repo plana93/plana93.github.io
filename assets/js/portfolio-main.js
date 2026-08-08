@@ -74,7 +74,7 @@
 
     for (var i = 0; i < NODE_COUNT; i++) {
       var mat = new THREE.MeshBasicMaterial({
-        color: Math.random() > 0.6 ? 0xffc400 : 0xff6a2a,
+        color: Math.random() > 0.82 ? 0xff5a2f : 0xf2efe6,
         transparent: true,
         opacity: 0.55 + Math.random() * 0.45
       });
@@ -102,7 +102,7 @@
 
     // ── Edges (lines between nearby nodes) ──────────────────
     var edgesMat = new THREE.LineBasicMaterial({
-      color: 0xffc400,
+      color: 0xf2efe6,
       transparent: true,
       opacity: 0.12,
       linewidth: 1
@@ -139,7 +139,7 @@
     var pGeo = new THREE.BufferGeometry();
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
     var pMat = new THREE.PointsMaterial({
-      color: 0xffc400,
+      color: 0xf2efe6,
       size: 0.08,
       transparent: true,
       opacity: 0.35,
@@ -348,16 +348,6 @@
     else photo.addEventListener('load', buildAlphaMap, { once: true });
   }
 
-  function initCardSpotlights() {
-    $$('.p-research-card').forEach(function (card) {
-      card.addEventListener('pointermove', function (event) {
-        var rect = card.getBoundingClientRect();
-        card.style.setProperty('--p-spot-x', (event.clientX - rect.left) + 'px');
-        card.style.setProperty('--p-spot-y', (event.clientY - rect.top) + 'px');
-      }, { passive: true });
-    });
-  }
-
   // Ridimensiona il titolo usando la larghezza realmente disponibile.
   // Cambiare il font-size (invece di scaleX) mantiene intatte le proporzioni
   // delle lettere e funziona anche con font scaling/accessibility del browser.
@@ -546,37 +536,68 @@
   }
 
   /* ============================================================
-     5a. NOTIFICATION STORM — scroll-driven pressure buildup
+     5a. RESEARCH INDEX — one expandable field at a time
+  ============================================================ */
+  function initResearchDeck() {
+    var decks = $$('[data-research-deck]');
+    if (!decks.length) return;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function setOpen(item, shouldOpen) {
+      var trigger = $('.p-research-item__trigger', item);
+      var panel = $('.p-research-item__panel', item);
+      if (!trigger || !panel) return;
+      trigger.setAttribute('aria-expanded', String(shouldOpen));
+      item.classList.toggle('is-open', shouldOpen);
+
+      if (shouldOpen) {
+        panel.hidden = false;
+        if (!reduceMotion && panel.animate) {
+          panel.animate([
+            { height: '0px', opacity: 0 },
+            { height: panel.scrollHeight + 'px', opacity: 1 }
+          ], { duration: 360, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+        }
+      } else if (!panel.hidden) {
+        if (!reduceMotion && panel.animate) {
+          var animation = panel.animate([
+            { height: panel.offsetHeight + 'px', opacity: 1 },
+            { height: '0px', opacity: 0 }
+          ], { duration: 220, easing: 'cubic-bezier(0.4, 0, 1, 1)' });
+          animation.addEventListener('finish', function () {
+            if (!item.classList.contains('is-open')) panel.hidden = true;
+          });
+        } else {
+          panel.hidden = true;
+        }
+      }
+    }
+
+    decks.forEach(function (deck) {
+      var items = $$('[data-research-item]', deck);
+      items.forEach(function (item) {
+        var trigger = $('.p-research-item__trigger', item);
+        if (!trigger) return;
+        trigger.addEventListener('click', function () {
+          var willOpen = trigger.getAttribute('aria-expanded') !== 'true';
+          items.forEach(function (candidate) {
+            setOpen(candidate, candidate === item && willOpen);
+          });
+        });
+      });
+    });
+  }
+
+  /* ============================================================
+     5b. NOTIFICATION PHONE — native, screen-local scrolling
   ============================================================ */
   function initNotificationStorm() {
     var storms = $$('[data-notification-storm]');
     if (!storms.length) return;
 
-    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var ticking = false;
-    var lastScrollY = window.scrollY;
-    var lastScrollAt = performance.now();
-    var scrollVelocity = 0;
-
-    function clamp(value, min, max) {
-      return Math.min(max, Math.max(min, value));
-    }
-
-    function easeOutCubic(value) {
-      return 1 - Math.pow(1 - value, 3);
-    }
-
     function seededUnit(seed) {
       var value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
       return value - Math.floor(value);
-    }
-
-    function setCardPosition(card, index) {
-      card.style.setProperty('--storm-x', (seededUnit(index + 1) * 34 - 17).toFixed(1) + 'px');
-      card.style.setProperty('--storm-y', (seededUnit(index + 101) * 288 - 144).toFixed(1) + 'px');
-      card.style.setProperty('--storm-mobile-x', (seededUnit(index + 201) * 22 - 11).toFixed(1) + 'px');
-      card.style.setProperty('--storm-mobile-y', (seededUnit(index + 301) * 236 - 118).toFixed(1) + 'px');
-      card.style.setProperty('--storm-rotate', (seededUnit(index + 401) * 3.6 - 1.8).toFixed(1) + 'deg');
     }
 
     function createNotification(message, index) {
@@ -585,16 +606,14 @@
       var copy = document.createElement('p');
 
       card.className = 'p-notification';
+      card.style.setProperty('--storm-nudge', (seededUnit(index + 1) * 18 - 9).toFixed(1) + 'px');
+      card.style.setProperty('--storm-rotate', (seededUnit(index + 101) * 1.6 - 0.8).toFixed(2) + 'deg');
       icon.className = 'p-notification__icon';
       icon.setAttribute('aria-hidden', 'true');
       icon.textContent = message.icon || '💬';
       copy.textContent = message.text;
       card.appendChild(icon);
       card.appendChild(copy);
-      setCardPosition(card, index);
-      var order = message.total === 1 ? 0 : index / (message.total - 1);
-      card._stormStart = (1 - Math.pow(1 - order, 1.8)) * 0.84;
-      card.style.setProperty('--storm-z', String(index + 1));
       return card;
     }
 
@@ -619,14 +638,15 @@
       if (!stage) return;
       stage.textContent = '';
       messages.forEach(function (message, index) {
-        stage.appendChild(createNotification({ icon: message.icon, text: message.text, total: messages.length }, index));
+        stage.appendChild(createNotification(message, index));
       });
-
-      // The phone is intentionally shorter than the former wall of messages.
-      // The final card arrives at 84%, leaving more than one viewport to read and decelerate.
-      storm.style.height = Math.max(560, 175 + messages.length * 4.2) + 'vh';
+      var end = document.createElement('p');
+      end.className = 'p-notification-storm__end';
+      end.innerHTML = '<strong>you made it.</strong><span>take a breath before the next “quick question”.</span>';
+      stage.appendChild(end);
       storm.dataset.messageCount = String(messages.length);
       storm.classList.add('is-ready');
+      bindStage(storm, stage, messages.length);
     }
 
     function showLoadError(storm) {
@@ -637,134 +657,34 @@
       message.className = 'p-notification-storm__loading is-error';
       message.textContent = 'the notifications got lost too. refresh to try again.';
       stage.appendChild(message);
-      storm.style.height = '100vh';
     }
 
-    function updateStorm(storm) {
-      var notifications = $$('.p-notification', storm);
+    function bindStage(storm, stage, total) {
       var counter = $('[data-storm-count]', storm);
       var label = $('[data-storm-label]', storm);
-      var scene = $('.p-notification-storm__scene', storm);
-      if (!notifications.length) return false;
-      var rect = storm.getBoundingClientRect();
-      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 1.75) return false;
-      var distance = Math.max(1, storm.offsetHeight - window.innerHeight);
-      var leadIn = window.innerHeight * 0.55;
-      var targetProgress = clamp((leadIn - rect.top) / (distance + leadIn), 0, 1);
-      var progress = typeof storm._stormProgress === 'number' ? storm._stormProgress : targetProgress;
-      var progressGap = targetProgress - progress;
-      var speedFactor = clamp(scrollVelocity / 2.4, 0, 1);
-      var response = 0.11 + speedFactor * 0.62;
+      var ticking = false;
 
-      // A fast gesture still opens messages quickly, while the last 16% acts as a brake.
-      // Scrolling backwards remains immediate enough to keep the interaction reversible.
-      if (targetProgress > 0.82 && progressGap > 0) response *= 0.34;
-      progress += progressGap * response;
-      if (Math.abs(progressGap) < 0.00035) progress = targetProgress;
-      storm._stormProgress = progress;
-      var opened = 0;
-
-      notifications.forEach(function (notification, index) {
-        if (progress > notification._stormStart) opened += 1;
-      });
-
-      // Only the newest cards remain animated. Older ones become cheap static ghosts,
-      // preserving the crowded look without compositing 100+ moving layers per frame.
-      var activeFloor = Math.max(0, opened - (window.innerWidth <= 768 ? 6 : 8));
-      var buriedFloor = Math.max(0, opened - 40);
-
-      notifications.forEach(function (notification, index) {
-        // Wide gaps first, then an accelerating cascade that crowds the final frames.
-        var start = notification._stormStart;
-        var age = progress - start;
-        if (age <= 0) {
-          if (notification.dataset.stormState !== 'future') {
-            notification.dataset.stormState = 'future';
-            notification.classList.remove('is-storm-ghost', 'is-storm-buried');
-            notification.style.removeProperty('--storm-opacity');
-            notification.style.removeProperty('--storm-scale');
-            notification.style.removeProperty('--storm-lift');
-          }
-          return;
+      function updateStatus() {
+        ticking = false;
+        var maxScroll = Math.max(1, stage.scrollHeight - stage.clientHeight);
+        var progress = Math.min(1, stage.scrollTop / maxScroll);
+        var firstScreen = Math.max(1, Math.ceil(total * stage.clientHeight / stage.scrollHeight));
+        var opened = Math.min(total, Math.max(firstScreen, Math.ceil(total * progress)));
+        if (counter) counter.textContent = String(opened).padStart(2, '0');
+        if (label) {
+          if (progress < 0.92) label.textContent = 'in the chat';
+          else if (progress < 0.995) label.textContent = 'almost there';
+          else label.textContent = 'all read · breathe';
         }
-
-        if (index < buriedFloor) {
-          if (notification.dataset.stormState !== 'buried') {
-            notification.dataset.stormState = 'buried';
-            notification.classList.remove('is-storm-ghost');
-            notification.classList.add('is-storm-buried');
-          }
-          return;
-        }
-
-        if (index < activeFloor || age > 0.42) {
-          if (notification.dataset.stormState !== 'ghost') {
-            notification.dataset.stormState = 'ghost';
-            notification.classList.remove('is-storm-buried');
-            notification.classList.add('is-storm-ghost');
-            notification.style.setProperty('--storm-opacity', '0.085');
-            notification.style.setProperty('--storm-scale', '0.82');
-            notification.style.setProperty('--storm-lift', '-28px');
-          }
-          return;
-        }
-
-        notification.dataset.stormState = 'active';
-        notification.classList.remove('is-storm-ghost', 'is-storm-buried');
-        var enter = clamp(age / 0.055, 0, 1);
-        var easedEnter = easeOutCubic(enter);
-        var fade = age > 0.19 ? clamp((age - 0.19) / 0.34, 0, 1) : 0;
-        var opacity = age <= 0 ? 0 : Math.max(0.11, easedEnter * (1 - fade * 0.89));
-        var scale = 0.68 + easedEnter * 0.4 - clamp((age - 0.08) / 0.45, 0, 1) * 0.22;
-        var lift = 34 * (1 - easedEnter) - clamp(age - 0.12, 0, 0.5) * 105;
-
-        notification.style.setProperty('--storm-opacity', opacity.toFixed(3));
-        notification.style.setProperty('--storm-scale', scale.toFixed(3));
-        notification.style.setProperty('--storm-lift', lift.toFixed(1) + 'px');
-      });
-
-      if (counter) counter.textContent = String(opened).padStart(2, '0');
-      if (label) {
-        if (opened < notifications.length) label.textContent = 'incoming';
-        else if (targetProgress < 0.97) label.textContent = 'all received · breathe';
-        else label.textContent = 'release';
+        storm.classList.toggle('is-at-end', progress > 0.985);
       }
 
-      if (scene) {
-        var swipePhase = (progress * 9.5) % 1;
-        var fingerY = 54 - swipePhase * 118;
-        var fingerOpacity = clamp(Math.sin(Math.PI * swipePhase) * 1.18, 0, 0.9);
-        scene.style.setProperty('--phone-finger-y', fingerY.toFixed(1) + 'px');
-        scene.style.setProperty('--phone-finger-opacity', fingerOpacity.toFixed(3));
-      }
-
-      return Math.abs(targetProgress - progress) > 0.00035;
-    }
-
-    function updateAll() {
-      var needsSettle = false;
-      storms.forEach(function (storm) {
-        if (updateStorm(storm)) needsSettle = true;
-      });
-      scrollVelocity *= 0.86;
-      ticking = false;
-      if (needsSettle) requestUpdate();
-    }
-
-    function requestUpdate() {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(updateAll);
-    }
-
-    function handleScroll() {
-      var now = performance.now();
-      var elapsed = Math.max(8, now - lastScrollAt);
-      var instantVelocity = Math.abs(window.scrollY - lastScrollY) / elapsed;
-      scrollVelocity = scrollVelocity * 0.28 + instantVelocity * 0.72;
-      lastScrollY = window.scrollY;
-      lastScrollAt = now;
-      requestUpdate();
+      stage.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateStatus);
+      }, { passive: true });
+      updateStatus();
     }
 
     function copyText(value) {
@@ -832,48 +752,16 @@
           var messages = parseJsonLines(raw);
           if (!messages.length) throw new Error('No valid notifications');
           renderStorm(storm, messages);
-          if (reduceMotion) {
-            storm.classList.add('is-static');
-            var counter = $('[data-storm-count]', storm);
-            var label = $('[data-storm-label]', storm);
-            if (counter) counter.textContent = String(messages.length).padStart(2, '0');
-            if (label) label.textContent = 'messages';
-          }
         })
         .catch(function (error) {
           console.error('Could not load notification storm:', error);
           showLoadError(storm);
         });
-    })).then(function () {
-      // The storm grows after its messages load. Re-apply an early anchor jump so
-      // links to Projects/Talks still land correctly after that layout expansion.
-      if (window.location.hash) {
-        var hashTarget = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
-        if (hashTarget) {
-          window.requestAnimationFrame(function () {
-            window.requestAnimationFrame(function () {
-              var root = document.documentElement;
-              var previousBehavior = root.style.scrollBehavior;
-              root.style.scrollBehavior = 'auto';
-              hashTarget.scrollIntoView({ block: 'start' });
-              window.requestAnimationFrame(function () {
-                root.style.scrollBehavior = previousBehavior;
-              });
-            });
-          });
-        }
-      }
-
-      if (!reduceMotion) {
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener('resize', requestUpdate, { passive: true });
-        updateAll();
-      }
-    });
+    }));
   }
 
   /* ============================================================
-     5b. PROJECT FIELD + TALK REEL — staggered editorial motion
+     5c. PROJECT FIELD + TALK REEL — staggered editorial motion
   ============================================================ */
   function initProjectCards() {
     var pieces = $$('[data-project-piece]');
@@ -1160,8 +1048,8 @@
     initScrollReveal();
     initProjectCards();
     initVisionLens();
-    initCardSpotlights();
     initBillboardHero();
+    initResearchDeck();
     initNotificationStorm();
     initEditorialMotion();
     initKineticSections();

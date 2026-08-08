@@ -3142,6 +3142,20 @@ img { max-width: 100%; height: auto; display: block; }
   .p-talk-card__media { min-height: 0; aspect-ratio: 4 / 3; }
 }
 
+// Keep the two longest display lines readable on genuinely narrow phones.
+// The standard mobile composition is untouched; only the 320–360 px edge case scales down.
+@media (max-width: 360px) {
+  .p-visual-break__statement {
+    max-width: 100%;
+    font-size: 2.25rem;
+  }
+
+  .p-contact__email {
+    font-size: clamp(1.35rem, 7.35vw, 1.5rem);
+    letter-spacing: -0.035em;
+  }
+}
+
 // Respect system accessibility settings without changing the default experience.
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

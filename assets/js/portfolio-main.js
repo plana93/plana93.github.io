@@ -74,7 +74,7 @@
 
     for (var i = 0; i < NODE_COUNT; i++) {
       var mat = new THREE.MeshBasicMaterial({
-        color: Math.random() > 0.6 ? 0x6e56ff : 0x00d4aa,
+        color: Math.random() > 0.6 ? 0xffc400 : 0xff6a2a,
         transparent: true,
         opacity: 0.55 + Math.random() * 0.45
       });
@@ -102,7 +102,7 @@
 
     // ── Edges (lines between nearby nodes) ──────────────────
     var edgesMat = new THREE.LineBasicMaterial({
-      color: 0x6e56ff,
+      color: 0xffc400,
       transparent: true,
       opacity: 0.12,
       linewidth: 1
@@ -139,7 +139,7 @@
     var pGeo = new THREE.BufferGeometry();
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
     var pMat = new THREE.PointsMaterial({
-      color: 0x6e56ff,
+      color: 0xffc400,
       size: 0.08,
       transparent: true,
       opacity: 0.35,
@@ -570,9 +570,9 @@
 
     function setCardPosition(card, index) {
       card.style.setProperty('--storm-x', (seededUnit(index + 1) * 36 - 18).toFixed(1) + 'vw');
-      card.style.setProperty('--storm-y', (seededUnit(index + 101) * 56 - 28).toFixed(1) + 'vh');
+      card.style.setProperty('--storm-y', (seededUnit(index + 101) * 38 - 19).toFixed(1) + 'vh');
       card.style.setProperty('--storm-mobile-x', (seededUnit(index + 201) * 8 - 4).toFixed(1) + 'vw');
-      card.style.setProperty('--storm-mobile-y', (seededUnit(index + 301) * 48 - 24).toFixed(1) + 'vh');
+      card.style.setProperty('--storm-mobile-y', (seededUnit(index + 301) * 32 - 16).toFixed(1) + 'vh');
       card.style.setProperty('--storm-rotate', (seededUnit(index + 401) * 6 - 3).toFixed(1) + 'deg');
     }
 
@@ -766,7 +766,7 @@
         // Open synchronously from the click so browsers do not block the new tab.
         window.open(form.dataset.editorUrl, '_blank', 'noopener');
         copyText(jsonLine).then(function () {
-          if (status) status.textContent = 'Copied. Paste it as the last line, then choose “Propose changes” on GitHub.';
+          if (status) status.textContent = 'Got it. GitHub is open — paste the copied line at the bottom and hit “Propose changes”.';
         }).catch(function () {
           if (status) status.textContent = 'GitHub is open. Add this as the last line: ' + jsonLine;
         });
@@ -807,6 +807,25 @@
           showLoadError(storm);
         });
     })).then(function () {
+      // The storm grows after its messages load. Re-apply an early anchor jump so
+      // links to Projects/Talks still land correctly after that layout expansion.
+      if (window.location.hash) {
+        var hashTarget = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+        if (hashTarget) {
+          window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(function () {
+              var root = document.documentElement;
+              var previousBehavior = root.style.scrollBehavior;
+              root.style.scrollBehavior = 'auto';
+              hashTarget.scrollIntoView({ block: 'start' });
+              window.requestAnimationFrame(function () {
+                root.style.scrollBehavior = previousBehavior;
+              });
+            });
+          });
+        }
+      }
+
       if (!reduceMotion) {
         window.addEventListener('scroll', requestUpdate, { passive: true });
         window.addEventListener('resize', requestUpdate, { passive: true });
@@ -816,54 +835,71 @@
   }
 
   /* ============================================================
-     5b. PROJECT MINI CARDS — staggered reveal + GSAP tilt
+     5b. PROJECT FIELD + TALK REEL — staggered editorial motion
   ============================================================ */
   function initProjectCards() {
-    // reveal con delay CSS var
-    var minis = $$('.p-proj-mini');
-    if (!minis.length) return;
+    var pieces = $$('[data-project-piece]');
+    var talks = $$('.p-talk-card');
+    if (!pieces.length && !talks.length) return;
 
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    minis.forEach(function (el) { obs.observe(el); });
-
-    // GSAP scroll: featured project parallax image
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      var feat = $('.p-proj-featured__img img');
-      if (feat) {
-        gsap.to(feat, {
-          yPercent: 12,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.p-proj-featured',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
+    if ('IntersectionObserver' in window && pieces.length) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
           }
         });
-      }
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-      // talk cards staggered entrance
-      $$('.p-talk-card').forEach(function (card, i) {
-        gsap.fromTo(card,
-          { opacity: 0, y: 60 },
+      pieces.forEach(function (el) { obs.observe(el); });
+    }
+
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      pieces.forEach(function (piece, i) {
+        var image = $('.p-project-piece__media img', piece);
+        if (!image) return;
+        gsap.fromTo(image,
+          { yPercent: i % 2 === 0 ? -4 : 4, scale: 1.04 },
           {
-            opacity: 1, y: 0,
-            duration: 0.7,
+          yPercent: i % 2 === 0 ? 5 : -5,
+          scale: 1.08,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: piece,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.1
+          }
+        });
+      });
+
+      talks.forEach(function (card, i) {
+        var fromLeft = i % 2 === 0;
+        gsap.fromTo(card,
+          {
+            opacity: 0,
+            x: fromLeft ? -42 : 42,
+            y: 54,
+            rotate: fromLeft ? -1.4 : 1.4,
+            scale: 0.97,
+            clipPath: 'inset(8% 0 8% 0)'
+          },
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            rotate: 0,
+            scale: 1,
+            clipPath: 'inset(0% 0 0% 0)',
+            duration: 0.82,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: card,
-              start: 'top 88%',
+              start: 'top 86%',
               toggleActions: 'play none none none'
             },
-            delay: i * 0.12
+            delay: i * 0.1
           }
         );
       });

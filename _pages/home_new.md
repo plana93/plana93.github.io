@@ -93,13 +93,13 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
     </div>
 
     <p class="p-scribble p-scribble--research" data-scroll-scribble style="--p-scribble-r:-5deg">
-      the lab is tidy.<br>reality isn't.
+      where I got it wrong—<br>often enough to learn.
     </p>
 
     <div class="p-research-grid">
 
       <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon" style="background:rgba(110,86,255,0.15)">👁️</div>
+        <div class="p-card__icon">👁️</div>
         <span class="p-card__tag">[01] Primary Focus</span>
         <h3 class="p-research-card__area">Egocentric Vision</h3>
         <p class="p-research-card__desc">
@@ -115,7 +115,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🎬</div>
+        <div class="p-card__icon">🎬</div>
         <span class="p-card__tag">[02] Core Research</span>
         <h3 class="p-research-card__area">Video Understanding</h3>
         <p class="p-research-card__desc">
@@ -131,7 +131,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon" style="background:rgba(110,86,255,0.15)">🔄</div>
+        <div class="p-card__icon">🔄</div>
         <span class="p-card__tag">[03] Generalization</span>
         <h3 class="p-research-card__area">Domain Adaptation</h3>
         <p class="p-research-card__desc">
@@ -146,7 +146,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon" style="background:rgba(255,77,109,0.1)">🔍</div>
+        <div class="p-card__icon">🔍</div>
         <span class="p-card__tag">[04] Safety & QA</span>
         <h3 class="p-research-card__area">Anomaly Detection</h3>
         <p class="p-research-card__desc">
@@ -160,7 +160,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <div class="p-research-card p-reveal-right">
-        <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🗺️</div>
+        <div class="p-card__icon">🗺️</div>
         <span class="p-card__tag">[05] Applied Perception</span>
         <h3 class="p-research-card__area">Perception Systems</h3>
         <p class="p-research-card__desc">
@@ -176,26 +176,27 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       </div>
 
       <!-- Cross-cutting: Multi-Modal -->
-      <div class="p-research-card p-reveal-right" style="border-color:rgba(0,212,170,0.3)">
-        <div class="p-card__icon" style="background:rgba(0,212,170,0.12)">🎵</div>
-        <span class="p-card__tag" style="color:var(--p-teal)">[06] Fusion</span>
+      <div class="p-research-card p-reveal-right">
+        <div class="p-card__icon">🎵</div>
+        <span class="p-card__tag">[06] Fusion</span>
         <h3 class="p-research-card__area">Multi-Modal Learning</h3>
         <p class="p-research-card__desc">
           Integrating audio, visual and sensor signals for comprehensive scene understanding.
           Joint representation learning across modalities.
         </p>
         <div class="p-research-card__papers">
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Vision</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Audio</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Sensors</span>
-          <span class="p-research-card__venue" style="color:var(--p-teal);border-color:rgba(0,212,170,0.3);background:rgba(0,212,170,0.08)">Language</span>
+          <span class="p-research-card__venue">Vision</span>
+          <span class="p-research-card__venue">Audio</span>
+          <span class="p-research-card__venue">Sensors</span>
+          <span class="p-research-card__venue">Language</span>
         </div>
       </div>
 
       <div class="p-research-pulse p-reveal">
-        <span class="p-research-pulse__label">[ FIELD NOTE ]</span>
+        <span class="p-research-pulse__label">[ WORKING RULE ]</span>
         <p class="p-research-pulse__statement">
-          The demo is controlled.<br><strong>Reality is the benchmark.</strong>
+          Stay close to people who can explain their <strong>no.</strong>
+          <small>That's how you build a yes that holds.</small>
         </p>
         <span class="p-research-pulse__trace" aria-hidden="true"></span>
       </div>
@@ -204,12 +205,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     <!-- Problem Board — Chat style -->
     <div class="p-section-header p-reveal" style="margin-top:4rem">
-      <span class="p-overline">From the factory floor</span>
-      <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">Real <span class="p-accent">Industrial Problems</span></h3>
+      <span class="p-overline">Messages nobody puts in the report</span>
+      <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">The unofficial <span class="p-accent">project log</span></h3>
       <p class="p-chat-subtitle-it">mio padre dice sempre: <em>"calma e sangue freddo"</em></p>
     </div>
 
-    <div class="p-notification-storm" data-notification-storm
+    <div class="p-notification-storm" id="message-storm" data-notification-storm
          data-source="{{ '/assets/data/notification-storm.jsonl' | relative_url }}">
       <div class="p-notification-storm__sticky">
         <div class="p-notification-storm__status" aria-hidden="true">
@@ -228,11 +229,10 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     <div class="p-notification-contribute p-reveal">
       <div>
-        <span class="p-overline">Your turn</span>
-        <h4 class="p-notification-contribute__title">What broke this time?</h4>
+        <span class="p-overline">Add to the thread</span>
+        <h4 class="p-notification-contribute__title">Just a quick question…</h4>
         <p class="p-notification-contribute__copy">
-          Drop the message you'd actually send when the demo dies five minutes before the call.
-          Funny, painful, brutally honest — throw yours into the chaos.
+          You know the one. Usually sent five minutes before the call. Add yours.
         </p>
       </div>
       <form class="p-notification-form" data-notification-form
@@ -244,8 +244,8 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             <option>🔥</option><option>🧨</option><option>☕</option><option>🤷</option>
           </select>
           <input id="notificationMessage" name="message" type="text" maxlength="220"
-                 placeholder="what broke this time?" required autocomplete="off">
-          <button type="submit" class="p-btn p-btn--primary">Throw it in ↗</button>
+                 placeholder="has anyone touched production?" required autocomplete="off">
+          <button type="submit" class="p-btn p-btn--primary">Send it ↗</button>
         </div>
         <p class="p-notification-form__status" data-notification-status aria-live="polite"></p>
       </form>
@@ -266,12 +266,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       <div>
         <span class="p-overline">Selected Research Output</span>
         <h2 class="p-h2">Publications</h2>
-        <div class="p-pub-hook p-reveal" aria-label="Not many, but every single one cost blood, sweat and deadline nights — quality over quantity.">
-          <span class="p-pub-hook__label">The hard truth</span>
+        <div class="p-pub-hook p-reveal" aria-label="Not many. Every one came with rejections, rewrites and late-night fixes. I learned more between versions.">
+          <span class="p-pub-hook__label">No vanity metrics</span>
           <p class="p-pub-hook__hero">Not many.</p>
-          <p class="p-pub-hook__mid">But every single one cost</p>
-          <p class="p-pub-hook__blood">blood, sweat &amp; deadline nights.</p>
-          <p class="p-pub-hook__close">— quality, not quantity.</p>
+          <p class="p-pub-hook__mid">Every one came with</p>
+          <p class="p-pub-hook__blood">rejections, rewrites &amp; late-night fixes.</p>
+          <p class="p-pub-hook__close">I learned more between versions.</p>
         </div>
       </div>
       <a href="https://scholar.google.com/citations?user=GIJ3h4AAAAAJ&hl=en"
@@ -294,11 +294,11 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
 <div class="p-mode-shift p-reveal" id="mode-shift" aria-label="From research to building products">
   <div class="p-container p-mode-shift__inner">
-    <span class="p-mode-shift__mode">Research</span>
-    <span class="p-mode-shift__signal" aria-hidden="true">
-      <i></i><i></i><i></i>
-    </span>
-    <span class="p-mode-shift__mode p-mode-shift__mode--build">Build</span>
+    <div class="p-mode-shift__equation">
+      <span class="p-mode-shift__mode">Research</span>
+      <span class="p-mode-shift__signal" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="p-mode-shift__mode p-mode-shift__mode--build">Build</span>
+    </div>
     <span class="p-mode-shift__caption">models → systems → experiences</span>
   </div>
 </div>
@@ -309,72 +309,69 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <section class="p-section p-section--dark" id="projects" data-section="projects" data-kinetic="BUILD" aria-label="Projects">
   <div class="p-container">
 
-    <div class="p-section-header p-reveal">
-      <span class="p-overline">Open Source &amp; Side Projects</span>
-      <h2 class="p-h2">Projects</h2>
+    <div class="p-section-header p-projects-heading p-reveal">
+      <span class="p-overline">Projects · experiments · side quests</span>
+      <h2 class="p-h2">Built on the <span class="p-accent">side.</span></h2>
+      <p class="p-scribble p-scribble--projects" data-scroll-scribble style="--p-scribble-r:3deg">
+        mostly curiosity.<br>occasionally poor time management.
+      </p>
     </div>
 
-    <!-- Project 1 — large featured -->
-    <a href="https://egocentricvision.github.io/EgocentricVision/"
-       target="_blank" rel="noopener"
-       class="p-proj-featured p-reveal" aria-label="Egocentric Vision repository">
-      <div class="p-proj-featured__img">
-        <img src="/assets/img/ego_logo.png" alt="Egocentric Vision" loading="lazy">
-      </div>
-      <div class="p-proj-featured__body">
-        <span class="p-proj-featured__tag">Research · Open Source</span>
-        <h3 class="p-proj-featured__title">Egocentric Vision</h3>
-        <p class="p-proj-featured__desc">
-          Curated collection of papers, datasets, challenges and applications
-          on first-person vision. Living repository, community-maintained.
-        </p>
-        <span class="p-proj-featured__cta">Visit repository ↗</span>
-      </div>
-    </a>
-
-    <!-- Projects 2–4 — horizontal row -->
-    <div class="p-proj-row">
+    <div class="p-project-field">
+      <a href="https://egocentricvision.github.io/EgocentricVision/"
+         target="_blank" rel="noopener" class="p-project-piece p-reveal"
+         data-project-piece style="--delay:0ms" aria-label="Egocentric Vision repository">
+        <figure class="p-project-piece__media p-project-piece__media--contain">
+          <img src="/assets/img/ego_logo.png" alt="Egocentric Vision" loading="lazy">
+        </figure>
+        <div class="p-project-piece__copy">
+          <span class="p-project-piece__index">01 / Research · Open Source</span>
+          <h3>Egocentric Vision</h3>
+          <p>Papers, datasets and challenges for seeing the world from a first-person point of view.</p>
+          <span class="p-project-piece__cta">Visit repository ↗</span>
+        </div>
+      </a>
 
       <a href="https://plana93.github.io/ColorGPTStudio/"
-         target="_blank" rel="noopener"
-         class="p-proj-mini p-reveal" style="--delay:0ms">
-        <div class="p-proj-mini__img">
+         target="_blank" rel="noopener" class="p-project-piece p-reveal"
+         data-project-piece style="--delay:100ms">
+        <figure class="p-project-piece__media">
           <img src="/assets/img/colorgpt_cover.png" alt="ColorGPT Studio" loading="lazy">
-          <div class="p-proj-mini__overlay">
-            <span class="p-proj-mini__link">View ↗</span>
-          </div>
+        </figure>
+        <div class="p-project-piece__copy">
+          <span class="p-project-piece__index">02 / Android · App</span>
+          <h3>ColorGPT Studio</h3>
+          <p>Tap a pixel, get the colour. HEX, RGB and CMYK—even offline.</p>
+          <span class="p-project-piece__cta">Open project ↗</span>
         </div>
-        <span class="p-proj-mini__tag">Android · App</span>
-        <h3 class="p-proj-mini__title">ColorGPT Studio</h3>
-        <p class="p-proj-mini__desc">Tap a pixel, get the color — HEX · RGB · CMYK · offline.</p>
       </a>
 
       <a href="https://plana93.github.io/good-habits/"
-         target="_blank" rel="noopener"
-         class="p-proj-mini p-reveal" style="--delay:120ms">
-        <div class="p-proj-mini__img">
+         target="_blank" rel="noopener" class="p-project-piece p-reveal"
+         data-project-piece style="--delay:200ms">
+        <figure class="p-project-piece__media">
           <img src="/assets/img/good_habits/good_habits.png" alt="Good-Habits" loading="lazy">
-          <div class="p-proj-mini__overlay">
-            <span class="p-proj-mini__link">View ↗</span>
-          </div>
+        </figure>
+        <div class="p-project-piece__copy">
+          <span class="p-project-piece__index">03 / Android · App</span>
+          <h3>Good-Habits</h3>
+          <p>A quiet habit tracker built around consistency, not streak anxiety.</p>
+          <span class="p-project-piece__cta">Open project ↗</span>
         </div>
-        <span class="p-proj-mini__tag">Android · App</span>
-        <h3 class="p-proj-mini__title">Good-Habits</h3>
-        <p class="p-proj-mini__desc">Track &amp; build daily habits — minimal, focused on consistency.</p>
       </a>
 
-      <a class="p-proj-mini p-reveal" href="/projects/4_project/" style="--delay:240ms">
-        <div class="p-proj-mini__img p-proj-mini__img--art">
+      <a href="/projects/4_project/" class="p-project-piece p-reveal"
+         data-project-piece style="--delay:300ms">
+        <figure class="p-project-piece__media p-project-piece__media--contain">
           <img src="/assets/img/Art/art_cover.png" alt="Art projects" loading="lazy">
-          <div class="p-proj-mini__overlay">
-            <span class="p-proj-mini__link">View →</span>
-          </div>
+        </figure>
+        <div class="p-project-piece__copy">
+          <span class="p-project-piece__index">04 / Design · Art</span>
+          <h3>Art &amp; Design</h3>
+          <p>Logos, roll-ups and visual experiments collected through the PhD years.</p>
+          <span class="p-project-piece__cta">Browse the work →</span>
         </div>
-        <span class="p-proj-mini__tag">Design · Art</span>
-        <h3 class="p-proj-mini__title">Art &amp; Design</h3>
-        <p class="p-proj-mini__desc">Lab logos, roll-ups and digital art from the PhD years.</p>
       </a>
-
     </div>
   </div>
 </section>
@@ -384,10 +381,10 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
        style="background-image:url('{{ '/assets/img/codemotion_01_2025/me_during_code_motion_emotional.jpg' | relative_url }}')"></div>
   <div class="p-visual-break__wash" aria-hidden="true"></div>
   <div class="p-visual-break__content">
-    <span class="p-overline">Outside the lab</span>
-    <p class="p-visual-break__statement">A result isn't real<br>until it survives a room.</p>
+    <span class="p-overline">The other half of the work</span>
+    <p class="p-visual-break__statement">A strong project,<br>badly explained,<br>is easy to miss.</p>
     <p class="p-scribble p-scribble--light" data-scroll-scribble style="--p-scribble-r:4deg">
-      slides are the easy part →
+      making hard things feel simple<br>is part of the work →
     </p>
   </div>
 </section>
@@ -398,9 +395,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <section class="p-section" id="talks" data-section="talks" data-kinetic="SPEAK" aria-label="Talks and achievements">
   <div class="p-container">
 
-    <div class="p-section-header p-reveal">
-      <span class="p-overline">Speaking &amp; Achievements</span>
-      <h2 class="p-h2">Featured <span class="p-accent">Talks</span></h2>
+    <div class="p-section-header p-talks-heading p-reveal">
+      <span class="p-overline">Speaking &amp; workshops</span>
+      <h2 class="p-h2">Ideas need an <span class="p-accent">audience.</span></h2>
+      <p class="p-scribble p-scribble--talks" data-scroll-scribble style="--p-scribble-r:-3deg">
+        and a ruthless Q&amp;A →
+      </p>
     </div>
 
     <div class="p-talk-cards">

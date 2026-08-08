@@ -73,6 +73,7 @@ html {
 }
 
 body {
+  position: relative;
   background-color: var(--p-bg);
   color: var(--p-text);
   font-family: var(--p-font-body);
@@ -81,6 +82,39 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+// One quiet line links every chapter without forcing identical section layouts.
+.p-storyline {
+  position: absolute;
+  top: 100vh;
+  left: clamp(18px, 3.2vw, 52px);
+  z-index: 0;
+  width: clamp(44px, 6vw, 92px);
+  height: 100vh;
+  opacity: 0.42;
+  pointer-events: none;
+
+  svg { width: 100%; height: 100%; overflow: visible; }
+
+  path {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  &__ghost {
+    stroke: rgba(110,86,255,0.12);
+    stroke-width: 1;
+    stroke-dasharray: 2 7;
+  }
+
+  &__progress {
+    stroke: var(--p-teal);
+    stroke-width: 1.1;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 5px rgba(0,212,170,0.42));
+  }
 }
 
 :focus-visible {
@@ -1566,6 +1600,66 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0;
 }
 
+// Handwritten interruptions: intentionally rare, so they feel human rather than decorative.
+.p-scribble {
+  --p-scribble-y: 0px;
+  margin: 0;
+  font-family: 'Caveat', 'Bradley Hand', cursive;
+  font-size: clamp(1.35rem, 2.5vw, 2.15rem);
+  font-weight: 600;
+  line-height: 0.95;
+  color: var(--p-teal);
+  transform: translate3d(0, var(--p-scribble-y), 0) rotate(var(--p-scribble-r, -3deg));
+  transform-origin: center;
+  pointer-events: none;
+
+  &--research {
+    position: absolute;
+    top: 1.25rem;
+    right: clamp(1.5rem, 5vw, 5rem);
+    z-index: 2;
+    text-align: right;
+  }
+
+  &--light {
+    margin-top: 1.5rem;
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0,0,0,0.55);
+  }
+
+  &--contact {
+    width: fit-content;
+    margin: 1.2rem auto 0;
+    color: var(--p-coral);
+  }
+}
+
+// A physical-looking strip crosses the Research/Build boundary.
+.p-running-band {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  margin: clamp(-1.3rem, -2vw, -0.6rem) 0 -0.6rem;
+  overflow: hidden;
+  border-block: 1px solid rgba(7,7,15,0.7);
+  background: var(--p-teal);
+  color: #07070f;
+  clip-path: polygon(0 12%, 100% 0, 100% 88%, 0 100%);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+
+  &__track {
+    width: max-content;
+    padding: 0.56rem 0;
+    font-family: var(--p-font-head);
+    font-size: clamp(0.78rem, 1.45vw, 1.08rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    transform: translate3d(-12vw, 0, 0);
+    will-change: transform;
+  }
+}
+
 // Editorial bridge between academic research and shipped creative work.
 .p-mode-shift {
   position: relative;
@@ -2510,6 +2604,65 @@ img { max-width: 100%; height: auto; display: block; }
   background: rgba(255,255,255,0.02);
 }
 
+// Full-bleed editorial bridge: the photo changes treatment as it enters the viewport.
+.p-visual-break {
+  position: relative;
+  z-index: 2;
+  min-height: clamp(540px, 76vh, 820px);
+  margin-top: clamp(-2rem, -3vw, -0.75rem);
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+  background: #080811;
+
+  &__media,
+  &__wash {
+    position: absolute;
+    inset: -7%;
+  }
+
+  &__media {
+    z-index: -2;
+    background-position: center 48%;
+    background-size: cover;
+    filter: grayscale(var(--p-break-gray, 100%)) contrast(var(--p-break-contrast, 1.25)) brightness(0.68);
+    transform: translate3d(0, var(--p-break-y, 0%), 0) scale(var(--p-break-scale, 1.12));
+    will-change: transform, filter;
+  }
+
+  &__wash {
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(7,7,15,0.92) 0%, rgba(7,7,15,0.32) 55%, rgba(7,7,15,0.64) 100%),
+      linear-gradient(180deg, rgba(110,86,255,0.16), transparent 45%, rgba(0,212,170,0.18));
+    mix-blend-mode: normal;
+  }
+
+  &__content {
+    width: min(1160px, calc(100% - 2.5rem));
+    min-height: inherit;
+    margin-inline: auto;
+    padding: clamp(7rem, 14vw, 11rem) clamp(0rem, 3vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &__statement {
+    max-width: 13ch;
+    margin: 0;
+    font-family: var(--p-font-head);
+    font-size: clamp(2.4rem, 7vw, 6.8rem);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.06em;
+    color: #fff;
+    text-wrap: balance;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.42);
+  }
+}
+
 .p-proj-featured {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2692,7 +2845,7 @@ img { max-width: 100%; height: auto; display: block; }
 // ============================================================
 .p-talk-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--p-s5);
   margin-top: var(--p-s8);
   align-items: start;
@@ -2854,8 +3007,29 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (min-width: 901px) {
-  .p-talk-card:nth-child(2) { margin-top: 2rem; }
-  .p-talk-card:nth-child(3) { margin-top: 0.75rem; }
+  .p-talk-card:nth-child(1) { grid-column: 1 / span 7; }
+  .p-talk-card:nth-child(2) { grid-column: 8 / span 5; margin-top: 7rem; }
+  .p-talk-card:nth-child(3) { grid-column: 3 / span 7; margin-top: -1.5rem; }
+}
+
+@media (max-width: 900px) {
+  .p-storyline { display: none; }
+  .p-scribble--research {
+    position: relative;
+    inset: auto;
+    width: fit-content;
+    margin: -1.3rem 0 2.5rem auto;
+  }
+  .p-visual-break {
+    min-height: 610px;
+    clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+
+    &__content { justify-content: flex-end; padding-bottom: 7rem; }
+    &__wash {
+      background: linear-gradient(180deg, rgba(7,7,15,0.24), rgba(7,7,15,0.9) 82%);
+    }
+  }
+  .p-talk-card { grid-column: 1 !important; margin-top: 0 !important; }
 }
 
 // Respect system accessibility settings without changing the default experience.

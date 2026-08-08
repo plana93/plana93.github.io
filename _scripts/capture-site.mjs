@@ -27,7 +27,7 @@ if (!selectedViewports.length) {
   throw new Error(`Unknown viewport "${viewportFilter}". Expected: ${viewports.map(item => item.name).join(', ')}`);
 }
 
-const sectionIds = ['home', 'research', 'publications', 'mode-shift', 'projects', 'talks', 'contact'];
+const sectionIds = ['home', 'research', 'publications', 'mode-shift', 'projects', 'visual-break', 'talks', 'contact'];
 const minimumSectionScreenshotBytes = 12_000;
 
 await fs.rm(outputDir, { recursive: true, force: true });

@@ -915,6 +915,98 @@
   }
 
   /* ============================================================
+     6a. EDITORIAL MOTION — connective line, type strip, image treatment
+  ============================================================ */
+  function initEditorialMotion() {
+    var storyline = $('[data-storyline]');
+    var storylinePath = $('[data-storyline-path]');
+    var band = $('[data-scroll-band]');
+    var bandTrack = $('[data-scroll-band-track]');
+    var visualBreaks = $$('[data-visual-break]');
+    var scribbles = $$('[data-scroll-scribble]');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ticking = false;
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function syncStorylineHeight() {
+      if (!storyline) return;
+      storyline.style.height = Math.max(window.innerHeight, document.documentElement.scrollHeight - window.innerHeight) + 'px';
+    }
+
+    function update() {
+      var viewportH = window.innerHeight || 1;
+      var maxScroll = Math.max(1, document.documentElement.scrollHeight - viewportH);
+      var pageProgress = clamp(window.scrollY / maxScroll, 0, 1);
+
+      if (storylinePath) storylinePath.style.strokeDashoffset = (1 - pageProgress).toFixed(4);
+
+      if (band && bandTrack) {
+        var bandRect = band.getBoundingClientRect();
+        if (bandRect.bottom > -100 && bandRect.top < viewportH + 100) {
+          var bandProgress = clamp((viewportH - bandRect.top) / (viewportH + bandRect.height), 0, 1);
+          bandTrack.style.transform = 'translate3d(' + (-18 + bandProgress * 24).toFixed(2) + 'vw,0,0)';
+        }
+      }
+
+      visualBreaks.forEach(function (section) {
+        var rect = section.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > viewportH + 100) return;
+        var progress = clamp((viewportH - rect.top) / (viewportH + rect.height), 0, 1);
+        var media = $('[data-visual-break-media]', section);
+        if (!media) return;
+        media.style.setProperty('--p-break-gray', (100 - progress * 88).toFixed(1) + '%');
+        media.style.setProperty('--p-break-contrast', (1.26 - progress * 0.16).toFixed(3));
+        media.style.setProperty('--p-break-scale', (1.14 - progress * 0.08).toFixed(3));
+        media.style.setProperty('--p-break-y', (-2 + progress * 4).toFixed(2) + '%');
+      });
+
+      scribbles.forEach(function (scribble) {
+        var rect = scribble.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > viewportH + 100) return;
+        var progress = clamp((viewportH - rect.top) / (viewportH + rect.height), 0, 1);
+        scribble.style.setProperty('--p-scribble-y', ((0.5 - progress) * 28).toFixed(1) + 'px');
+      });
+
+      ticking = false;
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+
+    syncStorylineHeight();
+    if (reduceMotion) {
+      if (storylinePath) storylinePath.style.strokeDashoffset = '0';
+      visualBreaks.forEach(function (section) {
+        var media = $('[data-visual-break-media]', section);
+        if (media) {
+          media.style.setProperty('--p-break-gray', '18%');
+          media.style.setProperty('--p-break-scale', '1.06');
+        }
+      });
+      return;
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', function () {
+      syncStorylineHeight();
+      requestUpdate();
+    }, { passive: true });
+    if ('ResizeObserver' in window && storyline) {
+      new ResizeObserver(function () {
+        syncStorylineHeight();
+        requestUpdate();
+      }).observe(document.body);
+    }
+    update();
+  }
+
+  /* ============================================================
      6b. KINETIC SECTION TYPOGRAPHY
   ============================================================ */
   function initKineticSections() {
@@ -997,6 +1089,7 @@
     initCardSpotlights();
     initBillboardHero();
     initNotificationStorm();
+    initEditorialMotion();
     initKineticSections();
     initActiveNav();
 

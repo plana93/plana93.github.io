@@ -92,6 +92,10 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       <h2 class="p-h2">Research <span class="p-accent">Identity</span></h2>
     </div>
 
+    <p class="p-scribble p-scribble--research" data-scroll-scribble style="--p-scribble-r:-5deg">
+      the lab is tidy.<br>reality isn't.
+    </p>
+
     <div class="p-research-grid">
 
       <div class="p-research-card p-reveal-right">
@@ -281,6 +285,13 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   </div>
 </section>
 
+<div class="p-running-band" data-scroll-band aria-hidden="true">
+  <div class="p-running-band__track" data-scroll-band-track>
+    TEST IT · BREAK IT · LEARN · SHIP IT ·&nbsp; TEST IT · BREAK IT · LEARN · SHIP IT ·&nbsp;
+    TEST IT · BREAK IT · LEARN · SHIP IT ·&nbsp; TEST IT · BREAK IT · LEARN · SHIP IT ·&nbsp;
+  </div>
+</div>
+
 <div class="p-mode-shift p-reveal" id="mode-shift" aria-label="From research to building products">
   <div class="p-container p-mode-shift__inner">
     <span class="p-mode-shift__mode">Research</span>
@@ -368,7 +379,18 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   </div>
 </section>
 
-<div class="p-divider"></div>
+<section class="p-visual-break" id="visual-break" data-visual-break aria-label="From prototypes to real audiences">
+  <div class="p-visual-break__media" data-visual-break-media
+       style="background-image:url('{{ '/assets/img/codemotion_01_2025/me_during_code_motion_emotional.jpg' | relative_url }}')"></div>
+  <div class="p-visual-break__wash" aria-hidden="true"></div>
+  <div class="p-visual-break__content">
+    <span class="p-overline">Outside the lab</span>
+    <p class="p-visual-break__statement">A result isn't real<br>until it survives a room.</p>
+    <p class="p-scribble p-scribble--light" data-scroll-scribble style="--p-scribble-r:4deg">
+      slides are the easy part →
+    </p>
+  </div>
+</section>
 
 <!-- ================================================================
      TALKS & ACHIEVEMENTS — photo card layout
@@ -483,6 +505,10 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
         mirco.pl.93@gmail.com
       </a>
     </div>
+
+    <p class="p-scribble p-scribble--contact" data-scroll-scribble style="--p-scribble-r:-3deg">
+      weird ideas welcome.
+    </p>
 
     <div class="p-contact__social p-reveal">
       <a href="https://github.com/plana93" target="_blank" rel="noopener"

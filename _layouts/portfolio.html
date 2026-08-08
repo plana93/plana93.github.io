@@ -51,7 +51,7 @@
   <!-- Fonts (preconnect for speed) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Portfolio Design System CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}">
@@ -73,6 +73,14 @@
 
 <!-- Progress bar -->
 <div id="p-progress-bar" aria-hidden="true"></div>
+
+<!-- A single signal physically connects the otherwise different chapters. -->
+<div class="p-storyline" data-storyline aria-hidden="true">
+  <svg viewBox="0 0 100 1000" preserveAspectRatio="none" focusable="false">
+    <path class="p-storyline__ghost" d="M78 0 C12 110 94 205 31 310 S88 510 24 625 S91 820 38 1000" pathLength="1" />
+    <path class="p-storyline__progress" data-storyline-path d="M78 0 C12 110 94 205 31 310 S88 510 24 625 S91 820 38 1000" pathLength="1" />
+  </svg>
+</div>
 
 <!-- Navigation -->
 <nav class="p-nav" id="pNav" role="navigation" aria-label="Main navigation">

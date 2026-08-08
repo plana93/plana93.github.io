@@ -554,6 +554,9 @@
 
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var ticking = false;
+    var lastScrollY = window.scrollY;
+    var lastScrollAt = performance.now();
+    var scrollVelocity = 0;
 
     function clamp(value, min, max) {
       return Math.min(max, Math.max(min, value));
@@ -569,11 +572,11 @@
     }
 
     function setCardPosition(card, index) {
-      card.style.setProperty('--storm-x', (seededUnit(index + 1) * 36 - 18).toFixed(1) + 'vw');
-      card.style.setProperty('--storm-y', (seededUnit(index + 101) * 38 - 19).toFixed(1) + 'vh');
-      card.style.setProperty('--storm-mobile-x', (seededUnit(index + 201) * 8 - 4).toFixed(1) + 'vw');
-      card.style.setProperty('--storm-mobile-y', (seededUnit(index + 301) * 32 - 16).toFixed(1) + 'vh');
-      card.style.setProperty('--storm-rotate', (seededUnit(index + 401) * 6 - 3).toFixed(1) + 'deg');
+      card.style.setProperty('--storm-x', (seededUnit(index + 1) * 34 - 17).toFixed(1) + 'px');
+      card.style.setProperty('--storm-y', (seededUnit(index + 101) * 288 - 144).toFixed(1) + 'px');
+      card.style.setProperty('--storm-mobile-x', (seededUnit(index + 201) * 22 - 11).toFixed(1) + 'px');
+      card.style.setProperty('--storm-mobile-y', (seededUnit(index + 301) * 236 - 118).toFixed(1) + 'px');
+      card.style.setProperty('--storm-rotate', (seededUnit(index + 401) * 3.6 - 1.8).toFixed(1) + 'deg');
     }
 
     function createNotification(message, index) {
@@ -590,7 +593,7 @@
       card.appendChild(copy);
       setCardPosition(card, index);
       var order = message.total === 1 ? 0 : index / (message.total - 1);
-      card._stormStart = (1 - Math.pow(1 - order, 1.8)) * 0.82;
+      card._stormStart = (1 - Math.pow(1 - order, 1.8)) * 0.84;
       card.style.setProperty('--storm-z', String(index + 1));
       return card;
     }
@@ -619,9 +622,9 @@
         stage.appendChild(createNotification({ icon: message.icon, text: message.text, total: messages.length }, index));
       });
 
-      // Roughly one viewport per 17 messages, plus a generous reading buffer.
-      // The last card arrives at 82%, leaving about 1.5 viewports before release.
-      storm.style.height = Math.max(650, 260 + messages.length * 5.8) + 'vh';
+      // The phone is intentionally shorter than the former wall of messages.
+      // The final card arrives at 84%, leaving more than one viewport to read and decelerate.
+      storm.style.height = Math.max(560, 175 + messages.length * 4.2) + 'vh';
       storm.dataset.messageCount = String(messages.length);
       storm.classList.add('is-ready');
     }
@@ -641,13 +644,24 @@
       var notifications = $$('.p-notification', storm);
       var counter = $('[data-storm-count]', storm);
       var label = $('[data-storm-label]', storm);
-      var hint = $('.p-notification-storm__hint', storm);
-      if (!notifications.length) return;
+      var scene = $('.p-notification-storm__scene', storm);
+      if (!notifications.length) return false;
       var rect = storm.getBoundingClientRect();
-      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 1.75) return;
+      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 1.75) return false;
       var distance = Math.max(1, storm.offsetHeight - window.innerHeight);
       var leadIn = window.innerHeight * 0.55;
-      var progress = clamp((leadIn - rect.top) / (distance + leadIn), 0, 1);
+      var targetProgress = clamp((leadIn - rect.top) / (distance + leadIn), 0, 1);
+      var progress = typeof storm._stormProgress === 'number' ? storm._stormProgress : targetProgress;
+      var progressGap = targetProgress - progress;
+      var speedFactor = clamp(scrollVelocity / 2.4, 0, 1);
+      var response = 0.11 + speedFactor * 0.62;
+
+      // A fast gesture still opens messages quickly, while the last 16% acts as a brake.
+      // Scrolling backwards remains immediate enough to keep the interaction reversible.
+      if (targetProgress > 0.82 && progressGap > 0) response *= 0.34;
+      progress += progressGap * response;
+      if (Math.abs(progressGap) < 0.00035) progress = targetProgress;
+      storm._stormProgress = progress;
       var opened = 0;
 
       notifications.forEach(function (notification, index) {
@@ -656,8 +670,8 @@
 
       // Only the newest cards remain animated. Older ones become cheap static ghosts,
       // preserving the crowded look without compositing 100+ moving layers per frame.
-      var activeFloor = Math.max(0, opened - (window.innerWidth <= 768 ? 10 : 12));
-      var buriedFloor = Math.max(0, opened - 60);
+      var activeFloor = Math.max(0, opened - (window.innerWidth <= 768 ? 6 : 8));
+      var buriedFloor = Math.max(0, opened - 40);
 
       notifications.forEach(function (notification, index) {
         // Wide gaps first, then an accelerating cascade that crowds the final frames.
@@ -712,21 +726,45 @@
       if (counter) counter.textContent = String(opened).padStart(2, '0');
       if (label) {
         if (opened < notifications.length) label.textContent = 'incoming';
-        else if (progress < 0.96) label.textContent = 'all received · breathe';
+        else if (targetProgress < 0.97) label.textContent = 'all received · breathe';
         else label.textContent = 'release';
       }
-      if (hint) hint.style.opacity = String(clamp(1 - progress * 7, 0, 1));
+
+      if (scene) {
+        var swipePhase = (progress * 9.5) % 1;
+        var fingerY = 54 - swipePhase * 118;
+        var fingerOpacity = clamp(Math.sin(Math.PI * swipePhase) * 1.18, 0, 0.9);
+        scene.style.setProperty('--phone-finger-y', fingerY.toFixed(1) + 'px');
+        scene.style.setProperty('--phone-finger-opacity', fingerOpacity.toFixed(3));
+      }
+
+      return Math.abs(targetProgress - progress) > 0.00035;
     }
 
     function updateAll() {
-      storms.forEach(updateStorm);
+      var needsSettle = false;
+      storms.forEach(function (storm) {
+        if (updateStorm(storm)) needsSettle = true;
+      });
+      scrollVelocity *= 0.86;
       ticking = false;
+      if (needsSettle) requestUpdate();
     }
 
     function requestUpdate() {
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(updateAll);
+    }
+
+    function handleScroll() {
+      var now = performance.now();
+      var elapsed = Math.max(8, now - lastScrollAt);
+      var instantVelocity = Math.abs(window.scrollY - lastScrollY) / elapsed;
+      scrollVelocity = scrollVelocity * 0.28 + instantVelocity * 0.72;
+      lastScrollY = window.scrollY;
+      lastScrollAt = now;
+      requestUpdate();
     }
 
     function copyText(value) {
@@ -766,7 +804,7 @@
         // Open synchronously from the click so browsers do not block the new tab.
         window.open(form.dataset.editorUrl, '_blank', 'noopener');
         copyText(jsonLine).then(function () {
-          if (status) status.textContent = 'Got it. GitHub is open — paste the copied line at the bottom and hit “Propose changes”.';
+          if (status) status.textContent = 'Copied. GitHub is open — paste it on the last line and you’re in.';
         }).catch(function () {
           if (status) status.textContent = 'GitHub is open. Add this as the last line: ' + jsonLine;
         });
@@ -827,7 +865,7 @@
       }
 
       if (!reduceMotion) {
-        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
         window.addEventListener('resize', requestUpdate, { passive: true });
         updateAll();
       }

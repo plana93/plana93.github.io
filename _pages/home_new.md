@@ -84,7 +84,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <!-- ================================================================
      RESEARCH IDENTITY
 ================================================================ -->
-<section class="p-section" id="research" data-section="research" data-kinetic="VISION" aria-label="Research areas">
+<section class="p-section p-section--paper" id="research" data-section="research" data-kinetic="VISION" aria-label="Research areas">
   <div class="p-container">
 
     <div class="p-section-header p-reveal">
@@ -213,26 +213,49 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
     <div class="p-notification-storm" id="message-storm" data-notification-storm
          data-source="{{ '/assets/data/notification-storm.jsonl' | relative_url }}">
       <div class="p-notification-storm__sticky">
-        <div class="p-notification-storm__status" aria-hidden="true">
-          <span class="p-notification-storm__pulse"></span>
-          <span><strong data-storm-count>00</strong> <span data-storm-label>incoming</span></span>
-        </div>
+        <div class="p-notification-storm__scene">
+          <p class="p-notification-storm__note" aria-hidden="true">
+            <strong>121</strong>
+            <span>messages later,<br>still “one quick thing”.</span>
+          </p>
 
-        <div class="p-notification-storm__stage" data-notification-stage
-             aria-label="A growing stream of realistic questions from AI projects">
-          <span class="p-notification-storm__loading">loading incoming messages…</span>
-        </div>
+          <div class="p-notification-storm__phone" aria-label="A phone filling up with realistic AI project messages">
+            <div class="p-notification-storm__screen">
+              <div class="p-notification-storm__phonebar" aria-hidden="true">
+                <span>09:41</span>
+                <i></i>
+                <span>5G&nbsp; ▰</span>
+              </div>
 
-        <span class="p-notification-storm__hint" aria-hidden="true">scroll to open the floodgate</span>
+              <div class="p-notification-storm__status" aria-hidden="true">
+                <span class="p-notification-storm__pulse"></span>
+                <span><strong data-storm-count>00</strong> <span data-storm-label>incoming</span></span>
+              </div>
+
+              <div class="p-notification-storm__stage" data-notification-stage
+                   aria-label="A growing stream of realistic questions from AI projects">
+                <span class="p-notification-storm__loading">loading incoming messages…</span>
+              </div>
+
+              <span class="p-notification-storm__homebar" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <div class="p-notification-storm__finger" data-phone-finger aria-hidden="true">
+            <span></span>
+          </div>
+
+          <span class="p-notification-storm__pace" aria-hidden="true">your scroll sets the pace ↕</span>
+        </div>
       </div>
     </div>
 
     <div class="p-notification-contribute p-reveal">
       <div>
-        <span class="p-overline">Add to the thread</span>
-        <h4 class="p-notification-contribute__title">Just a quick question…</h4>
+        <span class="p-overline">Your turn</span>
+        <h4 class="p-notification-contribute__title">What made the chat go quiet?</h4>
         <p class="p-notification-contribute__copy">
-          You know the one. Usually sent five minutes before the call. Add yours.
+          Drop that message here—the one followed by three dots, then silence.
         </p>
       </div>
       <form class="p-notification-form" data-notification-form
@@ -244,8 +267,8 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
             <option>🔥</option><option>🧨</option><option>☕</option><option>🤷</option>
           </select>
           <input id="notificationMessage" name="message" type="text" maxlength="220"
-                 placeholder="has anyone touched production?" required autocomplete="off">
-          <button type="submit" class="p-btn p-btn--primary">Send it ↗</button>
+                 placeholder="ragazzi, chi ha fatto il deploy?" required autocomplete="off">
+          <button type="submit" class="p-btn p-btn--primary">Add yours ↗</button>
         </div>
         <p class="p-notification-form__status" data-notification-status aria-live="polite"></p>
       </form>
@@ -266,12 +289,12 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
       <div>
         <span class="p-overline">Selected Research Output</span>
         <h2 class="p-h2">Publications</h2>
-        <div class="p-pub-hook p-reveal" aria-label="Not many. Every one came with rejections, rewrites and late-night fixes. I learned more between versions.">
-          <span class="p-pub-hook__label">No vanity metrics</span>
-          <p class="p-pub-hook__hero">Not many.</p>
-          <p class="p-pub-hook__mid">Every one came with</p>
-          <p class="p-pub-hook__blood">rejections, rewrites &amp; late-night fixes.</p>
-          <p class="p-pub-hook__close">I learned more between versions.</p>
+        <div class="p-pub-hook p-reveal" aria-label="What the PDF leaves out. The paper is the clean version. The useful part was messier: wrong turns, rejected ideas and one more experiment. Most of the learning never made the abstract.">
+          <span class="p-pub-hook__label">[ What the PDF leaves out ]</span>
+          <p class="p-pub-hook__hero">The paper is<br>the clean version.</p>
+          <p class="p-pub-hook__mid">The useful part was messier:</p>
+          <p class="p-pub-hook__blood">wrong turns, rejected ideas &amp; one more experiment.</p>
+          <p class="p-pub-hook__close">Most of the learning never made the abstract.</p>
         </div>
       </div>
       <a href="https://scholar.google.com/citations?user=GIJ3h4AAAAAJ&hl=en"
@@ -292,13 +315,13 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   </div>
 </div>
 
-<div class="p-mode-shift p-reveal" id="mode-shift" aria-label="From research to building products">
-  <div class="p-container p-mode-shift__inner">
-    <div class="p-mode-shift__equation">
-      <span class="p-mode-shift__mode">Research</span>
-      <span class="p-mode-shift__signal" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="p-mode-shift__mode p-mode-shift__mode--build">Build</span>
-    </div>
+<div class="p-mode-shift p-reveal" id="mode-shift" aria-label="Research becomes building: models to systems to experiences">
+  <div class="p-mode-shift__poster">
+    <span class="p-mode-shift__index">02 / change of mode</span>
+    <span class="p-mode-shift__research">Research</span>
+    <span class="p-mode-shift__arrow" aria-hidden="true">↘</span>
+    <span class="p-mode-shift__build">Build</span>
+    <span class="p-mode-shift__aside">same curiosity.<br>more consequences.</span>
     <span class="p-mode-shift__caption">models → systems → experiences</span>
   </div>
 </div>
@@ -381,10 +404,10 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
        style="background-image:url('{{ '/assets/img/codemotion_01_2025/me_during_code_motion_emotional.jpg' | relative_url }}')"></div>
   <div class="p-visual-break__wash" aria-hidden="true"></div>
   <div class="p-visual-break__content">
-    <span class="p-overline">The other half of the work</span>
-    <p class="p-visual-break__statement">A strong project,<br>badly explained,<br>is easy to miss.</p>
+    <span class="p-overline">After the prototype</span>
+    <p class="p-visual-break__statement">It works.<br>Now make it<br>make sense.</p>
     <p class="p-scribble p-scribble--light" data-scroll-scribble style="--p-scribble-r:4deg">
-      making hard things feel simple<br>is part of the work →
+      explaining it is part<br>of building it →
     </p>
   </div>
 </section>
@@ -392,7 +415,7 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <!-- ================================================================
      TALKS & ACHIEVEMENTS — photo card layout
 ================================================================ -->
-<section class="p-section" id="talks" data-section="talks" data-kinetic="SPEAK" aria-label="Talks and achievements">
+<section class="p-section p-section--paper p-section--talks-paper" id="talks" data-section="talks" data-kinetic="SPEAK" aria-label="Talks and achievements">
   <div class="p-container">
 
     <div class="p-section-header p-talks-heading p-reveal">

@@ -220,7 +220,6 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     <div class="p-section-header p-reveal" style="margin-top:4rem">
       <span class="p-overline">Before the clean result</span>
       <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">The work you <span class="p-accent">don't see.</span></h3>
-      <p class="p-chat-subtitle-it">mio padre dice sempre: <em>"calma e sangue freddo"</em></p>
     </div>
 
     <div class="p-notification-storm" id="message-storm" data-notification-storm
@@ -231,6 +230,11 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
             <strong>121</strong>
             <span>messages later,<br>still “one quick thing”.</span>
           </p>
+
+          <blockquote class="p-notification-storm__advice">
+            <span>mio padre dice sempre:</span>
+            <strong>“calma e sangue freddo”</strong>
+          </blockquote>
 
           <div class="p-notification-storm__phone" aria-label="A phone filling up with realistic AI project messages">
             <div class="p-notification-storm__screen">

@@ -978,25 +978,22 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-// ── Mobile (< 640px) — FLEXBOX + NEGATIVE MARGINS OVERLAP ───────
-// Gli elementi restano in flusso ma si sovrappongono come sul desktop:
-// VISION sporge sotto la foto dalla parte superiore,
-// INTELLIGENCE sporge sopra la foto dalla parte inferiore.
+// ── Mobile (< 640px) — the same billboard logic as desktop ─────
 @media (max-width: 640px) {
 
-  // Container: flex column, overflow visible per permettere overlap
   .p-hero--billboard {
-    display:         flex;
-    flex-direction:  column;
-    align-items:     center;
-    justify-content: center;
-    min-height:      100svh;
-    height:          auto;
-    padding-top:     4rem;
-    padding-bottom:  3rem;
-    gap:             0;
-    overflow-x:      clip;   // evita scrollbar orizzontale
-    overflow-y:      visible; // permette overlap verticale (negative margins)
+    display: block;
+    min-height: 620px;
+    height: 100svh;
+    padding: 0;
+    overflow: hidden;
+
+    &::after {
+      top: 5%;
+      right: -0.8rem;
+      width: 44vw;
+      height: 3.1rem;
+    }
   }
 
   // Canvas + onde: non interferiscono col layout
@@ -1008,27 +1005,26 @@ img { max-width: 100%; height: auto; display: block; }
     height: 100%;
   }
 
-  // TRANSFORMING — in flusso, centrato, sopra VISION
+  // Keep the desktop stack: word, portrait, then hard signal strip.
   .p-bb__overline {
-    position:       relative;
-    z-index:        6;
-    transform:      none;
-    left:           auto;
-    top:            auto;
-    text-align:     center;
-    margin-bottom:  0.4rem;
-    font-size:      clamp(0.5rem, 2.8vw, 0.75rem);
+    position: absolute;
+    inset: 14% 0 auto;
+    z-index: 6;
+    transform: none;
+    text-align: center;
+    margin: 0;
+    font-size: clamp(0.48rem, 2.2vw, 0.68rem);
     letter-spacing: 0.4em;
   }
 
-  // VISION — in flusso, gap positivo → foto sta sotto VISION senza sovrapporsi
   .p-bb__vision {
-    position:      relative;
-    z-index:       3;          // sotto la foto (z:4)
-    transform:     none;
-    width:         100%;
-    text-align:    center;
-    margin-bottom: 1.2rem;     // gap: foto leggermente più in basso rispetto a VISION
+    position: absolute;
+    inset: 22% 0 auto;
+    z-index: 3;
+    transform: none;
+    width: 100%;
+    margin: 0;
+    text-align: center;
 
     span {
       font-size:      clamp(3rem, 22vw, 5.5rem);
@@ -1040,17 +1036,16 @@ img { max-width: 100%; height: auto; display: block; }
     }
   }
 
-  // Foto — in flusso, centrata, margin-bottom negativo → INTELLIGENCE si sovrappone
   .p-bb__photo-wrap {
-    position:     relative;    // indispensabile per .p-bb__into child + z-index
+    position:     absolute;
     z-index:      4;
-    top:          auto;
-    left:         auto;
-    transform:    none;
-    width:        min(260px, 72vw);
+    top:          52%;
+    left:         50%;
+    transform:    translate(-50%, -50%);
+    width:        min(280px, 72vw);
     max-height:   none;
     aspect-ratio: 3 / 4;
-    margin:       0 auto -2.5rem; // overlap: INTELLIGENCE si sovrappone al fondo
+    margin:       0;
     --p-lens-radius: 32%;
   }
 
@@ -1063,13 +1058,12 @@ img { max-width: 100%; height: auto; display: block; }
     z-index:   5;
   }
 
-  // INTELLIGENCE — in flusso, z-index sopra la foto
   .p-bb__intel {
-    position:   relative;
-    z-index:    5;              // sopra la foto (z:4)
-    bottom:     auto;
-    transform:  none;
-    width:      100%;           // prende tutta la larghezza
+    position: absolute;
+    inset: auto 0 14%;
+    z-index: 5;
+    transform: none;
+    width: 100%;
     padding-inline: 1rem;
     overflow:   hidden;
 
@@ -1081,7 +1075,7 @@ img { max-width: 100%; height: auto; display: block; }
       display:          block;
       width:            fit-content;
       max-width:        100%;
-      margin-inline:    auto;   // centrato
+      margin-inline:    auto;
     }
   }
 
@@ -1096,28 +1090,9 @@ img { max-width: 100%; height: auto; display: block; }
     to   { opacity: 1; filter: blur(0px)  ; transform: none; }
   }
   @keyframes p-mb-scale-in {
-    from { opacity: 0; transform: scale(0.9); }
-    to   { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   }
-  @keyframes p-lens-scan {
-    0%, 100% { opacity: 0; clip-path: circle(0 at 18% 48%); }
-    18%      { opacity: 1; clip-path: circle(32% at 18% 48%); }
-    72%      { opacity: 1; clip-path: circle(32% at 82% 48%); }
-  }
-  @keyframes p-reticle-scan {
-    0%, 100% { opacity: 0; left: 18%; top: 48%; }
-    18%      { opacity: 1; left: 18%; top: 48%; }
-    72%      { opacity: 1; left: 82%; top: 48%; }
-  }
-
-  .p-bb__photo-wrap.is-auto-scanning {
-    .p-bb__lens-layer { animation: p-lens-scan 2.4s 1.25s var(--p-ease) both; }
-    .p-bb__lens-reticle {
-      animation: p-reticle-scan 2.4s 1.25s var(--p-ease) both;
-      transform: translate(-50%, -50%) scale(0.9);
-    }
-  }
-
   // Senza .p-hero--ready: elementi visibili subito (fallback JS lento/assente)
   .p-hero--billboard:not(.p-hero--ready) {
     .p-bb__overline,
@@ -1158,18 +1133,14 @@ img { max-width: 100%; height: auto; display: block; }
 // ── Small mobile (< 480px) ────────────────────────────────────
 @media (max-width: 480px) {
   .p-bb__vision span {
-    font-size: clamp(2.6rem, 22vw, 4.5rem);
+    font-size: clamp(2.6rem, 20vw, 4.5rem);
   }
   .p-bb__intel span {
     font-size: clamp(1.2rem, 9vw, 3rem);
     padding:   0.07em 0.3em;
   }
   .p-bb__photo-wrap {
-    width:         min(220px, 78vw);
-    margin-bottom: -2rem;
-  }
-  .p-bb__vision {
-    margin-bottom: 1.0rem;
+    width: min(250px, 78vw);
   }
   .p-bb__overline {
     font-size:      0.5rem;
@@ -1178,6 +1149,11 @@ img { max-width: 100%; height: auto; display: block; }
   .p-bb__into {
     font-size: clamp(0.9rem, 4.8vw, 1.3rem);
     right:     -0.4rem;
+  }
+
+  .p-visual-break__statement {
+    max-width: 100%;
+    font-size: 2rem;
   }
 }
 
@@ -1914,7 +1890,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--p-ink);
 
   &::before {
-    content: 'R / B';
+    content: 'R & B';
     position: absolute;
     right: -0.05em;
     top: -0.12em;
@@ -1958,12 +1934,29 @@ img { max-width: 100%; height: auto; display: block; }
     left: clamp(1rem, 6vw, 6rem);
     z-index: 3;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(4.6rem, 14vw, 13rem);
+    display: inline-block;
+    isolation: isolate;
+    font-size: clamp(5.2rem, 15.5vw, 14rem);
     font-style: italic;
+    font-weight: 700;
     line-height: 0.82;
     letter-spacing: -0.085em;
     color: var(--p-blue);
+    text-shadow: 0.035em 0.025em 0 rgba(11,11,8,0.16);
     transform: rotate(-6deg);
+
+    &::before {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      color: var(--p-orange);
+      opacity: 0.72;
+      transform: translate(0.045em, 0.035em);
+      -webkit-mask-image: repeating-linear-gradient(0deg, #000 0 5px, transparent 5px 8px);
+      mask-image: repeating-linear-gradient(0deg, #000 0 5px, transparent 5px 8px);
+      pointer-events: none;
+    }
 
     &::after {
       content: '';
@@ -1971,23 +1964,24 @@ img { max-width: 100%; height: auto; display: block; }
       left: -3%;
       right: -4%;
       top: 58%;
-      height: clamp(5px, 0.8vw, 12px);
-      background: var(--p-orange);
-      border-radius: 50%;
-      transform: rotate(3deg) skewX(-24deg);
+      height: clamp(6px, 0.75vw, 11px);
+      background: repeating-linear-gradient(90deg, var(--p-orange) 0 13px, transparent 13px 17px);
+      transform: rotate(2deg) skewX(-18deg);
     }
   }
 
   &__arrow {
     position: absolute;
-    top: 31%;
+    top: 29%;
     right: clamp(1.5rem, 15vw, 13rem);
     z-index: 5;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(5rem, 13vw, 12rem);
+    font-size: clamp(6rem, 14vw, 13rem);
+    font-style: italic;
+    font-weight: 700;
     line-height: 1;
     color: var(--p-orange);
-    transform: rotate(8deg);
+    transform: rotate(-9deg);
   }
 
   &__build {
@@ -2036,14 +2030,14 @@ img { max-width: 100%; height: auto; display: block; }
     &__research {
       top: 19%;
       left: 0.55rem;
-      font-size: clamp(4rem, 22vw, 6rem);
+      font-size: clamp(4.7rem, 24vw, 6.5rem);
       transform: rotate(-7deg);
     }
 
     &__arrow {
-      top: 36%;
+      top: 35%;
       right: 1rem;
-      font-size: 5.5rem;
+      font-size: 6rem;
     }
 
     &__build {
@@ -3020,16 +3014,20 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .p-chat-subtitle-it {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 0.88rem;
-  color: var(--p-text-muted);
-  opacity: 0.7;
-  margin-top: 0.5rem;
+  width: fit-content;
+  margin: 0.7rem 0 0 clamp(0rem, 8vw, 5rem);
+  font-family: 'Caveat', 'Bradley Hand', cursive;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  font-weight: 600;
+  font-style: normal;
+  line-height: 0.95;
+  color: var(--p-blue);
+  opacity: 0.9;
+  transform: rotate(-3deg);
 
   em {
-    font-style: normal;
-    color: var(--p-teal);
+    font-style: inherit;
+    color: var(--p-orange);
   }
 }
 
@@ -3157,6 +3155,11 @@ img { max-width: 100%; height: auto; display: block; }
     text-wrap: balance;
     text-shadow: 0 10px 40px rgba(0,0,0,0.42);
   }
+}
+
+.p-visual-break__statement > span {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 // ============================================================
@@ -3563,7 +3566,7 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 360px) {
   .p-visual-break__statement {
     max-width: 100%;
-    font-size: 2.25rem;
+    font-size: 1.65rem;
   }
 
   .p-contact__email {

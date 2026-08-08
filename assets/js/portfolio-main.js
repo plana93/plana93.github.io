@@ -341,9 +341,6 @@
       }, 1400);
     }, { passive: true });
 
-    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var mobile = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
-    if (mobile && !reduceMotion) wrap.classList.add('is-auto-scanning');
     if (photo.complete) buildAlphaMap();
     else photo.addEventListener('load', buildAlphaMap, { once: true });
   }

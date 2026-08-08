@@ -1,8 +1,9 @@
 ---
 layout: portfolio
-title:
+title: Mirco Planamente
+seo_title: "Mirco Planamente — AI Researcher in Computer Vision"
 permalink: /
-description: "AI Researcher specializing in Computer Vision, Egocentric Vision & Domain Adaptation. PhD @ Politecnico di Torino | ARGO Vision | Italian Institute of Technology."
+description: "Mirco Planamente is an AI researcher working on Computer Vision, Egocentric Vision and Domain Adaptation—from research models to systems people can use."
 ---
 
 <!-- ================================================================
@@ -217,8 +218,8 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 
     <!-- Problem Board — Chat style -->
     <div class="p-section-header p-reveal" style="margin-top:4rem">
-      <span class="p-overline">Messages nobody puts in the report</span>
-      <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">The unofficial <span class="p-accent">project log</span></h3>
+      <span class="p-overline">Before the clean result</span>
+      <h3 class="p-h2" style="font-size:clamp(1.4rem,3vw,2rem)">The work you <span class="p-accent">don't see.</span></h3>
       <p class="p-chat-subtitle-it">mio padre dice sempre: <em>"calma e sangue freddo"</em></p>
     </div>
 
@@ -261,10 +262,8 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
     <div class="p-notification-contribute p-reveal">
       <div>
         <span class="p-overline">Your turn</span>
-        <h4 class="p-notification-contribute__title">What made the chat go quiet?</h4>
-        <p class="p-notification-contribute__copy">
-          Drop that message here—the one followed by three dots, then silence.
-        </p>
+        <h4 class="p-notification-contribute__title">Seen worse?</h4>
+        <p class="p-notification-contribute__copy">Surprise me.</p>
       </div>
       <form class="p-notification-form" data-notification-form
             data-editor-url="https://github.com/plana93/plana93.github.io/edit/master/assets/data/notification-storm.jsonl">
@@ -326,8 +325,8 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
 <div class="p-mode-shift p-reveal" id="mode-shift" aria-label="Research becomes building: models to systems to experiences">
   <div class="p-mode-shift__poster">
     <span class="p-mode-shift__index">02 / change of mode</span>
-    <span class="p-mode-shift__research">Research</span>
-    <span class="p-mode-shift__arrow" aria-hidden="true">↘</span>
+    <span class="p-mode-shift__research" data-text="Research">Research</span>
+    <span class="p-mode-shift__arrow" aria-hidden="true">&amp;</span>
     <span class="p-mode-shift__build">Build</span>
     <span class="p-mode-shift__aside">same curiosity.<br>more consequences.</span>
     <span class="p-mode-shift__caption">models → systems → experiences</span>
@@ -413,9 +412,9 @@ description: "AI Researcher specializing in Computer Vision, Egocentric Vision &
   <div class="p-visual-break__wash" aria-hidden="true"></div>
   <div class="p-visual-break__content">
     <span class="p-overline">After the prototype</span>
-    <p class="p-visual-break__statement">It works.<br>Now make it<br>make sense.</p>
+    <p class="p-visual-break__statement"><span>It works.</span><br><span>Now make it</span><br><span>make sense.</span></p>
     <p class="p-scribble p-scribble--light" data-scroll-scribble style="--p-scribble-r:4deg">
-      explaining it is part<br>of building it →
+      if you can't explain it simply,<br>the build isn't finished →
     </p>
   </div>
 </section>

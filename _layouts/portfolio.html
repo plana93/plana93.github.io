@@ -1,50 +1,77 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en" }}" data-theme="dark">
 <head>
+  {% assign seo_title = page.seo_title | default: site.seo_title | default: site.title %}
+  {% assign seo_description = page.description | default: site.description %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.first_name }} {{ site.last_name }}</title>
-  <meta name="description" content="{{ page.description | default: site.description }}">
+  <title>{{ seo_title }}</title>
+  <meta name="description" content="{{ seo_description | strip_newlines | escape }}">
   <meta name="keywords" content="Mirco Planamente, AI Researcher, Computer Vision, Egocentric Vision, Domain Adaptation, PhD, Politecnico di Torino, ARGO Vision, IIT, machine learning">
   <meta name="author" content="{{ site.first_name }} {{ site.last_name }}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#0b0b08">
+  {% if site.google_site_verification %}
+  <meta name="google-site-verification" content="{{ site.google_site_verification }}">
+  {% endif %}
   <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
 
   <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ page.title | default: site.first_name }} {{ site.last_name }}">
-  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Mirco Planamente">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_description | strip_newlines | escape }}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/img/io_without_bg.png' | absolute_url }}">
+  <meta property="profile:first_name" content="Mirco">
+  <meta property="profile:last_name" content="Planamente">
+
+  <!-- Social preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title }}">
+  <meta name="twitter:description" content="{{ seo_description | strip_newlines | escape }}">
+  <meta name="twitter:image" content="{{ '/assets/img/io_without_bg.png' | absolute_url }}">
 
   <!-- Canonical -->
   <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="me" href="https://scholar.google.com/citations?user={{ site.scholar_userid }}">
+  <link rel="me" href="https://github.com/{{ site.github_username }}">
+  <link rel="me" href="https://linkedin.com/in/{{ site.linkedin_username }}">
 
-  <!-- JSON-LD structured data (Google Knowledge Panel) -->
+  <!-- JSON-LD: this URL is Mirco's canonical profile page. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Mirco Planamente",
-    "url": "{{ site.url }}",
-    "image": "{{ '/assets/img/io_without_bg.png' | absolute_url }}",
-    "jobTitle": "AI Researcher",
-    "description": "{{ site.description | strip_newlines }}",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Politecnico di Torino"
-    },
-    "worksFor": [
-      { "@type": "Organization", "name": "ARGO Vision" },
-      { "@type": "Organization", "name": "Italian Institute of Technology" }
-    ],
-    "sameAs": [
-      "https://scholar.google.com/citations?user=GIJ3h4AAAAAJ",
-      "https://github.com/{{ site.github_username }}",
-      "https://linkedin.com/in/{{ site.linkedin_username }}",
-      "https://twitter.com/{{ site.twitter_username }}"
-    ],
-    "knowsAbout": ["Computer Vision", "Egocentric Vision", "Domain Adaptation", "Anomaly Detection", "Machine Learning"]
+    "@type": "ProfilePage",
+    "@id": "{{ site.url }}/#profile-page",
+    "url": "{{ site.url }}/",
+    "name": {{ seo_title | jsonify }},
+    "description": {{ seo_description | strip_newlines | jsonify }},
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#mirco-planamente",
+      "name": "Mirco Planamente",
+      "alternateName": "plana93",
+      "url": "{{ site.url }}/",
+      "image": "{{ '/assets/img/io_without_bg.png' | absolute_url }}",
+      "jobTitle": "AI Researcher",
+      "description": {{ site.description | strip_newlines | jsonify }},
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Politecnico di Torino"
+      },
+      "worksFor": [
+        { "@type": "Organization", "name": "ARGO Vision" },
+        { "@type": "Organization", "name": "Italian Institute of Technology" }
+      ],
+      "sameAs": [
+        "https://scholar.google.com/citations?user={{ site.scholar_userid }}",
+        "https://github.com/{{ site.github_username }}",
+        "https://linkedin.com/in/{{ site.linkedin_username }}",
+        "https://twitter.com/{{ site.twitter_username }}"
+      ],
+      "knowsAbout": ["Artificial Intelligence", "Computer Vision", "Egocentric Vision", "Domain Adaptation", "Anomaly Detection", "Machine Learning"]
+    }
   }
   </script>
 

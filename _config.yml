@@ -2,14 +2,15 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
+title: Mirco Planamente
+seo_title: Mirco Planamente — AI Researcher in Computer Vision
 first_name: Mirco
 middle_name:
 last_name: Planamente
 email: mirco.pl.93@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  AI Researcher specializing in Computer Vision and Egocentric Action Recognition. 
-  PhD in Computer Science with 26+ publications in top-tier venues including CVPR, IEEE RA-L, WACV, and ICPR.
+  Mirco Planamente is an AI researcher specializing in Computer Vision, Egocentric Vision and Domain Adaptation.
+  PhD in Computer Science with 26+ publications across CVPR, IEEE RA-L, WACV, ICPR and IJCV.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.

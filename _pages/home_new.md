@@ -43,12 +43,6 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     <span>VISION</span>
   </div>
 
-  <!-- Una sottile copia outlined torna davanti alla foto: il testo si intreccia,
-       ma resta leggibile e la profondità è chiaramente intenzionale. -->
-  <div class="p-bb__vision-weave p-bb__reveal" aria-hidden="true">
-    <span>VISION</span>
-  </div>
-
   <!-- ── LAYER 3: foto B&W (centro, z-index medio) ── -->
   <div class="p-bb__photo-wrap p-bb__reveal">
     <img src="{{ '/assets/img/io_without_bg.png' | relative_url }}"

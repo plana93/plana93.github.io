@@ -369,6 +369,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   &__logo-accent {
+    margin-left: 0.5em;
     color: var(--p-purple);
   }
 
@@ -830,43 +831,13 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-// VISION is both information and structure: most of the word stays behind the
-// portrait, while one outlined print band returns to the foreground. The narrow
-// band makes the overlap read as an intentional weave rather than a collision.
-.p-bb__vision-weave {
-  position: absolute;
-  top: clamp(4.5rem, 10vw, 8rem);
-  left: 0;
-  right: 0;
-  z-index: 5;
-  overflow: hidden;
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  clip-path: polygon(0 23%, 100% 23%, 100% 42%, 0 42%);
-
-  span {
-    display: block;
-    padding-inline: 2vw;
-    color: transparent;
-    font-family: var(--p-font-head);
-    font-size: clamp(4rem, 17vw, 12rem);
-    font-weight: 800;
-    line-height: 0.88;
-    letter-spacing: -0.04em;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: clamp(1px, 0.14vw, 2px) var(--p-paper);
-    text-shadow: 0.035em 0.025em 0 var(--p-orange);
-  }
-}
-
 // Foto B&W — al centro, z-index sopra VISION, sotto INTELLIGENCE
 .p-bb__photo-wrap {
   position: absolute;
   // centrata verticalmente, leggermente in alto → più sovrapposizione su VISION
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -47%);
+  transform: translate(-50%, -40%);
   z-index: 4;
   width: clamp(220px, 42vw, 520px);
   max-height: 70vh;
@@ -994,7 +965,7 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 1024px) {
   .p-bb__photo-wrap {
     width: clamp(200px, 38vw, 400px);
-    transform: translate(-50%, -46%);
+    transform: translate(-50%, -42%);
   }
   .p-bb__into {
     font-size: clamp(1.2rem, 3vw, 2rem);
@@ -1007,12 +978,9 @@ img { max-width: 100%; height: auto; display: block; }
   .p-bb__overline { top: 10%; }
 
   .p-bb__vision { top: 17%; }
-  .p-bb__vision-weave { top: 17%; }
-
   .p-bb__vision span {
     font-size: clamp(3.5rem, 17vw, 8rem);
   }
-  .p-bb__vision-weave span { font-size: clamp(3.5rem, 17vw, 8rem); }
   .p-bb__intel {
     top: 60%;
     bottom: auto;
@@ -1021,7 +989,7 @@ img { max-width: 100%; height: auto; display: block; }
   .p-bb__photo-wrap {
     top: 46%;
     width: clamp(180px, 45vw, 320px);
-    transform: translate(-50%, -46%);
+    transform: translate(-50%, -42%);
   }
   .p-bb__into {
     right: -0.75rem;
@@ -1099,25 +1067,12 @@ img { max-width: 100%; height: auto; display: block; }
     }
   }
 
-  .p-bb__vision-weave {
-    inset: 18% 0 auto;
-    transform: none;
-
-    span {
-      padding-inline: 0;
-      font-size: clamp(3rem, 22vw, 5.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.04em;
-      white-space: nowrap;
-    }
-  }
-
   .p-bb__photo-wrap {
     position:     absolute;
     z-index:      4;
     // Anchor the portrait to VISION rather than to the viewport centre. This
     // preserves the laptop billboard's overlap rhythm at any phone height.
-    top:          calc(18% + 13.35rem);
+    top:          calc(18% + 13.75rem);
     left:         50%;
     transform:    translate(-50%, -50%);
     width:        min(300px, 82vw);
@@ -1184,7 +1139,6 @@ img { max-width: 100%; height: auto; display: block; }
   .p-hero--billboard:not(.p-hero--ready) {
     .p-bb__overline,
     .p-bb__vision,
-    .p-bb__vision-weave,
     .p-bb__photo-wrap,
     .p-bb__intel { opacity: 1; }
   }
@@ -1195,9 +1149,6 @@ img { max-width: 100%; height: auto; display: block; }
       animation: p-mb-fade-up 0.5s 0.05s cubic-bezier(0.22,1,0.36,1) both;
     }
     .p-bb__vision {
-      animation: p-mb-fade-blur 0.9s 0.15s cubic-bezier(0.22,1,0.36,1) both;
-    }
-    .p-bb__vision-weave {
       animation: p-mb-fade-blur 0.9s 0.15s cubic-bezier(0.22,1,0.36,1) both;
     }
     .p-bb__photo-wrap {
@@ -1241,9 +1192,6 @@ img { max-width: 100%; height: auto; display: block; }
 // ── Small mobile (< 480px) ────────────────────────────────────
 @media (max-width: 480px) {
   .p-bb__vision span {
-    font-size: clamp(2.6rem, 20vw, 4.5rem);
-  }
-  .p-bb__vision-weave span {
     font-size: clamp(2.6rem, 20vw, 4.5rem);
   }
   .p-bb__intel span {

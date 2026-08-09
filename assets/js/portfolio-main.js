@@ -265,14 +265,13 @@
 
     var overline  = $('.p-bb__overline');
     var vision    = $('.p-bb__vision');
-    var visionWeave = $('.p-bb__vision-weave');
     var photoWrap = $('.p-bb__photo-wrap');
     var intel     = $('.p-bb__intel');
     var photo     = $('.p-bb__photo');
 
     // Utility: mostra tutti gli elementi senza animazione
     function showAllImmediate() {
-      [overline, vision, visionWeave, photoWrap, intel].forEach(function(el) {
+      [overline, vision, photoWrap, intel].forEach(function(el) {
         if (!el) return;
         el.style.opacity = '1';
         el.style.transform = 'none';
@@ -307,7 +306,7 @@
     });
 
     // 2. "VISION" sale dal basso con blur (effetto cinema)
-    if (vision) tl.fromTo([vision, visionWeave].filter(Boolean),
+    if (vision) tl.fromTo(vision,
       { opacity: 0, y: 60, filter: 'blur(18px)' },
       { opacity: 1, y: 0,  filter: 'blur(0px)', duration: 1.1, ease: 'expo.out' },
       '-=0.2'
@@ -339,7 +338,7 @@
       gsap.registerPlugin(ScrollTrigger);
 
       // "VISION" va su più veloce (piano lontano)
-      if (vision) gsap.to([vision, visionWeave].filter(Boolean), {
+      if (vision) gsap.to(vision, {
         yPercent: -20,
         ease: 'none',
         scrollTrigger: {

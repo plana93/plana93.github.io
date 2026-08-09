@@ -28,6 +28,13 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     </g>
   </svg>
 
+  <!-- Geometria editoriale: pochi segni, usati come punti di tensione -->
+  <div class="p-hero__geometry" aria-hidden="true">
+    <span class="p-hero__shape p-hero__shape--ring"></span>
+    <span class="p-hero__shape p-hero__shape--square"></span>
+    <span class="p-hero__shape p-hero__shape--dot"></span>
+  </div>
+
   <!-- ── LAYER 1: TRANSFORMING (overline) ── -->
   <div class="p-bb__overline p-bb__reveal" aria-hidden="true">TRANSFORMING</div>
 
@@ -227,14 +234,9 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
       <div class="p-notification-storm__sticky">
         <div class="p-notification-storm__scene">
           <p class="p-notification-storm__note" aria-hidden="true">
-            <strong>121</strong>
+            <strong data-storm-total>32</strong>
             <span>messages later,<br>still “one quick thing”.</span>
           </p>
-
-          <blockquote class="p-notification-storm__advice">
-            <span>mio padre dice sempre:</span>
-            <strong>“calma e sangue freddo”</strong>
-          </blockquote>
 
           <div class="p-notification-storm__phone" aria-label="A phone filling up with realistic AI project messages">
             <div class="p-notification-storm__screen">
@@ -287,6 +289,14 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     </div>
   </div>
 </section>
+
+<div class="p-breathing-field p-breathing-field--paper" aria-hidden="true">
+  <span class="p-breathing-field__label">01 / leave room for the next thought</span>
+  <span class="p-geo p-geo--square-solid"></span>
+  <span class="p-geo p-geo--circle-outline"></span>
+  <span class="p-geo p-geo--dot-blue"></span>
+  <span class="p-geo p-geo--line"></span>
+</div>
 
 <div class="p-divider"></div>
 
@@ -416,7 +426,7 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   <div class="p-visual-break__wash" aria-hidden="true"></div>
   <div class="p-visual-break__content">
     <span class="p-overline">After the prototype</span>
-    <p class="p-visual-break__statement"><span>It works.</span><br><span>Now make it</span><br><span>make sense.</span></p>
+    <p class="p-visual-break__statement"><span>Good work</span><br><span>deserves a</span><br><span>good presentation.</span></p>
     <p class="p-scribble p-scribble--light" data-scroll-scribble style="--p-scribble-r:4deg">
       if you can't explain it simply,<br>the build isn't finished →
     </p>
@@ -516,6 +526,14 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   </div>
 </section>
 
+<div class="p-breathing-field p-breathing-field--paper p-breathing-field--reverse" aria-hidden="true">
+  <span class="p-breathing-field__label">02 / pause before contact</span>
+  <span class="p-geo p-geo--square-outline"></span>
+  <span class="p-geo p-geo--circle-solid"></span>
+  <span class="p-geo p-geo--dot-pink"></span>
+  <span class="p-geo p-geo--line"></span>
+</div>
+
 <div class="p-divider"></div>
 
 <!-- ================================================================
@@ -530,9 +548,42 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
       Interested in collaboration?
     </h2>
 
-    <p class="p-body p-reveal" style="text-align:center;max-width:52ch;margin-inline:auto">
-      ARGO Vision · Politecnico di Torino · IIT
-    </p>
+    <div class="p-partners p-reveal" aria-label="Affiliations and collaborations">
+      <div class="p-partners__top">
+        <span>Affiliations &amp; collaborations</span>
+        <span>07 / across research &amp; industry</span>
+      </div>
+      <div class="p-partners__grid">
+        <a href="https://www.argo.vision/" target="_blank" rel="noopener"
+           class="p-partner" aria-label="ARGO Vision">
+          <img src="/assets/img/partners/argo-vision.png" alt="ARGO Vision" loading="lazy">
+        </a>
+        <a href="https://www.iit.it/" target="_blank" rel="noopener"
+           class="p-partner" aria-label="Istituto Italiano di Tecnologia">
+          <img src="/assets/img/partners/iit.png" alt="Istituto Italiano di Tecnologia" loading="lazy">
+        </a>
+        <a href="https://www.cineca.it/" target="_blank" rel="noopener"
+           class="p-partner" aria-label="CINECA">
+          <img src="/assets/img/partners/cineca.png" alt="CINECA" loading="lazy">
+        </a>
+        <a href="https://www.ppt4kids.com/korro-ai" target="_blank" rel="noopener"
+           class="p-partner" aria-label="Korro AI">
+          <img src="/assets/img/partners/korro-ai.png" alt="Korro AI" loading="lazy">
+        </a>
+        <a href="https://www.tuwien.at/" target="_blank" rel="noopener"
+           class="p-partner" aria-label="TU Wien">
+          <img src="/assets/img/partners/tu-wien.png" alt="TU Wien" loading="lazy">
+        </a>
+        <a href="https://www.polito.it/" target="_blank" rel="noopener"
+           class="p-partner" aria-label="Politecnico di Torino">
+          <img src="/assets/img/partners/polito.png" alt="Politecnico di Torino" loading="lazy">
+        </a>
+        <a href="https://www.uniroma1.it/" target="_blank" rel="noopener"
+           class="p-partner" aria-label="Sapienza Università di Roma">
+          <img src="/assets/img/partners/sapienza.png" alt="Sapienza Università di Roma" loading="lazy">
+        </a>
+      </div>
+    </div>
 
     <div class="p-reveal" style="text-align:center">
       <a href="mailto:mirco.pl.93@gmail.com" class="p-contact__email">

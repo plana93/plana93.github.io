@@ -1,121 +1,32 @@
-{"icon":"🌐","text":"si è rotto internet. no, davvero. non va più niente."}
-{"icon":"🖼️","text":"domanda stupida: con 3 foto del difetto ci faccio qualcosa o sto perdendo tempo?"}
-{"icon":"☕","text":"prima domanda: questa roba funziona anche prima del caffè?"}
+{"icon":"🌐","text":"Ho rotto internet!"}
+{"icon":"🖼️","text":"domanda stupida: 3 foto del difetto bastano?"}
 {"icon":"🔧","text":"it was fine yesterday. today it's broken. nobody touched it."}
-{"icon":"🫣","text":"ho premuto un bottone e ora è tutto nero. era importante?"}
-{"icon":"📷","text":"they moved the camera last week and accuracy dropped 30%. do we retrain everything?"}
-{"icon":"🧯","text":"non è proprio un errore. diciamo che ha preso fuoco con calma."}
-{"icon":"🤞","text":"the demo works if nobody breathes near the laptop."}
-{"icon":"🪄","text":"possiamo chiamarla feature invece di bug?"}
-{"icon":"📞","text":"quick question. why is the client already calling me?"}
-{"icon":"⏳","text":"training takes 6 hours every time. we can't keep doing this."}
-{"icon":"📱","text":"can this actually run on the phone or do we need a server?"}
-{"icon":"🕵️","text":"when it gets one wrong, how do i find out why?"}
-{"icon":"📣","text":"linkedin says this takes five minutes. why are we still on it after three weeks?"}
-{"icon":"📊","text":"the ceo wants an ai strategy by friday. what am i supposed to put in it?"}
-{"icon":"🤷","text":"why did it fail on this one? it looks exactly like the others."}
-{"icon":"📦","text":"how many images do you actually need? i need a number."}
-{"icon":"📉","text":"the model isn't learning anything. the loss just sits there."}
-{"icon":"🚚","text":"new camera arrives monday. are we starting from zero again?"}
+{"icon":"📷","text":"they moved the camera last week and accuracy dropped 30%."}
+{"icon":"📊","text":"the ceo wants an ai strategy.."}
+{"icon":"📦","text":"how many images do you actually need?"}
+{"icon":"📉","text":"the model isn't learning anything."}
 {"icon":"🧩","text":"it learned the new parts and forgot the old ones. is that normal?"}
-{"icon":"🔍","text":"what does fine-tuning actually change?"}
-{"icon":"💬","text":"can't we just send the camera feed to chatgpt?"}
-{"icon":"⚠️","text":"can we let gpt decide and only alert us when something is wrong?"}
 {"icon":"💥","text":"non funziona un cazzo. ieri andava."}
-{"icon":"🫠","text":"non funziona nulla. nemmeno il backup."}
 {"icon":"🧨","text":"ho spaccato tutto o posso ancora salvarlo?"}
-{"icon":"🪙","text":"cazzo sono 'ste merde di token? li pago anche quando sbaglia?"}
+{"icon":"🪙","text":"cazzo sono i token?"}
 {"icon":"🥄","text":"spiegamelo in parole povere. proprio povere."}
 {"icon":"😵","text":"non ci ho capito nulla. da dove parto?"}
 {"icon":"🔁","text":"it was working fine yesterday. seriously, nothing changed."}
-{"icon":"🧱","text":"abbiamo aggiornato una libreria e ora è tutto rosso."}
-{"icon":"🎥","text":"the demo starts in 20 minutes and the camera is offline."}
-{"icon":"🚀","text":"ho cliccato deploy. adesso non risponde più niente."}
-{"icon":"💾","text":"please tell me we have a backup."}
-{"icon":"📴","text":"non funziona nulla. ho riavviato anche il router."}
-{"icon":"🤬","text":"non funziona un cazzo. il cliente è già in call."}
-{"icon":"🧪","text":"works on my machine. yes, i know that doesn't help."}
+{"icon":"🤬","text":"non funziona un cazzo."}
+{"icon":"🧪","text":"questa loss come funziona in test?"}
 {"icon":"🗂️","text":"which dataset is the real one? there are four folders called final."}
 {"icon":"🗂️","text":"okay, now there are five folders called final."}
-{"icon":"🏷️","text":"half the labels are wrong. do we fix them or pretend we didn't notice?"}
-{"icon":"✍️","text":"chi ha annotato queste immagini? un procione?"}
-{"icon":"🌙","text":"the overnight training stopped after seven hours. no error, just vibes."}
-{"icon":"🔌","text":"il gpu server è acceso ma nessuno riesce a entrarci."}
-{"icon":"🌡️","text":"the gpu is at 92 degrees. is that normal normal or ai normal?"}
-{"icon":"💸","text":"why did the cloud bill triple overnight?"}
-{"icon":"💸","text":"quanto ci è costato quel training che non ha salvato il checkpoint?"}
 {"icon":"🧠","text":"it predicts the same class for everything. very confident though."}
-{"icon":"🎯","text":"accuracy is 99%. why does every real example fail?"}
-{"icon":"🧹","text":"the test set was in the training set. how bad is that?"}
-{"icon":"🙈","text":"non guardare la confusion matrix. fidati."}
-{"icon":"🪞","text":"is the model good or did we accidentally test it on itself?"}
 {"icon":"🔄","text":"we retrained it and somehow made it worse."}
 {"icon":"🔧","text":"it was fine yesterday. today it's broken. nobody touched it."}
 {"icon":"🔄","text":"l'ho rilanciato uguale e stavolta dà numeri diversi."}
-{"icon":"🎲","text":"why does changing the random seed change the entire conclusion?"}
-{"icon":"📐","text":"the image is rotated by two degrees and now nothing works."}
-{"icon":"💡","text":"production has different lighting. nobody mentioned that before today."}
-{"icon":"🌧️","text":"works indoors. outside it sees ghosts."}
-{"icon":"🕶️","text":"con gli occhiali da sole riconosce tutti come estintori."}
+{"icon":"💡","text":"production has different lighting."}
 {"icon":"👋","text":"it detects hands until the person wears gloves."}
-{"icon":"🧤","text":"new gloves arrived. accuracy left the building."}
-{"icon":"📹","text":"the camera compresses the video. apparently the model hates jpeg."}
-{"icon":"🐌","text":"real time means how many seconds per frame exactly?"}
-{"icon":"🐌","text":"gira in real time se per real time intendiamo molto lentamente."}
-{"icon":"⚡","text":"can we make it ten times faster without losing accuracy?"}
-{"icon":"🪶","text":"we need it smaller, faster and more accurate. budget stays the same."}
-{"icon":"📲","text":"it fits on the phone but drains the battery in nine minutes."}
-{"icon":"📡","text":"what happens when the factory loses connection?"}
-{"icon":"🏭","text":"in laboratorio perfetto. in fabbrica non vede un cazzo."}
-{"icon":"🔊","text":"the machine is louder in production. why does that break the video model?"}
-{"icon":"🎤","text":"audio works unless somebody talks, which people keep doing."}
-{"icon":"🛰️","text":"the sensor timestamps are off by half a second. is that enough to ruin everything?"}
-{"icon":"⌚","text":"why are the imu and video clocks arguing?"}
-{"icon":"🧵","text":"the pipeline has fourteen steps. which one is actually broken?"}
-{"icon":"🪢","text":"ho sistemato un bug e ne sono comparsi tre."}
-{"icon":"🪲","text":"it's not reproducible, except when the customer is watching."}
-{"icon":"🧾","text":"can you explain this error without saying cuda?"}
-{"icon":"🧾","text":"spiegamelo senza usare la parola embedding."}
-{"icon":"🧮","text":"what the hell is a tensor and why does it have five dimensions?"}
-{"icon":"🪙","text":"tokens again. why is everything a token now?"}
-{"icon":"🪙","text":"cazzo sono ste merde di token. sul serio."}
-{"icon":"🤖","text":"is this machine learning or just a very expensive if statement?"}
-{"icon":"🤖","text":"ma quindi pensa davvero o stiamo facendo finta tutti insieme?"}
+{"icon":"📹","text":"Is it deterministic?"}
+{"icon":"🪲","text":"Ci sono 136 branch sulla repo da quale devo partire?"}
 {"icon":"🥄","text":"spiegamelo in parole povere. proprio povere."}
 {"icon":"🗣️","text":"the chatbot sounds confident and is completely wrong."}
-{"icon":"🗣️","text":"gli ho chiesto una cosa semplice e si è inventato pure il cliente."}
-{"icon":"📚","text":"can we give it the manual and make it stop hallucinating?"}
-{"icon":"📚","text":"the manual is 900 pages and half of it is scanned sideways."}
 {"icon":"🔐","text":"are we allowed to upload these images to an api?"}
-{"icon":"🔐","text":"wait, customer data went where?"}
-{"icon":"🕳️","text":"someone deleted the bucket. nobody knows who someone is."}
-{"icon":"🗑️","text":"ho pulito i file temporanei. erano i dati di training."}
-{"icon":"🧊","text":"production is frozen. literally frozen. the camera is in a freezer."}
-{"icon":"🌫️","text":"the lens is dirty and the model thinks everything is a defect."}
-{"icon":"🧼","text":"abbiamo pulito la lente e ora sbaglia oggetti diversi."}
-{"icon":"🎭","text":"the confidence says 98%. the answer is still wrong."}
-{"icon":"🎭","text":"può almeno essere meno sicuro quando dice cazzate?"}
-{"icon":"📏","text":"which metric are we optimizing and why did it change yesterday?"}
-{"icon":"📈","text":"the dashboard is green. the factory says it's broken."}
-{"icon":"📉","text":"il grafico sale ma le prestazioni scendono. fantastico."}
-{"icon":"🧑‍💼","text":"management wants a percentage. which percentage should i give them?"}
-{"icon":"🧑‍💼","text":"can you put the entire model into one powerpoint slide?"}
-{"icon":"🪄","text":"they asked if we can add ai to the logo."}
 {"icon":"📅","text":"can we ship friday and improve accuracy later?"}
-{"icon":"📅","text":"venerdì quale? questo venerdì? cazzo."}
-{"icon":"🚨","text":"the alert system sent 4,000 alerts. nobody reads them anymore."}
-{"icon":"🔕","text":"abbiamo silenziato gli alert e ovviamente ora serve un alert."}
-{"icon":"🧯","text":"the fallback failed. what is the fallback for the fallback?"}
-{"icon":"🛟","text":"please tell me there is a rollback button."}
-{"icon":"💾","text":"please tell me we have a backup."}
-{"icon":"🛟","text":"il rollback ha fatto rollback del rollback."}
-{"icon":"🔑","text":"who changed the api key?"}
-{"icon":"🔑","text":"the key expired during the live demo. perfect timing."}
 {"icon":"📶","text":"si è rotto internet. di nuovo."}
-{"icon":"💣","text":"ho spaccato tutto. questa volta davvero."}
 {"icon":"🔥","text":"nothing works and the logs just say unknown error."}
-{"icon":"🔥","text":"non funziona un cazzo e i log dicono success."}
-{"icon":"☎️","text":"the customer joined early. why would they do that?"}
-{"icon":"😬","text":"non ci ho capito nulla ma ho detto che è quasi pronto."}
-{"icon":"☕","text":"okay. chi ha toccato produzione? e chi porta il caffè?"}
-{"icon":"🫡","text":"demo in two minutes. whatever happens, call it a research preview."}

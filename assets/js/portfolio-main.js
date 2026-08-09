@@ -632,7 +632,9 @@
 
     function renderStorm(storm, messages) {
       var stage = $('[data-notification-stage]', storm);
+      var total = $('[data-storm-total]', storm);
       if (!stage) return;
+      if (total) total.textContent = String(messages.length);
       stage.textContent = '';
       messages.forEach(function (message, index) {
         stage.appendChild(createNotification(message, index));

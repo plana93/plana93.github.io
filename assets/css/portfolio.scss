@@ -1864,7 +1864,7 @@ img { max-width: 100%; height: auto; display: block; }
 // chapter rather than a collection of unrelated cards.
 .p-partners {
   width: min(100%, 1080px);
-  margin: clamp(2.5rem, 6vw, 5rem) auto clamp(2rem, 4vw, 3.5rem);
+  margin: clamp(2.5rem, 6vw, 5rem) auto clamp(4rem, 7vw, 6.5rem);
   border: 1px solid rgba(11,11,8,0.9);
   background: var(--p-paper);
   color: var(--p-ink);
@@ -1985,117 +1985,445 @@ img { max-width: 100%; height: auto; display: block; }
   background: linear-gradient(90deg, transparent, var(--p-border) 18%, var(--p-teal));
 }
 
-// Deliberate breathing corridors between dense chapters. The geometry is
-// sparse and positional: it gives the eye somewhere to land during the pause.
-.p-breathing-field {
+// Visual pauses are full editorial compositions, not loose decoration. They
+// interrupt text-heavy chapters with one strong idea and exposed structure.
+.p-visual-pause {
   position: relative;
-  height: clamp(10rem, 21vw, 19rem);
+  z-index: 1;
+  width: 100%;
   overflow: hidden;
-  background: var(--p-bg);
+  transform: none;
 
-  &--paper { background: var(--p-paper); }
-
-  &__label {
-    position: absolute;
-    left: clamp(1.25rem, 5vw, 5rem);
-    bottom: clamp(1.2rem, 3vw, 2.5rem);
-    font-family: var(--p-font-mono);
-    font-size: clamp(0.5rem, 0.8vw, 0.64rem);
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(11,11,8,0.42);
-  }
-
-  &--reverse .p-breathing-field__label {
-    right: clamp(1.25rem, 5vw, 5rem);
-    left: auto;
-    text-align: right;
-  }
+  &.p-reveal { transform: none; }
+  &.p-reveal.is-visible { transform: none; }
 }
 
-.p-geo {
-  position: absolute;
-  display: block;
+// Poster 01 — a black optic field with deliberately distorted typography.
+.p-optic-poster {
+  position: relative;
+  min-height: clamp(31rem, 56vw, 49rem);
+  overflow: hidden;
+  isolation: isolate;
+  border-block: 1px solid rgba(243,239,228,0.72);
+  background:
+    linear-gradient(rgba(243,239,228,0.1) 1px, transparent 1px) 0 0 / 100% 25%,
+    linear-gradient(90deg, rgba(243,239,228,0.09) 1px, transparent 1px) 0 0 / 12.5% 100%,
+    var(--p-ink);
+  color: var(--p-paper);
 
-  &--square-solid {
-    top: 24%;
-    left: 16%;
-    width: clamp(2.25rem, 5vw, 4.5rem);
-    aspect-ratio: 1;
-    background: var(--p-ink);
-  }
-
-  &--square-outline {
-    top: 19%;
-    right: 14%;
-    width: clamp(3rem, 6vw, 5.5rem);
-    aspect-ratio: 1;
-    border: clamp(5px, 0.7vw, 9px) solid var(--p-ink);
-  }
-
-  &--circle-outline {
-    top: 38%;
-    right: 24%;
-    width: clamp(4.5rem, 9vw, 8rem);
-    aspect-ratio: 1;
-    border: clamp(7px, 1vw, 13px) solid var(--p-ink);
-    border-radius: 50%;
-  }
-
-  &--circle-solid {
-    top: 42%;
-    left: 22%;
-    width: clamp(3.75rem, 8vw, 7rem);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: var(--p-ink);
-  }
-
-  &--dot-blue,
-  &--dot-pink {
-    width: clamp(0.85rem, 1.4vw, 1.3rem);
-    aspect-ratio: 1;
-    border-radius: 50%;
-  }
-
-  &--dot-blue {
-    top: 20%;
-    right: 11%;
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 35%;
+    top: 18%;
+    width: 39%;
+    height: 64%;
     background: var(--p-blue);
   }
 
-  &--dot-pink {
-    top: 29%;
-    left: 12%;
-    background: #ff2f92;
+  &::after {
+    content: '';
+    position: absolute;
+    right: 7%;
+    top: 14%;
+    width: clamp(1.25rem, 2.4vw, 2.5rem);
+    aspect-ratio: 1;
+    background: var(--p-orange);
+    transform: rotate(45deg);
   }
 
-  &--line {
-    top: 50%;
-    left: 46%;
-    width: clamp(5rem, 15vw, 14rem);
-    height: 1px;
+  &__ticker {
+    position: absolute;
+    inset: 0 0 auto;
+    overflow: hidden;
+    padding: 0.5rem 0.65rem;
+    border-bottom: 1px solid rgba(243,239,228,0.72);
+    font-family: var(--p-font-mono);
+    font-size: clamp(0.52rem, 0.85vw, 0.72rem);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  &__index,
+  &__coords,
+  &__note {
+    position: absolute;
+    z-index: 7;
+    font-family: var(--p-font-mono);
+    text-transform: uppercase;
+  }
+
+  &__index {
+    top: clamp(3rem, 5vw, 4.5rem);
+    left: clamp(1.25rem, 3vw, 3.5rem);
+    font-size: clamp(0.58rem, 0.9vw, 0.76rem);
+    letter-spacing: 0.16em;
+  }
+
+  &__word {
+    position: absolute;
+    z-index: 3;
+    display: block;
+    font-family: var(--p-font-head);
+    font-weight: 600;
+    line-height: 0.65;
+    letter-spacing: -0.09em;
+    white-space: nowrap;
+    transform-origin: left center;
+
+    &--look {
+      left: 3%;
+      top: 27%;
+      font-size: clamp(8.5rem, 25vw, 23rem);
+      transform: scaleY(1.52);
+    }
+
+    &--again {
+      right: 1.5%;
+      bottom: 9%;
+      z-index: 5;
+      font-size: clamp(7.2rem, 22vw, 20rem);
+      color: transparent;
+      -webkit-text-stroke: clamp(1.5px, 0.25vw, 3px) var(--p-paper);
+      transform: scaleY(1.34);
+      transform-origin: right center;
+    }
+  }
+
+  &__target {
+    position: absolute;
+    z-index: 6;
+    right: 17%;
+    top: 20%;
+    width: clamp(8rem, 19vw, 18rem);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: clamp(10px, 1.5vw, 22px) solid var(--p-paper);
+    border-radius: 50%;
+    mix-blend-mode: difference;
+
+    &::before,
+    &::after,
+    i {
+      content: '';
+      display: block;
+      position: absolute;
+      border: 2px solid var(--p-paper);
+      border-radius: 50%;
+    }
+
+    &::before { inset: 13%; }
+    &::after { inset: 31%; background: var(--p-paper); }
+    i { inset: -16%; border-width: 1px; }
+  }
+
+  &__cross {
+    position: absolute;
+    z-index: 6;
+    left: 10%;
+    bottom: 10%;
+    width: clamp(4.2rem, 9vw, 8rem);
+    height: clamp(0.8rem, 1.7vw, 1.5rem);
+    background: var(--p-orange);
+    transform: rotate(-8deg);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &__note {
+    right: 4%;
+    top: 52%;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--p-paper);
     background: var(--p-ink);
-    transform: rotate(-18deg);
-    transform-origin: left;
+    font-size: clamp(0.62rem, 1vw, 0.82rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    transform: rotate(4deg);
+  }
+
+  &__coords {
+    left: clamp(1.25rem, 3vw, 3.5rem);
+    bottom: clamp(1rem, 2vw, 2rem);
+    font-size: clamp(0.48rem, 0.75vw, 0.64rem);
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+  }
+
+  &__trace {
+    position: absolute;
+    z-index: 4;
+    left: 14%;
+    bottom: 1%;
+    width: 71%;
+    height: 52%;
+    overflow: visible;
+    transform: rotate(-4deg);
+    pointer-events: none;
+
+    path {
+      fill: none;
+      stroke: var(--p-orange);
+      stroke-width: 2;
+      vector-effect: non-scaling-stroke;
+    }
   }
 }
 
-.p-breathing-field--reverse .p-geo--line {
-  right: 45%;
-  left: auto;
-  transform: rotate(16deg);
-  transform-origin: right;
+// Poster 02 — a finite, modular color system. Every shape belongs to a cell.
+.p-module-poster {
+  min-height: clamp(34rem, 58vw, 52rem);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  border-block: 1px solid var(--p-ink);
+  background: var(--p-paper);
+  color: var(--p-ink);
+
+  &__cell {
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--p-ink);
+    border-bottom: 1px solid var(--p-ink);
+  }
+
+  &__title {
+    grid-area: 1 / 1 / 5 / 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 3rem);
+    background: var(--p-blue);
+    color: var(--p-paper);
+
+    span {
+      display: block;
+      font-family: var(--p-font-head);
+      font-size: clamp(4.4rem, 13.4vw, 13rem);
+      font-weight: 650;
+      line-height: 0.67;
+      letter-spacing: -0.09em;
+      white-space: nowrap;
+      transform: scaleY(1.18);
+      transform-origin: left center;
+    }
+
+    span:nth-child(2) {
+      align-self: flex-end;
+      color: var(--p-pink);
+      transform-origin: right center;
+    }
+
+    small {
+      position: absolute;
+      left: clamp(1rem, 3vw, 3rem);
+      bottom: clamp(0.7rem, 1.4vw, 1.4rem);
+      font-family: var(--p-font-mono);
+      font-size: clamp(0.52rem, 0.8vw, 0.68rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__eye {
+    grid-area: 1 / 9 / 4 / 13;
+    display: grid;
+    place-items: center;
+    background: #e4c7b0;
+
+    > span {
+      width: min(70%, 14rem);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: clamp(4px, 0.55vw, 8px) double var(--p-ink);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 clamp(5px, 0.8vw, 11px) #e4c7b0,
+        0 0 0 clamp(7px, 1.05vw, 15px) var(--p-ink),
+        0 0 0 clamp(12px, 1.7vw, 24px) #e4c7b0,
+        0 0 0 clamp(14px, 1.95vw, 28px) var(--p-ink);
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &::before { width: 48%; height: 28%; background: var(--p-ink); }
+      &::after { width: 17%; aspect-ratio: 1; background: #e4c7b0; }
+    }
+  }
+
+  &__steps {
+    grid-area: 4 / 9 / 6 / 13;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 8%;
+    background: var(--p-orange);
+
+    i {
+      width: 18%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--p-ink);
+      transform: translateY(var(--step-y, 0));
+    }
+
+    i:nth-child(1) { --step-y: 55%; }
+    i:nth-child(2) { --step-y: 17%; }
+    i:nth-child(3) { --step-y: -17%; }
+    i:nth-child(4) { --step-y: -55%; }
+  }
+
+  &__rings {
+    grid-area: 5 / 1 / 9 / 5;
+    display: grid;
+    place-items: center;
+    background: var(--p-pink);
+
+    span {
+      position: absolute;
+      width: calc(25% + (var(--ring) * 10%));
+      height: calc(48% + (var(--ring) * 6%));
+      border: clamp(2px, 0.3vw, 4px) solid var(--p-ink);
+      border-radius: 50%;
+    }
+
+    span:nth-child(1) { --ring: 0; }
+    span:nth-child(2) { --ring: 1; }
+    span:nth-child(3) { --ring: 2; }
+    span:nth-child(4) { --ring: 3; }
+    span:nth-child(5) { --ring: 4; }
+  }
+
+  &__crosses {
+    grid-area: 5 / 5 / 7 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: var(--p-yellow);
+
+    span {
+      font-family: var(--p-font-head);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 400;
+      line-height: 1;
+      transform: scale(1.25, 1.45);
+    }
+  }
+
+  &__signal {
+    grid-area: 7 / 5 / 9 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: #3872c9;
+
+    span {
+      width: 22%;
+      aspect-ratio: 1 / 1.8;
+      border-radius: 50%;
+      background: var(--p-pink);
+      margin-inline: -2%;
+    }
+  }
+
+  &__arch {
+    grid-area: 6 / 9 / 9 / 13;
+    display: grid;
+    place-items: end center;
+    background: #23785f;
+
+    > span {
+      width: 58%;
+      height: 78%;
+      border: clamp(7px, 1vw, 14px) solid var(--p-paper);
+      border-bottom: 0;
+      border-radius: 50% 50% 0 0;
+      box-shadow:
+        0 0 0 clamp(7px, 1vw, 14px) #23785f,
+        0 0 0 clamp(9px, 1.28vw, 18px) var(--p-paper);
+    }
+
+    small {
+      position: absolute;
+      right: 0.7rem;
+      top: 0.45rem;
+      font-family: var(--p-font-mono);
+      font-size: clamp(0.5rem, 0.8vw, 0.7rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--p-paper);
+    }
+  }
 }
 
-@media (max-width: 640px) {
-  .p-breathing-field { height: 10rem; }
-  .p-geo--square-solid { left: 12%; }
-  .p-geo--circle-outline { right: 14%; }
-  .p-geo--square-outline { right: 10%; }
-  .p-geo--circle-solid { left: 16%; }
-  .p-geo--line { left: 43%; width: 5rem; }
+@media (max-width: 700px) {
+  .p-optic-poster {
+    min-height: 34rem;
+
+    &::before { left: 29%; top: 25%; width: 51%; height: 50%; }
+    &::after { top: 12%; right: 8%; }
+
+    &__word--look {
+      left: -1%;
+      top: 31%;
+      font-size: clamp(7rem, 37vw, 10rem);
+      transform: scaleY(1.62);
+    }
+
+    &__word--again {
+      right: -1%;
+      bottom: 17%;
+      font-size: clamp(5.6rem, 29vw, 8rem);
+      transform: scaleY(1.5);
+    }
+
+    &__target { right: 5%; top: 18%; width: 8rem; }
+    &__cross { left: 8%; bottom: 8%; }
+    &__note { right: 4%; top: 62%; }
+    &__trace { left: 4%; bottom: 3%; width: 92%; height: 46%; }
+  }
+
+  .p-module-poster {
+    min-height: 48rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 14rem 9rem 8rem 8rem 9rem;
+
+    &__title {
+      grid-area: 1 / 1 / 2 / 3;
+      padding: 1rem;
+
+      span { font-size: clamp(3.8rem, 21vw, 5.4rem); }
+      small { left: 1rem; bottom: 0.55rem; font-size: 0.46rem; }
+    }
+
+    &__eye { grid-area: 2 / 1 / 4 / 2; }
+    &__steps { grid-area: 2 / 2 / 3 / 3; }
+    &__rings { grid-area: 4 / 1 / 6 / 2; }
+    &__crosses { grid-area: 3 / 2 / 4 / 3; }
+    &__signal { grid-area: 4 / 2 / 5 / 3; }
+    &__arch { grid-area: 5 / 2 / 6 / 3; }
+  }
 }
 
 // Handwritten interruptions: intentionally rare, so they feel human rather than decorative.
@@ -2271,13 +2599,15 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 2;
     font-family: var(--p-font-head);
     font-size: clamp(8rem, 21vw, 19rem);
-    font-weight: 800;
+    // Optical compensation: the vertical stretch must not make the strokes
+    // feel heavier than the original BUILD lettering.
+    font-weight: 700;
     line-height: 0.72;
     letter-spacing: -0.095em;
     text-transform: uppercase;
     color: var(--p-ink);
     white-space: nowrap;
-    transform: scaleY(1.28);
+    transform: scaleX(0.98) scaleY(1.14);
     transform-origin: 50% 100%;
   }
 
@@ -3173,30 +3503,84 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   &__end {
-    min-height: 58%;
+    min-height: 94%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 1rem 0 0;
-    padding: 2.5rem 1rem;
+    align-items: center;
+    margin: 1.25rem 0 0;
+    padding: 2.5rem 1rem 2rem;
     border-top: 1px dashed rgba(11,11,8,0.28);
     color: var(--p-ink);
     text-align: center;
 
     strong {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 2rem;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1;
+      position: relative;
+      display: block;
+      margin-top: 0.8rem;
+      font-family: var(--p-font-head);
+      font-size: clamp(2.65rem, 4vw, 3rem);
+      font-style: normal;
+      font-weight: 800;
+      line-height: 0.78;
+      letter-spacing: -0.09em;
+      text-transform: lowercase;
+      transform: scaleY(1.16);
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 8%;
+        right: -4%;
+        bottom: -0.22em;
+        z-index: -1;
+        height: 0.28em;
+        background: var(--p-yellow);
+        transform: rotate(-2deg);
+      }
     }
 
-    span {
-      margin-top: 0.7rem;
+    &-kicker,
+    &-breath {
       font: 600 0.56rem/1.5 var(--p-font-mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    &-kicker {
+      padding: 0.24rem 0.42rem;
+      background: var(--p-blue);
+      color: var(--p-paper);
+      transform: rotate(-2deg);
+    }
+
+    &-breath {
+      max-width: 31ch;
+      margin-top: 1.2rem;
       opacity: 0.58;
+    }
+
+    em {
+      display: block;
+      max-width: 34ch;
+      margin-top: 2.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(11,11,8,0.22);
+      font-family: var(--p-font-body);
+      font-size: 0.7rem;
+      font-style: normal;
+      font-weight: 550;
+      line-height: 1.5;
+      text-wrap: balance;
+    }
+
+    small {
+      display: block;
+      max-width: 33ch;
+      margin-top: 0.85rem;
+      color: #d72e18;
+      font: 700 0.58rem/1.45 var(--p-font-mono);
+      letter-spacing: 0.035em;
     }
   }
 }
@@ -3438,6 +3822,11 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: 4rem minmax(0, 1fr);
 
     button { grid-column: 1 / -1; }
+    input { padding-inline: 0.6rem; }
+    input::placeholder {
+      font-size: 0.64rem;
+      letter-spacing: -0.035em;
+    }
   }
 }
 

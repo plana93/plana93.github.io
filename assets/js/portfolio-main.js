@@ -641,7 +641,13 @@
       });
       var end = document.createElement('p');
       end.className = 'p-notification-storm__end';
-      end.innerHTML = '<strong>you made it.</strong><span>take a breath before the next “quick question”.</span>';
+      end.innerHTML = [
+        '<span class="p-notification-storm__end-kicker">[ inbox survived ]</span>',
+        '<strong>you made it.</strong>',
+        '<span class="p-notification-storm__end-breath">take a breath. the next “quick question” is already typing.</span>',
+        '<em>Don’t get me wrong: this isn’t only a joke. Everyone should feel free to ask anything while we work—that’s part of the game.</em>',
+        '<small>P.S. I don’t hate questions. I hate a lack of effort.</small>'
+      ].join('');
       stage.appendChild(end);
       storm.dataset.messageCount = String(messages.length);
       storm.classList.add('is-ready');

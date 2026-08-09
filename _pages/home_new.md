@@ -280,7 +280,7 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
             <option>🔥</option><option>🧨</option><option>☕</option><option>🤷</option>
           </select>
           <input id="notificationMessage" name="message" type="text" maxlength="220"
-                 placeholder="ragazzi, chi ha fatto il deploy?" required autocomplete="off">
+                 placeholder="I broke the internet! (part. 3)" required autocomplete="off">
           <button type="submit" class="p-btn p-btn--primary">Add yours ↗</button>
         </div>
         <p class="p-notification-form__status" data-notification-status aria-live="polite"></p>
@@ -290,12 +290,24 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   </div>
 </section>
 
-<div class="p-breathing-field p-breathing-field--paper" aria-hidden="true">
-  <span class="p-breathing-field__label">01 / leave room for the next thought</span>
-  <span class="p-geo p-geo--square-solid"></span>
-  <span class="p-geo p-geo--circle-outline"></span>
-  <span class="p-geo p-geo--dot-blue"></span>
-  <span class="p-geo p-geo--line"></span>
+<div class="p-visual-pause p-visual-pause--optic p-reveal" id="visual-optic"
+     role="img" aria-label="Abstract brutalist poster: look again, change the point of view">
+  <div class="p-optic-poster" aria-hidden="true">
+    <div class="p-optic-poster__ticker">
+      OBSERVE / SHIFT / QUESTION / REPEAT / OBSERVE / SHIFT / QUESTION / REPEAT /
+    </div>
+    <span class="p-optic-poster__index">01—OPTIC FIELD</span>
+    <span class="p-optic-poster__word p-optic-poster__word--look">LOOK</span>
+    <span class="p-optic-poster__word p-optic-poster__word--again">AGAIN</span>
+    <span class="p-optic-poster__target"><i></i></span>
+    <span class="p-optic-poster__cross"></span>
+    <span class="p-optic-poster__note">change the<br>point of view</span>
+    <span class="p-optic-poster__coords">45.0703° N<br>7.6869° E</span>
+    <svg class="p-optic-poster__trace" viewBox="0 0 900 360" preserveAspectRatio="none">
+      <path d="M-20 286 C 124 98, 224 390, 390 168 S 650 30, 944 252" />
+      <path d="M-20 304 C 132 116, 234 408, 400 186 S 660 48, 944 270" />
+    </svg>
+  </div>
 </div>
 
 <div class="p-divider"></div>
@@ -526,12 +538,34 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   </div>
 </section>
 
-<div class="p-breathing-field p-breathing-field--paper p-breathing-field--reverse" aria-hidden="true">
-  <span class="p-breathing-field__label">02 / pause before contact</span>
-  <span class="p-geo p-geo--square-outline"></span>
-  <span class="p-geo p-geo--circle-solid"></span>
-  <span class="p-geo p-geo--dot-pink"></span>
-  <span class="p-geo p-geo--line"></span>
+<div class="p-visual-pause p-visual-pause--modules p-reveal" id="visual-modules"
+     role="img" aria-label="Colorful modular brutalist poster: stay curious">
+  <div class="p-module-poster" aria-hidden="true">
+    <div class="p-module-poster__cell p-module-poster__title">
+      <span>STAY</span>
+      <span>CURIOUS</span>
+      <small>02 / keep the signal alive</small>
+    </div>
+    <div class="p-module-poster__cell p-module-poster__eye">
+      <span><i></i></span>
+    </div>
+    <div class="p-module-poster__cell p-module-poster__steps">
+      <i></i><i></i><i></i><i></i>
+    </div>
+    <div class="p-module-poster__cell p-module-poster__rings">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="p-module-poster__cell p-module-poster__crosses">
+      <span>+</span><span>+</span><span>+</span>
+    </div>
+    <div class="p-module-poster__cell p-module-poster__signal">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="p-module-poster__cell p-module-poster__arch">
+      <span></span>
+      <small>NEXT →</small>
+    </div>
+  </div>
 </div>
 
 <div class="p-divider"></div>
@@ -543,10 +577,6 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   <div class="p-container">
 
     <span class="p-overline p-reveal" style="text-align:center;display:block">Research · Industry · Speaking</span>
-
-    <h2 class="p-h2 p-reveal" style="text-align:center;max-width:none;font-size:clamp(2rem,5vw,3.5rem)">
-      Interested in collaboration?
-    </h2>
 
     <div class="p-partners p-reveal" aria-label="Affiliations and collaborations">
       <div class="p-partners__top">
@@ -584,6 +614,10 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
         </a>
       </div>
     </div>
+
+    <h2 class="p-h2 p-reveal" style="text-align:center;max-width:none;font-size:clamp(2rem,5vw,3.5rem)">
+      Interested in collaboration?
+    </h2>
 
     <div class="p-reveal" style="text-align:center">
       <a href="mailto:mirco.pl.93@gmail.com" class="p-contact__email">

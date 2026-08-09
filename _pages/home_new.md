@@ -13,12 +13,6 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
 ================================================================ -->
 <section class="p-hero p-hero--billboard" id="home" data-section="home" aria-label="Hero section">
 
-  <div class="p-hero__rail" aria-hidden="true">
-    <span>00 / Mirco Planamente</span>
-    <span>AI Researcher · Computer Vision</span>
-    <span>Torino / IT · 45.07° N</span>
-  </div>
-
   <!-- Three.js canvas (sfondo rete neurale) -->
   <canvas id="heroCanvas" class="p-hero__canvas" aria-hidden="true"></canvas>
 
@@ -49,6 +43,12 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     <span>VISION</span>
   </div>
 
+  <!-- Una sottile copia outlined torna davanti alla foto: il testo si intreccia,
+       ma resta leggibile e la profondità è chiaramente intenzionale. -->
+  <div class="p-bb__vision-weave p-bb__reveal" aria-hidden="true">
+    <span>VISION</span>
+  </div>
+
   <!-- ── LAYER 3: foto B&W (centro, z-index medio) ── -->
   <div class="p-bb__photo-wrap p-bb__reveal">
     <img src="{{ '/assets/img/io_without_bg.png' | relative_url }}"
@@ -56,21 +56,6 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
          class="p-bb__photo p-bb__photo--base"
          loading="eager"
          draggable="false" />
-    <div class="p-bb__lens-layer" aria-hidden="true">
-      <img src="{{ '/assets/img/io_without_bg.png' | relative_url }}"
-           alt=""
-           class="p-bb__lens-photo"
-           draggable="false" />
-      <div class="p-bb__lens-halftone"></div>
-    </div>
-    <div class="p-bb__lens-aura" aria-hidden="true"></div>
-    <div class="p-bb__lens-reticle" aria-hidden="true">
-      <span class="p-bb__lens-corner p-bb__lens-corner--tl"></span>
-      <span class="p-bb__lens-corner p-bb__lens-corner--tr"></span>
-      <span class="p-bb__lens-corner p-bb__lens-corner--bl"></span>
-      <span class="p-bb__lens-corner p-bb__lens-corner--br"></span>
-      <span class="p-bb__lens-label" data-lens-label>PERSON&nbsp;&nbsp;99.8%</span>
-    </div>
     <!-- etichetta "Into" in stile serif italic -->
     <span class="p-bb__into" aria-hidden="true"><em>Into</em></span>
   </div>

@@ -223,128 +223,6 @@
      3b. HERO BILLBOARD — entrance + parallax foto + scroll layers
   ============================================================ */
 
-  function initVisionLens() {
-    var wrap = $('.p-bb__photo-wrap');
-    var hero = $('.p-hero--billboard');
-    var photo = $('.p-bb__photo--base', wrap);
-    var label = $('[data-lens-label]', wrap);
-    if (!wrap || !hero || !photo || !$('.p-bb__lens-layer', wrap)) return;
-
-    var hideTimer;
-    var moveFrame;
-    var pendingPoint;
-    var alphaMap;
-
-    function buildAlphaMap() {
-      if (!photo.naturalWidth || !photo.naturalHeight) return;
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d', { willReadFrequently: true });
-      if (!context) return;
-      canvas.width = 96;
-      canvas.height = Math.max(1, Math.round(96 * photo.naturalHeight / photo.naturalWidth));
-      try {
-        context.drawImage(photo, 0, 0, canvas.width, canvas.height);
-        alphaMap = {
-          width: canvas.width,
-          height: canvas.height,
-          pixels: context.getImageData(0, 0, canvas.width, canvas.height).data
-        };
-      } catch (error) {
-        alphaMap = null;
-      }
-    }
-
-    function personCoverage(localX, localY, rect) {
-      if (!alphaMap || !photo.naturalWidth || !photo.naturalHeight) return 0;
-      var scale = Math.max(rect.width / photo.naturalWidth, rect.height / photo.naturalHeight);
-      var renderedWidth = photo.naturalWidth * scale;
-      var renderedHeight = photo.naturalHeight * scale;
-      var offsetX = (rect.width - renderedWidth) / 2;
-      var offsetY = (rect.height - renderedHeight) * 0.4;
-      var radius = Math.min(rect.width, rect.height) * 0.28;
-      var occupied = 0;
-      var sampled = 0;
-      var grid = 15;
-
-      for (var row = 0; row < grid; row += 1) {
-        for (var col = 0; col < grid; col += 1) {
-          var dx = ((col + 0.5) / grid * 2 - 1) * radius;
-          var dy = ((row + 0.5) / grid * 2 - 1) * radius;
-          if (dx * dx + dy * dy > radius * radius) continue;
-          sampled += 1;
-          var pointX = localX + dx;
-          var pointY = localY + dy;
-          if (pointX < 0 || pointX >= rect.width || pointY < 0 || pointY >= rect.height) continue;
-
-          var sourceX = (pointX - offsetX) / renderedWidth;
-          var sourceY = (pointY - offsetY) / renderedHeight;
-          var mapX = Math.max(0, Math.min(alphaMap.width - 1, Math.floor(sourceX * alphaMap.width)));
-          var mapY = Math.max(0, Math.min(alphaMap.height - 1, Math.floor(sourceY * alphaMap.height)));
-          var pixel = (mapY * alphaMap.width + mapX) * 4;
-          var alpha = alphaMap.pixels[pixel + 3];
-          var light = alphaMap.pixels[pixel] + alphaMap.pixels[pixel + 1] + alphaMap.pixels[pixel + 2];
-          if (alpha > 28 && light > 24) occupied += 1;
-        }
-      }
-      return sampled ? occupied / sampled : 0;
-    }
-
-    function renderLens(clientX, clientY) {
-      var rect = wrap.getBoundingClientRect();
-      if (!rect.width || !rect.height) return;
-
-      var localX = clientX - rect.left;
-      var localY = clientY - rect.top;
-      var x = ((clientX - rect.left) / rect.width) * 100;
-      var y = ((clientY - rect.top) / rect.height) * 100;
-      wrap.style.setProperty('--p-lens-x', x.toFixed(2) + '%');
-      wrap.style.setProperty('--p-lens-y', y.toFixed(2) + '%');
-      if (label) {
-        var score = Math.min(99.8, personCoverage(localX, localY, rect) * 112);
-        label.textContent = 'PERSON  ' + score.toFixed(1) + '%';
-      }
-    }
-
-    function moveLens(event) {
-      pendingPoint = { x: event.clientX, y: event.clientY };
-      if (moveFrame) return;
-      moveFrame = window.requestAnimationFrame(function () {
-        moveFrame = null;
-        if (pendingPoint) renderLens(pendingPoint.x, pendingPoint.y);
-      });
-    }
-
-    hero.addEventListener('pointerenter', function (event) {
-      if (event.pointerType === 'touch') return;
-      moveLens(event);
-      wrap.classList.add('is-lens-active');
-    });
-
-    hero.addEventListener('pointermove', function (event) {
-      if (event.pointerType === 'touch') return;
-      moveLens(event);
-    }, { passive: true });
-
-    hero.addEventListener('pointerleave', function () {
-      wrap.classList.remove('is-lens-active');
-    });
-
-    // Touch devices get a tap interaction plus one short introductory scan.
-    wrap.addEventListener('pointerdown', function (event) {
-      if (event.pointerType !== 'touch') return;
-      clearTimeout(hideTimer);
-      wrap.classList.remove('is-auto-scanning');
-      moveLens(event);
-      wrap.classList.add('is-lens-active');
-      hideTimer = setTimeout(function () {
-        wrap.classList.remove('is-lens-active');
-      }, 1400);
-    }, { passive: true });
-
-    if (photo.complete) buildAlphaMap();
-    else photo.addEventListener('load', buildAlphaMap, { once: true });
-  }
-
   // Ridimensiona il titolo usando la larghezza realmente disponibile.
   // Cambiare il font-size (invece di scaleX) mantiene intatte le proporzioni
   // delle lettere e funziona anche con font scaling/accessibility del browser.
@@ -387,13 +265,14 @@
 
     var overline  = $('.p-bb__overline');
     var vision    = $('.p-bb__vision');
+    var visionWeave = $('.p-bb__vision-weave');
     var photoWrap = $('.p-bb__photo-wrap');
     var intel     = $('.p-bb__intel');
     var photo     = $('.p-bb__photo');
 
     // Utility: mostra tutti gli elementi senza animazione
     function showAllImmediate() {
-      [overline, vision, photoWrap, intel].forEach(function(el) {
+      [overline, vision, visionWeave, photoWrap, intel].forEach(function(el) {
         if (!el) return;
         el.style.opacity = '1';
         el.style.transform = 'none';
@@ -428,7 +307,7 @@
     });
 
     // 2. "VISION" sale dal basso con blur (effetto cinema)
-    if (vision) tl.fromTo(vision,
+    if (vision) tl.fromTo([vision, visionWeave].filter(Boolean),
       { opacity: 0, y: 60, filter: 'blur(18px)' },
       { opacity: 1, y: 0,  filter: 'blur(0px)', duration: 1.1, ease: 'expo.out' },
       '-=0.2'
@@ -460,7 +339,7 @@
       gsap.registerPlugin(ScrollTrigger);
 
       // "VISION" va su più veloce (piano lontano)
-      if (vision) gsap.to(vision, {
+      if (vision) gsap.to([vision, visionWeave].filter(Boolean), {
         yPercent: -20,
         ease: 'none',
         scrollTrigger: {
@@ -1052,7 +931,6 @@
     initNav();
     initScrollReveal();
     initProjectCards();
-    initVisionLens();
     initBillboardHero();
     initResearchDeck();
     initNotificationStorm();

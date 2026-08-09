@@ -113,7 +113,8 @@
 <nav class="p-nav" id="pNav" role="navigation" aria-label="Main navigation">
   <div class="p-nav__inner">
     <a href="{{ '/' | relative_url }}" class="p-nav__logo" aria-label="{{ site.first_name }} {{ site.last_name }} home">
-      {{ site.first_name }} <span class="p-nav__logo-accent">{{ site.last_name }}</span><span style="color:var(--p-teal)">_</span>
+      <span class="p-nav__logo-index" aria-hidden="true">00 /</span>
+      <span class="p-nav__logo-name">{{ site.first_name }} <span class="p-nav__logo-accent">{{ site.last_name }}</span><span class="p-nav__logo-cursor" aria-hidden="true">_</span></span>
     </a>
     <ul class="p-nav__links" role="list">
       <li><a href="#research" class="p-nav__link" data-nav="research">Research</a></li>

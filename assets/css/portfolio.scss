@@ -1032,7 +1032,7 @@ img { max-width: 100%; height: auto; display: block; }
   .p-hero--billboard {
     display: block;
     min-height: 620px;
-    height: 100svh;
+    height: clamp(620px, 100svh, 760px);
     padding: 0;
     overflow: hidden;
 
@@ -1087,10 +1087,12 @@ img { max-width: 100%; height: auto; display: block; }
   .p-bb__photo-wrap {
     position:     absolute;
     z-index:      4;
-    top:          48%;
+    // Anchor the portrait to VISION rather than to the viewport centre. This
+    // preserves the laptop billboard's overlap rhythm at any phone height.
+    top:          calc(18% + 13rem);
     left:         50%;
     transform:    translate(-50%, -50%);
-    width:        min(280px, 72vw);
+    width:        min(300px, 82vw);
     max-height:   none;
     aspect-ratio: 3 / 4;
     margin:       0;
@@ -1108,7 +1110,7 @@ img { max-width: 100%; height: auto; display: block; }
 
   .p-bb__intel {
     position: absolute;
-    inset: 65% 0 auto;
+    inset: calc(18% + 23rem) 0 auto;
     z-index: 5;
     transform: none;
     width: 100%;
@@ -1205,7 +1207,7 @@ img { max-width: 100%; height: auto; display: block; }
     padding:   0.07em 0.3em;
   }
   .p-bb__photo-wrap {
-    width: min(250px, 78vw);
+    width: min(300px, 82vw);
   }
   .p-bb__overline {
     font-size:      0.5rem;
@@ -2449,16 +2451,16 @@ img { max-width: 100%; height: auto; display: block; }
 
   &--projects {
     position: absolute;
-    right: clamp(0rem, 5vw, 4rem);
-    bottom: 0.5rem;
+    right: clamp(12rem, 18vw, 15rem);
+    bottom: -2.35rem;
     color: var(--p-purple);
     text-align: right;
   }
 
   &--talks {
     position: absolute;
-    right: clamp(0rem, 5vw, 4rem);
-    bottom: 0.25rem;
+    right: clamp(10rem, 16vw, 13rem);
+    bottom: -2.15rem;
     color: var(--p-teal);
   }
 
@@ -2599,16 +2601,40 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 2;
     font-family: var(--p-font-head);
     font-size: clamp(8rem, 21vw, 19rem);
-    // Optical compensation: the vertical stretch must not make the strokes
-    // feel heavier than the original BUILD lettering.
-    font-weight: 700;
+    // Two clipped copies drag different bands of the word, echoing a rough
+    // printed stretch while keeping the base optically close to its old weight.
+    isolation: isolate;
+    font-weight: 650;
     line-height: 0.72;
     letter-spacing: -0.095em;
     text-transform: uppercase;
     color: var(--p-ink);
     white-space: nowrap;
-    transform: scaleX(0.98) scaleY(1.14);
+    transform: scaleX(0.98) scaleY(1.36);
     transform-origin: 50% 100%;
+
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: var(--p-ink);
+      pointer-events: none;
+    }
+
+    &::before {
+      z-index: 2;
+      clip-path: polygon(0 43%, 100% 39%, 100% 51%, 0 58%);
+      transform: translateX(0.08em) skewX(-15deg) scaleX(1.06);
+      transform-origin: left center;
+    }
+
+    &::after {
+      z-index: 1;
+      clip-path: polygon(0 56%, 100% 49%, 100% 61%, 0 70%);
+      transform: translate(0.15em, 0.025em) skewX(9deg) scaleX(1.1);
+      transform-origin: left bottom;
+    }
   }
 
   &__aside {
@@ -2657,6 +2683,7 @@ img { max-width: 100%; height: auto; display: block; }
       right: -0.01em;
       bottom: 0.62em;
       font-size: clamp(4.4rem, 21vw, 8rem);
+      transform: scaleX(0.98) scaleY(1.45);
     }
 
     &__aside {
@@ -2874,6 +2901,23 @@ img { max-width: 100%; height: auto; display: block; }
     transform: rotate(-7deg);
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    right: clamp(-4rem, -4vw, -2rem);
+    bottom: clamp(-4rem, -4vw, -2rem);
+    z-index: -1;
+    width: clamp(10rem, 23vw, 18rem);
+    aspect-ratio: 1;
+    border: 1px solid rgba(11,11,8,0.32);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgba(11,11,8,0.7) 0 1.4px, transparent 1.7px) 0 0 / 9px 9px,
+      var(--p-orange);
+    transform: rotate(8deg);
+    opacity: 0.72;
+  }
+
   &__label {
     font-family: var(--p-font-mono);
     font-size: 0.68rem;
@@ -2948,6 +2992,12 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: 1fr;
     gap: var(--p-s2);
     &__cite { flex-direction: row; align-self: flex-start; }
+  }
+
+  .p-pub-hook::after {
+    right: -5.5rem;
+    bottom: -5rem;
+    opacity: 0.56;
   }
 }
 
@@ -3557,6 +3607,7 @@ img { max-width: 100%; height: auto; display: block; }
     &-breath {
       max-width: 31ch;
       margin-top: 1.2rem;
+      font-weight: 800;
       opacity: 0.58;
     }
 
@@ -3568,8 +3619,8 @@ img { max-width: 100%; height: auto; display: block; }
       border-top: 1px solid rgba(11,11,8,0.22);
       font-family: var(--p-font-body);
       font-size: 0.7rem;
-      font-style: normal;
-      font-weight: 550;
+      font-style: italic;
+      font-weight: 700;
       line-height: 1.5;
       text-wrap: balance;
     }
@@ -3884,7 +3935,11 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   &__statement {
-    max-width: 17ch;
+    width: min(100%, 18ch);
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin: 0;
     font-family: var(--p-font-head);
     font-size: clamp(2.4rem, 7vw, 6.8rem);
@@ -3894,12 +3949,37 @@ img { max-width: 100%; height: auto; display: block; }
     color: #fff;
     text-wrap: balance;
     text-shadow: 0 10px 40px rgba(0,0,0,0.42);
-  }
-}
 
-.p-visual-break__statement > span {
-  display: inline-block;
-  white-space: nowrap;
+    > span {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      white-space: nowrap;
+    }
+
+    > span:nth-child(2) {
+      margin-left: 0.78em;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.62em;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+    }
+
+    > span:nth-child(3) {
+      margin-top: 0.08em;
+      padding: 0.08em 0.16em 0.12em;
+      background: var(--p-yellow);
+      color: var(--p-ink);
+      font-size: 0.7em;
+      line-height: 0.92;
+      letter-spacing: -0.07em;
+      text-shadow: none;
+      transform: rotate(-1.2deg);
+      transform-origin: left center;
+    }
+  }
 }
 
 // ============================================================
@@ -3911,6 +3991,85 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .p-projects-heading { padding-right: clamp(0rem, 30vw, 22rem); }
+
+// Section-specific visual signals carry the poster language into content
+// chapters without turning every block into the same motif.
+.p-section-signal {
+  position: absolute;
+  right: clamp(0rem, 3vw, 2.5rem);
+  top: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  &--build {
+    width: clamp(8rem, 14vw, 11rem);
+    height: clamp(5.6rem, 10vw, 7.6rem);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+    gap: 1px;
+    padding: 0.75rem 0.75rem 1.35rem;
+    border: 1px solid var(--p-paper);
+    background: var(--p-blue);
+    box-shadow: 8px 8px 0 var(--p-orange);
+    transform: rotate(2deg);
+
+    span {
+      display: block;
+      height: var(--bar-height, 35%);
+      background: var(--p-paper);
+    }
+
+    span:nth-child(1) { --bar-height: 30%; }
+    span:nth-child(2) { --bar-height: 75%; }
+    span:nth-child(3) { --bar-height: 48%; }
+    span:nth-child(4) { --bar-height: 92%; }
+
+    small {
+      position: absolute;
+      left: 0.55rem;
+      bottom: 0.25rem;
+      font: 600 clamp(0.42rem, 0.65vw, 0.55rem)/1 var(--p-font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--p-paper);
+    }
+  }
+
+  &--speak {
+    width: clamp(7rem, 13vw, 10rem);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--p-ink);
+    border-radius: 50%;
+    background: var(--p-pink);
+    box-shadow: -8px 8px 0 var(--p-blue);
+    transform: rotate(-5deg);
+
+    i {
+      position: absolute;
+      border: 1px solid var(--p-ink);
+      border-radius: 50%;
+    }
+
+    i:nth-child(1) { inset: 10%; }
+    i:nth-child(2) { inset: 22%; }
+    i:nth-child(3) { inset: 35%; background: var(--p-yellow); }
+
+    span {
+      position: relative;
+      z-index: 2;
+      font-family: var(--p-font-head);
+      font-size: clamp(1rem, 2vw, 1.55rem);
+      font-weight: 800;
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+}
 
 .p-project-field {
   position: relative;
@@ -4260,6 +4419,17 @@ img { max-width: 100%; height: auto; display: block; }
 
 @media (max-width: 900px) {
   .p-storyline { display: none; }
+
+  .p-section-signal {
+    position: relative;
+    inset: auto;
+    margin: -0.75rem 0 1.75rem auto;
+    transform-origin: right top;
+
+    &--build { transform: rotate(2deg) scale(0.84); }
+    &--speak { transform: rotate(-5deg) scale(0.82); }
+  }
+
   .p-scribble--research {
     position: relative;
     inset: auto;

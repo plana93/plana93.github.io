@@ -353,7 +353,7 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     <span class="p-mode-shift__index">02 / change of mode</span>
     <span class="p-mode-shift__research" data-text="Research">Research</span>
     <span class="p-mode-shift__arrow" aria-hidden="true">&amp;</span>
-    <span class="p-mode-shift__build">Build</span>
+    <span class="p-mode-shift__build" data-text="Build">Build</span>
     <span class="p-mode-shift__aside">same curiosity.<br>more consequences.</span>
     <span class="p-mode-shift__caption">models → systems → experiences</span>
   </div>
@@ -368,6 +368,10 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     <div class="p-section-header p-projects-heading p-reveal">
       <span class="p-overline">Projects · experiments · side quests</span>
       <h2 class="p-h2">Built on the <span class="p-accent">side.</span></h2>
+      <div class="p-section-signal p-section-signal--build" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <small>make / test / break</small>
+      </div>
       <p class="p-scribble p-scribble--projects" data-scroll-scribble style="--p-scribble-r:3deg">
         mostly curiosity.<br>occasionally poor time management.
       </p>
@@ -438,7 +442,7 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   <div class="p-visual-break__wash" aria-hidden="true"></div>
   <div class="p-visual-break__content">
     <span class="p-overline">After the prototype</span>
-    <p class="p-visual-break__statement"><span>Good work</span><br><span>deserves a</span><br><span>good presentation.</span></p>
+    <p class="p-visual-break__statement"><span>Good work</span><span>deserves a</span><span>good presentation.</span></p>
     <p class="p-scribble p-scribble--light" data-scroll-scribble style="--p-scribble-r:4deg">
       if you can't explain it simply,<br>the build isn't finished →
     </p>
@@ -454,6 +458,10 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
     <div class="p-section-header p-talks-heading p-reveal">
       <span class="p-overline">Speaking &amp; workshops</span>
       <h2 class="p-h2">Ideas need an <span class="p-accent">audience.</span></h2>
+      <div class="p-section-signal p-section-signal--speak" aria-hidden="true">
+        <i></i><i></i><i></i>
+        <span>speak<br>up</span>
+      </div>
       <p class="p-scribble p-scribble--talks" data-scroll-scribble style="--p-scribble-r:-3deg">
         and a ruthless Q&amp;A →
       </p>

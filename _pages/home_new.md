@@ -13,6 +13,12 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
 ================================================================ -->
 <section class="p-hero p-hero--billboard" id="home" data-section="home" aria-label="Hero section">
 
+  <div class="p-hero__rail" aria-hidden="true">
+    <span>00 / Mirco Planamente</span>
+    <span>AI Researcher · Computer Vision</span>
+    <span>Torino / IT · 45.07° N</span>
+  </div>
+
   <!-- Three.js canvas (sfondo rete neurale) -->
   <canvas id="heroCanvas" class="p-hero__canvas" aria-hidden="true"></canvas>
 
@@ -36,7 +42,7 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   </div>
 
   <!-- ── LAYER 1: TRANSFORMING (overline) ── -->
-  <div class="p-bb__overline p-bb__reveal" aria-hidden="true">TRANSFORMING</div>
+  <div class="p-bb__overline p-bb__reveal" aria-hidden="true">FROM PIXELS TO SYSTEMS</div>
 
   <!-- ── LAYER 2: VISION (top word, enorme, gradient) ── -->
   <div class="p-bb__vision p-bb__reveal" aria-label="">
@@ -72,6 +78,10 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
   <!-- ── LAYER 4: INTELLIGENCE (bottom, highlight bar verde) ── -->
   <div class="p-bb__intel p-bb__reveal" aria-label="Vision Into Intelligence">
     <span>INTELLIGENCE</span>
+  </div>
+
+  <div class="p-hero__process" aria-hidden="true">
+    <span>INPUT</span><i></i><span>MODEL</span><i></i><span>MEANING</span>
   </div>
 
   <!-- nome accessibile per screen reader -->
@@ -351,6 +361,7 @@ description: "Mirco Planamente is an AI researcher working on Computer Vision, E
 <div class="p-mode-shift p-reveal" id="mode-shift" aria-label="Research becomes building: models to systems to experiences">
   <div class="p-mode-shift__poster">
     <span class="p-mode-shift__index">02 / change of mode</span>
+    <span class="p-mode-shift__route">hypothesis → prototype → real world</span>
     <span class="p-mode-shift__research" data-text="Research">Research</span>
     <span class="p-mode-shift__arrow" aria-hidden="true">&amp;</span>
     <span class="p-mode-shift__build" data-text="Build">Build</span>
